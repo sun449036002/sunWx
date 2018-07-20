@@ -5,7 +5,7 @@ include '/data/www/sunWx/public/SDK/Wx.php';
 $obj = new Wx();
 $result = $obj->sign();
 //echo '<pre>';
-print_r($result);die;
+// print_r($result);die;
 
 
 ?>
