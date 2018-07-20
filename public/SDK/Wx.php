@@ -70,7 +70,7 @@ class Wx{
             //转换成php数组
             $result = json_decode($result,true);
             //将获取到的值存入文件中
-            file_put_contents($filename,"<?php\nreturn " . var_export($result,true) . ";\n?>");
+            /*file_put_contents($filename,"<?php\nreturn " . var_export($result,true) . ";\n?>");*/
 
         }
         //定义返回的数据
