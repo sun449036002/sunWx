@@ -1,7 +1,7 @@
 <?php
 //调用wx类中的sign方法获取签名所需参数
 //引入类文件
-include '/data/www/sunWx/public/sdk/Wx.php';
+include '/data/www/sunWx/public/SDK/Wx.php';
 $obj = new Wx();
 $result = $obj->sign();
 //echo '<pre>';
