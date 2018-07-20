@@ -1,7 +1,7 @@
 <?php
 //调用wx类中的sign方法获取签名所需参数
 //引入类文件
-include './sdk/Wx.php';
+include '/data/www/sunWx/public/sdk/Wx.php';
 $obj = new Wx();
 $result = $obj->sign();
 //echo '<pre>';
@@ -16,7 +16,7 @@ print_r($result);die;
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{dede:field name='description'  function='html2text(@me)'/}" />
 <script src="http://libs.baidu.com/jquery/1.2.3/jquery.min.js"></script>
-<script type="text/javascript" src="jweixin-1.2.0.js"></script>
+<script type="text/javascript" src="/data/www/sunWx/public/jweixin-1.2.0.js"></script>
 <body>
  
  这个是测试内容，欢迎光临。
