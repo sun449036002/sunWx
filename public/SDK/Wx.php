@@ -35,7 +35,7 @@ class Wx{
 			//print_r($result); //差别区别
 			
             //将内容写入文件中
-           file_put_contents($filename,"<?php\nreturn " . var_export($result,true) . ";\n?>");
+            /*file_put_contents($filename,"<?php\nreturn " . var_export($result,true) . ";\n?>");*/
             //定义需要返回的内容
             $data = $result['access_token'];
         }
