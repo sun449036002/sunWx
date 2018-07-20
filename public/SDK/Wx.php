@@ -1,7 +1,7 @@
 <?php
 
 class Wx{
-    protected $appid = 'wx0f901df1aa8b0aa1';  //为防止恶意利用，请你们利用自己的认证公众号的appid自行填写，自行功能测试
+    public $appid = 'wx0f901df1aa8b0aa1';  //为防止恶意利用，请你们利用自己的认证公众号的appid自行填写，自行功能测试
 
     protected $secret = 'ce4d7539231fa54f89d3b670de573ed7'; //为防止恶意利用，请你们利用自己的认证公众号的secret自行填写，自行功能测试
 
