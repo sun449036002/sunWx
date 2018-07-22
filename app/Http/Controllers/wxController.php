@@ -20,6 +20,9 @@ class wxController
 
             'response_type' => 'array',
 
+            'token'   => 'weiphp',          // Token
+            'aes_key' => 'j87GWXELylXpJuxVGSZrvIm4jqEfYFZHAjm2A56nqAz',                    // EncodingAESKey，兼容与安全模式下请一定要填写！！！
+
             'log' => [
                 'level' => 'debug',
                 'file' => storage_path() . '/wechat.log',
@@ -34,16 +37,6 @@ class wxController
         return $response;
     }
 
-    //验证消息
-    public function api2()
-    {
-        file_put_contents("/data/www/sunWx/storage/logs/wx-api.log", json_encode($_GET, JSON_UNESCAPED_UNICODE), FILE_APPEND);
-        $echoStr = $_GET["echostr"];
-        if($this->checkSignature()){    
-            echo $echoStr;
-            exit;
-        }
-    }
     //检查签名
     private function checkSignature()
     {
