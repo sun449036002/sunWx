@@ -14,7 +14,7 @@ use EasyWeChat\Factory;
 class wxController
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response sun
      */
     public function api() {
         $config = [
