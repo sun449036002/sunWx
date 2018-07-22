@@ -29,12 +29,13 @@ class wxController
             ],
         ];
 
+
         $app = Factory::officialAccount($config);
 
         $response = $app->server->serve();
 
         // 将响应输出
-        return $response;
+        echo $response;
     }
 
     //验证消息
