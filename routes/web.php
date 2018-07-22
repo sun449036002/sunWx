@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::any('weixin/api', 'wxController@api');
+
+Route::any("weixin/users", "wxController@users");
