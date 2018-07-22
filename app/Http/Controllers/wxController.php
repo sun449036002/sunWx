@@ -31,8 +31,7 @@ class wxController
 
         $response = $app->server->serve();
 
-        // 将响应输出
-        $response->send();
+        return $response;
     }
 
     //验证消息
