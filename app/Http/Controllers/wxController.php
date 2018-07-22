@@ -14,7 +14,7 @@ use EasyWeChat\Factory;
 class wxController
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response sun1
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function api() {
         $config = [
@@ -25,7 +25,7 @@ class wxController
 
             'log' => [
                 'level' => 'debug',
-                'file' => __DIR__.'/wechat.log',
+                'file' => storage_path() . '/wechat.log',
             ],
         ];
 
@@ -35,7 +35,7 @@ class wxController
         $response = $app->server->serve();
 
         // 将响应输出
-        echo $response;
+        return $response;
     }
 
     //验证消息
