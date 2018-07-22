@@ -46,7 +46,7 @@ class wxController
 
         //消息 以及事件
         $this->wxapp->server->push(function($message){
-            return 'hello world sun' . json_encode($message, JSON_UNESCAPED_UNICODE);
+            return 'hello world sun';
         });
 
         return $this->wxapp->server->serve();
