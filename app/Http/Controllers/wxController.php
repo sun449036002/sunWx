@@ -13,9 +13,6 @@ use EasyWeChat\Factory;
 
 class wxController
 {
-    /**
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
     public function api() {
         $config = [
             'app_id' => 'wx11fe145bfca2b25e',
@@ -35,7 +32,7 @@ class wxController
         $response = $app->server->serve();
 
         // 将响应输出
-        return $response;
+        $response->send();
     }
 
     //验证消息
