@@ -20,8 +20,8 @@ class wxController
 
             'response_type' => 'array',
 
-            'token'   => 'weiphp',          // Token
-            'aes_key' => 'j87GWXELylXpJuxVGSZrvIm4jqEfYFZHAjm2A56nqAz',                    // EncodingAESKey，兼容与安全模式下请一定要填写！！！
+            'token'   => 'weiphp',// Token
+            'aes_key' => 'j87GWXELylXpJuxVGSZrvIm4jqEfYFZHAjm2A56nqAz',// EncodingAESKey，兼容与安全模式下请一定要填写！！！
 
             'log' => [
                 'level' => 'debug',
@@ -35,24 +35,5 @@ class wxController
         $response = $app->server->serve();
 
         return $response;
-    }
-
-    //检查签名
-    private function checkSignature()
-    {
-        $signature = $_GET["signature"];
-        $timestamp = $_GET["timestamp"];
-        $nonce = $_GET["nonce"];
-        $token = "weiphp";
-        $tmpArr = array($token, $timestamp, $nonce);
-        sort($tmpArr, SORT_STRING);
-        $tmpStr = implode($tmpArr);
-        $tmpStr = sha1($tmpStr);
-        if($tmpStr == $signature){
-            return true;
-
-        }else{
-            return false;
-        }
     }
 }
