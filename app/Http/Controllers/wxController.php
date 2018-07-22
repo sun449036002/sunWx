@@ -21,7 +21,7 @@ class wxController
     //验证消息
     public function api()
     {
-        file_put_contents("/root/wx-api.log", json_encode($_GET, JSON_UNESCAPED_UNICODE), FILE_APPEND);
+        file_put_contents("/data/www/sunWx/storage/logs/wx-api.log", json_encode($_GET, JSON_UNESCAPED_UNICODE), FILE_APPEND);
         $echoStr = $_GET["echostr"];
         if($this->checkSignature()){    
             echo $echoStr;
