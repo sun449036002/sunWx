@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use EasyWeChat\Factory;
+use Illuminate\Http\Request;
 
 
 class wxController
@@ -35,12 +36,15 @@ class wxController
     }
     //服务器配置 验证
     //服务器地址(URL) http://wx.sun.zj.cn/weixin/api
-    public function api() {
-        return $this->wxapp->server->serve();
-    }
+    public function api(Request $request) {
 
-    //消息 以及事件
-    public function server() {
+        //接口验证
+        $echostr = $request->get("echostr", '');
+        if (!empty($echostr)) {
+            return $this->wxapp->server->serve();
+        }
+
+        //消息 以及事件
         $this->wxapp->server->push(function($message){
             return 'hello world sun' . json_encode($message, JSON_UNESCAPED_UNICODE);
         });
