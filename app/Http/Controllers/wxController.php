@@ -36,11 +36,6 @@ class wxController
     //服务器配置 验证
     //服务器地址(URL) http://wx.sun.zj.cn/weixin/api
     public function api() {
-        return $this->wxapp->server->serve();
-    }
-
-    //消息 以及事件
-    public function server() {
         $this->wxapp->server->push(function($message){
             return 'hello world sun' . json_encode($message, JSON_UNESCAPED_UNICODE);
         });
