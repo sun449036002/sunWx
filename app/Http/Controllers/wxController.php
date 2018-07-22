@@ -8,18 +8,37 @@
 
 namespace App\Http\Controllers;
 
+use EasyWeChat\Factory;
+
 
 class wxController
 {
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
+    public function api() {
+        $config = [
+            'app_id' => 'wx11fe145bfca2b25e',
+            'secret' => 'b8fdd5d132a3cc9c550ba40d001c6907',
 
+            'response_type' => 'array',
+
+            'log' => [
+                'level' => 'debug',
+                'file' => __DIR__.'/wechat.log',
+            ],
+        ];
+
+        $app = Factory::officialAccount($config);
+
+        $response = $app->server->serve();
+
+        // 将响应输出
+        return $response;
+    }
 
     //验证消息
-    public function api()
+    public function api2()
     {
         file_put_contents("/data/www/sunWx/storage/logs/wx-api.log", json_encode($_GET, JSON_UNESCAPED_UNICODE), FILE_APPEND);
         $echoStr = $_GET["echostr"];
