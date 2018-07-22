@@ -51,4 +51,10 @@ class wxController
 
         return $this->wxapp->server->serve();
     }
+
+    //获取用户列表
+    public function users() {
+        $users = $this->wxapp->user->list();
+        return json_encode($users, JSON_UNESCAPED_UNICODE);
+    }
 }
