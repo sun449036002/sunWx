@@ -25,7 +25,7 @@ class wxController
             'response_type' => 'array',
 
             'token'   => 'weiphp',// Token
-            'aes_key' => 'j87GWXELylXpJuxVGSZrvIm4jqEfYFZHAjm2A56nqAz',// EncodingAESKey，兼容与安全模式下请一定要填写！！！
+//            'aes_key' => 'j87GWXELylXpJuxVGSZrvIm4jqEfYFZHAjm2A56nqAz',// EncodingAESKey，兼容与安全模式下请一定要填写！！！
 
             'log' => [
                 'level' => 'debug',
