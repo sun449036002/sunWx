@@ -84,7 +84,7 @@ class wxController
 
     //处理事件
     private function handleEvent($message) {
-        Log::warning("sub", strtolower($message['Event']));
+        Log::warning("sub", [strtolower($message['Event'])]);
         switch (strtolower($message['Event'])) {
             case 'location':
                 //地址位置上报
