@@ -46,6 +46,34 @@ class BaseModel extends Model
     }
 
     /**
+     * @param $data
+     * @return bool|int
+     */
+    public function insert($data) {
+        if (empty($data)) {
+            return false;
+        }
+        $builder = $this->getBuilder();
+        $newId = $builder->insertGetId($data);
+        return $newId;
+    }
+
+    /**
+     * @param array $data
+     * @param array $where
+     * @return bool|int
+     */
+    public function updateData($data, $where) {
+        if (empty($data) || empty($where)) {
+            return false;
+        }
+
+        $builder = $this->getBuilder();
+        $affectedRows = $builder->where($where)->update($data);
+        return $affectedRows;
+    }
+
+    /**
      * 获取查询器
      * @return \Illuminate\Database\Query\Builder
      */
