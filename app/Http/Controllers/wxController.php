@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\UserModel;
 use EasyWeChat\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -85,10 +86,21 @@ class wxController
     private function handleEvent($message) {
         switch (strtolower($message['Event'])) {
             case 'location':
+                //地址位置上报
                 break;
             case 'subscribe':
+                $where['openid'] = $message['FromUserName'];
+                $userModel = new UserModel();
+                $user = $userModel->getOne("id", $where);
+                if (!empty($user)) {
+                    $userModel->updateData(['is_subscribe' => 1], ['id' => $user->id]);
+                }
+                //关注
                 break;
             case 'unsubscribe':
+                //取消关注
+                $where['openid'] = $message['FromUserName'];
+                (new UserModel())->updateData(['is_subscribe' => 0], $where);
                 break;
         }
         return '';
