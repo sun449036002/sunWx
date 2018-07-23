@@ -8,12 +8,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\UserModel;
-use App\User;
 use EasyWeChat\Factory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Monolog\Logger;
+use Illuminate\Support\Facades\Log;
 
 
 class wxController
@@ -49,16 +46,16 @@ class wxController
 
         //消息 以及事件
         $this->wxapp->server->push(function($message){
-            (new Logger('wxMessageLog'))->info("微信消息", $message);
+            Log::info("message", $message);
             switch ($message['MsgType']) {
                 case 'event':
-                    return '收到事件消息';
+                    return self::handleEvent($message);
                     break;
                 case 'text':
-                    return '收到文字消息';
+                    return self::handleText($message);
                     break;
                 case 'image':
-                    return '收到图片消息';
+                    return self::handleImage($message);
                     break;
                 case 'voice':
                     return '收到语音消息';
@@ -67,7 +64,7 @@ class wxController
                     return '收到视频消息';
                     break;
                 case 'location':
-                    return '收到坐标消息';
+                    return self::handleLocation($message);
                     break;
                 case 'link':
                     return '收到链接消息';
@@ -86,21 +83,29 @@ class wxController
 
     //处理事件
     private function handleEvent($message) {
-
+        switch (strtolower($message['Event'])) {
+            case 'location':
+                break;
+            case 'subscribe':
+                break;
+            case 'unsubscribe':
+                break;
+        }
+        return '';
     }
 
     //处理文本消息
     private function handleText($message) {
-
+        return '';
     }
 
     //处理图片消息
     private function handleImage($message) {
-
+        return '';
     }
 
     //处理地理位置
     private function handleLocation($message) {
-
+        return '';
     }
 }
