@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\UserModel;
+use App\User;
 use EasyWeChat\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -84,7 +85,6 @@ class wxController
 
     //处理事件
     private function handleEvent($message) {
-        Log::warning("sub", [strtolower($message['Event'])]);
         switch (strtolower($message['Event'])) {
             case 'location':
                 //地址位置上报
@@ -94,19 +94,17 @@ class wxController
                 $where['openid'] = $message['FromUserName'];
                 $userModel = new UserModel();
                 $user = $userModel->getOne("id", $where);
-                Log::info("sub", [$user, !empty($user)]);
                 if (!empty($user)) {
                     $userModel->updateData(['is_subscribe' => 1], ['id' => $user->id]);
                     return '欢迎回来';
                 } else {
-                    Log::info("23132131999");
                     $newId = $userModel->insert([
                         'type' => 1,
                         'uri' => generateUri(16),
                         'openid' => $message['FromUserName'],
+                        'user_json' => '',
                         'is_subscribe' => 1,
                     ]);
-                    Log::info("sub", [$newId]);
                 }
                 return '欢迎加入我们~!';
                 break;
