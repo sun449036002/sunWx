@@ -99,7 +99,7 @@ class wxController
                     $userModel->updateData(['is_subscribe' => 1], ['id' => $user->id]);
                     return '欢迎回来';
                 } else {
-                    Log::info("23132131");
+                    Log::info("23132131999");
                     $newId = $userModel->insert([
                         'type' => 1,
                         'uri' => generateUri(16),
