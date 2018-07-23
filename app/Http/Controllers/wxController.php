@@ -89,13 +89,22 @@ class wxController
                 //地址位置上报
                 break;
             case 'subscribe':
+                //关注
                 $where['openid'] = $message['FromUserName'];
                 $userModel = new UserModel();
                 $user = $userModel->getOne("id", $where);
                 if (!empty($user)) {
                     $userModel->updateData(['is_subscribe' => 1], ['id' => $user->id]);
+                    return '欢迎回来';
+                } else {
+                    $newId = $userModel->insert([
+                        'type' => 1,
+                        'uri' => generateUri(16),
+                        'openid' => $message['FromUserName'],
+                        'is_subscribe' => 1,
+                    ]);
                 }
-                //关注
+                return '欢迎加入我们~!';
                 break;
             case 'unsubscribe':
                 //取消关注
@@ -108,7 +117,7 @@ class wxController
 
     //处理文本消息
     private function handleText($message) {
-        return '';
+        return $message['Content'];
     }
 
     //处理图片消息
