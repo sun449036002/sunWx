@@ -6,10 +6,10 @@
  */
 function generateUri($len = 16) {
     $str = "";
-    $prev = date("Ymd");
+    $prev = date("ymd");
     $words = "qwertyuioplkjhgfdsazxcvbnm1234567890";
     for($i = 0; $i < $len - strlen($prev); $i ++) {
-        $str .= $words[mt_rand(0, strlen($words))];
+        $str .= $words[mt_rand(0, strlen($words) - 1)];
     }
     return $prev . $str;
 }

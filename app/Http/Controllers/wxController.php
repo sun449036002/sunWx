@@ -39,6 +39,7 @@ class wxController
     //服务器配置 验证
     //服务器地址(URL) http://wx.sun.zj.cn/weixin/api
     public function api(Request $request) {
+        var_dump(generateUri(16));exit;
         //接口验证
         $echostr = $request->get("echostr", '');
         if (!empty($echostr)) {
