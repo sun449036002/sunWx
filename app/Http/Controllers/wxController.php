@@ -94,11 +94,12 @@ class wxController
                 $where['openid'] = $message['FromUserName'];
                 $userModel = new UserModel();
                 $user = $userModel->getOne("id", $where);
-                Log::info("sub", [$user]);
+                Log::info("sub", [$user, !empty($user)]);
                 if (!empty($user)) {
                     $userModel->updateData(['is_subscribe' => 1], ['id' => $user->id]);
                     return '欢迎回来';
                 } else {
+                    Log::info("23132131");
                     $newId = $userModel->insert([
                         'type' => 1,
                         'uri' => generateUri(16),
