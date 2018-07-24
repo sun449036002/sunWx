@@ -92,18 +92,20 @@ class wxController
             case 'subscribe':
                 //关注
                 $where['openid'] = $message['FromUserName'];
-                Log::info("user", [$this->wxapp->user->get($where['openid'])]);
                 $userModel = new UserModel();
                 $user = $userModel->getOne("id", $where);
                 if (!empty($user)) {
                     $userModel->updateData(['is_subscribe' => 1], ['id' => $user->id]);
                     return '欢迎回来';
                 } else {
+                    $userinfo = $this->wxapp->user->get($message['FromUserName']);
                     $newId = $userModel->insert([
                         'type' => 1,
                         'uri' => generateUri(16),
+                        'username' => $userinfo['nickname'] ?? "",
+                        'avatar_url' => $userinfo['headimgurl'] ?? "",
                         'openid' => $message['FromUserName'],
-                        'user_json' => '',
+                        'user_json' => json_encode($userinfo, JSON_UNESCAPED_UNICODE) ?? "",
                         'is_subscribe' => 1,
                     ]);
                 }
