@@ -92,6 +92,7 @@ class wxController
             case 'subscribe':
                 //关注
                 $where['openid'] = $message['FromUserName'];
+                Log::info("user", [$this->wxapp->user->get($where['openid'])]);
                 $userModel = new UserModel();
                 $user = $userModel->getOne("id", $where);
                 if (!empty($user)) {
