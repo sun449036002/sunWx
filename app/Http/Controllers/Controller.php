@@ -14,6 +14,9 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    /**
+     * @var \EasyWeChat\OfficialAccount\Application $wxapp
+     */
     protected $wxapp = null;
 
     public function __construct()

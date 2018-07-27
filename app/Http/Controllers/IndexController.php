@@ -17,7 +17,6 @@ class IndexController extends Controller
 
     public function index()
     {
-        dd($this->wxapp->oauth);
         $oauth = $this->wxapp->oauth;
         // 未登录
         if (empty($_SESSION['wechat_user'])) {
