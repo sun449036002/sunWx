@@ -19,6 +19,12 @@ class Controller extends BaseController
      */
     protected $wxapp = null;
 
+    /**
+     * 微信用户信息
+     * @var null
+     */
+    protected $user = null;
+
     public function __construct()
     {
         $config = [
@@ -51,8 +57,8 @@ class Controller extends BaseController
      */
     public function oauthCallback(Request $request) {
         $oauth = $this->wxapp->oauth;
-        $user = $oauth->user();
-        session("wechat_user", $user);
-        dd($user, session("target_url"));
+        $this->user = $oauth->user()->toArray();
+        $request->session()->put("wechat_user", $this->user);
+        dd($this->user, session("target_url"));
     }
 }

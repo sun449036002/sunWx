@@ -8,6 +8,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class IndexController extends Controller
 {
     public function __construct()
@@ -15,16 +17,19 @@ class IndexController extends Controller
         parent::__construct();
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $oauth = $this->wxapp->oauth;
         // 未登录
-        if (empty($_SESSION['wechat_user'])) {
+        $this->user = $request->session()->get("wechat_user");
+        if (empty($this->user)) {
 
             session('target_url', '/');
 
             return $oauth->redirect();
         }
+
+        print_r($request->session()->all());
 
         return view('index');
     }
