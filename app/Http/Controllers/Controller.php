@@ -63,7 +63,7 @@ class Controller extends BaseController
         $user['openid'] = $user['id'];
 
         //信息存入Cookie
-        Cookie::queue('wechat_user', $user, 60);
+        Cookie::queue('wechat_user', json_encode($user, JSON_UNESCAPED_UNICODE), 60);
 
         //用户放入对象
         $userInDb = (new UserModel())->getUserinfoByOpenid($user['openid']);
@@ -78,9 +78,16 @@ class Controller extends BaseController
      * @return array
      */
     public function getUserinfo(Request $request) {
+        $defaultUser = ['id' => 0];
         $user = $request->cookie("wechat_user");
         if (empty($user)) {
-            return ['id' => 0];
+            return $defaultUser;
+        }
+        if (is_string($user)) {
+            $user = json_decode($user, true);
+            if (empty($user)) {
+                return $defaultUser;
+            }
         }
         $userInDb = (new UserModel())->getUserinfoByOpenid($user['openid']);
         return array_merge($user, $userInDb);
