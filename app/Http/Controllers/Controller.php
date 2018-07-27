@@ -54,11 +54,14 @@ class Controller extends BaseController
     /**
      * 微信网页授权回调
      * @param Request $request
+     * @return null
      */
     public function oauthCallback(Request $request) {
         $oauth = $this->wxapp->oauth;
         $this->user = $oauth->user()->toArray();
-        $request->session()->put("wechat_user", $this->user);
-        dd($this->user, session("target_url"));
+
+        $session = $request->session();
+        $session->put("wechat_user", $this->user);
+        return redirect($session->get("target_url") ?: '/');
     }
 }
