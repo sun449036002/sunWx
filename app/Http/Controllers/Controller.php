@@ -45,7 +45,14 @@ class Controller extends BaseController
         $this->wxapp = Factory::officialAccount($config);
     }
 
+    /**
+     * 微信网页授权回调
+     * @param Request $request
+     */
     public function oauthCallback(Request $request) {
-        dd($request->all(), $request->session()->all());
+        $oauth = $this->wxapp->oauth;
+        $user = $oauth->user();
+        session("wechat_user", $user);
+        dd($user, session("target_url"));
     }
 }
