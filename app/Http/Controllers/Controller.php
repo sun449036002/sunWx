@@ -28,7 +28,7 @@ class Controller extends BaseController
             //网页Oauth授权
             'oauth' => [
                 'scopes'   => ['snsapi_userinfo'],
-                'callback' => '/index/oauth_callback',
+                'callback' => '/oauth-callback',
             ],
 
             //返回的数据类型
