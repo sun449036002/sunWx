@@ -18,8 +18,10 @@ class UserModel extends BaseModel
     public function getUserinfoByOpenid($openid = '') {
         $row = $this->getOne(['id'], ['openid' => $openid]);
         $user = [];
-        foreach ($row as $key => $val) {
-            $user[$key] = $val;
+        if (!empty($row)) {
+            foreach ($row as $key => $val) {
+                $user[$key] = $val;
+            }
         }
         return $user;
     }
