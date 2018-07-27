@@ -19,13 +19,8 @@ class IndexController extends Controller
 
     public function index(Request $request)
     {
-        //清除一下数据
-        $request->session()->flush();
-
-
         $oauth = $this->wxapp->oauth;
         // 未登录
-        $this->user = $request->session()->get("wechat_user");
         if (empty($this->user)) {
 
             session('target_url', '/');
@@ -33,7 +28,15 @@ class IndexController extends Controller
             return $oauth->redirect();
         }
 
+        echo "<pre>";
+        print_r($this->user);
+
         return view('index');
+    }
+
+    public function clearAllSession(Request $request) {
+        $request->session()->flush();
+        echo 'ok';
     }
 
 }

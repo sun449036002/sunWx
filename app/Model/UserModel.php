@@ -10,4 +10,17 @@ class UserModel extends BaseModel
 {
     protected $table = "user";
 
+    /**
+     * 根据 openid 获取用户信息
+     * @param $openid
+     * @return mixed
+     */
+    public function getUserinfoByOpenid($openid = '') {
+        $row = $this->getOne(['id'], ['openid' => $openid]);
+        if (!empty($row)) {
+            return $row->toArray();
+        }
+        return [];
+    }
+
 }

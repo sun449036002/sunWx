@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\UserModel;
 use EasyWeChat\Factory;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
@@ -21,11 +22,11 @@ class Controller extends BaseController
 
     /**
      * 微信用户信息
-     * @var null
+     * @var array
      */
     protected $user = null;
 
-    public function __construct()
+    public function __construct(Request $request)
     {
         $config = [
             'app_id' => 'wx11fe145bfca2b25e',
@@ -49,6 +50,7 @@ class Controller extends BaseController
             ],
         ];
         $this->wxapp = Factory::officialAccount($config);
+        $this->user = $this->_getUserinfo($request);
     }
 
     /**
@@ -58,10 +60,32 @@ class Controller extends BaseController
      */
     public function oauthCallback(Request $request) {
         $oauth = $this->wxapp->oauth;
-        $this->user = $oauth->user()->toArray();
+        $user = $oauth->user()->toArray();
+        $user['openid'] = $user['id'];
 
+        //信息存入Session
         $session = $request->session();
-        $session->put("wechat_user", $this->user);
+        $sessionKey = sprintf("wechat_user_%s", $user['openid']);
+        $session->put($sessionKey, $user);
+
+        //用户放入对象
+        $userInDb = (new UserModel())->getUserinfoByOpenid($user['openid']);
+        $this->user = array_merge($user, $userInDb);
+
         return redirect($session->get("target_url") ?: '/');
+    }
+
+    /**
+     * 获取用户信息
+     * @param Request $request
+     * @return array
+     */
+    private function _getUserinfo(Request $request) {
+        $user = $request->session()->get("wechat_user");
+        if (empty($user)) {
+            return ['id' => 0];
+        }
+        $userInDb = (new UserModel())->getUserinfoByOpenid($user['openid']);
+        return array_merge($user, $userInDb);
     }
 }
