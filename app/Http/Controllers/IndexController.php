@@ -10,9 +10,14 @@ namespace App\Http\Controllers;
 
 class IndexController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index()
     {
-
+        dd($this->wxapp->oauth);
         $oauth = $this->wxapp->oauth;
         // 未登录
         if (empty($_SESSION['wechat_user'])) {
