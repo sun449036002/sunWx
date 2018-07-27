@@ -30,8 +30,8 @@ class IndexController extends Controller
             return $oauth->redirect();
         }
 
-        echo "<pre>";
-        print_r($this->user);
+        //获取此用户是否签到过
+
 
         return view('index');
     }
