@@ -46,6 +46,6 @@ class Controller extends BaseController
     }
 
     public function oauthCallback(Request $request) {
-        Log::info("oauthCallback", [$request->all(), $request->session()->all()]);
+        dd($request->all(), $request->session()->all());
     }
 }
