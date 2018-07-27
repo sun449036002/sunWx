@@ -12,6 +12,7 @@
 */
 
 Route::get('/', "IndexController@index");
+Route::any('/oauth-callback', "Controller@oauthCallback");
 
 Route::any('weixin/api', 'wxController@api');
 
