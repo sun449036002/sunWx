@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cookie;
 
 class Controller extends BaseController
 {
@@ -24,9 +24,9 @@ class Controller extends BaseController
      * 微信用户信息
      * @var array
      */
-    protected $user = null;
+    protected $user = ['id' => 0];
 
-    public function __construct(Request $request)
+    public function __construct()
     {
         $config = [
             'app_id' => 'wx11fe145bfca2b25e',
@@ -50,7 +50,6 @@ class Controller extends BaseController
             ],
         ];
         $this->wxapp = Factory::officialAccount($config);
-        $this->user = $this->_getUserinfo($request);
     }
 
     /**
@@ -63,16 +62,14 @@ class Controller extends BaseController
         $user = $oauth->user()->toArray();
         $user['openid'] = $user['id'];
 
-        //信息存入Session
-        $session = $request->session();
-        $sessionKey = sprintf("wechat_user_%s", $user['openid']);
-        $session->put($sessionKey, $user);
+        //信息存入Cookie
+        Cookie::queue('wechat_user', $user, 60);
 
         //用户放入对象
         $userInDb = (new UserModel())->getUserinfoByOpenid($user['openid']);
         $this->user = array_merge($user, $userInDb);
 
-        return redirect($session->get("target_url") ?: '/');
+        return redirect($request->cookie("target_url", "/"));
     }
 
     /**
@@ -80,8 +77,8 @@ class Controller extends BaseController
      * @param Request $request
      * @return array
      */
-    private function _getUserinfo(Request $request) {
-        $user = $request->session()->get("wechat_user");
+    public function getUserinfo(Request $request) {
+        $user = $request->cookie("wechat_user");
         if (empty($user)) {
             return ['id' => 0];
         }

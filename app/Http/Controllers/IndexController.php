@@ -9,21 +9,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class IndexController extends Controller
 {
-    public function __construct(Request $request)
+    public function __construct()
     {
-        parent::__construct($request);
+        parent::__construct();
     }
 
     public function index(Request $request)
     {
         $oauth = $this->wxapp->oauth;
         // 未登录
-        if (empty($this->user)) {
+        $this->user = $this->getUserinfo($request);
+        if (empty($this->user['id'])) {
 
-            session('target_url', '/');
+            Cookie::queue('target_url', '/', 2);
 
             return $oauth->redirect();
         }
@@ -33,10 +35,4 @@ class IndexController extends Controller
 
         return view('index');
     }
-
-    public function clearAllSession(Request $request) {
-        $request->session()->flush();
-        echo 'ok';
-    }
-
 }
