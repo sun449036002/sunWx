@@ -1,0 +1,166 @@
+body {
+    margin:0;
+    font-weight: 100;
+    background-color:#EEE;
+}
+.main {
+
+}
+
+.top {
+    border:1px solid red;
+    background-color: red;
+    height:30vh;
+}
+
+.progress-bar {
+    position: relative;
+    height:20px;
+    width:50vw;
+    margin:15px  auto;
+    border-radius: 10px;
+    background-color: #bf4c4c;
+}
+
+.sub-progress-bar {
+    position: absolute;
+    background-color:#f6b206;
+    height:18px;
+    border-radius: 10px;
+    top:1px;
+    left:1px;
+}
+
+.sub-progress-bar.spb-day1 {
+    width:16vw;
+}
+.sub-progress-bar.spb-day2 {
+    width:32vw;
+}
+.sub-progress-bar.spb-day3 {
+    width:49vw;
+}
+
+.top .info {
+    display: flex;
+    justify-content: space-between;
+    width:60vw;
+    margin:auto;
+}
+
+.top .info .money {
+    font-weight:100;
+    color: #fff;
+    height: 10vh;
+    line-height: 10vh;
+    width:30vw;
+    font-size: 30px;
+    text-align: center;
+}
+
+.top .info .withdraw-type {
+    width:25vw;
+    height:20px;
+    line-height:20px;
+    text-align: center;
+    background-color: yellow;
+    -webkit-border-radius:15px;
+    -moz-border-radius:15px;
+    border-radius:15px;
+    color:red;
+    margin-top:30px;
+}
+
+.btn-share
+{
+    clear: both;
+    width:60vw;
+    height:50px;
+    line-height:50px;
+    text-align: center;
+    color:red;
+    font-weight:600;
+    background-color:yellow;
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    border-radius:25px;
+    margin:auto;
+}
+
+.mid {
+    height:60vh;
+}
+
+.tips {
+    text-align: center;
+    height:50px;
+    line-height:50px;
+    color:red;
+    font-weight:600;
+}
+
+.product-list {
+    padding:0 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+
+.product-list .item {
+    width:45vw;
+    background-color: white;
+    margin-bottom:15px;
+}
+
+.product-list .img img{
+    width:45vw;
+    height:45vw;
+}
+.product-info {
+    position: relative;
+    display: flex;
+}
+.product-info .info {
+    width:35vw;
+    justify-content: flex-start;
+    padding:10px 0 15px 15px;
+}
+
+.in-time {
+    color:white;
+    width:21vw;
+    text-align: center;
+    background-color: red;
+    font-weight:600;
+    margin-bottom: 15px;
+}
+
+.new-price {
+    color:red;
+    font-weight:600;
+    margin:3px 0;
+}
+
+.old-price {
+    color:#a2a2a2;
+}
+
+.old-price .price {
+    text-decoration: line-through;
+}
+
+.btn-buy {
+    position: absolute;
+    color:white;
+    background-color:red;
+    font-size:18px;
+    text-align: center;
+    font-weight:600;
+    width:10vw;
+    height:8vw;
+    line-height:8vw;
+    border-radius: 2vw;
+    bottom:15px;
+    right:15px;
+}
