@@ -111,5 +111,16 @@
         </div>
         <div class="bottom"></div>
     </div>
+
+    {{-- 红包区 --}}
+    <div class="red-pack-area">
+        <div class="mask"></div>
+        <div class="red-pack">
+            <div class="red-pack-info">
+                <div class="price">0.66<span>元</span></div>
+                <div class="tips">已经存入余额</div>
+            </div>
+        </div>
+    </div>
     </body>
 </html>

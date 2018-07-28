@@ -115,7 +115,7 @@ body {
     height:60vh;
 }
 
-.tips {
+.mid .tips {
     text-align: center;
     height:50px;
     line-height:50px;
@@ -187,4 +187,50 @@ body {
     border-radius: 2vw;
     bottom:15px;
     right:15px;
+}
+
+
+
+/* 红包区 */
+.red-pack-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.red-pack-area .mask {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 2;
+}
+
+.red-pack-area .red-pack {
+    position:relative;
+    width: 60vw;
+    height: 50vh;
+    margin: 25vh auto;
+    background-image: url(../imgs/redPackEffect.png);
+    background-position: center;
+    background-size: cover;
+    z-index: 3;
+}
+.red-pack .red-pack-info {
+    position:absolute;
+    color:#FFD409;
+    font-size:30px;
+    margin-left:10%;
+    margin-top:80%;
+    text-align: center;
+}
+.red-pack .price {
+}
+
+.red-pack .tips {
+    font-size:20px;
 }
