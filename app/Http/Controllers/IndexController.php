@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\SigninModel;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -21,7 +22,12 @@ class IndexController extends Controller
     {
         $this->user = $this->getUserinfo($request);
         //获取此用户是否签到过
+        $model = new SigninModel();
+        $row = $model->getOne("id", ['user_id' => $this->user['id'], 'date' => date("Ymd")]);
 
-        return view('index');
+        $data['isSignIn'] = !empty($row);
+        $data['wxapp'] = $this->wxapp;
+
+        return view('index', $data);
     }
 }
