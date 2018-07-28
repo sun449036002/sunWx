@@ -96,7 +96,7 @@ body {
     -webkit-animation-direction: alternate;/*定义动画方式*/
 }
 
-@keyframes ripple {
+@-webkit-keyframes ripple {
     0% {
         width: 66vw;
         height: 35px;
