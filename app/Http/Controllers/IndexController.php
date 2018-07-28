@@ -9,7 +9,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
 
 class IndexController extends Controller
 {
@@ -20,18 +19,8 @@ class IndexController extends Controller
 
     public function index(Request $request)
     {
-        $oauth = $this->wxapp->oauth;
-        // 未登录
         $this->user = $this->getUserinfo($request);
-        if (empty($this->user['id'])) {
-
-            Cookie::queue('target_url', '/', 2);
-
-            return $oauth->redirect();
-        }
-
         //获取此用户是否签到过
-
 
         return view('index');
     }

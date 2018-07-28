@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Consts\CookieConst;
 use App\Model\UserModel;
 use EasyWeChat\Factory;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -28,28 +29,7 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $config = [
-            'app_id' => 'wx11fe145bfca2b25e',
-            'secret' => 'b8fdd5d132a3cc9c550ba40d001c6907',
-
-            //网页Oauth授权
-            'oauth' => [
-                'scopes'   => ['snsapi_userinfo'],
-                'callback' => '/oauth-callback',
-            ],
-
-            //返回的数据类型
-            'response_type' => 'array',
-
-            'token'   => 'weiphp',// Token
-//            'aes_key' => 'j87GWXELylXpJuxVGSZrvIm4jqEfYFZHAjm2A56nqAz',// EncodingAESKey，兼容与安全模式下请一定要填写！！！
-
-            'log' => [
-                'level' => 'debug',
-                'file' => storage_path() . '/wechat.log',
-            ],
-        ];
-        $this->wxapp = Factory::officialAccount($config);
+        $this->wxapp = Factory::officialAccount(getWxConfig());
     }
 
     /**
@@ -61,13 +41,10 @@ class Controller extends BaseController
         $oauth = $this->wxapp->oauth;
         $user = $oauth->user()->toArray();
         $user['openid'] = $user['id'];
+        unset($user['id']);
 
         //信息存入Cookie
-        Cookie::queue('wechat_user', json_encode($user, JSON_UNESCAPED_UNICODE), 60);
-
-        //用户放入对象
-        $userInDb = (new UserModel())->getUserinfoByOpenid($user['openid']);
-        $this->user = array_merge($user, $userInDb);
+        Cookie::queue(CookieConst::WECHAT_USER, json_encode($user, JSON_UNESCAPED_UNICODE), 60 * 24);
 
         return redirect($request->cookie("target_url", "/"));
     }
@@ -79,7 +56,7 @@ class Controller extends BaseController
      */
     public function getUserinfo(Request $request) {
         $defaultUser = ['id' => 0];
-        $user = $request->cookie("wechat_user");
+        $user = $request->cookie(CookieConst::WECHAT_USER);
         if (empty($user)) {
             return $defaultUser;
         }

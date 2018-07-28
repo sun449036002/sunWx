@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', "IndexController@index");
+Route::get('/', "IndexController@index")->middleware("weixinOAuth");
 Route::get('/clear-all-session', "IndexController@clearAllSession");
 Route::any('/oauth-callback', "Controller@oauthCallback");
 
