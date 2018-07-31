@@ -1,0 +1,166 @@
+body {
+    margin:0;
+    font-weight: 100;
+    background-color:#EEE;
+}
+
+.cash-red-pack-main {
+    width:100vw;
+    height:100vh;
+    background-image: url("../imgs/cash-red-pack-bg.png");
+    -webkit-background-size:cover;
+    background-size:cover;
+}
+
+.cash-red-pack-main .tips {
+    width:100vw;
+    padding-top:60px;
+    text-align: center;
+    font-size: 30px;
+    font-weight:600;
+    color:#f3c861;
+}
+
+.cash-red-pack-main .rule {
+    position: absolute;
+    width:80px;
+    height: 30px;
+    line-height:30px;
+    right:0;
+    top:15px;
+    padding-right:3px;
+    text-align: right;
+    background-color: rgba(155,17,4,1);
+    color:#ff958b;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.cash-red-pack-main .mid {
+
+}
+/* 红包区 */
+.cash-red-pack-main .red-pack-info {
+    display: flex;
+    flex-direction: column;
+    /*border:1px solid #EEE;*/
+    position:relative;
+    width: 90vw;
+    height: 60vh;
+    margin: 5vh auto;
+    background-image: url(../imgs/redPackEffect.png);
+    background-position: center;
+    background-size: cover;
+    z-index: 3;
+}
+
+.cash-red-pack-main .red-pack-info .btn-receive {
+    width:40vw;
+    height:40vw;
+    line-height:35vw;
+    background-image: url('../imgs/cash-receive-btn.png');
+    -webkit-background-size:cover;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    font-size:30px;
+    font-weight:600;
+    margin:10vh auto 3vh auto;
+}
+.cash-red-pack-main .withdraw-list-box {
+    height:16vh;
+    overflow: hidden;
+}
+.cash-red-pack-main .withdraw-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width:65vw;
+    height:16vh;
+    /*border:1px solid aqua;*/
+    margin:1vh auto auto 13vw;
+    overflow: hidden;
+    padding:0;
+}
+
+.cash-red-pack-main .withdraw-list .item {
+    display: flex;
+    min-height: 5vh;
+    line-height: 5vh;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 2.5vh;
+    color:white;
+    margin-bottom:3vh;
+}
+.cash-red-pack-main .withdraw-list .item span.nickname {
+    padding:0 5px;
+}
+
+.cash-red-pack-main .withdraw-list .item .withdraw-info {
+    height: 5vh;
+    line-height: 5vh;
+    overflow: hidden;
+}
+.cash-red-pack-main .withdraw-list .item .head-img-url {
+    width:5vh;
+    height:5vh;
+    border-radius: 2.5vh;
+    background-color: cornflowerblue;
+}
+
+.cash-red-pack-main .msg {
+    text-align: center;
+    font-size:30px;
+    font-weight:600;
+    color:#f3c861;
+}
+
+/* 规则界面  */
+.rule-container {
+    display:none;
+    position: fixed;
+    left:0;
+    top:0;
+    width:100vw;
+    height:100vh;
+    background-color:rgba(0,0,0,0.3);
+    z-index:99;
+}
+
+.rule-container .rule-box {
+    position: relative;
+    width:80vw;
+    height:50vh;
+    margin:20vh auto;
+    background-color:white;
+    border-radius: 15px;
+    padding:15px;
+}
+
+.rule-container .rule-box .rule-title {
+    height:39px;
+    text-align: center;
+    font-weight:600;
+    font-size:18px;
+    color:red;
+}
+
+.rule-container .rule-box .btn-close-rule {
+    position: absolute;
+    top:-39px;
+    right:-10px;
+    width: 30px;
+    height: 30px;
+    line-height:30px;
+    border:1px solid white;
+    border-radius: 15px;
+    text-align: center;
+    color:white;
+}
+
+.rule-container .rule-content {
+    width:80vw;
+    height:45vh;
+    overflow: scroll;
+}

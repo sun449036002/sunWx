@@ -10,11 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//签到领现金
 Route::get('/', "IndexController@index")->middleware("weixinOAuth");
-Route::get('/clear-all-session', "IndexController@clearAllSession");
+
+//领现金红包
+Route::get('cash-red-pack', "IndexController@cashRedPack")->middleware("weixinOAuth");
+
+
+/**
+ * 微信相关
+ */
+Route::any('weixin/api', 'wxController@api');
+Route::any("weixin/users", "wxController@users");
+
+//网页授权回调
 Route::any('/oauth-callback', "Controller@oauthCallback");
 
-Route::any('weixin/api', 'wxController@api');
-
-Route::any("weixin/users", "wxController@users");

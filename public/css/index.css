@@ -193,6 +193,7 @@ body {
 
 /* 红包区 */
 .red-pack-area {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -212,8 +213,10 @@ body {
 
 .red-pack-area .red-pack {
     position:relative;
-    width: 60vw;
-    height: 50vh;
+    /*width: 60vw;*/
+    /*height: 50vh;*/
+    width:30vw;
+    height:25vh;
     margin: 25vh auto;
     background-image: url(../imgs/redPackEffect.png);
     background-position: center;
@@ -221,16 +224,19 @@ body {
     z-index: 3;
 }
 .red-pack .red-pack-info {
-    position:absolute;
-    color:#FFD409;
-    font-size:30px;
-    margin-left:10%;
-    margin-top:80%;
+    position: absolute;
+    width: 60vw;
+    color: #FFD409;
+    font-size: 30px;
+    margin-top: 80%;
     text-align: center;
 }
-.red-pack .price {
+.red-pack .price span:last-child{
+    font-size:14px;
+    margin-left:5px;
 }
 
 .red-pack .tips {
-    font-size:20px;
+    font-size: 16px;
+    margin-top: 15px;
 }
