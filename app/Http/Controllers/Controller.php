@@ -57,8 +57,9 @@ class Controller extends BaseController
     public function getUserinfo() {
         $defaultUser = ['id' => 0];
         $user = Cookie::get(CookieConst::WECHAT_USER);
+        $user2 = Cookie::get(CookieConst::WECHAT_USER);
         Log::info("cookie user [getUserinfo]", [$user]);
-        var_dump($user);
+        var_dump($user, $user2, Cookie::get(CookieConst::WECHAT_USER));
         if (empty($user)) {
             return $defaultUser;
         }
