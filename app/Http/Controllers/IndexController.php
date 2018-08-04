@@ -137,6 +137,7 @@ class IndexController extends Controller
         }
 
         //助力的红包ID
+        $this->pageData['title'] = "好友助力";
         $this->pageData['redPackId'] = $data['redPackId'];
 
         //查看将被助力的红包是否已经集满，满则跳转到首页
