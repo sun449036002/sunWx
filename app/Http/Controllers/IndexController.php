@@ -206,7 +206,7 @@ class IndexController extends Controller
 
             //TODO 发送模板消息，通知用户红包进度
 
-            exit(ResultClientJson(0, 'ok', $jsonData));
+            exit(ResultClientJson(0, '助力成功', $jsonData));
         }
 
         exit(ResultClientJson(100, '助力失败', $jsonData));

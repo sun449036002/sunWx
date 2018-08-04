@@ -99,20 +99,13 @@
                 dataType : "json",
                 headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},
                 success : function(res){
-                    if (res.code > 0) {
-                        res.cb = function (res) {
-                            var unCompleteRedPackId = res.data.unCompleteRedPackId || 0;
-                            if (unCompleteRedPackId > 0) {
-                                window.location.href = "/cash-red-pack-info?redPackId=" + unCompleteRedPackId;
-                            }
-                        };
-                        alertPopup.show(res);
-                    } else {
+                    res.cb = function (res) {
                         var unCompleteRedPackId = res.data.unCompleteRedPackId || 0;
                         if (unCompleteRedPackId > 0) {
                             window.location.href = "/cash-red-pack-info?redPackId=" + unCompleteRedPackId;
                         }
-                    }
+                    };
+                    alertPopup.show(res);
                 }
             });
         });
