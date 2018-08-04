@@ -182,7 +182,8 @@ class IndexController extends Controller
 
         //最近一次助力后，获得的金额若超过总金额，则用总金额相减的金额
         $curReceivedMoney = mt_rand($minMoney, $maxMoney);
-        if ($row->received + $curReceivedMoney > $row->total) {
+        $isLast = $row->received + $curReceivedMoney > $row->total;
+        if ($isLast) {
             $curReceivedMoney = $row->total - $row->received;
         }
         $redPackRecordModel = new RedPackRecordModel();
@@ -197,7 +198,11 @@ class IndexController extends Controller
         if ($newRecordId) {
             //增加received金额
             $nowReceived = $row->received + $recordData['money'];
-            $redPackModel->updateData(['received' => $nowReceived], ['id' => $data['redPackId']]);
+            $updateData = ['received' => $nowReceived];
+            if ($isLast) {
+                $updateData['status'] = 1;
+            }
+            $redPackModel->updateData($updateData, ['id' => $data['redPackId']]);
 
             //TODO 发送模板消息，通知用户红包进度
 
