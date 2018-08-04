@@ -85,7 +85,7 @@
 
         //帮他助力
         $(".btn-assistance").on("click", function(){
-            var isSubscribe = 1 || parseInt("{{$user['is_subscribe'] ?? 0}}");
+            var isSubscribe = parseInt("{{$user['is_subscribe'] ?? 0}}");
             if (!isSubscribe) {
                 $(".subscribeBox").show();
                 return false;
