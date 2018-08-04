@@ -168,7 +168,7 @@ class IndexController extends Controller
 
 
         //若当前红包已不需要助力，则跳过
-        $row = $redPackModel->getOne(['id', 'total', 'received'], ['id' => $data['redPackId'], 'status' => 0, ['expiredTime', ">", time()]]);
+        $row = $redPackModel->getOne(['id', 'userId','total', 'received'], ['id' => $data['redPackId'], 'status' => 0, ['expiredTime', ">", time()]]);
         if (empty($row->id)) {
             exit(ResultClientJson(100, '此红包已不需要助力', $jsonData));
         }
@@ -204,7 +204,25 @@ class IndexController extends Controller
             }
             $redPackModel->updateData($updateData, ['id' => $data['redPackId']]);
 
-            //TODO 发送模板消息，通知用户红包进度
+
+            //发送模板消息，通知红包所属人进度
+            $who = (new UserModel())->getOne(['openid'], ['id' => $row->userId]);
+            if (!empty($who)) {
+                $this->wxapp->template_message->send([
+                    'touser' => $who->openid,
+                    'template_id' => '82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg',
+                    'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $data['redPackId'],
+                    'data' => [
+                        'key1' => 'VALUE',
+                        'key2' => 'VALUE2',
+                        'first' => $this->user['username'] . "给你的红包助力啦~",
+                        'keyword1' => "现金红包",
+                        'keyword2' => $this->user['username'],
+                        'keyword3' => $curReceivedMoney,
+                        'keyword4' => date("Y-m-d H:i:s"),
+                    ],
+                ]);
+            }
 
             exit(ResultClientJson(0, '助力成功', $jsonData));
         }
