@@ -57,6 +57,7 @@ class Controller extends BaseController
     public function getUserinfo(Request $request) {
         $defaultUser = ['id' => 0];
         $user = $request->cookie(CookieConst::WECHAT_USER);
+        var_dump("cookie", $user);
         if (empty($user)) {
             return $defaultUser;
         }
@@ -67,6 +68,7 @@ class Controller extends BaseController
             }
         }
         $userInDb = (new UserModel())->getUserinfoByOpenid($user['openid']);
+        var_dump($userInDb);
         return array_merge($user, $userInDb);
     }
 }
