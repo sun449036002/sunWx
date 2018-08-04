@@ -28,5 +28,6 @@ Route::any("weixin/users", "wxController@users");
 
 //网页授权回调
 Route::any('/oauth-callback', "Controller@oauthCallback");
-Route::any('/cc', "IndexController@clearCookie");
+Route::get('/cc', "IndexController@clearCookie");
+Route::get('/gc', "IndexController@getCookie");
 
