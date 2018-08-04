@@ -52,13 +52,12 @@ class Controller extends BaseController
 
     /**
      * 获取用户信息
-     * @param Request $request
      * @return array
      */
-    public function getUserinfo(Request $request) {
+    public function getUserinfo() {
         $defaultUser = ['id' => 0];
-        $user = $request->cookie(CookieConst::WECHAT_USER);
-        Log::info("cookie user", [$user]);
+        $user = Cookie::get(CookieConst::WECHAT_USER);
+        Log::info("cookie user [getUserinfo]", [$user]);
         if (empty($user)) {
             return $defaultUser;
         }

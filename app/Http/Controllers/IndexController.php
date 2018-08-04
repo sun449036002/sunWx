@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Cookie;
 class IndexController extends Controller
 {
     private $pageData = [];
-    public function __construct(Request $request)
+    public function __construct()
     {
         parent::__construct();
 
         //获取用户信息
-        $this->user = $this->getUserinfo($request);
+        $this->user = $this->getUserinfo();
 
         $this->pageData['user'] = $this->user;
         $this->pageData['wxapp'] = $this->wxapp;
