@@ -104,7 +104,7 @@
         <div>
             <div>助力列表:</div>
             @foreach($redPackRecordList as $item)
-                <div>{{$item->headImgUrl}}助力后，您获得了{{$item->money}}元</div>
+                <div><img style="width: 36px;height: 36px;border-radius: 18px;" src="{{$item->headImgUrl}}"> 助力后，您获得了{{$item->money}}元</div>
             @endforeach
         </div>
     </div>
