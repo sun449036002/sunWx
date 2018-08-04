@@ -15,6 +15,9 @@ Route::get('/', "IndexController@index")->middleware("weixinOAuth");
 
 //领现金红包
 Route::get('cash-red-pack', "IndexController@cashRedPack")->middleware("weixinOAuth");
+Route::get('cash-red-pack-info', "IndexController@cashRedPackInfo")->middleware("weixinOAuth");
+Route::get('assistance-page', "IndexController@assistancePage")->middleware("weixinOAuth");
+Route::post('assistance', "IndexController@assistance")->middleware("weixinOAuth");
 
 
 /**

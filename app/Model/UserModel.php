@@ -16,7 +16,7 @@ class UserModel extends BaseModel
      * @return mixed
      */
     public function getUserinfoByOpenid($openid = '') {
-        $row = $this->getOne(['id'], ['openid' => $openid]);
+        $row = $this->getOne(['id', "is_subscribe", "type", "uri"], ['openid' => $openid]);
         $user = [];
         if (!empty($row)) {
             foreach ($row as $key => $val) {

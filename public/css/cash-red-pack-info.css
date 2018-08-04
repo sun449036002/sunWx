@@ -1,0 +1,105 @@
+body {
+    margin:0;
+    font-weight: 100;
+    background-color:#EEE;
+}
+
+.cash-red-pack-main {
+    width:100vw;
+    height:100vh;
+    background-image: url("../imgs/cash-red-pack-bg.png");
+    -webkit-background-size:cover;
+    background-size:cover;
+}
+
+.cash-red-pack-main .tips {
+    width:100vw;
+    padding-top:60px;
+    text-align: center;
+    font-size: 30px;
+    font-weight:600;
+    color:#f3c861;
+}
+
+.cash-red-pack-main .rule {
+    position: absolute;
+    width:80px;
+    height: 30px;
+    line-height:30px;
+    right:0;
+    top:15px;
+    padding-right:3px;
+    text-align: right;
+    background-color: rgba(155,17,4,1);
+    color:#ff958b;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.cash-red-pack-main .mid {
+
+}
+/* 红包区 */
+.red-pack-container {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background-color:rgba(0,0,0,0.5);
+}
+.red-pack-container .red-pack-bg {
+    position:relative;
+    width: 80vw;
+    height: 60vh;
+    margin: 15vh auto;
+    background-image: url(../imgs/redPackEffect.png);
+    background-position: center;
+    background-size: cover;
+    z-index: 3;
+}
+
+.red-pack-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color:white;
+}
+
+.red-pack-info .tips {
+    margin:30vh 0 3vh 0;
+    font-size: 20px;
+    height:30px;
+    line-height:30px;
+}
+.red-pack-info .total {
+    font-weight:600;
+    height:30px;
+    line-height:30px;
+    font-size: 30px;
+}
+.red-pack-info .received {
+    margin-top:1vh;
+    height:40px;
+    line-height:30px;
+
+}
+.red-pack-info .btn-share-friend {
+    width:60vw;
+    height:36px;
+    line-height:36px;
+    background-color:#f3c861;
+    border-radius: 18px;
+    color:#f21a17;
+    font-weight:600;
+    font-size:18px;
+    text-align: center;
+}
+
+.red-pack-info .btn-close {
+    position: absolute;
+    top: 20px;
+    width: 100vw;
+    height: 39px;
+}

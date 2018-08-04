@@ -40,3 +40,14 @@ function getWxConfig() {
         ],
     ];
 }
+
+/**
+ * 返回 给客户端的 JSON 信息
+ * @param $code
+ * @param string $msg
+ * @param array $data
+ * @return string
+ */
+function ResultClientJson($code, $msg = '', $data = []) {
+    return json_encode(['code' => $code, 'msg' => $msg, 'data' => $data]);
+}
