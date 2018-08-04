@@ -177,12 +177,17 @@ class IndexController extends Controller
             list($minMoney, $maxMoney) = [$maxMoney, $minMoney];
         }
 
+        //最近一次助力后，获得的金额若超过总金额，则用总金额相减的金额
+        $curReceivedMoney = mt_rand($minMoney, $maxMoney);
+        if ($row->received + $curReceivedMoney > $row->total) {
+            $curReceivedMoney = $row->total - $row->received;
+        }
         $redPackRecordModel = new RedPackRecordModel();
         $recordData = [
             'redPackId' => $data['redPackId'],
             'userId' => $this->user['id'],
             'type' => 1,
-            'money' => mt_rand($minMoney, $maxMoney),
+            'money' => $curReceivedMoney,
             'createTime' => time(),
         ];
         $newRecordId = $redPackRecordModel->insert($recordData);
