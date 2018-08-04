@@ -13,7 +13,7 @@
         //分享到微信朋友圈
         wx.onMenuShareTimeline({
             title: '分享到微信朋友圈，赚更多的现金', // 分享标题
-            link: "/assistance-page?redPackId={{$redPackId}}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            link: "{{env('APP_URL')}}/assistance-page?redPackId={{$redPackId}}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: 'http://www.gumama120.com/uploads/allimg/180531/1-1P531155024455.jpg', // 分享图标
             success: function () {
                 // 用户点击了分享后执行的回调函数
@@ -24,7 +24,7 @@
         wx.onMenuShareAppMessage({
             title: '分享给朋友们，赚更多的现金', // 分享标题
             desc: '朋友点击支持后，双方都可获得赏金', // 分享描述
-            link: "/assistance-page?redPackId={{$redPackId}}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            link: "{{env('APP_URL')}}/assistance-page?redPackId={{$redPackId}}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: 'http://www.gumama120.com/uploads/allimg/180531/1-1P531155024455.jpg', // 分享图标
             type: 'link', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
