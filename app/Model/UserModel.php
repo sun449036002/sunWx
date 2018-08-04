@@ -16,11 +16,12 @@ class UserModel extends BaseModel
      * @return mixed
      */
     public function getUserinfoByOpenid($openid = '') {
+        $fields = ['id', "is_subscribe", "type", "uri", "avatar_url"];
         if (is_numeric($openid)) {
             $id = $openid;
-            $row = $this->getOne(['id', "is_subscribe", "type", "uri"], ['id' => $id]);
+            $row = $this->getOne($fields, ['id' => $id]);
         } else {
-            $row = $this->getOne(['id', "is_subscribe", "type", "uri"], ['openid' => $openid]);
+            $row = $this->getOne($fields, ['openid' => $openid]);
         }
         $user = [];
         if (!empty($row)) {
