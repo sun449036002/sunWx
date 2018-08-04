@@ -209,7 +209,6 @@ class IndexController extends Controller
     }
 
     public function clearCookie() {
-        var_dump(Cookie::get(CookieConst::WECHAT_USER));
         setcookie(CookieConst::WECHAT_USER, '', -1, '/');
         var_dump(Cookie::get(CookieConst::WECHAT_USER));
     }
