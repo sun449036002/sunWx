@@ -36,7 +36,7 @@ class IndexController extends Controller
     {
         //获取此用户是否签到过
         $model = new SigninModel();
-        $row = $model->getOne("id", ['user_id' => $this->user['id'], 'date' => date("Ymd")]);
+        $row = $model->getOne("id", ['userId' => $this->user['id'], 'date' => date("Ymd")]);
 
         $this->pageData['title'] = '签到领现金';
         $this->pageData['isSignIn'] = !empty($row);
@@ -66,18 +66,19 @@ class IndexController extends Controller
 //            exit("未关注用户不能领红包");
         }
 
+        $recordModel = new RedPackRecordModel();
         $data = $request->all();
         $this->pageData['from'] = $data['from'] ?? "";
         if (!empty($data['from']) && $data['from'] == "cash-receive") {
             $redPackModel = new RedPackModel();
             //当前是否有未集满的且未过期红包
-            $row = $redPackModel->getOne(['id'], ['user_id' => $this->user['id'], 'status' => 0, ['expiredTime', '>', time()]]);
+            $row = $redPackModel->getUnComplete($this->user['id']);
             if (!empty($row->id)) {
                 return redirect('/cash-red-pack-info?redPackId=' . $row->id);
             }
             $totalMoney = mt_rand(50, 200);
             $insertData = [
-                'user_id' => $this->user['id'],
+                'userId' => $this->user['id'],
                 'total' => $totalMoney,
                 'received' => mt_rand(10, $totalMoney / 2),
                 'expiredTime' => time() + 86400,
@@ -85,18 +86,25 @@ class IndexController extends Controller
             $insertId = $redPackModel->insert($insertData);
             if (!empty($insertId)) {
                 //记录
-                $recordModel = new RedPackRecordModel();
                 $recordModel->insert([
                     'redPackId' => $insertId,
                     'userId' => $this->user['id'],
                     'type' => 0,
-                    'money' => $insertData['received']
+                    'money' => $insertData['received'],
+                    'createTime' => time(),
                 ]);
 
                 $this->pageData['redPackId'] = $insertId;
                 $this->pageData['total'] = $totalMoney;
                 $this->pageData['received'] = $insertData['received'];
                 $this->pageData['remainingTime'] = $insertData['expiredTime'] - time();
+
+                //本次记录
+                $record = new \stdClass();
+                $record->userId = $this->user['id'];
+                $record->money = $insertData['received'];
+                $record->headImgUrl = $this->user['avatar_url'] ?? "";
+                $this->pageData['redPackRecordList'][] = $record;
             } else {
                 exit("SQL执行失败");
             }
@@ -105,10 +113,11 @@ class IndexController extends Controller
                 //查询当前红包的信息
                 $redPackData = (new RedPackModel())->getOne(['*'], ['id' => $data['redPackId']]);
                 if (!empty($redPackData)) {
-                    $this->pageData['redPackId'] = $redPackData->total;
+                    $this->pageData['redPackId'] = $redPackData->id;
                     $this->pageData['total'] = $redPackData->total;
                     $this->pageData['received'] = $redPackData->received;
                     $this->pageData['remainingTime'] = $redPackData->expiredTime - time();
+                    $this->pageData['redPackRecordList'] = $recordModel->getAssistanceRecords($redPackData->id);
                 }
             } else {
                 exit("非正常的访问，缺少红包ID");
@@ -136,6 +145,7 @@ class IndexController extends Controller
     //发起助力操作
     public function assistance(Request $request) {
         $data = $request->all();
+
         //有无红包ID
         if (empty($data['redPackId'])) {
             exit(ResultClientJson(100, '红包不得为空'));
@@ -146,11 +156,18 @@ class IndexController extends Controller
             exit(ResultClientJson(101, '未登录或者未关注用户不能助力'));
         }
 
-        //若当前红包已不需要助力，则跳过
+        //查询当前用户是否有未完成的红包
         $redPackModel = new RedPackModel();
+        $unCompleteRedPack = $redPackModel->getUnComplete($this->user['id']);
+        $jsonData['unCompleteRedPackId'] = !empty($unCompleteRedPack->id) ? $unCompleteRedPack->id : 0;
+
+        //TODO 检测今天是否已经对此用户助力过
+
+
+        //若当前红包已不需要助力，则跳过
         $row = $redPackModel->getOne(['id', 'total', 'received'], ['id' => $data['redPackId'], 'status' => 0, ['expiredTime', ">", time()]]);
         if (empty($row['id'])) {
-            exit(ResultClientJson(100, '此红包已不需要助力'));
+            exit(ResultClientJson(100, '此红包已不需要助力', $jsonData));
         }
 
         //增加一次助力
@@ -165,16 +182,18 @@ class IndexController extends Controller
             'redPackId' => $data['redPackId'],
             'userId' => $this->user['id'],
             'type' => 1,
-            'money' => mt_rand($minMoney, $maxMoney)
+            'money' => mt_rand($minMoney, $maxMoney),
+            'createTime' => time(),
         ];
         $newRecordId = $redPackRecordModel->insert($recordData);
         if ($newRecordId) {
             //增加received金额
             $nowReceived = $row->received + $recordData['money'];
             $redPackModel->updateData(['received' => $nowReceived], ['id' => $data['redPackId']]);
-            exit(ResultClientJson(0, 'ok'));
+
+            exit(ResultClientJson(0, 'ok', $jsonData));
         }
 
-        exit(ResultClientJson(100, '助力失败'));
+        exit(ResultClientJson(100, '助力失败', $jsonData));
     }
 }
