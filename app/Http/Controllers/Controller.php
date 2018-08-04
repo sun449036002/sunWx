@@ -45,7 +45,7 @@ class Controller extends BaseController
         unset($user['id']);
 
         //信息存入Cookie
-        Cookie::make(CookieConst::WECHAT_USER, json_encode($user, JSON_UNESCAPED_UNICODE), 60 * 24);
+        Cookie::queue(CookieConst::WECHAT_USER, json_encode($user, JSON_UNESCAPED_UNICODE), 60 * 24);
 
         return redirect($request->cookie("target_url", "/"));
     }
