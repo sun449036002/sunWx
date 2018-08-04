@@ -175,7 +175,7 @@ class IndexController extends Controller
 
         //增加一次助力
         $minMoney = 10;
-        $maxMoney = $data['total'] - $data['received'];
+        $maxMoney = $row->total - $row->received;
         if ($minMoney > $maxMoney) {
             list($minMoney, $maxMoney) = [$maxMoney, $minMoney];
         }
