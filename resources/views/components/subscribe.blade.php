@@ -30,5 +30,5 @@
 </script>
 <div class="subscribeBox">
     <div class="subscribe-tips">长按二维码，关注后再操作</div>
-    <img src="/imgs/subscribe.png">
+    <img src="/imgs/subscribe.jpg">
 </div>

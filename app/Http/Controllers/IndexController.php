@@ -199,6 +199,8 @@ class IndexController extends Controller
             $nowReceived = $row->received + $recordData['money'];
             $redPackModel->updateData(['received' => $nowReceived], ['id' => $data['redPackId']]);
 
+            //TODO 发送模板消息，通知用户红包进度
+
             exit(ResultClientJson(0, 'ok', $jsonData));
         }
 
