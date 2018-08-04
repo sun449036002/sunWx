@@ -15,6 +15,7 @@ use App\Model\SigninModel;
 use App\Model\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
 
 class IndexController extends Controller
 {
@@ -210,6 +211,7 @@ class IndexController extends Controller
             //发送模板消息，通知红包所属人进度
             $who = (new UserModel())->getOne(['openid'], ['id' => $row->userId]);
             if (!empty($who)) {
+                Log::info("who", [$this->user]);
                 $this->wxapp->template_message->send([
                     'touser' => $who->openid,
                     'template_id' => '82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg',
