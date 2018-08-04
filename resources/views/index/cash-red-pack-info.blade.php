@@ -97,9 +97,16 @@
 <div class="cash-red-pack-main">
     <div class="tips">天天拆红包 领百元现金</div>
     <div class="rule">活动规则</div>
-    <div class="mid">
+    <div class="mid" style="padding:0 15px;color:#FFF;font-weight: 600;line-height: 30px">
         <div>进度:{{$received . "/" . $total}}</div>
         <div>倒计时:<span class="remainingTime">{{$remainingTime}}</span></div>
+
+        <div>
+            <div>助力列表:</div>
+            @foreach($redPackRecordList as $item)
+                <div>{{$item->headImgUrl}}助力后，您获得了{{$item->money}}元</div>
+            @endforeach
+        </div>
     </div>
 </div>
 

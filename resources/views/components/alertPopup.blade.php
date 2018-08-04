@@ -1,0 +1,65 @@
+<script>
+    var alertPopup = {
+        show : function(obj) {
+            $(".alert-popup .msg").html(obj.msg || "");
+            $(".alert-popup").show();
+
+            $(".alert-popup .btn-sure").on("click", function(){
+                if(typeof obj !== "undefined" && typeof obj.cb === "function") {
+                    $(".alert-popup").hide(obj.cb(obj));
+                } else {
+                    $(".alert-popup").hide();
+                }
+            });
+        }
+    };
+</script>
+<style type="text/css">
+    .alert-popup {
+        display: none;
+        position: fixed;
+        top:0;
+        left:0;
+        width:100vw;
+        height:100vh;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .alert-popup .main {
+        position: absolute;
+        width:100vw;
+        height:15vh;
+        bottom:0;
+        text-align: center;
+    }
+    .alert-popup .msg {
+        width:95vw;
+        height: 30px;
+        line-height: 30px;
+        margin:auto;
+        font-size:20px;
+        background-color: #fff;
+        border-radius: 5px;
+        padding:2px 0;
+        color:#777;
+    }
+
+
+    .alert-popup .btn-sure {
+        width:95vw;
+        height: 30px;
+        line-height: 30px;
+        margin:15px auto;
+        font-size:20px;
+        background-color: #fff;
+        border-radius: 5px;
+        padding:5px 0;
+        color:rgb(6, 188, 7);
+    }
+</style>
+<div class="alert-popup">
+    <div class="main">
+        <div class="msg">您确定吗？</div>
+        <div class="btn-sure">确定</div>
+    </div>
+</div>

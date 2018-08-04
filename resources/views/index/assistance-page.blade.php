@@ -85,7 +85,7 @@
 
         //帮他助力
         $(".btn-assistance").on("click", function(){
-            var isSubscribe = parseInt("{{$user['is_subscribe'] ?? 0}}");
+            var isSubscribe = 1 || parseInt("{{$user['is_subscribe'] ?? 0}}");
             if (!isSubscribe) {
                 $(".subscribeBox").show();
                 return false;
@@ -99,7 +99,20 @@
                 dataType : "json",
                 headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},
                 success : function(res){
-                    alert(res);
+                    if (res.code > 0) {
+                        res.cb = function (res) {
+                            var unCompleteRedPackId = res.data.unCompleteRedPackId || 0;
+                            if (unCompleteRedPackId > 0) {
+                                window.location.href = "/cash-red-pack-info?redPackId=" + unCompleteRedPackId;
+                            }
+                        };
+                        alertPopup.show(res);
+                    } else {
+                        var unCompleteRedPackId = res.data.unCompleteRedPackId || 0;
+                        if (unCompleteRedPackId > 0) {
+                            window.location.href = "/cash-red-pack-info?redPackId=" + unCompleteRedPackId;
+                        }
+                    }
                 }
             });
         });
@@ -117,7 +130,8 @@
 
 @include('index/cash-red-pack-rule')
 
-@include("subscribe")
+@include("components/subscribe")
+@include("components/alertPopup")
 
 </body>
 </html>

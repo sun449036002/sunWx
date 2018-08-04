@@ -12,11 +12,16 @@ class UserModel extends BaseModel
 
     /**
      * 根据 openid 获取用户信息
-     * @param $openid
+     * @param $openid || $id
      * @return mixed
      */
     public function getUserinfoByOpenid($openid = '') {
-        $row = $this->getOne(['id', "is_subscribe", "type", "uri"], ['openid' => $openid]);
+        if (is_numeric($openid)) {
+            $id = $openid;
+            $row = $this->getOne(['id', "is_subscribe", "type", "uri"], ['id' => $id]);
+        } else {
+            $row = $this->getOne(['id', "is_subscribe", "type", "uri"], ['openid' => $openid]);
+        }
         $user = [];
         if (!empty($row)) {
             foreach ($row as $key => $val) {

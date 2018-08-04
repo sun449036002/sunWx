@@ -19,7 +19,7 @@ class WeixinOAuth
     public function handle($request, Closure $next)
     {
         //未授权用户
-        if (false && empty($request->cookie(CookieConst::WECHAT_USER))) {
+        if (empty($request->cookie(CookieConst::WECHAT_USER))) {
 
             Cookie::queue('target_url', $request->getRequestUri(), 2);
 
