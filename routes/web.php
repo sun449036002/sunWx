@@ -30,4 +30,5 @@ Route::any("weixin/users", "wxController@users");
 Route::any('/oauth-callback', "Controller@oauthCallback");
 Route::get('/cc', "IndexController@clearCookie");
 Route::get('/gc', "IndexController@getCookie");
+Route::get('/debug', "IndexController@debug");
 
