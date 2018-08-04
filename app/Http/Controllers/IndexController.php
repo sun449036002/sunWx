@@ -169,7 +169,7 @@ class IndexController extends Controller
 
         //若当前红包已不需要助力，则跳过
         $row = $redPackModel->getOne(['id', 'total', 'received'], ['id' => $data['redPackId'], 'status' => 0, ['expiredTime', ">", time()]]);
-        if (empty($row['id'])) {
+        if (empty($row->id)) {
             exit(ResultClientJson(100, '此红包已不需要助力', $jsonData));
         }
 
