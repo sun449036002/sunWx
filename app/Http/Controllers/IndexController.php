@@ -22,12 +22,8 @@ class IndexController extends Controller
     {
         parent::__construct();
 
-        var_dump(Cookie::get(CookieConst::WECHAT_USER));
-
         //获取用户信息
         $this->user = $this->getUserinfo();
-
-        var_dump(Cookie::get(CookieConst::WECHAT_USER));
 
         $this->pageData['user'] = $this->user;
         $this->pageData['wxapp'] = $this->wxapp;
