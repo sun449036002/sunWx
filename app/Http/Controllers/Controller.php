@@ -11,6 +11,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
 
 class Controller extends BaseController
 {
@@ -57,7 +58,7 @@ class Controller extends BaseController
     public function getUserinfo(Request $request) {
         $defaultUser = ['id' => 0];
         $user = $request->cookie(CookieConst::WECHAT_USER);
-        var_dump("cookie", $user);
+        Log::info("cookie user", [$user]);
         if (empty($user)) {
             return $defaultUser;
         }
@@ -68,7 +69,7 @@ class Controller extends BaseController
             }
         }
         $userInDb = (new UserModel())->getUserinfoByOpenid($user['openid']);
-        var_dump($userInDb);
+        Log::info("user in db", [$userInDb]);
         return array_merge($user, $userInDb);
     }
 }
