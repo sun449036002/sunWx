@@ -182,7 +182,7 @@ class IndexController extends Controller
 
         //最近一次助力后，获得的金额若超过总金额，则用总金额相减的金额
         $curReceivedMoney = mt_rand($minMoney, $maxMoney);
-        $isLast = $row->received + $curReceivedMoney > $row->total;
+        $isLast = $row->received + $curReceivedMoney >= $row->total;
         if ($isLast) {
             $curReceivedMoney = $row->total - $row->received;
         }
