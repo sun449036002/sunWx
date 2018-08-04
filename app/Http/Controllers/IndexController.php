@@ -12,6 +12,7 @@ use App\Consts\CookieConst;
 use App\Model\RedPackModel;
 use App\Model\RedPackRecordModel;
 use App\Model\SigninModel;
+use App\Model\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
@@ -202,6 +203,16 @@ class IndexController extends Controller
         }
 
         exit(ResultClientJson(100, '助力失败', $jsonData));
+    }
+
+    /**
+     * 模拟用户登录
+     * @param Request $request
+     */
+    public function debug(Request $request) {
+        $id = $request->get("id");
+        $user = (new UserModel())->getOne(["*"], ['id' => $id]);
+        Cookie::queue(CookieConst::WECHAT_USER, json_encode($user, JSON_UNESCAPED_UNICODE), 60 * 24);
     }
 
     public function clearCookie() {
