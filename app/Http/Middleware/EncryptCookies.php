@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Consts\CookieConst;
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 
 class EncryptCookies extends Middleware
@@ -14,6 +13,5 @@ class EncryptCookies extends Middleware
      */
     protected $except = [
         //
-        CookieConst::WECHAT_USER,
     ];
 }
