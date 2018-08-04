@@ -8,10 +8,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Consts\CookieConst;
 use App\Model\RedPackModel;
 use App\Model\RedPackRecordModel;
 use App\Model\SigninModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class IndexController extends Controller
 {
@@ -200,5 +202,11 @@ class IndexController extends Controller
         }
 
         exit(ResultClientJson(100, '助力失败', $jsonData));
+    }
+
+    public function clearCookie() {
+        var_dump(Cookie::get(CookieConst::WECHAT_USER));
+        Cookie::forget(CookieConst::WECHAT_USER);
+        var_dump(Cookie::get(CookieConst::WECHAT_USER));
     }
 }
