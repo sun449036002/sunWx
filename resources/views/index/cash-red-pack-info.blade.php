@@ -70,6 +70,21 @@
         });
     })(jQuery);
 
+    //分享给朋友
+    function shareFriend() {
+        WeixinJSBridge.invoke('sendAppMessage',{
+            "appid": 'wx11fe145bfca2b25e',
+            "img_url": '',
+            "img_width": "200",
+            "img_height": "200",
+            "link": '',
+            "desc": '描述',
+            "title": '标题'
+        }, function(res) {
+            alert(res);
+        })
+    }
+
     $(document).ready(function(){
         //显示规则
         $(".cash-red-pack-main .rule").on("click", function(){
@@ -79,7 +94,25 @@
         //关闭
         $(".red-pack-info .btn-close").on("click", function(){
             $(".red-pack-container").hide();
-        })
+        });
+
+        //WeixinJSBridgeReady
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            alert('WeixinJSBridgeReady ok');
+            // 发送给好友
+            WeixinJSBridge.on('menu:share:appmessage', function(argv){
+                alert(argv);
+                shareFriend();
+            });
+            // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function(argv){
+//                shareTimeline();
+            });
+            // 分享到微博
+            WeixinJSBridge.on('menu:share:weibo', function(argv){
+//                shareWeibo();
+            });
+        }, false);
 
         var tg = $(".remainingTime");
         var t = parseInt(tg.html());
