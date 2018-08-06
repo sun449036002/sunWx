@@ -81,7 +81,7 @@
             "desc": '描述',
             "title": '标题'
         }, function(res) {
-            alert(JSON.stringify(res));
+//            alert(JSON.stringify(res));
         })
     }
 
@@ -98,8 +98,8 @@
 
         //
         $(".btn-share-friend").on("click", function(){
-            shareFriend();
-        })
+            $(this).trigger("menu:share:appmessage");
+        });
 
         //WeixinJSBridgeReady
         document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
