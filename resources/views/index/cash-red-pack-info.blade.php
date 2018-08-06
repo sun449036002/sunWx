@@ -81,7 +81,7 @@
             "desc": '描述',
             "title": '标题'
         }, function(res) {
-            alert(res);
+            alert(JSON.stringify(res));
         })
     }
 
@@ -96,12 +96,17 @@
             $(".red-pack-container").hide();
         });
 
+        //
+        $(".btn-share-friend").on("click", function(){
+            shareFriend();
+        })
+
         //WeixinJSBridgeReady
         document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
             alert('WeixinJSBridgeReady ok');
             // 发送给好友
             WeixinJSBridge.on('menu:share:appmessage', function(argv){
-                alert(argv);
+                alert(JSON.stringify(argv));
                 shareFriend();
             });
             // 分享到朋友圈
@@ -143,7 +148,7 @@
     </div>
 </div>
 
-<div class="red-pack-container" style="display: {{$from == 'cash-receive' ? 'block' : 'none'}}">
+<div class="red-pack-container" style="display: {{$from == 'cash-receive' || 1 ? 'block' : 'none'}}">
     <div class="red-pack-bg">
         <div class="red-pack-info">
             <div class="btn-close"></div>
