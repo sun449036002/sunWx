@@ -98,25 +98,18 @@
 
         //
         $(".btn-share-friend").on("click", function(){
-            $(this).trigger("menu:share:appmessage");
+            sendAppMessage();
         });
 
         //WeixinJSBridgeReady
         document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
             alert('WeixinJSBridgeReady ok');
-            // 发送给好友
-            WeixinJSBridge.on('menu:share:appmessage', function(argv){
-                alert(JSON.stringify(argv));
-                shareFriend();
-            });
-            // 分享到朋友圈
-            WeixinJSBridge.on('menu:share:timeline', function(argv){
-//                shareTimeline();
-            });
-            // 分享到微博
-            WeixinJSBridge.on('menu:share:weibo', function(argv){
-//                shareWeibo();
-            });
+            function sendAppMessage() {
+                // 发送给好友
+                WeixinJSBridge.on('menu:share:appmessage', function(argv){
+                    shareFriend();
+                });
+            }
         }, false);
 
         var tg = $(".remainingTime");
