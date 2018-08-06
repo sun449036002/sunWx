@@ -81,7 +81,7 @@
             "desc": '描述',
             "title": '标题'
         }, function(res) {
-//            alert(JSON.stringify(res));
+            alert(JSON.stringify(res));
         })
     }
 
