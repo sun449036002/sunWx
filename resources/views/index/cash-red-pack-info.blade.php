@@ -3,7 +3,7 @@
 <link href="css/cash-red-pack-info.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" charset="utf-8">
-    wx.config(<?php echo $wxapp->jssdk->buildConfig(['onMenuShareTimeline','onMenuShareAppMessage'], true) ?>);
+    wx.config(<?php echo $wxapp->jssdk->buildConfig(['onMenuShareTimeline','onMenuShareAppMessage', 'sendAppMessage'], true) ?>);
 
 
 
