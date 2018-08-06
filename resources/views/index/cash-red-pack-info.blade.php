@@ -3,7 +3,7 @@
 <link href="css/cash-red-pack-info.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" charset="utf-8">
-    wx.config(<?php echo $wxapp->jssdk->buildConfig(['onMenuShareTimeline','onMenuShareAppMessage', 'sendAppMessage'], true) ?>);
+    wx.config(<?php echo $wxapp->jssdk->buildConfig(['onMenuShareTimeline','onMenuShareAppMessage'], true) ?>);
 
 
 
@@ -46,11 +46,7 @@
     //分享给朋友
     function shareFriend() {
         WeixinJSBridge.invoke('sendAppMessage',{
-            "appid": 'wx11fe145bfca2b25e',
-            "img_url": '',
-            "img_width": "200",
-            "img_height": "200",
-            "link": '',
+            "link": 'http://m.exmail.qq.com/',
             "desc": '描述',
             "title": '标题'
         }, function(res) {
