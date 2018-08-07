@@ -12,7 +12,7 @@ namespace App\Model;
 class RedPackRecordModel extends BaseModel
 {
     //红包折得助力记录表
-    protected $table = "redPackRecord";
+    protected $table = "red_pack_record";
 
     //获取助力记录
     public function getAssistanceRecords($redPackId) {

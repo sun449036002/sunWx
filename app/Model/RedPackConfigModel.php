@@ -11,6 +11,6 @@ namespace App\Model;
 
 class RedPackConfigModel extends BaseModel
 {
-    protected $table = "redPackConfig";
+    protected $table = "red_pack_config";
 
 }

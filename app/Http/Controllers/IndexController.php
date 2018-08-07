@@ -67,8 +67,7 @@ class IndexController extends Controller
         $this->pageData['title'] = "天天拆红包 领百元现金";
 
         if (empty($this->user['id'])) {
-            //TODO
-//            exit("未关注用户不能领红包");
+            exit("未关注用户不能领红包");
         }
 
         $recordModel = new RedPackRecordModel();
@@ -86,7 +85,9 @@ class IndexController extends Controller
             $rdConfig = $redPackConfigModel->getOne(['*'], [['id', '>', 0]]);
 
             $totalMoney = mt_rand($rdConfig->minMoney ?? 0, $rdConfig->maxMoney ?? 0);
-            $curReceived = mt_rand($rdConfig->minAssistanceMoney ?? 0, $rdConfig->maxAssistanceMoney ?? 0);
+            $min = ($rdConfig->minAssistanceMoney ?? 0) * 100;
+            $max = ($rdConfig->maxAssistanceMoney ?? 0) * 100;
+            $curReceived = number_format(mt_rand($min, $max)/100, 2);
             $insertData = [
                 'userId' => $this->user['id'],
                 'total' => $totalMoney,
@@ -186,14 +187,14 @@ class IndexController extends Controller
         $rdConfig = $redPackConfigModel->getOne(['*'], [['id', '>', 0]]);
 
         //增加一次助力
-        $minMoney = $rdConfig->minAssistanceMoney ?? 0;
-        $maxMoney = $rdConfig->maxAssistanceMoney ?? 0;
+        $minMoney = ($rdConfig->minAssistanceMoney ?? 0) * 100;
+        $maxMoney = ($rdConfig->maxAssistanceMoney ?? 0) * 100;
         if ($minMoney > $maxMoney) {
             list($minMoney, $maxMoney) = [$maxMoney, $minMoney];
         }
 
         //最近一次助力后，获得的金额若超过总金额，则用总金额相减的金额
-        $curReceivedMoney = mt_rand($minMoney, $maxMoney);
+        $curReceivedMoney = number_format(mt_rand($minMoney, $maxMoney) / 100, 2);
         $isLast = $row->received + $curReceivedMoney >= $row->total;
         if ($isLast) {
             $curReceivedMoney = $row->total - $row->received;

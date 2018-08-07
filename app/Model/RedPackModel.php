@@ -11,7 +11,7 @@ namespace App\Model;
 
 class RedPackModel extends BaseModel
 {
-    protected $table = "redPack";
+    protected $table = "red_pack";
 
     //获取当前用户未完成的且未过期的红包
     public function getUnComplete($userId) {
