@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Consts\CookieConst;
+use App\Model\RedPackConfigModel;
 use App\Model\RedPackModel;
 use App\Model\RedPackRecordModel;
 use App\Model\SigninModel;
@@ -80,11 +81,16 @@ class IndexController extends Controller
             if (!empty($row->id)) {
                 return redirect('/cash-red-pack-info?redPackId=' . $row->id);
             }
-            $totalMoney = mt_rand(50, 200);
+            //红包配置
+            $redPackConfigModel = new RedPackConfigModel();
+            $rdConfig = $redPackConfigModel->getOne(['*'], [['id', '>', 0]]);
+
+            $totalMoney = mt_rand($rdConfig->minMoney ?? 0, $rdConfig->maxMoney ?? 0);
+            $curReceived = mt_rand($rdConfig->minAssistanceMoney ?? 0, $rdConfig->maxAssistanceMoney ?? 0);
             $insertData = [
                 'userId' => $this->user['id'],
                 'total' => $totalMoney,
-                'received' => mt_rand(10, $totalMoney / 2),
+                'received' => $curReceived,
                 'expiredTime' => time() + 86400,
             ];
             $insertId = $redPackModel->insert($insertData);
@@ -175,9 +181,13 @@ class IndexController extends Controller
             exit(ResultClientJson(100, '此红包已不需要助力', $jsonData));
         }
 
+        //红包配置
+        $redPackConfigModel = new RedPackConfigModel();
+        $rdConfig = $redPackConfigModel->getOne(['*'], [['id', '>', 0]]);
+
         //增加一次助力
-        $minMoney = 10;
-        $maxMoney = $row->total - $row->received;
+        $minMoney = $rdConfig->minAssistanceMoney ?? 0;
+        $maxMoney = $rdConfig->maxAssistanceMoney ?? 0;
         if ($minMoney > $maxMoney) {
             list($minMoney, $maxMoney) = [$maxMoney, $minMoney];
         }
@@ -217,8 +227,6 @@ class IndexController extends Controller
                     'template_id' => '82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg',
                     'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $data['redPackId'],
                     'data' => [
-                        'key1' => 'VALUE',
-                        'key2' => 'VALUE2',
                         'first' => $this->user['username'] . "给你的红包助力啦~",
                         'keyword1' => "现金红包",
                         'keyword2' => $this->user['username'],
