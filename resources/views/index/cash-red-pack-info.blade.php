@@ -114,7 +114,7 @@
     </div>
 </div>
 
-<div class="red-pack-container" style="display: {{$from == 'cash-receive' ? 'block' : 'none'}}">
+<div class="red-pack-container" style="display: {{$from == 'cash-receive' || 1 ? 'block' : 'none'}}">
     <div class="red-pack-bg">
         <div class="red-pack-info">
             <div class="btn-close"></div>

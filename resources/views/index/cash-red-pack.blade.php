@@ -49,7 +49,7 @@
         $("#withdraw-list").Scroll({
             line: 1,
             speed: 500,
-            timer: 3000
+            timer: 1000
         });
         //显示规则
         $(".cash-red-pack-main .rule").on("click", function(){

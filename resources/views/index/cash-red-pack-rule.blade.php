@@ -13,39 +13,41 @@
 
     .rule-container .rule-box {
         position: relative;
-        width:80vw;
-        height:50vh;
-        margin:20vh auto;
-        background-color:white;
-        border-radius: 15px;
-        padding:15px;
+        width: 6rem;
+        height: 7rem;
+        margin: 2rem auto;
+        background-color: white;
+        border-radius: .3rem;
+        padding: .3rem;
     }
 
     .rule-container .rule-box .rule-title {
-        height:39px;
+        height: .66rem;
         text-align: center;
-        font-weight:600;
-        font-size:18px;
-        color:red;
+        font-weight: 600;
+        font-size: 0.39rem;
+        color: red;
     }
 
     .rule-container .rule-box .btn-close-rule {
         position: absolute;
-        top:-39px;
-        right:-10px;
-        width: 30px;
-        height: 30px;
-        line-height:30px;
-        border:1px solid white;
-        border-radius: 15px;
+        top: -0.7rem;
+        right: -0.1rem;
+        width: .6rem;
+        height: .6rem;
+        line-height: .6rem;
+        border: .03rem solid white;
+        border-radius: .3rem;
         text-align: center;
-        color:white;
+        color: white;
+        font-size: 0.4rem;
     }
 
     .rule-container .rule-content {
-        width:80vw;
-        height:45vh;
+        width: 6rem;
+        height: 6.3rem;
         overflow: scroll;
+        font-size: 0.3rem;
     }
 </style>
 <script type="text/javascript" charset="utf-8">
