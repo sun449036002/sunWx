@@ -85,15 +85,42 @@
         $(".btn-share-friend").on("click", function(){
         });
 
+        //倒计时
         var tg = $(".remainingTime");
-        var t = parseInt(tg.html());
+        var t = parseInt("{{$remainingTime}}");
         setInterval(function(){
             t = t - 1;
             var m = parseInt(t / 60) % 60;
             var h = parseInt(t / 3600) % 60;
             var s = t % 60;
-            tg.html(h + ":" + m + ":" + s);
-        }, 1000)
+            m = (m + "").length === 1 ? "0" + m : m;
+            h = (h + "").length === 1 ? "0" + h : h;
+            s = (s + "").length === 1 ? "0" + s : s;
+            tg.find(".h").html(h);
+            tg.find(".m").html(m);
+            tg.find(".s").html(s);
+        }, 1000);
+
+        //进度条
+        $('.progressbar').each(function(){
+            var t = $(this),
+                dataperc = t.attr('data-perc'),
+                barperc = dataperc * 0.056;
+//            console.log(dataperc);
+            t.find('.bar').animate({width:barperc+"rem"}, dataperc*25);
+            t.find('.label').append('<div class="perc"></div>');
+
+            function perc(){
+                var length = t.find('.bar').css('width'),
+                    perc = Math.round(parseInt(length)/5.56),
+                    labelpos = (parseInt(length)-2);
+//                console.log(labelpos);
+                t.find('.label').css('left',  labelpos - 40);
+                t.find('.perc').text('还差{{$total - $received}}元');
+            }
+            perc();
+            setInterval(perc, 0);
+        });
     });
 </script>
 </head>
@@ -101,9 +128,22 @@
 <div class="cash-red-pack-main">
     <div class="tips">天天拆红包 领百元现金</div>
     <div class="rule">活动规则</div>
-    <div class="mid" style="padding:0 15px;color:#FFF;font-weight: 600;line-height: 30px">
-        <div>进度:{{$received . "/" . $total}}</div>
-        <div>倒计时:<span class="remainingTime">{{$remainingTime}}</span></div>
+    <div class="mid">
+
+        <div class="red-pack-box">
+            <div class="received-box">已经拆得<span>{{$received}}</span>元</div>
+            <div class="progressbar" data-perc="{{intval(($received / $total) * 100)}}">
+                <div class="bar color3"><span></span></div>
+                <div class="label"><span></span></div>
+            </div>
+            <div class="time-box">
+                <span class="remainingTime">
+                    <span class="h">00</span>:<span class="m">00</span>:<span class="s">00</span>
+                </span>
+                后失效，赶紧找人助力~
+            </div>
+            <div class="go-on-share">再找人助力</div>
+        </div>
 
         <div>
             <div>助力列表:</div>
@@ -114,7 +154,7 @@
     </div>
 </div>
 
-<div class="red-pack-container" style="display: {{$from == 'cash-receive' || 1 ? 'block' : 'none'}}">
+<div class="red-pack-container" style="display: {{$from == 'cash-receive' ? 'block' : 'none'}}">
     <div class="red-pack-bg">
         <div class="red-pack-info">
             <div class="btn-close"></div>
