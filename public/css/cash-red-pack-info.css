@@ -6,35 +6,35 @@ body {
 
 .cash-red-pack-main {
     width:100vw;
-    height:100vh;
+    min-height:100vh;
     /*background-image: url("../imgs/bg.jpg");*/
     background-image: url("../imgs/cash-red-pack-bg.png");
-    -webkit-background-size:cover;
-    background-size:cover;
+    -webkit-background-size:contain;
+    background-size:contain;
 }
 
 .cash-red-pack-main .tips {
-    width:100vw;
-    padding-top:60px;
+    width: 100vw;
+    padding-top: 1.2rem;
     text-align: center;
-    font-size: 30px;
-    font-weight:600;
-    color:#f3c861;
+    font-size: .6rem;
+    font-weight: 600;
+    color: #f3c861;
 }
 
 .cash-red-pack-main .rule {
     position: absolute;
-    width:80px;
-    height: 30px;
-    line-height:30px;
-    right:0;
-    top:15px;
-    padding-right:3px;
+    width: 1.6rem;
+    height: .6rem;
+    line-height: .6rem;
+    right: 0;
+    top: .3rem;
+    padding-right: 0.1rem;
     text-align: right;
     background-color: rgba(155,17,4,1);
-    color:#ff958b;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    color: #ff958b;
+    border-top-left-radius: .3rem;
+    border-bottom-left-radius: .3rem;
 }
 
 .cash-red-pack-main .mid {
@@ -79,6 +79,104 @@ body {
     color: #fff;
     padding: .07rem;
     border-radius: 0.1rem;
+}
+
+/**
+推荐区
+ */
+.sale-main {
+    margin-top: 0.3rem;
+    width: 100vw;
+    background-color: #eee;
+    min-height: 3rem;
+}
+
+.sale-main .sale-tab-title {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    width: 100vw;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    font-size: 0.4rem;
+    color: #76520c;
+    padding: .2rem 0;
+}
+
+.sale-tab-title .tab.selected {
+    background-color: #eee;
+}
+.sale-tab-title .tab {
+    width: 50vw;
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    border-radius: 0.15rem .15rem 0 0;
+    background-color: #ccc;
+}
+
+.product-list {
+    padding:0 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.product-list .item {
+    width:45vw;
+    background-color: white;
+    margin-bottom:15px;
+}
+
+.product-list .img img{
+    width:45vw;
+    height:45vw;
+}
+.product-info {
+    position: relative;
+    display: flex;
+}
+.product-info .info {
+    width:35vw;
+    justify-content: flex-start;
+    padding:10px 0 15px 15px;
+}
+
+.in-time {
+    color:white;
+    width:21vw;
+    text-align: center;
+    background-color: red;
+    font-weight:600;
+    margin-bottom: 15px;
+}
+
+.new-price {
+    color:red;
+    font-weight:600;
+    margin:3px 0;
+}
+
+.old-price {
+    color:#a2a2a2;
+}
+
+.old-price .price {
+    text-decoration: line-through;
+}
+
+.btn-buy {
+    position: absolute;
+    color:white;
+    background-color:red;
+    font-size:.36rem;
+    text-align: center;
+    font-weight:600;
+    width:10vw;
+    height:8vw;
+    line-height:8vw;
+    border-radius: 2vw;
+    bottom:15px;
+    right:15px;
 }
 
 
