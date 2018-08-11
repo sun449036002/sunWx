@@ -33,6 +33,17 @@ class IndexController extends Controller
         $this->pageData['wxapp'] = $this->wxapp;
     }
 
+    public function home() {
+        //取得所有房源
+        $roomSourceModel = new RoomSourceModel();
+        $this->pageData['roomList'] = $roomSourceModel->getList(
+            ['id', "type", "roomCategoryId", "name", "area", "avgPrice", "imgJson"],
+            ['isDel' => 0]
+        );
+
+        return view('index/home', $this->pageData);
+    }
+
     /**
      * 签到领现金
      * @param Request $request

@@ -84,7 +84,7 @@
     </div>
 </div>
 
-@include('index/cash-red-pack-rule')
+@include('components/cash-red-pack-rule')
 
 </body>
 </html>

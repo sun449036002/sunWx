@@ -10,8 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//签到领现金
-Route::get('/', "IndexController@index")->middleware("weixinOAuth");
+//首页
+Route::get('/', "IndexController@home")->middleware("weixinOAuth");
 
 //领现金红包
 Route::get('cash-red-pack', "IndexController@cashRedPack")->middleware("weixinOAuth");

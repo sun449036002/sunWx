@@ -19,12 +19,14 @@
             width:7.5rem;
         }
         body {
+            margin:0;
             width: 7.5rem;
             font-size: .3rem;
         }
         a {
             text-decoration: none;
         }
+
         p {
             margin:0;
             padding:0;

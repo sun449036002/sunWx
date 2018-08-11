@@ -109,7 +109,7 @@
     </div>
 </div>
 
-@include('index/cash-red-pack-rule')
+@include('components/cash-red-pack-rule')
 @include("components/subscribe")
 @include("components/alertPopup")
 

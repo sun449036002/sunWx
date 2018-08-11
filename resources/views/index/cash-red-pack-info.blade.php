@@ -209,7 +209,7 @@
     </div>
 </div>
 
-@include('index/cash-red-pack-rule')
+@include('components/cash-red-pack-rule')
 @include('components/shareLayer')
 @include('components/canNotBack')
 
