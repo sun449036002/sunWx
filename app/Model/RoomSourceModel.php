@@ -23,6 +23,7 @@ class RoomSourceModel extends BaseModel
     public function getOne($columns, $where, $order = [], $group = []) {
         $row = parent::getOne($columns, $where, $order, $group);
         if (!empty($row->imgJson)) {
+            $row->imgJson = str_replace("memberl.whatareu.top", env('MEMBER_DOMAIN'),$row->imgJson);
             $imgs = json_decode($row->imgJson);
             $row->cover = $imgs->cover ?? "";
             $row->imgs = $imgs->imgs ?? [];
@@ -42,6 +43,7 @@ class RoomSourceModel extends BaseModel
         $list = parent::getList($columns, $where, $order, $group);
         foreach ($list as $key => $row) {
             if (!empty($row->imgJson)) {
+                $row->imgJson = str_replace("memberl.whatareu.top", env('MEMBER_DOMAIN'), $row->imgJson);
                 $imgs = json_decode($row->imgJson);
                 $row->cover = $imgs->cover ?? "";
                 $row->imgs = $imgs->imgs ?? [];
