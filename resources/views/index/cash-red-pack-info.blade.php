@@ -17,6 +17,7 @@
             imgUrl: 'http://www.gumama120.com/uploads/allimg/180531/1-1P531155024455.jpg', // 分享图标
             success: function () {
                 // 用户点击了分享后执行的回调函数
+                $(".share-layer").hide();
             }
         });
 
@@ -30,6 +31,7 @@
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             success: function () {
                 // 用户点击了分享后执行的回调函数
+                $(".share-layer").hide();
             }
         });
     });
