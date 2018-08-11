@@ -28,33 +28,32 @@
     .alert-popup .main {
         position: absolute;
         width:100vw;
-        height:15vh;
         bottom:0;
         text-align: center;
     }
     .alert-popup .msg {
-        width:95vw;
-        height: 30px;
-        line-height: 30px;
-        margin:auto;
-        font-size:20px;
+        width: 95vw;
+        height: .6rem;
+        line-height: .6rem;
+        margin: auto;
+        font-size: .4rem;
         background-color: #fff;
-        border-radius: 5px;
-        padding:2px 0;
-        color:#777;
+        border-radius: .1rem;
+        padding: .02rem 0;
+        color: #777;
     }
 
 
     .alert-popup .btn-sure {
-        width:95vw;
-        height: 30px;
-        line-height: 30px;
-        margin:15px auto;
-        font-size:20px;
+        width: 95vw;
+        height: .6rem;
+        line-height: .6rem;
+        margin: .3rem auto;
+        font-size: .4rem;
         background-color: #fff;
-        border-radius: 5px;
-        padding:5px 0;
-        color:rgb(6, 188, 7);
+        border-radius: .1rem;
+        padding: .1rem 0;
+        color: rgb(6, 188, 7);
     }
 </style>
 <div class="alert-popup">

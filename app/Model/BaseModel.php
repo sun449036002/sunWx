@@ -37,7 +37,9 @@ class BaseModel extends Model
     public function getList($columns, $where, $order = [], $group = []) {
         $builder = $this->getBuilder();
         $builder->select($columns);
-        $builder->where($where);
+        if (!empty($where)) {
+            $builder->where($where);
+        }
         $rows = $builder->get();
         if (!empty($rows)) {
             return $rows->toArray();

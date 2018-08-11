@@ -189,6 +189,7 @@ body {
     justify-content: space-between;
     height: 1rem;
     line-height: 1rem;
+    border-bottom:0.01rem dashed #ccc;
 }
 
 .help-list .help-item .head-img {

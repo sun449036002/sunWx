@@ -72,7 +72,7 @@ body {
 }
 
 .cash-red-pack-main .withdraw-list-box {
-    height:16vh;
+    height:2rem;
     overflow: hidden;
 }
 
@@ -111,7 +111,8 @@ body {
     width: .6rem;
     height: .6rem;
     border-radius: 0.3rem;
-    background-color: cornflowerblue;
+    background-size: cover;
+
 }
 
 .cash-red-pack-main .msg {

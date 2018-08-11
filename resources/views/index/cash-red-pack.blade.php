@@ -20,7 +20,8 @@
                 //滚动函数
                 scrollUp = function() {
                     _this.animate({
-                        marginTop: upHeight
+                        marginTop: "-0.9rem"
+//                        marginTop: upHeight
                     }, speed, function() {
                         for (i = 1; i <= line; i++) {
                             _this.find("li:first").appendTo(_this);
@@ -49,7 +50,7 @@
         $("#withdraw-list").Scroll({
             line: 1,
             speed: 500,
-            timer: 1000
+            timer: 3000
         });
         //显示规则
         $(".cash-red-pack-main .rule").on("click", function(){
@@ -67,30 +68,15 @@
             <div class="btn-receive">领取</div>
             <div class="withdraw-list-box" id="withdraw-list">
                 <ul class="withdraw-list">
-                    <li class="item">
-                        <div class="head-img-url"></div>
-                        <div class="withdraw-info"><span class="nickname">谁谁谁</span>近斯提现10元</div>
-                    </li>
-                    <li class="item">
-                        <div class="head-img-url"></div>
-                        <div class="withdraw-info"><span class="nickname">谁谁谁</span>近斯提现20元</div>
-                    </li>
-                    <li class="item">
-                        <div class="head-img-url"></div>
-                        <div class="withdraw-info"><span class="nickname">谁谁谁</span>近斯提现300元</div>
-                    </li>
-                    <li class="item">
-                        <div class="head-img-url"></div>
-                        <div class="withdraw-info"><span class="nickname">谁谁谁</span>近斯提现3860元</div>
-                    </li>
-                    <li class="item">
-                        <div class="head-img-url"></div>
-                        <div class="withdraw-info"><span class="nickname">谁谁谁</span>近斯提现5000元</div>
-                    </li>
-                    <li class="item">
-                        <div class="head-img-url"></div>
-                        <div class="withdraw-info"><span class="nickname">谁谁谁</span>近斯提现66666元</div>
-                    </li>
+                    @if($rows)
+                        @foreach($rows as $row)
+                        <li class="item">
+                            <div class="head-img-url" style="background-image: url('{{$row->headImgUrl}}')"></div>
+                            <div class="withdraw-info"><span class="nickname">{{$row->nickname}}</span>提现{{$row->money}}元</div>
+                        </li>
+                        @endforeach
+                        @endif
+
                 </ul>
             </div>
         </div>

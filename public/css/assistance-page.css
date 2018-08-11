@@ -1,0 +1,90 @@
+body {
+    margin:0;
+    font-weight: 100;
+    background-color:#EEE;
+}
+
+.cash-red-pack-main {
+    width:100vw;
+    min-height:100vh;
+    /*background-image: url("../imgs/bg.jpg");*/
+    background-image: url("../imgs/cash-red-pack-bg.png");
+    -webkit-background-size:contain;
+    background-size:cover;
+}
+
+.cash-red-pack-main .tips {
+    width: 100vw;
+    padding-top: 1.2rem;
+    text-align: center;
+    font-size: .6rem;
+    font-weight: 600;
+    color: #f3c861;
+}
+
+.cash-red-pack-main .rule {
+    position: absolute;
+    width: 1.6rem;
+    height: .6rem;
+    line-height: .6rem;
+    right: 0;
+    top: .3rem;
+    padding-right: 0.1rem;
+    text-align: right;
+    background-color: rgba(155,17,4,1);
+    color: #ff958b;
+    border-top-left-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+}
+
+.cash-red-pack-main .mid {
+    padding: 0 .3rem;
+    color: #FFF;
+    line-height: .6rem;
+}
+
+.cash-red-pack-main .mid .box {
+    width: 5rem;
+    height: 7rem;
+    margin: 1.6rem auto 0 auto;
+}
+
+.cash-red-pack-main .mid .box .red-pack-head {
+    width: 5rem;
+    height: 2.6rem;
+    background-image: url(../imgs/help-red-pack-head2.png);
+    background-size: cover;
+}
+
+.cash-red-pack-main .mid .box .msg {
+    width:5rem;
+    padding:.3rem 0;
+    text-align: center;
+    -webkit-border-radius:0 0 .1rem .1rem;
+    -moz-border-radius:0 0 .1rem .1rem;
+    border-radius:0 0 .1rem .1rem;
+    background-color: #df3121;
+}
+
+.cash-red-pack-main .mid .box .head-img {
+    display: flex;
+    justify-content: center;
+}
+
+.cash-red-pack-main .mid .box .head-img span {
+    font-size: .2rem;
+    margin-left: 0.15rem;
+}
+.cash-red-pack-main .mid .box .head-img img {
+    width: .6rem;
+    height: .6rem;
+    border-radius: .3rem;
+}
+
+.cash-red-pack-main .mid .box .btn-assistance {
+    width: 3rem;
+    margin: 0.7rem auto 0;
+    background-color: #fbda30;
+    border-radius: 0.2rem;
+    color: rgba(155,17,4,1);
+}

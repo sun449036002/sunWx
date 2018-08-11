@@ -1,6 +1,6 @@
 @include("header")
 <!-- Styles -->
-<link href="css/cash-red-pack-info.css" rel="stylesheet" type="text/css" />
+<link href="css/assistance-page.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" charset="utf-8">
     wx.config(<?php echo $wxapp->jssdk->buildConfig(['onMenuShareTimeline','onMenuShareAppMessage'], true) ?>);
@@ -20,8 +20,6 @@
             }
         });
 
-
-
         //分享给微信好友
         wx.onMenuShareAppMessage({
             title: '分享给朋友们，赚更多的现金', // 分享标题
@@ -35,42 +33,6 @@
             }
         });
     });
-
-    //滚动插件
-    (function($) {
-        $.fn.extend({
-            Scroll: function(opt, callback) {
-                //参数初始化
-                if (!opt) var opt = {};
-                var _this = this.eq(0).find("ul:first");
-                var lineH = _this.find("li:first").outerHeight(true), //获取行高
-                    line = opt.line ? parseInt(opt.line, 10) : parseInt(this.height() / lineH, 10), //每次滚动的行数，默认为一屏，即父容器高度
-                    speed = opt.speed ? parseInt(opt.speed, 10) : 500, //卷动速度，数值越大，速度越慢（毫秒）
-                    timer = opt.timer ? parseInt(opt.timer, 10) : 3000; //滚动的时间间隔（毫秒）
-                if (line == 0) line = 1;
-                var upHeight = 0 - line * lineH;
-                //滚动函数
-                scrollUp = function() {
-                    _this.animate({
-                        marginTop: upHeight
-                    }, speed, function() {
-                        for (i = 1; i <= line; i++) {
-                            _this.find("li:first").appendTo(_this);
-                        }
-                        _this.css({
-                            marginTop: 0
-                        });
-                    });
-                }
-                //鼠标事件绑定
-                _this.hover(function() {
-                    clearInterval(timerID);
-                }, function() {
-                    timerID = setInterval("scrollUp()", timer);
-                }).mouseout();
-            }
-        });
-    })(jQuery);
 
     $(document).ready(function(){
         //显示规则
@@ -90,6 +52,12 @@
                 $(".subscribeBox").show();
                 return false;
             }
+
+            if ($(this).hasClass("is-helped")) {
+                window.location.href = "/cash-red-pack";
+                return false;
+            }
+
             $.ajax({
                 type : 'post',
                 url : "/assistance",
@@ -103,6 +71,8 @@
                         var unCompleteRedPackId = res.data.unCompleteRedPackId || 0;
                         if (unCompleteRedPackId > 0) {
                             window.location.href = "/cash-red-pack-info?redPackId=" + unCompleteRedPackId;
+                        } else {
+                            window.location.href = "/cash-red-pack";
                         }
                     };
                     alertPopup.show(res);
@@ -117,12 +87,29 @@
     <div class="tips">天天拆红包 领百元现金</div>
     <div class="rule">活动规则</div>
     <div class="mid">
-        <div class=""><button class="btn-assistance" style="width:30vw;height: 10vh;" value="帮他助力">帮他助力</button></div>
+        <div class="box">
+            <div class="red-pack-head"></div>
+            <div class="msg">
+                <div class="head-img">
+                    <img src="{{$redPack->headImgUrl}}" />
+                    <span>{{$redPack->nickname}}</span>
+                </div>
+                <div class="text">
+                    @if(!empty($isHelped))
+                        <p>您已经助力过了</p>
+                        <p>谢谢您</p>
+                    @else
+                        <p>邀请您帮他拆红包</p>
+                        <p>他还差 {{$redPack->total - $redPack->received}} 元</p>
+                    @endif
+                </div>
+                <div class="{{$isHelped ? "is-helped" : ""}} btn-assistance">{{$isHelped ? "我也要领红包" : "帮他助力"}}</div>
+            </div>
+        </div>
     </div>
 </div>
 
 @include('index/cash-red-pack-rule')
-
 @include("components/subscribe")
 @include("components/alertPopup")
 

@@ -56,6 +56,11 @@ class IndexController extends Controller
     public function cashRedPack() {
         $this->pageData['title'] = "现金红包";
 
+        //获取已经集满的红包数据
+        $model = new RedPackRecordModel();
+        $rows = $model->getList(['userId', 'money']);
+        $this->pageData['rows'] = $rows;
+
         return view("index/cash-red-pack", $this->pageData);
     }
 
@@ -155,11 +160,31 @@ class IndexController extends Controller
             exit('redPackId不存在');
         }
 
+        //查询红包信息
+        $model = new RedPackModel();
+        $redPack = $model->getOne(['*'], ['id' => $data['redPackId']]);
+        if (empty($redPack)) {
+            exit('此红包不存在');
+        }
+        $_u = (new UserModel())->getUserinfoByOpenid($redPack->userId);
+        $redPack->nickname = $_u['username'] ?? "";
+        $redPack->headImgUrl = $_u['avatar_url'] ?? "";
+        $this->pageData['redPack'] = $redPack;
+
+        //今天是否助力过
+        $recordModel = new RedPackRecordModel();
+        $isHelped = $recordModel->where([
+            "redPackId" => $data['redPackId'],
+            'userId' => $this->user['id'],
+        ])->count();
+        $this->pageData['isHelped'] = $isHelped;
+
+        //红包是否已经集满
+        $this->pageData['isFull'] = $redPack->total == $redPack->received;
+
         //助力的红包ID
         $this->pageData['title'] = "好友助力";
         $this->pageData['redPackId'] = $data['redPackId'];
-
-        //查看将被助力的红包是否已经集满，满则跳转到首页
 
         return view("index/assistance-page", $this->pageData);
 
