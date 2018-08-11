@@ -51,3 +51,25 @@ function getWxConfig() {
 function ResultClientJson($code, $msg = '', $data = []) {
     return json_encode(['code' => $code, 'msg' => $msg, 'data' => $data]);
 }
+
+/**
+ * 根据时间值，获取在多少时间前
+ * @param $time int
+ * @return string
+ */
+function beforeWhatTime($time) {
+    $t = time() - $time;
+    $m = intval($t / 60) % 60;
+    $h = intval($t / 3600) % 60;
+    $s = $t % 60;
+
+    $str = $s . "秒前";
+    if ($m > 0) {
+        $str = $m . "分" . $str;
+    }
+    if ($h > 0) {
+        $str = $h . "小时" . $str;
+    }
+
+    return $str;
+}

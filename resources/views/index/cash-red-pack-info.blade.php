@@ -82,7 +82,7 @@
         });
 
         //分享
-        $(".go-on-share").on("click", function(){
+        $(".btn-share-friend, .go-on-share").on("click", function(){
             $(".share-layer").show();
         });
 
@@ -162,57 +162,37 @@
             <div class="tab" data-for-class="help-list">我的助力团</div>
         </div>
         <div class="product-list">
-            <div class="item">
-                <div class="img"><img src="./imgs/1.jpg"/></div>
-                <div class="product-info">
-                    <div class="info">
-                        <div class="in-time">限时特价</div>
-                        <div class="price-box">
-                            <div class="new-price">特价 <span class="price">32</span></div>
-                            <div class="old-price">原价 <span class="price">168</span></div>
+            @foreach($roomList as $room)
+                <a href="/room-source/detail?id={{$room->id}}">
+                <div class="item">
+                    <div class="img"><img src="{{$room->cover}}"/></div>
+                    <div class="product-info">
+                        <div class="info">
+                            <div class="in-time">{{$room->name}}</div>
+                            <div class="price-box">
+                                <div class="new-price">均价 <span class="price">{{$room->avgPrice}}元</span></div>
+                                <div class="old-price"><span class="price">{{$room->area}}</span></div>
+                            </div>
                         </div>
+                        <div class="btn-buy">抢</div>
                     </div>
-                    <div class="btn-buy">抢</div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="img"><img src="./imgs/2.jpg"/></div>
-                <div class="product-info">
-                    <div class="info">
-                        <div class="in-time">限时特价</div>
-                        <div class="price-box">
-                            <div class="new-price">特价 <span class="price">32</span></div>
-                            <div class="old-price">原价 <span class="price">168</span></div>
-                        </div>
-                    </div>
-                    <div class="btn-buy">抢</div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="img"><img src="./imgs/2.jpg"/></div>
-                <div class="product-info">
-                    <div class="info">
-                        <div class="in-time">限时特价</div>
-                        <div class="price-box">
-                            <div class="new-price">特价 <span class="price">32</span></div>
-                            <div class="old-price">原价 <span class="price">168</span></div>
-                        </div>
-                    </div>
-                    <div class="btn-buy">抢</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="help-list" style="display: none;">
-            <div>助力列表:</div>
-            @foreach($redPackRecordList as $item)
-                <div><img style="width: 36px;height: 36px;border-radius: 18px;" src="{{$item->headImgUrl}}"> 助力后，您获得了{{$item->money}}元</div>
+                </a>
             @endforeach
         </div>
 
+        <div class="help-list" style="display: none;">
+            @foreach($redPackRecordList as $item)
+                <div class="help-item">
+                    <div class="head-img">
+                        <img src="{{$item->headImgUrl}}">
+                        <div class="nickname">明白清风,在{{$item->time}}</div>
+                    </div>
+                    <div class="text">助力{{$item->money}}元</div>
+                </div>
+            @endforeach
+        </div>
     </div>
-
-
 </div>
 
 <div class="red-pack-container" style="display: {{$from == 'cash-receive' ? 'block' : 'none'}}">
@@ -229,6 +209,7 @@
 
 @include('index/cash-red-pack-rule')
 @include('components/shareLayer')
+@include('components/canNotBack')
 
 </body>
 </html>

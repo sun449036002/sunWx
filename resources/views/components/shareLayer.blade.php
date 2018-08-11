@@ -6,7 +6,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: rgba(0,0,0,0.66);
+        background-color: rgba(0,0,0,0.8);
     }
 
     .share-layer img {
@@ -17,6 +17,9 @@
     }
 
     .share-layer .share-tips {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
         position: absolute;
         top: 3rem;
         left: 0.375rem;

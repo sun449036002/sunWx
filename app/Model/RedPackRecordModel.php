@@ -16,12 +16,13 @@ class RedPackRecordModel extends BaseModel
 
     //获取助力记录
     public function getAssistanceRecords($redPackId) {
-        $list = $this->getList(['userId', 'money'], ['redPackId' => $redPackId]);
+        $list = $this->getList(['userId', 'money', 'createTime'], ['redPackId' => $redPackId]);
 
         $userModel = new UserModel();
         foreach ($list as $key => $item) {
             $_u = $userModel->getUserinfoByOpenid($item->userId);
             $list[$key]->headImgUrl = $_u['avatar_url'] ?? "";
+            $list[$key]->time = beforeWhatTime($item->createTime);
         }
         //取得用户头像
         return $list;

@@ -12,6 +12,7 @@ use App\Consts\CookieConst;
 use App\Model\RedPackConfigModel;
 use App\Model\RedPackModel;
 use App\Model\RedPackRecordModel;
+use App\Model\RoomSourceModel;
 use App\Model\SigninModel;
 use App\Model\UserModel;
 use Illuminate\Http\Request;
@@ -134,6 +135,16 @@ class IndexController extends Controller
                 exit("非正常的访问，缺少红包ID");
             }
         }
+
+        //取得所有房源
+        $roomSourceModel = new RoomSourceModel();
+        $this->pageData['roomList'] = $roomSourceModel->getList(
+            ['id', "type", "roomCategoryId", "name", "area", "avgPrice", "imgJson"],
+            ['isDel' => 0]
+        );
+
+//        dd($this->pageData['roomList']);
+
         return view("index/cash-red-pack-info", $this->pageData);
     }
 

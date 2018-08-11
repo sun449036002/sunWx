@@ -88,7 +88,7 @@ body {
     margin-top: 0.3rem;
     width: 100vw;
     background-color: #eee;
-    min-height: 3rem;
+    min-height: 7rem;
 }
 
 .sale-main .sale-tab-title {
@@ -143,7 +143,7 @@ body {
 
 .in-time {
     color:white;
-    width:21vw;
+    /*width:21vw;*/
     text-align: center;
     background-color: red;
     font-weight:600;
@@ -158,10 +158,6 @@ body {
 
 .old-price {
     color:#a2a2a2;
-}
-
-.old-price .price {
-    text-decoration: line-through;
 }
 
 .btn-buy {
@@ -179,7 +175,36 @@ body {
     right:15px;
 }
 
+/**
+助力团
+ */
+.help-list {
+    padding: 0.15rem;
+    color: #58595b;
+}
 
+.help-list .help-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 1rem;
+    line-height: 1rem;
+}
+
+.help-list .help-item .head-img {
+    display: flex;
+}
+
+.help-list .help-item .head-img img {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: .5rem;
+    margin-top: 0.2rem;
+}
+
+.help-list .help-item .head-img .nickname {
+    padding-left: 0.15rem;
+}
 
 /* 红包区 */
 .red-pack-container {
