@@ -3,7 +3,7 @@
 <link href="css/cash-red-pack-info.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" charset="utf-8">
-    wx.config(<?php echo $wxapp->jssdk->buildConfig(['onMenuShareTimeline','onMenuShareAppMessage'], true) ?>);
+    wx.config(<?php echo $wxapp->jssdk->buildConfig(['onMenuShareTimeline','onMenuShareAppMessage'], false) ?>);
 
     //用ready方法来接收验证成功
     wx.ready(function() {
@@ -81,8 +81,18 @@
             $(".red-pack-container").hide();
         });
 
-        //
-        $(".btn-share-friend").on("click", function(){
+        //分享
+        $(".go-on-share").on("click", function(){
+            $(".share-layer").show();
+        });
+
+        //切换房源与助力团
+        $(".sale-tab-title .tab").on("click",function(){
+            $(this).addClass("selected").siblings().removeClass("selected");
+            var class1 = $(this).data("for-class");
+            var class2 = $(this).siblings().data("for-class");
+            $("." + class1).show();
+            $("." + class2).hide();
         });
 
         //倒计时
@@ -144,14 +154,65 @@
             </div>
             <div class="go-on-share">再找人助力</div>
         </div>
+    </div>
 
-        <div>
+    <div class="sale-main">
+        <div class="sale-tab-title">
+            <div class="tab selected" data-for-class="product-list">推荐房源</div>
+            <div class="tab" data-for-class="help-list">我的助力团</div>
+        </div>
+        <div class="product-list">
+            <div class="item">
+                <div class="img"><img src="./imgs/1.jpg"/></div>
+                <div class="product-info">
+                    <div class="info">
+                        <div class="in-time">限时特价</div>
+                        <div class="price-box">
+                            <div class="new-price">特价 <span class="price">32</span></div>
+                            <div class="old-price">原价 <span class="price">168</span></div>
+                        </div>
+                    </div>
+                    <div class="btn-buy">抢</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="img"><img src="./imgs/2.jpg"/></div>
+                <div class="product-info">
+                    <div class="info">
+                        <div class="in-time">限时特价</div>
+                        <div class="price-box">
+                            <div class="new-price">特价 <span class="price">32</span></div>
+                            <div class="old-price">原价 <span class="price">168</span></div>
+                        </div>
+                    </div>
+                    <div class="btn-buy">抢</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="img"><img src="./imgs/2.jpg"/></div>
+                <div class="product-info">
+                    <div class="info">
+                        <div class="in-time">限时特价</div>
+                        <div class="price-box">
+                            <div class="new-price">特价 <span class="price">32</span></div>
+                            <div class="old-price">原价 <span class="price">168</span></div>
+                        </div>
+                    </div>
+                    <div class="btn-buy">抢</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="help-list" style="display: none;">
             <div>助力列表:</div>
             @foreach($redPackRecordList as $item)
                 <div><img style="width: 36px;height: 36px;border-radius: 18px;" src="{{$item->headImgUrl}}"> 助力后，您获得了{{$item->money}}元</div>
             @endforeach
         </div>
+
     </div>
+
+
 </div>
 
 <div class="red-pack-container" style="display: {{$from == 'cash-receive' ? 'block' : 'none'}}">
@@ -167,6 +228,7 @@
 </div>
 
 @include('index/cash-red-pack-rule')
+@include('components/shareLayer')
 
 </body>
 </html>
