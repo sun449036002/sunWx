@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \NotifyRedPackExpiredCommand::class,
     ];
 
     /**
@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command("NotifyRedPackExpiredCommand")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "logs/command/NotifyRedPackExpiredCommand/" . date("Ymd") . ".log");
     }
 
     /**
