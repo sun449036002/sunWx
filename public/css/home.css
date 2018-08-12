@@ -13,7 +13,7 @@ body {
     top:0;
     left:0;
     width: 100vw;
-    height: 1.2rem;
+    height: .8rem;
     z-index: 99;
     border-bottom: 1px solid #888;
     justify-content: space-evenly;
@@ -35,7 +35,7 @@ body {
 }
 
 .main .ads {
-    margin-top:1.2rem;
+    margin-top:.8rem;
 }
 
 .main .recommend-house-box {
