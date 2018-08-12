@@ -8,13 +8,16 @@ body {
 }
 
 .main .top {
-    width: 100vw;
-    height: .8rem;
     display: flex;
-    line-height: .8rem;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 1.2rem;
+    z-index: 99;
     border-bottom: 1px solid #888;
     justify-content: space-evenly;
-    background-color: #4d8ebb;;
+    background-color: #4d8ebb;
 }
 
 .main .top input {
@@ -29,6 +32,10 @@ body {
     height: 0.6rem;
     margin-top: .1rem;
     font-size: 0.2rem;
+}
+
+.main .ads {
+    margin-top:1.2rem;
 }
 
 .main .recommend-house-box {

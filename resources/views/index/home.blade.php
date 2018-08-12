@@ -3,14 +3,19 @@
 <link rel="stylesheet" type="text/css" href="{{asset("css/home.css")}}"/>
 
 <div class="main">
-    <form action="#">
+    {{--<form action="#">--}}
+    {{--<div class="top">--}}
+            {{--@csrf--}}
+            {{--<div>关键字</div>--}}
+            {{--<input type="text" name="keyword" value="" />--}}
+            {{--<button type="submit">搜索</button>--}}
+    {{--</div>--}}
+    {{--</form>--}}
+
     <div class="top">
-            @csrf
-            <div>关键字</div>
-            <input type="text" name="keyword" value="" />
-            <button type="submit">搜索</button>
+        @include('components/searchBox')
     </div>
-    </form>
+
     <div class="ads">
         @include('components/slideBox', $adList ?? [])
     </div>
@@ -35,4 +40,5 @@
         </div>
     </div>
 </div>
+
 @include('components/bottomMenu')
