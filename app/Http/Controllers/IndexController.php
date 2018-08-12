@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Consts\CookieConst;
+use App\Consts\WxConst;
 use App\Model\RedPackConfigModel;
 use App\Model\RedPackModel;
 use App\Model\RedPackRecordModel;
@@ -273,7 +274,7 @@ class IndexController extends Controller
                 Log::info("who", [$this->user]);
                 $this->wxapp->template_message->send([
                     'touser' => $who->openid,
-                    'template_id' => '82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg',
+                    'template_id' => WxConst::TEMPLATE_ID_FOR_SEND_HELP_MSG,
                     'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $data['redPackId'],
                     'data' => [
                         'first' => $this->user['username'] . "给你的红包助力啦~",

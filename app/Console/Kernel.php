@@ -25,9 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-        $schedule->command("NotifyRedPackExpiredCommand")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "logs/command/NotifyRedPackExpiredCommand/" . date("Ymd") . ".log");
+        $schedule->command("NotifyRedPackExpiredCommand --type=normal")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "logs/command/NotifyRedPackExpiredCommand-normal/" . date("Ymd") . ".log");
+        $schedule->command("NotifyRedPackExpiredCommand --type=use")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "logs/command/NotifyRedPackExpiredCommand-use/" . date("Ymd") . ".log");
     }
 
     /**
