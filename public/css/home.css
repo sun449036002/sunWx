@@ -39,6 +39,7 @@ body {
 }
 
 .main .recommend-house-box {
+    margin-bottom: 2rem;
 }
 .main .recommend-house-box .tips-bar {
     display: flex;
