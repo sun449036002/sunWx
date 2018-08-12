@@ -7,8 +7,8 @@
         bottom: 0;
         height: 1rem;
         line-height: 0.5rem;
-        background-color: #FFF;
-        /*border: 1px solid red;*/
+        background-color: #eee;
+        border-top: 1px solid #ccc;
     }
 
     .bottom-menu-box .item {

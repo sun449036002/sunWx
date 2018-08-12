@@ -25,6 +25,10 @@
                 <div class="cover" style="background-image: url('{{$item->cover}}')"></div>
                 <div class="info">
                     <div class="name">{{$item->name}}</div>
+                    <div class="area">{{$item->area}}</div>
+                    <div class="categoryName">{{$item->categoryName??"未知"}}</div>
+                    <div class="avg-price">{{$item->avgPrice??0}}元/m²</div>
+                    <div class="btn-see-house">预约看房</div>
                 </div>
             </div>
             @endforeach

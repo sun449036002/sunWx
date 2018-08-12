@@ -1,3 +1,6 @@
+body {
+    font-size: 0.24rem;
+}
 .main {
     width:100vw;
     min-height: 100vh;
@@ -11,13 +14,14 @@
     line-height: .8rem;
     border-bottom: 1px solid #888;
     justify-content: space-evenly;
-    background-color: #FFF;
+    background-color: #4d8ebb;;
 }
 
 .main .top input {
+    width: 3rem;
     height: 0.4rem;
     margin-top: 0.2rem;
-    width: 3rem;
+    color:#FFF;
     border: 1px solid #888;
 }
 .main .top button {
@@ -28,15 +32,19 @@
 }
 
 .main .recommend-house-box {
-    padding:0 .3rem;
 }
 .main .recommend-house-box .tips-bar {
     display: flex;
-    margin-top: .3rem;
+    background-color: #FFF;
+    border: 1px solid #ccc;
+    border-left: 0;
+    border-right: 0;
 }
 .main .recommend-house-box .tips-bar img {
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    align-self: center;
+    padding-left: 0.3rem;
 }
 .main .recommend-house-box .tips-bar .text {
     height: 0.6rem;
@@ -52,9 +60,31 @@
 }
 .main .recommend-house-box .house-list .item {
     display: flex;
+    background-color: #FFF;
+    margin-bottom:0.03rem;
 }
 .main .recommend-house-box .house-list .item .cover {
-    width:2rem;
-    height: 2rem;
+    width:3.8rem;
+    height: 2.8rem;
+    margin-top: 0.1rem;
     background-size: cover;
+}
+.main .recommend-house-box .house-list .item .info {
+    display: flex;
+    padding: 0.3rem;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.main .recommend-house-box .house-list .item .info .name {
+    color:#e94219;
+    font-weight:600;
+}
+.main .recommend-house-box .house-list .item .info .btn-see-house {
+    background-color: #e99421;
+    color: #FFF;
+    text-align: center;
+    border-radius: 0.1rem;
+    width: 1.2rem;
+    padding: 0.1rem;
 }
