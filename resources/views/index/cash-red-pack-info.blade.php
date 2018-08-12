@@ -100,18 +100,21 @@
         //倒计时
         var tg = $(".remainingTime");
         var t = parseInt("{{$remainingTime}}");
-        setInterval(function(){
-            t = t - 1;
-            var m = parseInt(t / 60) % 60;
-            var h = parseInt(t / 3600) % 60;
-            var s = t % 60;
-            m = (m + "").length === 1 ? "0" + m : m;
-            h = (h + "").length === 1 ? "0" + h : h;
-            s = (s + "").length === 1 ? "0" + s : s;
-            tg.find(".h").html(h);
-            tg.find(".m").html(m);
-            tg.find(".s").html(s);
-        }, 1000);
+        if(t > 0) {
+            setInterval(function(){
+                t = t - 1;
+                var m = parseInt(t / 60) % 60;
+                var h = parseInt(t / 3600) % 60;
+                var s = t % 60;
+                m = (m + "").length === 1 ? "0" + m : m;
+                h = (h + "").length === 1 ? "0" + h : h;
+                s = (s + "").length === 1 ? "0" + s : s;
+                tg.find(".h").html(h);
+                tg.find(".m").html(m);
+                tg.find(".s").html(s);
+            }, 1000);
+        }
+
 
         //进度条
         $('.progressbar').each(function(){
