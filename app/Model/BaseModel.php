@@ -22,7 +22,7 @@ class BaseModel extends Model
     public function getOne($columns, $where, $order = [], $group = []) {
         $builder = $this->getBuilder();
         $builder->select($columns);
-        $builder->where($where);
+        $this->bindWhere($where, $builder);
         return $builder->first();
     }
 
@@ -38,7 +38,7 @@ class BaseModel extends Model
         $builder = $this->getBuilder();
         $builder->select($columns);
         if (!empty($where)) {
-            $builder->where($where);
+            $this->bindWhere($where, $builder);
         }
         $rows = $builder->get();
         if (!empty($rows)) {
@@ -81,5 +81,35 @@ class BaseModel extends Model
      */
     private function getBuilder(){
         return DB::table($this->table);
+    }
+
+    /**
+     * 处理 WHERE 条件
+     * @param $where
+     * @param $builder
+     */
+    private function bindWhere($where, &$builder) {
+        foreach ($where as $key => $item) {
+            if (is_array($item)) {
+                if (count($item) == 3) {
+                    list($field, $option, $val) = $item;
+                    if (strtoupper($item[1]) == 'IN') {
+                        if (!is_array($val)) {
+                            $val[] = $val;
+                        }
+                        $builder->whereIn($field, $val);
+                    } else if (strtoupper($item[1]) == 'NOT IN'){
+                        if (!is_array($val)) {
+                            $val[] = $val;
+                        }
+                        $builder->whereNotIn($field, $val);
+                    } else {
+                        $builder->where($field, $option, $val);
+                    }
+                }
+            } else {
+                $builder->where($key, $item);
+            }
+        }
     }
 }
