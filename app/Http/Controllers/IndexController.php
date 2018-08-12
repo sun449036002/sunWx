@@ -65,6 +65,7 @@ class IndexController extends Controller
      * 现金红包
      */
     public function cashRedPack() {
+        exit('建设中');
         $this->pageData['title'] = "现金红包";
 
         //获取已经集满的红包数据
