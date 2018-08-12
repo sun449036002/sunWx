@@ -27,7 +27,7 @@
         <div class="house-list">
             @foreach($roomList as $item)
             <div class="item">
-                <div class="cover" style="background-image: url('{{$item->cover}}')"></div>
+                <div class="cover" style="background-image: url('{{asset("imgs/fangzi.jpeg")}}')"></div>
                 <div class="info">
                     <div class="name">{{$item->name}}</div>
                     <div class="area">{{$item->area}}</div>
