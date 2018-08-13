@@ -7,11 +7,9 @@
 
     <title>{{$title ?? "首页"}}</title>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-    <script src="js/jquery-2.1.1.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{asset('js/jquery-2.1.1.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{asset('js/jweixin-1.2.0.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{asset('js/common.js')}}" type="text/javascript" charset="utf-8"></script>
 
     <style type="text/css">
         html {

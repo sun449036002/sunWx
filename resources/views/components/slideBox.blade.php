@@ -99,10 +99,10 @@ $(document).ready(function () {
 
 <div id="demo" class="slideBox">
     <ul class="items">
-        <li><a href="http://www.jq22.com/" title="这里是测试标题一"><img src="../imgs/1.jpg"></a></li>
-        <li><a href="http://www.jq22.com/" title="这里是测试标题二"><img src="../imgs/2.jpg"></a></li>
-        <li><a href="http://www.jq22.com/" title="这里是测试标题三"><img src="../imgs/3.jpg"></a></li>
-        <li><a href="http://www.jq22.com/" title="这里是测试标题四"><img src="../imgs/4.jpg"></a></li>
-        <li><a href="http://www.jq22.com/" title="这里是测试标题五"><img src="../imgs/5.jpg"></a></li>
+        <li><a href="http://www.jq22.com/" title=""><img src="../imgs/1.jpg"></a></li>
+        <li><a href="http://www.jq22.com/" title=""><img src="../imgs/2.jpg"></a></li>
+        <li><a href="http://www.jq22.com/" title=""><img src="../imgs/3.jpg"></a></li>
+        <li><a href="http://www.jq22.com/" title=""><img src="../imgs/4.jpg"></a></li>
+        <li><a href="http://www.jq22.com/" title=""><img src="../imgs/5.jpg"></a></li>
     </ul>
 </div>

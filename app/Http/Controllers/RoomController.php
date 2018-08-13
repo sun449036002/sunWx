@@ -24,7 +24,7 @@ class RoomController extends Controller
 
         $row = (new RoomSourceModel())->getOne(['*'], ['id' => $id]);
         $this->pageData['row'] = $row;
-        $this->pageData['title'] = $row->name;
+        $this->pageData['title'] = '详情 - ' . $row->name;
         return view('room/detail', $this->pageData);
     }
 
