@@ -39,8 +39,15 @@ class RoomSourceModel extends BaseModel
      * @return array
      */
     public function getList($columns, $where, $order = [], $group = []) {
+        $cateArr = [];
+        $categoryList = (new RoomCategoryModel())->getList(['id', 'name'], ['isDel' => 0]);
+        foreach ($categoryList as $cate) {
+            $cateArr[$cate->id] = $cate->name;
+        }
+
         $list = parent::getList($columns, $where, $order, $group);
         foreach ($list as $key => $row) {
+            $row->categoryName = empty($row->roomCategoryId) ? "" : ($cateArr[$row->roomCategoryId] ?? "未知");
             if (!empty($row->imgJson)) {
                 $imgs = json_decode($row->imgJson);
                 $row->cover = $imgs->cover ?? "";

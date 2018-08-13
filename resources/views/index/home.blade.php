@@ -31,8 +31,9 @@
                 <div class="info">
                     <div class="name">{{$item->name}}</div>
                     <div class="area">{{$item->area}}</div>
-                    <div class="categoryName">{{$item->categoryName??"未知"}}</div>
-                    <div class="avg-price">{{$item->avgPrice??0}}元/m²</div>
+                    <div class="categoryName">{{$item->categoryName ?? "未知"}}</div>
+                    <div class="avg-price">均价：{{$item->avgPrice ?? 0}}元/m²</div>
+                    <div class="avg-price">总价：{{$item->totalPrice ?? 0}}万元</div>
                     <div class="btn-see-house">预约看房</div>
                 </div>
             </div>
