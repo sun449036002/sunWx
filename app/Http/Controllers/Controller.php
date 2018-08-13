@@ -20,19 +20,19 @@ class Controller extends BaseController
     /**
      * @var \EasyWeChat\OfficialAccount\Application $wxapp
      */
-    protected $wxapp = null;
+    public $wxapp = null;
 
     /**
      * 模板页数据
      * @var array
      */
-    protected $pageData = [];
+    public $pageData = [];
 
     /**
      * 微信用户信息
      * @var array
      */
-    protected $user = ['id' => 0];
+    public $user = ['id' => 0];
 
     public function __construct()
     {

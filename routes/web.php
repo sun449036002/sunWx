@@ -13,6 +13,7 @@
 //首页
 Route::get('/', "IndexController@home")->middleware("weixinOAuth");
 Route::get('/room/detail', "RoomController@detail")->middleware("weixinOAuth");
+Route::get('/my', "MyController@index")->middleware("weixinOAuth");
 
 //领现金红包
 Route::get('cash-red-pack', "IndexController@cashRedPack")->middleware("weixinOAuth");

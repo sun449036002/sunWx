@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 class MyController extends Controller
 {
-
-
+    public function index() {
+        return view('my/index', $this->pageData);
+    }
 }

@@ -1,0 +1,140 @@
+body {
+    font-size: 0.24rem;
+}
+a {
+    color: #000;
+}
+.main {
+    width:100vw;
+    min-height: 100vh;
+    background-color: #EEE;
+}
+
+.main .top {
+    display: flex;
+    width:100vw;
+    height: 2rem;
+    background-image: linear-gradient(180deg, #c12b30, #911115);
+}
+.main .top .head-img {
+    width: 1.4rem;
+    height: 1.4rem;
+    align-self: center;
+    margin-left: .3rem;
+    -webkit-background-size:cover;
+    background-size:cover;
+}
+.main .top .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 1rem;
+    color: #FFF;
+    align-self: center;
+    margin-left:.3rem;
+}
+
+.main .mid .red-pack {
+    background-color: #fff;
+    margin-bottom: .15rem;
+}
+.main .mid .red-pack .title {
+    height: .6rem;
+    line-height: .6rem;
+    font-size: .3rem;
+    margin-left: .3rem;
+    margin-bottom: .1rem;
+    padding-top: .1rem;
+    border-bottom: 1px solid #CCC;
+}
+
+.main .mid .red-pack .red-pack-items {
+    display: flex;
+    justify-content: space-around;
+    height: .8rem;
+}
+.main .mid .red-pack .red-pack-items .red-pack-item {
+    display: flex;
+    flex-direction: column;
+    width: 1.5rem;
+}
+
+.main .mid .red-pack .red-pack-items span {
+    display: block;
+    align-self: center;
+}
+
+.main .mid .red-pack .red-pack-items .icon {
+    width: .4rem;
+    height: .4rem;
+    background-size: cover;
+}
+.main .mid .red-pack .red-pack-items .icon.all {
+    background-image: url("../imgs/red-pack-status/all.png");
+}
+.main .mid .red-pack .red-pack-items .icon.un-complete {
+    background-image: url("../imgs/red-pack-status/uncomplete.png");
+}
+.main .mid .red-pack .red-pack-items .icon.un-use {
+    background-image: url("../imgs/red-pack-status/unuse.png");
+}
+.main .mid .red-pack .red-pack-items .icon.used {
+    background-image: url("../imgs/red-pack-status/used.png");
+}
+.main .mid .red-pack .red-pack-items .icon.expired {
+    background-image: url("../imgs/red-pack-status/expired.png");
+}
+
+
+
+/**
+栏目区
+ */
+.main .mid .items {
+    background-color: #FFF;
+    padding-left: .3rem;
+    font-size: .28rem;
+}
+.main .mid .items .item {
+    display: flex;
+    justify-content: space-between;
+    height: 0.8rem;
+    line-height: 0.8rem;
+}
+.main .mid .items a:not(:last-child) .item {
+    border-bottom: 1px solid #CCC;
+}
+.main .mid .items .right-side {
+    width: .4rem;
+    height: .4rem;
+    align-self: center;
+    background-image: url(../imgs/jiantou-right.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 0.1rem;
+}
+
+.main .mid .items .left-side {
+    background-position: left;
+    background-size: 0.4rem;
+    background-repeat: no-repeat;
+    padding-left: 0.6rem;
+}
+.main .mid .items .left-side.user-icon-1 {
+    background-image: url(../imgs/userIcon1.png);
+}
+.main .mid .items .left-side.user-icon-2 {
+    background-image: url(../imgs/userIcon2.png);
+}
+.main .mid .items .left-side.user-icon-3 {
+    background-image: url(../imgs/userIcon3.png);
+}
+.main .mid .items .left-side.user-icon-4 {
+    background-image: url(../imgs/userIcon4.png);
+}
+.main .mid .items .left-side.user-icon-5 {
+    background-image: url(../imgs/userIcon5.png);
+}
+.main .mid .items .left-side.user-icon-6 {
+    background-image: url(../imgs/userIcon6.png);
+}
