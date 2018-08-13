@@ -23,6 +23,12 @@ class Controller extends BaseController
     protected $wxapp = null;
 
     /**
+     * 模板页数据
+     * @var array
+     */
+    protected $pageData = [];
+
+    /**
      * 微信用户信息
      * @var array
      */
@@ -30,7 +36,14 @@ class Controller extends BaseController
 
     public function __construct()
     {
+        //获取用户信息
+        $this->user = $this->getUserinfo();
+
+        //wxapp对象
         $this->wxapp = Factory::officialAccount(getWxConfig());
+
+        $this->pageData['user'] = $this->user;
+        $this->pageData['wxapp'] = $this->wxapp;
     }
 
     /**

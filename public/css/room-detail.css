@@ -78,11 +78,10 @@ body {
     background-size: cover;
 }
 .main .recommend-house-box .house-list .item .info {
-    display: flex;    
-    padding: 0 0.3rem;
+    display: flex;
+    padding: 0.3rem;
     flex-direction: column;
-    justify-content: space-evenly;
-    color: #000;
+    justify-content: space-between;
 
 }
 .main .recommend-house-box .house-list .item .info .name {

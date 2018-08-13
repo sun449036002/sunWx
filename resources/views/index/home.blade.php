@@ -26,17 +26,19 @@
         </div>
         <div class="house-list">
             @foreach($roomList as $item)
-            <div class="item">
-                <div class="cover" style="background-image: url('{{asset("imgs/fangzi.jpeg")}}')"></div>
-                <div class="info">
-                    <div class="name">{{$item->name}}</div>
-                    <div class="area">{{$item->area}}</div>
-                    <div class="categoryName">{{$item->categoryName ?? "未知"}}</div>
-                    <div class="avg-price">均价：{{$item->avgPrice ?? 0}}元/m²</div>
-                    <div class="avg-price">总价：{{$item->totalPrice ?? 0}}万元</div>
-                    <div class="btn-see-house">预约看房</div>
-                </div>
-            </div>
+                <a href="/room/detail?id={{$item->id}}">
+                    <div class="item">
+                        <div class="cover" style="background-image: url('{{asset("imgs/fangzi.jpeg")}}')"></div>
+                        <div class="info">
+                            <div class="name">{{$item->name}}</div>
+                            <div class="area">{{$item->area}}</div>
+                            <div class="categoryName">{{$item->categoryName ?? "未知"}}</div>
+                            <div class="avg-price">均价：{{$item->avgPrice ?? 0}}元/m²</div>
+                            <div class="avg-price">总价：{{$item->totalPrice ?? 0}}万元</div>
+                            <div class="btn-see-house">预约看房</div>
+                        </div>
+                    </div>
+                </a>
             @endforeach
         </div>
     </div>

@@ -9,6 +9,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Model\RoomSourceModel;
+use Illuminate\Http\Request;
+
 class RoomController extends Controller
 {
     //列表
@@ -16,8 +19,13 @@ class RoomController extends Controller
 
     }
 
-    public function detail() {
+    public function detail(Request $request) {
+        $id = $request->get("id");
 
+        $row = (new RoomSourceModel())->getOne(['*'], ['id' => $id]);
+        $this->pageData['row'] = $row;
+        $this->pageData['title'] = $row->name;
+        return view('room/detail', $this->pageData);
     }
 
 }
