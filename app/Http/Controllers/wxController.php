@@ -75,11 +75,14 @@ class wxController extends Controller
                 //TODO 微信头像保存到本地
                 $avatar_url = "";
                 if (!empty($userinfo['headimgurl'])) {
-                    $saleFilePath = storage_path() . "/app/images/wxUserHead/" . date("Ymd/") . date("His_") . mt_rand(10000000, 99999999) . ".jpeg";
+                    $saleFilePath = "/app/images/wxUserHead/" . date("Ymd/") . date("His_") . mt_rand(10000000, 99999999) . ".jpeg";
                     $client = new Client(['verify' => false]);  //忽略SSL错误
-                    $data = $client->request('get',$userinfo['headimgurl'])->getBody()->getContents();
-                    Storage::put($saleFilePath, $data);
-                    Log::info('headimgurl', [$saleFilePath]);
+                    $data = $client->request('get', 'http://thirdwx.qlogo.cn/mmopen/PiajxSqBRaEKWibQ1GDdLxWa618Tlvl95LJtMn7aknMicQZeNI9Cria3KBq1ViasT4ibp23kAzTtob9wbWoHV0JJibzicn9NVhBRYfDHDiaCvw2TfJQo/132')->getBody()->getContents();
+                    $ok = Storage::put($saleFilePath, $data);
+                    Log::info('headimgurl', [$ok]);
+                    if ($ok) {
+                        $avatar_url = $saleFilePath;
+                    }
                 }
 
                 //关注
