@@ -12,7 +12,13 @@
 */
 //首页
 Route::get('/', "IndexController@home")->middleware("weixinOAuth");
+
+//房源列表 详细 ajax列表
+Route::get('/room/list', "RoomController@index")->middleware("weixinOAuth");
+Route::get('/room/getRoomList', "RoomController@getRoomList")->middleware("weixinOAuth");
 Route::get('/room/detail', "RoomController@detail")->middleware("weixinOAuth");
+
+//我的个人中心
 Route::get('/my', "MyController@index")->middleware("weixinOAuth");
 
 //领现金红包

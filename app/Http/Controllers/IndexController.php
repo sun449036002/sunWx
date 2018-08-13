@@ -29,11 +29,11 @@ class IndexController extends Controller
     }
 
     public function home() {
-        //取得所有房源
+        //取得所有推荐的房源
         $roomSourceModel = new RoomSourceModel();
         $this->pageData['roomList'] = $roomSourceModel->getList(
             ['id', "type", "roomCategoryId", "name", "area", "avgPrice", "imgJson"],
-            ['isDel' => 0]
+            ['isDel' => 0, 'isRecommend' => 1]
         );
 
         //取得所有可用的广告
