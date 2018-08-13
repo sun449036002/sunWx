@@ -42,8 +42,8 @@
             </div>
         </div>
     </div>
-    <div class="button-box">
-        <div class="btn-tel">致电案场经理</div>
-        <div class="btn-see">预约看房</div>
+    <div class="btn-box">
+        <div class="btn btn-tel">致电案场经理</div>
+        <div class="btn btn-see">预约看房</div>
     </div>
 </div>

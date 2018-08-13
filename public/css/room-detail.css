@@ -11,6 +11,7 @@ body {
 }
 
 .main .house-box {
+    margin-bottom: 1rem;
 }
 
 .main .house-box .title-box {
@@ -63,14 +64,45 @@ body {
     border-right:1px solid #CCC;
 }
 .main .house-box .mid-box .desc-box {
-    padding:0 0.3rem;
+    padding: 0 0.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 1.8rem;
+}
+.main .house-box .mid-box .desc-box span {
+    padding-right:.2rem;
 }
 .main .house-box .mid-box .label {
     height: 0.5rem;
     line-height: 0.5rem;
     font-weight: 600;
     font-size: .28rem;
+    padding-left:.1rem;
+    border-left:.1rem solid darkred;
 }
+
 .main .house-box .mid-box .detail-box {
+    padding: .1rem .3rem;
     border-top:1px solid #CCC;
+}
+.main .btn-box {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    background-color: #8c8c8c;
+}
+
+.main .btn-box .btn {
+    width: 50vw;
+    text-align: center;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: 0.44rem;
+    color: #FFF;
+}
+
+.main .btn-box .btn-see {
+    background-color: indianred;
 }
