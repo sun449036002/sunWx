@@ -12,6 +12,7 @@ use App\Model\UserModel;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 
 class wxController extends Controller
@@ -76,8 +77,9 @@ class wxController extends Controller
                 if (!empty($userinfo['headimgurl'])) {
                     $saleFilePath = storage_path() . "/app/images/wxUserHead/" . date("Ymd/") . date("His_") . mt_rand(10000000, 99999999) . ".jpeg";
                     $client = new Client(['verify' => false]);  //忽略SSL错误
-                    $response = $client->get($userinfo['headimgurl'], ['save_to' => $saleFilePath]);  //保存远程url到文件
-                    Log::info('headimgurl', [$response]);
+                    $data = $client->request('get',$userinfo['headimgurl'])->getBody()->getContents();
+                    Storage::put($saleFilePath, $data);
+                    Log::info('headimgurl', [$saleFilePath]);
                 }
 
                 //关注
