@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 class MyController extends Controller
 {
     public function index() {
+        $this->pageData['title'] = "我的";
         return view('my/index', $this->pageData);
     }
 }
