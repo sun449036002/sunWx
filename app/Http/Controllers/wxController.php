@@ -70,21 +70,6 @@ class wxController extends Controller
                 //地址位置上报
                 break;
             case 'subscribe':
-                $userinfo = $this->wxapp->user->get($message['FromUserName']);
-
-                //TODO 微信头像保存到本地
-                $avatar_url = "";
-                if (!empty($userinfo['headimgurl'])) {
-                    $saleFilePath = "/app/images/wxUserHead/" . date("Ymd/") . date("His_") . mt_rand(10000000, 99999999) . ".jpeg";
-                    $client = new Client(['verify' => false]);  //忽略SSL错误
-                    $data = $client->request('get', 'http://thirdwx.qlogo.cn/mmopen/PiajxSqBRaEKWibQ1GDdLxWa618Tlvl95LJtMn7aknMicQZeNI9Cria3KBq1ViasT4ibp23kAzTtob9wbWoHV0JJibzicn9NVhBRYfDHDiaCvw2TfJQo/132')->getBody()->getContents();
-                    $ok = Storage::put($saleFilePath, $data);
-                    Log::info('headimgurl', [$ok]);
-                    if ($ok) {
-                        $avatar_url = $saleFilePath;
-                    }
-                }
-
                 //关注
                 $where['openid'] = $message['FromUserName'];
                 $userModel = new UserModel();
@@ -93,6 +78,19 @@ class wxController extends Controller
                     $userModel->updateData(['is_subscribe' => 1], ['id' => $user->id]);
                     return '欢迎回来';
                 } else {
+                    $userinfo = $this->wxapp->user->get($message['FromUserName']);
+
+                    //微信头像保存到本地
+                    $avatar_url = "";
+                    if (!empty($userinfo['headimgurl'])) {
+                        $saleFilePath = "/images/wxUserHead/" . date("Ymd/") . date("His_") . mt_rand(10000000, 99999999) . ".jpeg";
+                        $client = new Client(['verify' => false]);  //忽略SSL错误
+                        $data = $client->request('get', $userinfo['headimgurl'])->getBody()->getContents();
+                        $ok = Storage::put($saleFilePath, $data);
+                        if ($ok) {
+                            $avatar_url = $saleFilePath;
+                        }
+                    }
                     $newId = $userModel->insert([
                         'type' => 1,
                         'uri' => generateUri(16),
