@@ -73,3 +73,16 @@ function beforeWhatTime($time) {
 
     return $str;
 }
+
+/**
+ * 处理头像地址
+ * @param $headImgUrl
+ * @return string
+ */
+function headImgUrl($headImgUrl) {
+    if (strpos($headImgUrl, 'images/wxUserHead') === false) {
+        return $headImgUrl;
+    } else {
+        return env('HEAD_IMG_DOMAIN') . "/" . ltrim($headImgUrl, '/');
+    }
+}

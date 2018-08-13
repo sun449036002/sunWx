@@ -26,7 +26,11 @@ class UserModel extends BaseModel
         $user = [];
         if (!empty($row)) {
             foreach ($row as $key => $val) {
-                $user[$key] = $val;
+                if ($key == 'avatar_url') {
+                    $user[$key] = headImgUrl($val);
+                } else {
+                    $user[$key] = $val;
+                }
             }
         }
         return $user;
