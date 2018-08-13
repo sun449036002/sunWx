@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\UserModel;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -68,6 +69,17 @@ class wxController extends Controller
                 //地址位置上报
                 break;
             case 'subscribe':
+                $userinfo = $this->wxapp->user->get($message['FromUserName']);
+
+                //TODO 微信头像保存到本地
+                $avatar_url = "";
+                if (!empty($userinfo['headimgurl'])) {
+                    $saleFilePath = storage_path() . "/app/images/wxUserHead/" . date("Ymd/") . date("His_") . mt_rand(10000000, 99999999) . ".jpeg";
+                    $client = new Client(['verify' => false]);  //忽略SSL错误
+                    $response = $client->get($userinfo['headimgurl'], ['save_to' => $saleFilePath]);  //保存远程url到文件
+                    Log::info('headimgurl', [$response]);
+                }
+
                 //关注
                 $where['openid'] = $message['FromUserName'];
                 $userModel = new UserModel();
@@ -76,12 +88,11 @@ class wxController extends Controller
                     $userModel->updateData(['is_subscribe' => 1], ['id' => $user->id]);
                     return '欢迎回来';
                 } else {
-                    $userinfo = $this->wxapp->user->get($message['FromUserName']);
                     $newId = $userModel->insert([
                         'type' => 1,
                         'uri' => generateUri(16),
                         'username' => $userinfo['nickname'] ?? "",
-                        'avatar_url' => $userinfo['headimgurl'] ?? "",
+                        'avatar_url' => $avatar_url ?: ($userinfo['headimgurl'] ?? ""),
                         'openid' => $message['FromUserName'],
                         'user_json' => json_encode($userinfo, JSON_UNESCAPED_UNICODE) ?? "",
                         'is_subscribe' => 1,
