@@ -17,7 +17,7 @@
     </div>
 
     <div class="ads">
-        @include('components/slideBox', $adList ?? [])
+        @include('components/slideBox', ['list' => $adsList ?? []])
     </div>
     <div class="recommend-house-box">
         <div class="tips-bar">

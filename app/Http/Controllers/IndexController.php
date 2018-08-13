@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Consts\CookieConst;
 use App\Consts\WxConst;
+use App\Model\AdsModel;
 use App\Model\RedPackConfigModel;
 use App\Model\RedPackModel;
 use App\Model\RedPackRecordModel;
@@ -34,6 +35,9 @@ class IndexController extends Controller
             ['id', "type", "roomCategoryId", "name", "area", "avgPrice", "imgJson"],
             ['isDel' => 0]
         );
+
+        //取得所有可用的广告
+        $this->pageData['adsList'] = (new AdsModel())->getList(['*'], ['isDel' => 0]);
 
         return view('index/home', $this->pageData);
     }

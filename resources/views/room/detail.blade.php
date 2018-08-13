@@ -10,7 +10,7 @@
 
 <div class="main">
     <div class="ads">
-        @include('components/slideBox', ['imgList' => $row->imgs])
+        @include('components/slideBox', ['list' => $row->imgs])
     </div>
     <div class="house-box">
         <div class="title-box">

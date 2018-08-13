@@ -99,10 +99,14 @@ $(document).ready(function () {
 
 <div id="demo" class="slideBox">
     <ul class="items">
-        <li><a href="http://www.jq22.com/" title=""><img src="../imgs/1.jpg"></a></li>
-        <li><a href="http://www.jq22.com/" title=""><img src="../imgs/2.jpg"></a></li>
-        <li><a href="http://www.jq22.com/" title=""><img src="../imgs/3.jpg"></a></li>
-        <li><a href="http://www.jq22.com/" title=""><img src="../imgs/4.jpg"></a></li>
-        <li><a href="http://www.jq22.com/" title=""><img src="../imgs/5.jpg"></a></li>
+        @if($list)
+            @foreach($list as $item)
+                @isset($item->img)
+                <li><a href="{{$item->url ?? "#"}}" title="{{$item->title ?? ""}}"><img src="{{$item->img}}"></a></li>
+                @else
+                <li><a href="#" title=""><img src="{{$item}}"></a></li>
+                @endisset
+            @endforeach
+        @endif
     </ul>
 </div>
