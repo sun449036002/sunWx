@@ -1,44 +1,24 @@
 <?php
+namespace App\Logic;
+use App\Model\AreaModel;
+use App\Model\RoomCategoryModel;
+
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2018/8/1
- * Time: 20:17
+ * Date: 2018/8/14
+ * Time: 13:30
  */
-
-namespace App\Model;
-
-
-class RoomSourceModel extends BaseModel
+class RoomSourceLogic
 {
-    protected $table = "room_source";
-
     /**
-     * @param $columns
-     * @param $where
-     * @param array $order
-     * @param array $group
-     * @return object
-     */
-    public function getOne($columns, $where, $order = [], $group = []) {
-        $row = parent::getOne($columns, $where, $order, $group);
-        if (!empty($row->imgJson)) {
-            $imgs = json_decode($row->imgJson);
-            $row->cover = $imgs->cover ?? "";
-            $row->imgs = $imgs->imgs ?? [];
-            unset($row->imgJson);
-        }
-        return $row;
-    }
-
-    /**
-     * @param $columns
-     * @param array $where
-     * @param array $order
-     * @param array $group
+     * 格式化房源列表
+     * @param $roomList
      * @return array
      */
-    public function getList($columns, $where, $order = [], $group = []) {
+    public function formatRoomList($roomList) {
+        if (empty($roomList)) return [];
+
         $cateArr = [];
         $categoryList = (new RoomCategoryModel())->getList(['id', 'name'], ['isDel' => 0]);
         foreach ($categoryList as $cate) {
@@ -51,8 +31,7 @@ class RoomSourceModel extends BaseModel
             $areaArr[$area->id] = $area->name;
         }
 
-        $list = parent::getList($columns, $where, $order, $group);
-        foreach ($list as $key => $row) {
+        foreach ($roomList as $key => $row) {
             $row->categoryName = empty($row->roomCategoryId) ? "" : ($cateArr[$row->roomCategoryId] ?? "未知");
             $row->area = empty($row->areaId) ? "" : ($areaArr[$row->areaId] ?? "未知");
             if (!empty($row->imgJson)) {
@@ -63,6 +42,7 @@ class RoomSourceModel extends BaseModel
             }
         }
 
-        return $list;
+        return $roomList;
     }
+
 }

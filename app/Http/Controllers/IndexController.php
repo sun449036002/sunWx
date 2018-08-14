@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Consts\CookieConst;
 use App\Consts\WxConst;
 use App\Model\AdsModel;
+use App\Model\AreaModel;
 use App\Model\RedPackConfigModel;
 use App\Model\RedPackModel;
 use App\Model\RedPackRecordModel;
@@ -31,10 +32,11 @@ class IndexController extends Controller
     public function home() {
         //取得所有推荐的房源
         $roomSourceModel = new RoomSourceModel();
-        $this->pageData['roomList'] = $roomSourceModel->getList(
-            ['id', "type", "roomCategoryId", "name", "area", "avgPrice", "imgJson"],
+        $roomList = $roomSourceModel->getList(
+            ['id', "type", "roomCategoryId", "name", "areaId", "avgPrice", "imgJson"],
             ['isDel' => 0, 'isRecommend' => 1]
         );
+        $this->pageData['roomList'] = $roomList;
 
         //取得所有可用的广告
         $this->pageData['adsList'] = (new AdsModel())->getList(['*'], ['isDel' => 0]);

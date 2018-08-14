@@ -49,6 +49,23 @@ body {
     border-bottom: 1px solid #CCC;
 }
 
+.main .house-box .filter-content-list {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    background-color: #FFF;
+}
+.main .house-box .filter-content-list .c-box {
+    display: flex;
+    flex-direction: column;
+}
+.main .house-box .filter-content-list .c-box .c-item {
+    height: .6rem;
+    line-height: .6rem;
+    padding: .3rem 0 0 .3rem;
+    border-bottom: 1px solid #CCC;
+}
+
 .main .house-box .cate-list .cate-item {
     width:33.33333%;
     text-align: center;
@@ -61,6 +78,9 @@ body {
 
 .main .house-box .filter-list .filter-item {
     position: relative;
+}
+.main .house-box .filter-list .filter-item.only-old {
+    display: none;
 }
 .main .house-box .filter-list .filter-item:after{
     content: '';

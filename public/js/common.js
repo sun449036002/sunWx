@@ -15,6 +15,11 @@ function getRoomList(data, callback) {
         data= {}
     }
 
+    if (!data.page || data.page === 1) {
+        //第一页时，先清空原有数据
+        $(".house-list a").remove();
+    }
+
     $.getJSON("/room/getRoomList", data, function (res){
         var html = "";
         var list = res.data.list || [];

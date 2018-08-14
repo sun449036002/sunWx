@@ -18,6 +18,12 @@ Route::get('/room/list', "RoomController@index")->middleware("weixinOAuth");
 Route::get('/room/getRoomList', "RoomController@getRoomList")->middleware("weixinOAuth");
 Route::get('/room/detail', "RoomController@detail")->middleware("weixinOAuth");
 
+//地域列表
+Route::get('/area/list', "RoomController@getAreaList")->middleware("weixinOAuth");
+Route::get('/houseType/list', "RoomController@getHouseTypeList")->middleware("weixinOAuth");
+Route::get('/category/list', "RoomController@getCategoryList")->middleware("weixinOAuth");
+
+
 //我的个人中心
 Route::get('/my', "MyController@index")->middleware("weixinOAuth");
 

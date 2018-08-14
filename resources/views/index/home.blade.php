@@ -2,16 +2,54 @@
 
 <link rel="stylesheet" type="text/css" href="{{asset("css/home.css")}}"/>
 
-<div class="main">
-    {{--<form action="#">--}}
-    {{--<div class="top">--}}
-            {{--@csrf--}}
-            {{--<div>关键字</div>--}}
-            {{--<input type="text" name="keyword" value="" />--}}
-            {{--<button type="submit">搜索</button>--}}
-    {{--</div>--}}
-    {{--</form>--}}
+<script>
+    $(document).ready(function () {
+        //先加载一页
+        var ajaxing = false;
+        var isEnd = false;
+        var paramsData = {
+            page : 1,
+            type : 1,
+            recommend : 1,
+            keyword:""
+        };
 
+        getRoomList(paramsData);
+
+        //重置高度
+        var houseListHeight = $(window).height() - $(".top").height() - $(".ads").height() - $(".recommend-house-box .tips-bar").height() - $(".bottom-menu-box").height();
+        $(".house-list").height(houseListHeight);
+
+        //搜索功能
+        $(".search-wrapper .search-icon").on("click", function(){
+            window.location.href = "/room/list?keyword=" + $(".search-wrapper input[name='keyword']").val();
+        });
+
+        //滚动加载方法1
+        $('.house-list').scroll(function() {
+//            console.log(($(this)[0].scrollTop + $(this).height() + 60) >= $(this)[0].scrollHeight)
+            //当时滚动条离底部60px时开始加载下一页的内容
+            if (($(this)[0].scrollTop + $(this).height() + 60) >= $(this)[0].scrollHeight) {
+                if (!ajaxing && !isEnd) {
+                    ajaxing = true;
+                    paramsData.page++;
+                    $(".loading").css("display", "flex");
+                    setTimeout(function () {
+                        getRoomList(paramsData, function(res){
+//                            console.log(res);
+//                            console.log("callback");
+                            ajaxing = false;
+                            isEnd = res.isEnd;
+                            $(".loading").hide();
+                        });
+                    }, 200);
+                }
+            }
+        });
+    });
+</script>
+
+<div class="main">
     <div class="top">
         @include('components/searchBox')
     </div>
@@ -25,21 +63,15 @@
             <div class="text">推荐房源区</div>
         </div>
         <div class="house-list">
-            @foreach($roomList as $item)
-                <a href="/room/detail?id={{$item->id}}">
-                    <div class="item">
-                        <div class="cover" style="background-image: url('{{asset("imgs/fangzi.jpeg")}}')"></div>
-                        <div class="info">
-                            <div class="name">{{$item->name}}</div>
-                            <div class="area">{{$item->area}}</div>
-                            <div class="categoryName">{{$item->categoryName ?? "未知"}}</div>
-                            <div class="avg-price">均价：{{$item->avgPrice ?? 0}}元/m²</div>
-                            <div class="avg-price">总价：{{$item->totalPrice ?? 0}}万元</div>
-                            <div class="btn-see-house">预约看房</div>
-                        </div>
-                    </div>
-                </a>
-            @endforeach
+            <div class="loading">
+                <div id="preloader_1">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
     </div>
 </div>

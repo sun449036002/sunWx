@@ -64,7 +64,7 @@ body {
 推荐房源区
  */
 .main .recommend-house-box .house-list {
-
+    overflow: scroll;
 }
 .main .recommend-house-box .house-list .item {
     display: flex;
