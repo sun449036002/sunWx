@@ -17,7 +17,7 @@
         getRoomList(paramsData);
 
         //重置高度
-        var houseListHeight = $(window).height() - $(".top").height() - $(".ads").height() - $(".recommend-house-box .tips-bar").height() - $(".bottom-menu-box").height();
+        var houseListHeight = $(window).height() - $(".ads").height() - $(".recommend-house-box .tips-bar").height() - $(".bottom-menu-box").height();
         $(".house-list").height(houseListHeight);
 
         //搜索功能

@@ -14,7 +14,6 @@
     <style type="text/css">
         html {
             font-size: calc(100vw/7.5);
-            width:7.5rem;
         }
         body {
             margin:0;
