@@ -126,4 +126,9 @@ class wxController extends Controller
     private function handleLocation($message) {
         return '';
     }
+
+    //获取关注的二维码图片
+    public function getQrCode() {
+        return $this->adminId;
+    }
 }

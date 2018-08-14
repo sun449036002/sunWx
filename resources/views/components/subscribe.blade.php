@@ -24,11 +24,16 @@
     }
 </style>
 <script>
-    $(document).ready(function(){
-
-    });
+    /**
+     * 获取并显示关注二维码图片 (绑定了推广员的账号ID的二维码图片)
+     */
+    function showSubscribeQrCode() {
+        $.getJson("weixin/qrCode", function (res) {
+            console.log(res);
+        })
+    }
 </script>
 <div class="subscribeBox">
     <div class="subscribe-tips">长按二维码，关注后再操作</div>
-    <img src="/imgs/subscribe.jpg">
+    <img class="qr-cdoe-img" src="">
 </div>

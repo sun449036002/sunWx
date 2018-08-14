@@ -39,6 +39,8 @@ Route::post('assistance', "IndexController@assistance")->middleware("weixinOAuth
  */
 Route::any('weixin/api', 'wxController@api');
 Route::any("weixin/users", "wxController@users");
+Route::any("weixin/qrCode", "wxController@getQrCode")->middleware("weixinOAuth");
+
 
 //网页授权回调
 Route::any('/oauth-callback', "Controller@oauthCallback");
