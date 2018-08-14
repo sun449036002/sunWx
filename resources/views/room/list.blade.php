@@ -14,7 +14,7 @@
         };
 
         //获取第一页
-        getRoomList(paramsData);
+//        getRoomList(paramsData);
 
         //重置高度
         var houseListHeight = $(window).height() - $(".top").height() - $(".bottom-menu-box").height() - $(".cate-list").height() - $(".filter-list").height();
@@ -187,6 +187,7 @@
                     <span></span>
                 </div>
             </div>
+            <div class="no-data">没有找到相关数据</div>
         </div>
 
 

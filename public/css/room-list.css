@@ -109,6 +109,14 @@ body {
 .main .house-box .house-list {
     overflow: auto;
 }
+.main .house-box .house-list .no-data {
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    font-size: 0.35rem;
+    color: #888;
+    letter-spacing: .03rem;
+}
 .main .house-box .house-list .item {
     display: flex;
     background-color: #FFF;
