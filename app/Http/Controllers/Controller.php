@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Consts\CookieConst;
 use App\Model\UserModel;
 use EasyWeChat\Factory;
+use function foo\func;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -34,16 +35,33 @@ class Controller extends BaseController
      */
     public $user = ['id' => 0];
 
+    /**
+     * 推广员的后台账号ID
+     * @var string
+     */
+    public $adminId = 0;
+
     public function __construct()
     {
-        //获取用户信息
-        $this->user = $this->getUserinfo();
+        $this->middleware(function($request, $next){
+            //获取用户信息
+            $this->user = $this->getUserinfo();
 
-        //wxapp对象
-        $this->wxapp = Factory::officialAccount(getWxConfig());
+            //推广员ID绑定
+            if (!empty($request->get("adminId"))) {
+                $this->adminId = $request->get("adminId");
+            } else if (!empty($this->user['admin_id'])) {
+                $this->adminId = $this->user['admin_id'];
+            }
 
-        $this->pageData['user'] = $this->user;
-        $this->pageData['wxapp'] = $this->wxapp;
+            //wxapp对象
+            $this->wxapp = Factory::officialAccount(getWxConfig());
+
+            $this->pageData['user'] = $this->user;
+            $this->pageData['wxapp'] = $this->wxapp;
+
+            return $next($request);
+        });
     }
 
     /**
