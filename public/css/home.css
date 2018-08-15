@@ -81,7 +81,7 @@ body {
     display: flex;    
     padding: 0 0.3rem;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     color: #000;
 
 }
