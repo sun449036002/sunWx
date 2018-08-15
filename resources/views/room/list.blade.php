@@ -51,16 +51,18 @@
 
         //确认选择
         $(".filter-content-list").on("click", ".c-item", function(res){
-            alert(res);
             var _data = $(this).data();
             Object.assign(paramsData, _data);
+            alert(JSON.stringify(paramsData));
             var text = $(this).html();
+            alert(text);
             if(text === '不限') {
                 var index = $(this).parent().prevAll().length;
                 text = $(".filter-list .filter-item").eq(index).data("origin-text");
             }
             $(".main .house-box .filter-list .filter-item.selected").html(text);
             $(".main .house-box .filter-list .filter-item").removeClass("selected");
+            alert($(".main .house-box .filter-content-list").length);
             $(".main .house-box .filter-content-list").hide();
 
             //再请求新数据
