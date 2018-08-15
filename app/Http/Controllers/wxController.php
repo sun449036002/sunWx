@@ -150,7 +150,7 @@ class wxController extends Controller
         $cacheKey = sprintf(WxConst::QR_CODE_FOR_ADMIN_USER, $adminId);
         $qrCodeUrl = Redis::get($cacheKey);
         if (empty($qrCodeUrl)) {
-            $result = $this->wxapp->qrcode->temporary($adminId, $expiredTime);
+            $result = $this->wxapp->qrcode->temporary(json_encode(['adminId' => $adminId], JSON_UNESCAPED_UNICODE), $expiredTime);
             $ticket = $result['ticket'] ?? '';
             if (!empty($ticket)) {
                 $qrCodeUrl = $this->wxapp->qrcode->url($ticket);
