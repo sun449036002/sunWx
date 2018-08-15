@@ -130,7 +130,8 @@ body {
     background-size: cover;
 }
 .main .house-box .house-list .item .info {
-    display: flex;    
+    display: flex;
+    display: -webkit-flex;
     padding: 0 0.3rem;
     flex-direction: column;
     justify-content: space-evenly;
