@@ -44,6 +44,12 @@
     $(document).ready(function(){
         //点击领取按钮
         $(".btn-receive").on("click", function () {
+            var isSubscribe = parseInt("{{$user['is_subscribe'] ?? 0}}");
+            if (!isSubscribe) {
+                showSubscribeQrCode("{{$adminId}}", "{{$user['id'] ?? 0}}");
+                return false;
+            }
+
             location.href = "/cash-red-pack-info?from=cash-receive"
         });
         //自动滚动
@@ -85,6 +91,7 @@
 </div>
 
 @include('components/cash-red-pack-rule')
+@include("components/subscribe")
 
 </body>
 </html>

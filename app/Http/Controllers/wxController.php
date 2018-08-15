@@ -8,10 +8,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Consts\WxConst;
 use App\Model\UserModel;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -128,7 +130,35 @@ class wxController extends Controller
     }
 
     //获取关注的二维码图片
-    public function getQrCode() {
-        return $this->adminId;
+    public function getQrCode(Request $request) {
+        $adminId = $request->get("adminId", 0);
+        $fromUserId = $request->get("fromUserId");
+        if (empty($adminId)) {
+            $userModel = new UserModel();
+            $u = $userModel->getUserinfoByOpenid($fromUserId);
+            if (!empty($u['admin_id'])) {
+                $adminId = $u['admin_id'];
+            }
+        }
+
+        if (empty($adminId)) {
+            Log::warning('[getQrCode]', ['adminId' => $adminId, 'msg' => '当前用户获取的关注二维码未指定推广员']);
+        }
+
+        //获取缓存中的二维码图片
+        $expiredTime = 29 * 86400;
+        $cacheKey = sprintf(WxConst::QR_CODE_FOR_ADMIN_USER, $adminId);
+        $qrCodeUrl = Redis::get($cacheKey);
+        if (empty($qrCodeUrl)) {
+            $result = $this->wxapp->qrcode->temporary($adminId, $expiredTime);
+            $ticket = $result['ticket'] ?? '';
+            if (!empty($ticket)) {
+                $qrCodeUrl = $this->wxapp->qrcode->url($ticket);
+                $ttl = $result['expire_seconds'] - 3600;//比腾讯提前一小时过期
+                Redis::setex($cacheKey, $ttl, $qrCodeUrl);
+            }
+        }
+
+        return ResultClientJson(0, 'ok', ['qrCodeUrl' => $qrCodeUrl]);
     }
 }

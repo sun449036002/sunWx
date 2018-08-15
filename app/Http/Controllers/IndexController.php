@@ -20,6 +20,7 @@ use App\Model\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
 
 class IndexController extends Controller
 {
@@ -64,7 +65,7 @@ class IndexController extends Controller
      * 现金红包
      */
     public function cashRedPack() {
-        exit('建设中');
+//        exit('建设中');
         $this->pageData['title'] = "现金红包";
 
         //获取已经集满的红包数据

@@ -35,11 +35,6 @@ class Controller extends BaseController
      */
     public $user = ['id' => 0];
 
-    /**
-     * 推广员的后台账号ID
-     * @var string
-     */
-    public $adminId = 0;
 
     public function __construct()
     {
@@ -47,18 +42,12 @@ class Controller extends BaseController
             //获取用户信息
             $this->user = $this->getUserinfo();
 
-            //推广员ID绑定
-            if (!empty($request->get("adminId"))) {
-                $this->adminId = $request->get("adminId");
-            } else if (!empty($this->user['admin_id'])) {
-                $this->adminId = $this->user['admin_id'];
-            }
-
             //wxapp对象
             $this->wxapp = Factory::officialAccount(getWxConfig());
 
             $this->pageData['user'] = $this->user;
             $this->pageData['wxapp'] = $this->wxapp;
+            $this->pageData['adminId'] = $request->get("adminId", 0);
 
             return $next($request);
         });
