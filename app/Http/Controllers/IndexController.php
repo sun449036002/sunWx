@@ -132,7 +132,7 @@ class IndexController extends Controller
                 $record = new \stdClass();
                 $record->userId = $this->user['id'];
                 $record->money = $insertData['received'];
-                $record->headImgUrl = $this->user['avatar_url'] ?? "";
+                $record->headImgUrl = headImgUrl($this->user['avatar_url'] ?? "");
                 $record->time = 1;
                 $this->pageData['redPackRecordList'][] = $record;
             } else {
@@ -148,6 +148,8 @@ class IndexController extends Controller
                     $this->pageData['received'] = $redPackData->received;
                     $this->pageData['remainingTime'] = $redPackData->expiredTime - time();
                     $this->pageData['redPackRecordList'] = $recordModel->getAssistanceRecords($redPackData->id);
+                } else {
+                    return redirect('/');
                 }
             } else {
                 exit("非正常的访问，缺少红包ID");
@@ -181,7 +183,7 @@ class IndexController extends Controller
         }
         $_u = (new UserModel())->getUserinfoByOpenid($redPack->userId);
         $redPack->nickname = $_u['username'] ?? "";
-        $redPack->headImgUrl = $_u['avatar_url'] ?? "";
+        $redPack->headImgUrl = headImgUrl($_u['avatar_url'] ?? "");
         $this->pageData['redPack'] = $redPack;
 
         //今天是否助力过

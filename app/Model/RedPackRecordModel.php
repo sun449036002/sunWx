@@ -27,7 +27,7 @@ class RedPackRecordModel extends BaseModel
         foreach ($list as $key => $item) {
             $_u = $userModel->getUserinfoByOpenid($item->userId);
             $list[$key]->nickname = $_u['username'] ?? "";
-            $list[$key]->headImgUrl = $_u['avatar_url'] ?? "";
+            $list[$key]->headImgUrl = headImgUrl($_u['avatar_url'] ?? "");
             $list[$key]->time = beforeWhatTime($item->createTime ?? 0);
         }
         //取得用户头像
@@ -41,7 +41,7 @@ class RedPackRecordModel extends BaseModel
         $userModel = new UserModel();
         foreach ($list as $key => $item) {
             $_u = $userModel->getUserinfoByOpenid($item->userId);
-            $list[$key]->headImgUrl = $_u['avatar_url'] ?? "";
+            $list[$key]->headImgUrl = headImgUrl($_u['avatar_url'] ?? "");
             $list[$key]->time = beforeWhatTime($item->createTime);
         }
         //取得用户头像
