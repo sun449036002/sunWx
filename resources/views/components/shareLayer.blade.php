@@ -43,7 +43,7 @@
 <div class="share-layer">
     <img src="{{asset("imgs/jiantou.png")}}" />
     <div class="share-tips">
-        <p>点击右上角按钮</p>
-        <p>邀请更多好友来助力吧~</p>
+        <div>点击右上角按钮</div>
+        <div>邀请更多好友来助力吧~</div>
     </div>
 </div>
