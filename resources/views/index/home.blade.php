@@ -60,7 +60,7 @@
     <div class="recommend-house-box">
         <div class="tips-bar">
             <img src="{{asset('imgs/bar1.png')}}"/>
-            <div class="text">推荐房源区</div>
+            <div class="text">推荐房源</div>
         </div>
         <div class="house-list">
             <div class="loading"><img src="{{asset('imgs/loading.svg')}}" /></div>
