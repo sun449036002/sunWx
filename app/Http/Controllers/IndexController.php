@@ -133,6 +133,7 @@ class IndexController extends Controller
                 $record->userId = $this->user['id'];
                 $record->money = $insertData['received'];
                 $record->headImgUrl = $this->user['avatar_url'] ?? "";
+                $record->time = 1;
                 $this->pageData['redPackRecordList'][] = $record;
             } else {
                 exit("SQL执行失败");
@@ -156,7 +157,7 @@ class IndexController extends Controller
         //取得所有房源
         $roomSourceModel = new RoomSourceModel();
         $this->pageData['roomList'] = $roomSourceModel->getList(
-            ['id', "type", "roomCategoryId", "name", "area", "avgPrice", "imgJson"],
+            ['id', "type", "roomCategoryId", "name", "areaId", "houseTypeId", "avgPrice", "imgJson"],
             ['isDel' => 0]
         );
 
