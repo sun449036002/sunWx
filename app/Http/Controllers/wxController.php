@@ -115,8 +115,8 @@ class wxController extends Controller
                         //发送图文消息
                         $news = new News([
                             new NewsItem([
-                                'title'       => '现金大礼包',
-                                'description' => '先到先得',
+                                'title'       => '现金大礼包待您领取~',
+                                'description' => '',
                                 'url'         => env('APP_URL') . "/cash-red-pack",
                                 'image'       => asset("imgs/big-red-pack.png"),
                             ])
