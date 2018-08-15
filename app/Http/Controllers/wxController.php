@@ -95,7 +95,7 @@ class wxController extends Controller
                     }
                     $adminId = 0;
                     $qr_scene_data = json_decode($userinfo['qr_scene_str'], true);
-                    Log::info(['qr_scene_data'], [$qr_scene_data]);
+                    Log::info('qr_scene_data', [$qr_scene_data]);
                     if (!empty($qr_scene_data)) {
                         $adminId = $qr_scene_data['adminId'] ?? 0;
                     }
