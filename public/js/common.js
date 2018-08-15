@@ -15,7 +15,8 @@ function getRoomList(data, callback) {
         data= {}
     }
 
-    if (!data.page || data.page === 1) {
+    var isFirstPage = !data.page || data.page === 1;
+    if (isFirstPage) {
         //第一页时，先清空原有数据
         $(".house-list a").remove();
     }
@@ -46,6 +47,11 @@ function getRoomList(data, callback) {
                 callback({isEnd : res.data.isEnd});
             }
         } else {
+            //第一页无数据，显示无内容提示
+            if (isFirstPage) {
+                var noDataDom = $(".house-list .no-data");
+                if(noDataDom.length > 0) noDataDom.show();
+            }
             if (typeof callback === 'function') {
                 callback({isEnd : 1, from : "empty list"});
             }
