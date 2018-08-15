@@ -50,7 +50,8 @@
         });
 
         //确认选择
-        $(".filter-content-list").on("click", ".c-item", function(){
+        $(".filter-content-list").on("click", ".c-item", function(res){
+            alert(res);
             var _data = $(this).data();
             Object.assign(paramsData, _data);
             var text = $(this).html();
