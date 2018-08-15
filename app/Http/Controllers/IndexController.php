@@ -30,7 +30,6 @@ class IndexController extends Controller
     }
 
     public function home() {
-        dd(Redis::get('qr_code_for_admin_user_0'));
         //取得所有推荐的房源
         $roomSourceModel = new RoomSourceModel();
         $roomList = $roomSourceModel->getList(
