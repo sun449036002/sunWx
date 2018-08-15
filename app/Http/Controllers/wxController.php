@@ -93,6 +93,12 @@ class wxController extends Controller
                             $avatar_url = $saleFilePath;
                         }
                     }
+                    $adminId = 0;
+                    $qr_scene_data = json_decode($userinfo['qr_scene_str'], true);
+                    Log::info(['qr_scene_data'], [$qr_scene_data]);
+                    if (!empty($qr_scene_data)) {
+                        $adminId = $qr_scene_data['adminId'] ?? 0;
+                    }
                     $newId = $userModel->insert([
                         'type' => 1,
                         'uri' => generateUri(16),
@@ -100,6 +106,7 @@ class wxController extends Controller
                         'avatar_url' => $avatar_url ?: ($userinfo['headimgurl'] ?? ""),
                         'openid' => $message['FromUserName'],
                         'user_json' => json_encode($userinfo, JSON_UNESCAPED_UNICODE) ?? "",
+                        'admin_id' => $adminId,//推广员后台账户ID
                         'is_subscribe' => 1,
                     ]);
                 }
