@@ -110,6 +110,7 @@ body {
     overflow: auto;
 }
 .main .house-box .house-list .no-data {
+    display: none;
     height: 3rem;
     line-height: 3rem;
     text-align: center;
