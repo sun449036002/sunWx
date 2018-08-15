@@ -103,8 +103,8 @@ class IndexController extends Controller
             $rdConfig = $redPackConfigModel->getOne(['*'], [['id', '>', 0]]);
 
             $totalMoney = mt_rand($rdConfig->minMoney ?? 0, $rdConfig->maxMoney ?? 0);
-            $min = ($rdConfig->minAssistanceMoney ?? 0) * 100;
-            $max = ($rdConfig->maxAssistanceMoney ?? 0) * 100;
+            $min = $totalMoney * 0.4 * 100;
+            $max = $totalMoney * 0.6 * 100;
             $curReceived = number_format(mt_rand($min, $max)/100, 2);
             $insertData = [
                 'userId' => $this->user['id'],
