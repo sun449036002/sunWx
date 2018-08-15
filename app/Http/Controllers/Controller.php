@@ -88,10 +88,9 @@ class Controller extends BaseController
         }
 
         $userInDb = (new UserModel())->getUserinfoByOpenid($user['openid']);
-        Log::info('user in db',[$userInDb]);
         if (!empty($userInDb)) {
-            $user = array_merge($user, $userInDb);
+            return array_merge($user, $userInDb);
         }
-        return $user;
+        return $defaultUser;
     }
 }
