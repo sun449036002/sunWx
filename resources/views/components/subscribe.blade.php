@@ -43,7 +43,7 @@
             adminId : adminId,
             fromUserId : fromUserId,
             redPackId : redPackId || 0,
-            type : type || "receive"
+            r : type || "receive"
         };
         $.getJSON("weixin/qrCode", data, function (res) {
             var jsonData = res.data || {};
