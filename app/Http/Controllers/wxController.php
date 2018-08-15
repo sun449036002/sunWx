@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 
 use App\Consts\WxConst;
 use App\Model\UserModel;
+use EasyWeChat\Kernel\Messages\News;
+use EasyWeChat\Kernel\Messages\NewsItem;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -109,6 +111,18 @@ class wxController extends Controller
                         'admin_id' => $adminId,//推广员后台账户ID
                         'is_subscribe' => 1,
                     ]);
+                    if ($newId) {
+                        //发送图文消息
+                        $news = new News([
+                            new NewsItem([
+                                'title'       => '现金大礼包',
+                                'description' => '先到先得',
+                                'url'         => env('APP_URL') . "/cash-red-pack",
+                                'image'       => asset("imgs/big-red-pack.png"),
+                            ])
+                        ]);
+                        return $this->wxapp->customer_service->message($news)->to($message['FromUserName'])->send();
+                    }
                 }
                 return '欢迎加入我们~!';
                 break;
