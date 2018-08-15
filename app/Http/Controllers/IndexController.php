@@ -132,7 +132,7 @@ class IndexController extends Controller
                 $record = new \stdClass();
                 $record->userId = $this->user['id'];
                 $record->money = $insertData['received'];
-                $record->headImgUrl = headImgUrl($this->user['avatar_url'] ?? "");
+                $record->headImgUrl = $this->user['avatar_url'] ?? "";
                 $record->time = 1;
                 $this->pageData['redPackRecordList'][] = $record;
             } else {
@@ -183,7 +183,7 @@ class IndexController extends Controller
         }
         $_u = (new UserModel())->getUserinfoByOpenid($redPack->userId);
         $redPack->nickname = $_u['username'] ?? "";
-        $redPack->headImgUrl = headImgUrl($_u['avatar_url'] ?? "");
+        $redPack->headImgUrl = $_u['avatar_url'] ?? "";
         $this->pageData['redPack'] = $redPack;
 
         //今天是否助力过
