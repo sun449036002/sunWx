@@ -49,7 +49,7 @@
         $(".btn-assistance").on("click", function(){
             var isSubscribe = parseInt("{{$user['is_subscribe'] ?? 0}}");
             if (!isSubscribe) {
-                showSubscribeQrCode("{{$adminId}}", "{{$redPack->userId}}");
+                showSubscribeQrCode("{{$adminId}}", "{{$redPack->userId}}", "{{$redPack->id}}", "help");
                 return false;
             }
 

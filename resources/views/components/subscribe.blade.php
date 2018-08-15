@@ -38,10 +38,12 @@
     /**
      * 获取并显示关注二维码图片 (绑定了推广员的账号ID的二维码图片)
      */
-    function showSubscribeQrCode(adminId, fromUserId) {
+    function showSubscribeQrCode(adminId, fromUserId, redPackId, type) {
         var data = {
             adminId : adminId,
-            fromUserId : fromUserId
+            fromUserId : fromUserId,
+            redPackId : redPackId || 0,
+            type : type || "receive"
         };
         $.getJSON("weixin/qrCode", data, function (res) {
             var jsonData = res.data || {};
