@@ -134,8 +134,8 @@ body {
     display: -webkit-flex;
     padding: 0 0.3rem;
     flex-direction: column;
-    justify-content: space-evenly;
-    -webkit-justify-content: space-evenly;
+    justify-content: space-around;
+    -webkit-justify-content: space-around;
     color: #000;
 
 }
