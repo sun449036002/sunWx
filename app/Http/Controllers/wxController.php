@@ -121,7 +121,8 @@ class wxController extends Controller
                                 'image'       => asset("imgs/big-red-pack.png"),
                             ])
                         ]);
-                        return $this->wxapp->customer_service->message($news)->to($message['FromUserName'])->send();
+                        $this->wxapp->customer_service->message($news)->to($message['FromUserName'])->send();
+                        return '';
                     }
                 }
                 return '欢迎加入我们~!';
