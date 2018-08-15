@@ -14,7 +14,7 @@
         };
 
         //获取第一页
-//        getRoomList(paramsData);
+        getRoomList(paramsData);
 
         //重置高度
         var houseListHeight = $(window).height() - $(".top").height() - $(".bottom-menu-box").height() - $(".cate-list").height() - $(".filter-list").height();
