@@ -178,15 +178,7 @@
             </div>
         </div>
         <div class="house-list">
-            <div class="loading">
-                <div id="preloader_1">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
+            <div class="loading"><img src="{{asset('imgs/loading.svg')}}" /></div>
             <div class="no-data">没有找到相关数据</div>
         </div>
 
