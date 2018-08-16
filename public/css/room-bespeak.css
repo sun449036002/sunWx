@@ -1,0 +1,59 @@
+body {
+    font-size: 0.24rem;
+}
+.main {
+    width:100vw;
+    min-height: 100vh;
+    background-color: #EEE;
+}
+
+.main .item {
+    display: flex;
+    justify-content: space-around;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    border-bottom: 1px solid #CCC;
+    background-color: #FFF;
+}
+.main .item:last-child {
+    height: 1rem;
+}
+
+.main .item .room-name {
+    width: 100vw;
+    font-size: .3rem;
+    background: #eee;
+    text-align: center;
+}
+
+.main .item .input-label {
+    width: 20vw;
+    align-self: center;
+    text-align: center;
+}
+
+.main .item .input-box {
+    align-self: flex-start;
+    width: 60vw;
+}
+.main .item .input-box input {
+    width:55vw;
+    border:none;
+    padding: 0.1rem;
+    font-size: 0.26rem;
+}
+
+.main .item .input-btn {
+    width: 30vw;
+    height: 9vw;
+    line-height: 0.6rem;
+    background-color: #dd524d;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    color:#FFF;
+    -webkit-border-radius:.1rem;
+    -moz-border-radius:.1rem;
+    border-radius:.1rem;
+    font-size: 0.26rem;
+}

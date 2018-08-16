@@ -11,11 +11,13 @@ namespace App\Http\Controllers;
 
 use App\Logic\RoomSourceLogic;
 use App\Model\AreaModel;
+use App\Model\BespeakModel;
 use App\Model\HouseTypeModel;
 use App\Model\RoomCategoryModel;
 use App\Model\RoomSourceModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller
 {
@@ -107,6 +109,62 @@ class RoomController extends Controller
         $this->pageData['row'] = $row;
         $this->pageData['title'] = '详情 - ' . $row->name;
         return view('room/detail', $this->pageData);
+    }
+
+    /**
+     * 预约看房
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function bespeak(Request $request) {
+        $roomId = $request->get("roomId");
+        $this->pageData['room'] = (new RoomSourceModel())->getOne(['id', 'name'], ['id' => $roomId]);
+        $this->pageData['title'] = "预约看房";
+        return view("room/bespeak", $this->pageData);
+    }
+
+    /**
+     * 预约ING
+     */
+    public function bespeaking(Request $request) {
+        $data = $request->all();
+        $rule = [
+            'roomId' => 'required',
+            'name' => 'required',
+            'tel' => 'required',
+            'num' => 'required',
+            'address' => 'required',
+            'time' => 'required',
+        ];
+        $message = [
+            'roomId.required' => '房源ID必填',
+            'name.required' => '姓名必填',
+            'tel.required' => '电话必填',
+            'num.required' => '预约人数必填',
+            'address.required' => '接送地址必填',
+            'time.required' => '接送时间必填',
+        ];
+        $validate = Validator::make($data, $rule, $message);
+        if (!$validate->passes()) {
+            return back()->withErrors($validate);
+        }
+
+        $model = new BespeakModel();
+        $newId = $model->insert([
+            'userId' => $this->user['id'],
+            'adminId' => $this->user['admin_id'],
+            'roomId' => $data['roomId'],
+            'name' => $data['name'],
+            'tel' => $data['tel'],
+            'num' => $data['num'],
+            'address' => $data['address'],
+            'time' => $data['time'],
+            'createTime' => time()
+        ]);
+
+        if ($newId) {
+            return ResultClientJson(0, '预约成功');
+        }
+        return ResultClientJson(100, '预约失败');
     }
 
     /**

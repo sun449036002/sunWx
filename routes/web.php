@@ -17,6 +17,8 @@ Route::get('/', "IndexController@home")->middleware("weixinOAuth");
 Route::get('/room/list', "RoomController@index")->middleware("weixinOAuth");
 Route::get('/room/getRoomList', "RoomController@getRoomList")->middleware("weixinOAuth");
 Route::get('/room/detail', "RoomController@detail")->middleware("weixinOAuth");
+Route::get('/room/bespeak', "RoomController@bespeak")->middleware("weixinOAuth");
+Route::post('/room/bespeaking', "RoomController@bespeaking")->middleware("weixinOAuth");
 
 //地域列表
 Route::get('/area/list', "RoomController@getAreaList")->middleware("weixinOAuth");

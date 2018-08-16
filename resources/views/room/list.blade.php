@@ -101,6 +101,12 @@
             getRoomList(paramsData);
         });
 
+        //预约看房
+        $(".house-list").on("click", ".btn-see-house", function(){
+            window.location.href = "/room/bespeak?roomId=" + $(this).data("id");
+            return false;
+        });
+
 
         //滚动加载方法1
         $('.house-list').scroll(function() {
