@@ -10,7 +10,9 @@ namespace App\Http\Controllers;
 
 
 use App\Logic\BespeakLogic;
+use App\Model\CashbackModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MyController extends Controller
 {
@@ -49,5 +51,69 @@ class MyController extends Controller
     //购房返现表格填写
     public function backMoneyPage() {
         return view('my/backMoneyPage', $this->pageData);
+    }
+
+    /**
+     * 提交购房返现表格
+     */
+    public function submitBackMoney(Request $request) {
+        $data = $request->all();
+        $rule = [
+            'houses' => 'required',
+            'address' => 'required',
+            'buyers' => 'required',
+            'tel' => 'required',
+            'amount' => 'required',
+            'acreage' => 'required',
+            'buyTime' => 'required',
+            'img' => 'required',
+        ];
+        $message = [
+            'houses.required' => '楼盘名称必填',
+            'address.required' => '楼盘地址必填',
+            'buyers.required' => '购房人必填',
+            'tel.required' => '联系电话必填',
+            'amount.required' => '购房金额必填',
+            'acreage.required' => '面积必填',
+            'buyTime.required' => '购房时间必填',
+            'img.required' => '购房凭证图片必填',
+        ];
+        $validate = Validator::make($data, $rule, $message);
+        if (!$validate->passes()) {
+            dd($validate->errors());
+            return back()->withErrors($validate);
+        }
+
+        //图片
+        $imgs = explode(",", $data['img']);
+
+        //返现金额打款账号
+        $paymentMethodList = [
+            'alipay' => $data['alipay'],
+            'weixin' => $data['weixin'],
+            'bankcard' => $data['bankcard'],
+        ];
+
+        $model = new CashbackModel();
+        $insertId = $model->insert([
+            'userId' => $this->user['id'],
+            'roomSourceName' => $data['houses'],
+            'amount' => $data['amount'],
+            'acreage' => $data['acreage'],
+            'address' => $data['address'],
+            'buyers' => $data['buyers'],
+            'tel' => $data['tel'],
+            'buyTime' => $data['buyTime'],
+            'type' => $data['mortgage'],
+            'imgs' => json_encode($imgs, JSON_UNESCAPED_UNICODE),
+            'paymentMethod' => json_encode($paymentMethodList, JSON_UNESCAPED_UNICODE),
+            'createTime' => time(),
+        ]);
+
+        if ($insertId) {
+            return ResultClientJson(0, '提交成功');
+        }
+        return ResultClientJson(100, '提交失败');
+
     }
 }

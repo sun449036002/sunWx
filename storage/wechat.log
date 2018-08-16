@@ -1,0 +1,726 @@
+[2018-07-22 08:06:35] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:06:35] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:06:36] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:06:36] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:06:56] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:06:56] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:07:57] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:07:57] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:07:59] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:07:59] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:07:59] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:07:59] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:07:59] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:07:59] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:08:40] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:08:40] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:08:41] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:08:41] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:08:41] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:08:41] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:08:41] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:08:41] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:08:41] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:08:41] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:08:41] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:08:41] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:09:29] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:09:29] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:10:56] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:10:56] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:10:59] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:10:59] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:10:59] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:10:59] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:11:00] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:11:00] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:11:01] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:11:01] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:11:01] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:11:01] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:14:57] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:14:57] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:14:57] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:14:57] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 08:14:58] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 08:14:58] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-22 09:16:52] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 09:16:52] NULL.DEBUG: Server response created: {"content":"<xml><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[hello world sun]]></Content><ToUserName><![CDATA[]]></ToUserName><FromUserName><![CDATA[]]></FromUserName><CreateTime>1532251012</CreateTime></xml>"} 
+[2018-07-22 11:01:29] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-22 11:01:29] NULL.DEBUG: Server response created: {"content":"<xml><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[hello world sun]]></Content><ToUserName><![CDATA[]]></ToUserName><FromUserName><![CDATA[]]></FromUserName><CreateTime>1532257289</CreateTime></xml>"} 
+[2018-07-23 02:59:22] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-23 02:59:22] NULL.ERROR: 0: Undefined index: MsgType {"code":0,"message":"Undefined index: MsgType","file":"D:\\phpProjects\\sunWx\\app\\Http\\Controllers\\wxController.php","line":55} 
+[2018-07-23 02:59:22] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-23 02:59:44] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-23 02:59:44] NULL.ERROR: 0: Undefined index: MsgType {"code":0,"message":"Undefined index: MsgType","file":"D:\\phpProjects\\sunWx\\app\\Http\\Controllers\\wxController.php","line":55} 
+[2018-07-23 02:59:44] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-23 04:21:01] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-23 04:21:01] NULL.ERROR: 0: Undefined index: MsgType {"code":0,"message":"Undefined index: MsgType","file":"D:\\phpProjects\\sunWx\\app\\Http\\Controllers\\wxController.php","line":54} 
+[2018-07-23 04:21:01] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-23 04:21:03] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-23 04:21:03] NULL.ERROR: 0: Undefined index: MsgType {"code":0,"message":"Undefined index: MsgType","file":"D:\\phpProjects\\sunWx\\app\\Http\\Controllers\\wxController.php","line":54} 
+[2018-07-23 04:21:03] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-23 05:13:57] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-23 05:13:57] NULL.ERROR: 0: Undefined index: MsgType {"code":0,"message":"Undefined index: MsgType","file":"D:\\phpProjects\\sunWx\\app\\Http\\Controllers\\wxController.php","line":51} 
+[2018-07-23 05:13:57] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-23 05:14:03] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-23 05:14:03] NULL.ERROR: 0: Undefined index: MsgType {"code":0,"message":"Undefined index: MsgType","file":"D:\\phpProjects\\sunWx\\app\\Http\\Controllers\\wxController.php","line":51} 
+[2018-07-23 05:14:03] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-23 05:47:49] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.sun.zj.cn/weixin/api","content-type":null,"content":""} 
+[2018-07-23 05:47:49] NULL.ERROR: 0: Undefined index: MsgType {"code":0,"message":"Undefined index: MsgType","file":"D:\\phpProjects\\sunWx\\app\\Http\\Controllers\\wxController.php","line":51} 
+[2018-07-23 05:47:49] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-28 02:08:39] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.whatareu.top/weixin/api","content-type":null,"content":""} 
+[2018-07-28 02:08:39] NULL.ERROR: 0: Undefined index: MsgType {"code":0,"message":"Undefined index: MsgType","file":"D:\\phpProjects\\sunWx\\app\\Http\\Controllers\\wxController.php","line":30} 
+[2018-07-28 02:08:39] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-28 02:29:13] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.whatareu.top/weixin/api","content-type":null,"content":""} 
+[2018-07-28 02:29:13] NULL.ERROR: 0: Undefined index: MsgType {"code":0,"message":"Undefined index: MsgType","file":"D:\\phpProjects\\sunWx\\app\\Http\\Controllers\\wxController.php","line":30} 
+[2018-07-28 02:29:13] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-28 02:44:48] NULL.DEBUG: Request received: {"method":"GET","uri":"http://wxlocal.whatareu.top/weixin/api?a=123&b=ab","content-type":null,"content":""} 
+[2018-07-28 02:44:48] NULL.ERROR: 0: Undefined index: MsgType {"code":0,"message":"Undefined index: MsgType","file":"D:\\phpProjects\\sunWx\\app\\Http\\Controllers\\wxController.php","line":30} 
+[2018-07-28 02:44:48] NULL.DEBUG: Server response created: {"content":"success"} 
+[2018-07-28 12:05:27] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_uKjFXA3qEUartLofdbWTlz45QRDQiP6xLywsQsdbDJ0Vod34-pIWZcOKZ1t5aeWgBMJeK7Fgasc3MPpYq4LYJv7u4zC1eQFNMml4oLE3IqMayBFi-gSu9BEmOYbxNRWpudufkgOTvSS9oyg1IBJdAJAMFN&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sat, 28 Jul 2018 12:05:37 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm6t078vAhSp7MSjHwMEPtXjvvx3I7KGDw_o_UaSRH3v2A","expires_in":7200}
+--------
+NULL  
+[2018-07-29 00:27:28] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_UEZolvFZvd3XXxa7c51NFSQLPawr3wSG3S8CPp47F8K5El5EJJbUTrbfF12-8KqMN33-L3mHqqkfha51y-Tq5HKiIe-a5iDUSlPFhSjaQs5F4aNPvIoP-E_Qkkin_M2pK-yVWdEG-iFvhR4LYGTiAHACKX&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 29 Jul 2018 00:27:39 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm5yjcEcZzp7R1X0Qta-e7xngWjtJrTgHFZE2nBvhhpcng","expires_in":7200}
+--------
+NULL  
+[2018-07-31 02:35:29] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_nCg3kfp68rrTxDq9c51NFSQLPawr3wSG3S8CPpGHCbP5asnPj4jguXI48qn2qHKEHs4YtMP3CryA2b7RxN3V71vPRGEwg3vr0hBW2rT23yjwBp8PuftXv-fGZRR17BjSUmAunt2TxWRROt0MTQXcAGAJGN&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Tue, 31 Jul 2018 02:35:29 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm6q_SHAbh-bcKAbLuBhKb5vq9UHkFWVdE4QXUm8q4EjTA","expires_in":7200}
+--------
+NULL  
+[2018-07-31 05:27:52] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_SgpI_ScT7NpYYSrXQe7uBXOiTANWHRCEJ3-QoBBr9nxJF4xZEIhg_Dr5l3XIO-L3XH9y1NaPf16LMSZ5LvEqVbVZaD-q6WJTzIe3BrWEAl-Qhd9PExPEp6JjJ2W7DxzqSQ9PGwQafCqfX08uYLMfAAAREF&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Tue, 31 Jul 2018 05:27:53 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm6GDuRl21zw4sQdfag3bI9hU3mRSu08AaGpUQx51G67yw","expires_in":7200}
+--------
+NULL  
+[2018-07-31 07:37:19] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_BAMMZh88rmQQutcktdNCL95JatQGZyIWtz4dPRZGIpeou6it3dEQTL3K1szd0ff7v4JH4IBq5UWppXKoAMf8CfzpMO09ngrXmjiBDxM6uRutzSr3BNIV6x1zKbTnN6b5VbQkuMmqQwKiFZC1IRXiACATCI&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Tue, 31 Jul 2018 07:37:21 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm73PNlC8pQ_qX53WXQpXVg8__87zQnCAqhYpM83s_yhYA","expires_in":7200}
+--------
+NULL  
+[2018-08-04 00:54:00] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_JWnxT9mLnvR6-7eJ5ZXEQK3jwYwKkK6Hggi3NFLcXBz2_vVI0OR0aBnpyK_vvm7PeRNXpOh7ilctJqiRyZC_eV-P3ffEXD2l9BWdsTqHlY3wMfdlLluIaZ1Uv9p7FVC2JXxCioJDvZAlsc14VPZaAHACWG&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sat, 04 Aug 2018 00:54:06 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm5_Br2KXFhrZHyn6e5AA9POO47gmf3BDV77dRDiO9HlDQ","expires_in":7200}
+--------
+NULL  
+[2018-08-04 02:46:10] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_rGx09SCH3t5krm3zgMu_WyYedf1Qfm0VpZNCCq1ixmsIm5DdOszyLHPnZswtpHRlun7FXVzCrdpo4oPEO_zgAgOyYCUMl5F2UoELZxNSzB9m1HEx-g7mrFCFeq9irNeJlaiP4nvE_ytI78AaFGDeAEAWXU&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sat, 04 Aug 2018 02:46:16 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm6IigNrDvLXhF7Gp0uNkQ7ZHTZyUAzLWssg73qFuHAsRg","expires_in":7200}
+--------
+NULL  
+[2018-08-04 04:40:54] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_L1tiAFhKbO3ILosvXOb_w7WqY1bI0bKrfwd1Yse_k8eibgXPJe7eKjc2MOCs9xJBEJ5B0Ta_mrpkd0BQrBE1gmFtLd86IvzLCGsIWucGSly8ZH1WcAKOYNoym_yR2e5ND16NCI6cXavuf9dcBEHjAGAUXA&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sat, 04 Aug 2018 04:41:00 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm6XHtLuPFmc0kA7tgYHVdxW0deTiXeBeWSNY3fd6Mfd2A","expires_in":7200}
+--------
+NULL  
+[2018-08-04 08:11:32] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_wCIkiyBLrU-5dvAzDqxp3oR-1ZaSWxoEkwK3l_121PNQUt1a7A_zJQLboStABQ0UTlTETPemsqyxUZScZUZjExw2793Y0txt3nj3I55KmokSdSDexqR_2v3rjBsYY8L4hGTB9SXFyfHFouPtVPLhAIAHBX&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sat, 04 Aug 2018 08:11:39 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm5aiiM-qvpjwBEtHCHtp6v65MGVrxWV2TKPC0B9LL64tA","expires_in":7200}
+--------
+NULL  
+[2018-08-06 02:53:06] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_iFpbIGbyh2BM80-68iS9gdoJwCVXR21nzDEHtwlAibwy9iqCqd0Ad3i46rU5ZEmse4wC0M4K-Gl51SD8o2z5JWrP_5gTlhUi0szpckgXlj-0tUt-DF_7DcTQCw3EFQYOBDLKsSxJMjdkK2loKIChACAYWQ&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Mon, 06 Aug 2018 02:53:06 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm4UVkT0cpDO-S8Op7zulNauG-2L-TMlA-s83PwqdSAj_g","expires_in":7200}
+--------
+NULL  
+[2018-08-07 07:04:21] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_UcAQ2TOhdXzAixg65ZXEQK3jwYwKkK6Hggi3NBccOX7dqqkj7Gvr7fblLMNx3bv39Mgg6Q0RSXeKqyOuJ4sdYfM8qjTj0m18xgW0gtG7kDE9MzzcOxO8HF9hqbpjlcgBp7cPAgZ_h58q_NXfYVXaAFABYA&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Tue, 07 Aug 2018 07:04:24 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm75Ha3oWG2hMhqebganOB1d0KPYE-89X749myHYcXAb3g","expires_in":7200}
+--------
+NULL  
+[2018-08-10 04:37:56] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_Q0mgzXGfF-vDrLNUQkWVbN9TU9va7mY_as78qyQMHSDLps4L-3vbQwmgdF0WkxM5TkgM7XsNnuEvQ3eOvEG1xXCs2Q42QJCel2fdx1fdn9DMdpznWlo9ihidhqePsErCXrFngBpL9UiH7AAwCAOiAIAJHV&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Fri, 10 Aug 2018 04:38:07 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm6906-GV-7r7rrzofFFqboE7nobx0GWlWQTdK832j-KWQ","expires_in":7200}
+--------
+NULL  
+[2018-08-10 09:09:26] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_VYGMQWyGgYGK0o9pDqxp3oR-1ZaSWxoEkwK3ly8ci3ZijTh_n2hQGxoc89bFIHYgW-W8f58QVaYVdgG7U9cJV1mKqiocrMO7LgpiAL2rkLSI9uhXa_pedabUcv60fPzoJ9UukpMeaM7_RTE6PGHjADAEVW&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Fri, 10 Aug 2018 09:09:38 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm5HPS47yy2MpssjMEGxf4iRaMpvIxwx8VexGaTd8VAfkg","expires_in":7200}
+--------
+NULL  
+[2018-08-10 11:04:38] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_z5aZ89VLonhclnsKQkWVbN9TU9va7mY_as78q-5qYNGtb3hJmaFfDnbAez8szGkkJikak0tt7_A-PiKWpEOSPIP9eFBCzuHWsTqzK3kmlDjNRijcnaoH_vB4Q309iGYdy7V4xXt9b9WYwhSzLNScAFASUZ&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Fri, 10 Aug 2018 11:04:50 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm6KG2zzQ3pGucTH0aUNmTmGmTNvemU2W9Qw0AohXCaBWQ","expires_in":7200}
+--------
+NULL  
+[2018-08-11 00:00:33] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_7dGehYDP0rV16bokVr4Rxs2RkR-SHl2aevUbMQpcQdk-v2HaYoOcAcYiqe_08JR0gNSsBgcajumHnIJqT5WhHKO6vuApcjdQ6u5ckfFnczJtmyetxuD1OD7KV2cZUBaADAEZG&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sat, 11 Aug 2018 00:00:47 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm4_HExf2r80CTog1lv2dHF22tyQYpGWnMMt-otirFTPsQ","expires_in":7200}
+--------
+NULL  
+[2018-08-11 01:57:41] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_BKBaHMbghDpx2bvOtRlGJDbLOcMHnimI2qybKEXq4PKkMfOFXKytWD-Qt3jLa3DsfPL2gmmRHoBAj18KghPxNR3Bo33ZTFj0R9gvOeTaEya81MpD2EB6WEBQT38NAYeAFAVIG&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sat, 11 Aug 2018 01:57:54 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm4_HExf2r80CTog1lv2dHF22tyQYpGWnMMt-otirFTPsQ","expires_in":7200}
+--------
+NULL  
+[2018-08-11 04:38:15] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_ZlE4_scwCAcvML33t-9rWBUitJAXpvyEc_t30KQq1g3rWVIndbQSrMSshEZlegcbrNZIbTak9T74DTonDl8_gBA0RhQN7V4L-t3z0s7pVo5NcO_EynxQSRl0LX0khylZyycrLAVY6rWW44fKHUPbAIAKXS&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sat, 11 Aug 2018 04:38:30 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm7v5rvpsVorQiMHiKTP5K5H1W2r4o_Du8ddZQbPbu4XpQ","expires_in":7200}
+--------
+NULL  
+[2018-08-11 06:30:45] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_Q6s6bbyA_t1lhuEnvfnGFBjPfll3HopqovU3sdcqYuz_sJVfV3IjNfRUHl9pG2vDGt6qiLRMlD01h3-IYTQvRmt3R6qI0pj_dsfY6KoP7tQuk1hEbqEUjYnIbuInc6qrsfvgXJH-DudKwFR5KSPdAAASAX&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sat, 11 Aug 2018 06:31:00 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm7QZBAqg5y1aSS8hLkdTmnyNxqjYzh1OBTAhL3MiM9ZPA","expires_in":7200}
+--------
+NULL  
+[2018-08-12 10:48:09] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 450
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0dt1YSmepjNdvNaFsR20WDA","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=11","data":{"first":{"value":"您有一个127元的红包快要过期啦，快去邀请好友助力吧~"},"keyword1":{"value":"还差14元"},"keyword2":{"value":"过期时间:2018-08-05 08:49:24"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 10:48:09"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 10:48:10 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410683084686852096}
+--------
+NULL  
+[2018-08-12 10:48:09] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 450
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0TJfaFjIdoAJvzxGQHCVQJM","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=13","data":{"first":{"value":"您有一个134元的红包快要过期啦，快去邀请好友助力吧~"},"keyword1":{"value":"还差77元"},"keyword2":{"value":"过期时间:2018-08-05 10:10:13"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 10:48:09"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 10:48:10 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410683088713170947}
+--------
+NULL  
+[2018-08-12 10:48:10] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 449
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0TJfaFjIdoAJvzxGQHCVQJM","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=14","data":{"first":{"value":"您有一个58元的红包快要过期啦，快去邀请好友助力吧~"},"keyword1":{"value":"还差37元"},"keyword2":{"value":"过期时间:2018-08-07 02:50:01"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 10:48:09"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 10:48:10 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410683092806811650}
+--------
+NULL  
+[2018-08-12 10:48:10] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 451
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0dt1YSmepjNdvNaFsR20WDA","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=15","data":{"first":{"value":"您有一个172元的红包快要过期啦，快去邀请好友助力吧~"},"keyword1":{"value":"还差139元"},"keyword2":{"value":"过期时间:2018-08-07 02:53:27"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 10:48:10"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 10:48:11 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410683096867110912}
+--------
+NULL  
+[2018-08-12 11:12:12] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 450
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0dt1YSmepjNdvNaFsR20WDA","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=11","data":{"first":{"value":"您有一个127元的红包快要过期啦，快去邀请好友助力吧~"},"keyword1":{"value":"还差14元"},"keyword2":{"value":"过期时间:2018-08-05 08:49:24"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 11:12:10"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 11:12:12 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410707284025769985}
+--------
+NULL  
+[2018-08-12 11:12:12] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 450
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0TJfaFjIdoAJvzxGQHCVQJM","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=13","data":{"first":{"value":"您有一个134元的红包快要过期啦，快去邀请好友助力吧~"},"keyword1":{"value":"还差77元"},"keyword2":{"value":"过期时间:2018-08-05 10:10:13"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 11:12:12"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 11:12:13 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410707289176162306}
+--------
+NULL  
+[2018-08-12 11:12:12] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 449
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0TJfaFjIdoAJvzxGQHCVQJM","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=14","data":{"first":{"value":"您有一个58元的红包快要过期啦，快去邀请好友助力吧~"},"keyword1":{"value":"还差37元"},"keyword2":{"value":"过期时间:2018-08-07 02:50:01"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 11:12:12"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 11:12:13 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410707293706010626}
+--------
+NULL  
+[2018-08-12 11:12:12] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 451
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0dt1YSmepjNdvNaFsR20WDA","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=15","data":{"first":{"value":"您有一个172元的红包快要过期啦，快去邀请好友助力吧~"},"keyword1":{"value":"还差139元"},"keyword2":{"value":"过期时间:2018-08-07 02:53:27"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 11:12:12"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 11:12:13 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410707298269626369}
+--------
+NULL  
+[2018-08-12 11:12:18] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 423
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0TJfaFjIdoAJvzxGQHCVQJM","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=5","data":{"first":{"value":"您有一个130元的红包还未使用，快去看看吧~"},"keyword1":{"value":""},"keyword2":{"value":"过期时间:1970-01-01 00:00:00"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 11:12:17"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 11:12:18 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410707386920222721}
+--------
+NULL  
+[2018-08-12 11:12:18] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 423
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0TJfaFjIdoAJvzxGQHCVQJM","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=6","data":{"first":{"value":"您有一个151元的红包还未使用，快去看看吧~"},"keyword1":{"value":""},"keyword2":{"value":"过期时间:1970-01-01 00:00:00"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 11:12:18"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 11:12:19 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410707390879645697}
+--------
+NULL  
+[2018-08-12 11:12:18] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 422
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0TJfaFjIdoAJvzxGQHCVQJM","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=7","data":{"first":{"value":"您有一个71元的红包还未使用，快去看看吧~"},"keyword1":{"value":""},"keyword2":{"value":"过期时间:1970-01-01 00:00:00"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 11:12:18"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 11:12:19 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410707395812147200}
+--------
+NULL  
+[2018-08-12 11:12:18] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 423
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0dt1YSmepjNdvNaFsR20WDA","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=8","data":{"first":{"value":"您有一个161元的红包还未使用，快去看看吧~"},"keyword1":{"value":""},"keyword2":{"value":"过期时间:1970-01-01 00:00:00"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 11:12:18"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 11:12:19 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410707399486570496}
+--------
+NULL  
+[2018-08-12 11:12:19] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 423
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0dt1YSmepjNdvNaFsR20WDA","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=9","data":{"first":{"value":"您有一个108元的红包还未使用，快去看看吧~"},"keyword1":{"value":""},"keyword2":{"value":"过期时间:2018-08-05 08:41:56"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 11:12:18"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 11:12:19 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410707403278221315}
+--------
+NULL  
+[2018-08-12 11:12:19] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 424
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0dt1YSmepjNdvNaFsR20WDA","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=10","data":{"first":{"value":"您有一个142元的红包还未使用，快去看看吧~"},"keyword1":{"value":""},"keyword2":{"value":"过期时间:2018-08-05 08:45:53"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 11:12:19"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 11:12:20 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410707407220867074}
+--------
+NULL  
+[2018-08-12 11:12:19] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=12_7NTDt0EPUCLRQWqrRXjlcezGJTHGQtEWRSsTP6G48RpYIL4Wq4cMj0s7hz4p7Z0nM7E56DBSC6G_QqsZEdnWASzJbOmhTipg7TEDrMR2r1wOND0wXAdKYbLL3xqpMLcqVEqWmvW934wvXSpeYPNdAAAKBZ HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 423
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0TJfaFjIdoAJvzxGQHCVQJM","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=12","data":{"first":{"value":"您有一个92元的红包还未使用，快去看看吧~"},"keyword1":{"value":""},"keyword2":{"value":"过期时间:2018-08-05 10:09:59"},"keyword3":{"value":""},"keyword4":{"value":"2018-08-12 11:12:19"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Sun, 12 Aug 2018 11:12:20 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":410707411079413761}
+--------
+NULL  
+[2018-08-15 01:43:09] NULL.INFO: >>>>>>>>
+POST /cgi-bin/qrcode/create?access_token=12_co4g1TgYc419xaZv_l0YDwFEY3ijZnkinfasoTnrK1w_QJXameTB7qs7atEo8WG36obyD6-uc0mIrPsPhbzax-xOgJl2fKrgWY0R5DhWj-94H4jhKgdp9h4zxwxHUe3HOD_4EUpTiSG-jnZVKLEdACAOPI HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 99
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"action_name":"QR_STR_SCENE","action_info":{"scene":{"scene_str":"foo"}},"expire_seconds":2505600}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Wed, 15 Aug 2018 01:43:17 GMT
+Content-Length: 192
+
+{"ticket":"gQHX7zwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyNHFqblotbThlZ2gxS1IwcGhyY2EAAgQ1hXNbAwSAOyYA","expire_seconds":2505600,"url":"http:\/\/weixin.qq.com\/q\/024qjnZ-m8egh1KR0phrca"}
+--------
+NULL  
+[2018-08-15 01:59:54] NULL.INFO: >>>>>>>>
+POST /cgi-bin/qrcode/create?access_token=12_co4g1TgYc419xaZv_l0YDwFEY3ijZnkinfasoTnrK1w_QJXameTB7qs7atEo8WG36obyD6-uc0mIrPsPhbzax-xOgJl2fKrgWY0R5DhWj-94H4jhKgdp9h4zxwxHUe3HOD_4EUpTiSG-jnZVKLEdACAOPI HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 97
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"action_name":"QR_STR_SCENE","action_info":{"scene":{"scene_str":"0"}},"expire_seconds":2505600}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Wed, 15 Aug 2018 02:00:01 GMT
+Content-Length: 192
+
+{"ticket":"gQFc7zwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAya2FreVpmbThlZ2gxS3g0cE5yY3AAAgQhiXNbAwSAOyYA","expire_seconds":2505600,"url":"http:\/\/weixin.qq.com\/q\/02kakyZfm8egh1Kx4pNrcp"}
+--------
+NULL  
+[2018-08-15 02:02:31] NULL.INFO: >>>>>>>>
+POST /cgi-bin/qrcode/create?access_token=12_co4g1TgYc419xaZv_l0YDwFEY3ijZnkinfasoTnrK1w_QJXameTB7qs7atEo8WG36obyD6-uc0mIrPsPhbzax-xOgJl2fKrgWY0R5DhWj-94H4jhKgdp9h4zxwxHUe3HOD_4EUpTiSG-jnZVKLEdACAOPI HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 97
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"action_name":"QR_STR_SCENE","action_info":{"scene":{"scene_str":"0"}},"expire_seconds":2505600}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Wed, 15 Aug 2018 02:02:39 GMT
+Content-Length: 192
+
+{"ticket":"gQG78DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyekowUFlMbThlZ2gxSV81cDFyYzEAAgS-iXNbAwSAOyYA","expire_seconds":2505600,"url":"http:\/\/weixin.qq.com\/q\/02zJ0PYLm8egh1I_5p1rc1"}
+--------
+NULL  
+[2018-08-15 02:05:10] NULL.INFO: >>>>>>>>
+POST /cgi-bin/qrcode/create?access_token=12_co4g1TgYc419xaZv_l0YDwFEY3ijZnkinfasoTnrK1w_QJXameTB7qs7atEo8WG36obyD6-uc0mIrPsPhbzax-xOgJl2fKrgWY0R5DhWj-94H4jhKgdp9h4zxwxHUe3HOD_4EUpTiSG-jnZVKLEdACAOPI HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 97
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"action_name":"QR_STR_SCENE","action_info":{"scene":{"scene_str":"0"}},"expire_seconds":2505600}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Wed, 15 Aug 2018 02:05:18 GMT
+Content-Length: 192
+
+{"ticket":"gQG97zwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyMk9YZFoybThlZ2gxTHU1cHhyY08AAgReinNbAwSAOyYA","expire_seconds":2505600,"url":"http:\/\/weixin.qq.com\/q\/022OXdZ2m8egh1Lu5pxrcO"}
+--------
+NULL  
+[2018-08-15 06:40:35] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=12_iF8QwNETFmTXafGC025v2-7hCe5Gk-2UaMxvKoll1_5PFa-dNoabVBmpCZrrl2tzZgElcXmOWlxcZWR8OHy7fS1Gj4kmqxrWksxVCZNGAQdcTwPyml_h1hUCkd1E6jPr5EpptfTztvSg2Gy0XLQfAFABPU&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Wed, 15 Aug 2018 06:40:44 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm54iNEWMoK3Tdru-DnK3KjquaADaQ7AbXy6z1MDkWrn-g","expires_in":7200}
+--------
+NULL  

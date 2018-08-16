@@ -262,7 +262,7 @@ var hi=0;
                 multiple: true,
                 filebutton: ".filePicker",
                 uploadButton: null,
-                url: "/upload2/index",
+                url: "/img/upload",
                 base64strUrl: "/upload2/FromImgBase64Str",
                 filebase: "mfile", //mvc后台需要对应的名称
                 auto: true,
@@ -385,23 +385,6 @@ var hi=0;
                         if (item.size > 1024 * 1024 *1) {
                             console.log("图片大于1M，开始进行压缩...");
                             $('#show-status').text('图片大于1M，开始进行压缩...');
-							/*	
-                            (function(img) {
-                                var mpImg = new MegaPixImage(img);
-                                var resImg = document.getElementById("resultImage");
-                                resImg.file = img;
-                                mpImg.render(resImg, { maxWidth: 500, maxHeight: 500, quality: 1 }, function () {                                    
-                                    //resImg.onload = function () {
-                                        var base64 = getBase64Image(resImg);
-                                        var base641 = resImg.src;
-                                        //console.log("base64", base64.length, simpleSize(base64.length), base641.length, simpleSize(base641.length));
-                                        //$('#dataurl').append(base64 +'<br/>');
-										//$('#dataurl').append(base64.length +',')
-                                        if (para.auto) core.uploadBase64str(base64);
-                                    //}
-                                });
-                            })(item);
-							*/
 							if(i==0){
 								var img0=new Image();
 								var canvas0 = document.createElement("canvas"); 
@@ -582,6 +565,7 @@ var hi=0;
                     });
                     //$('#show-status1').append(base64Str.length+',');
                     xhr.open("post", para.base64strUrl, true);
+                    xhr.setRequestHeader("X-CSRF-TOKEN", para.csrf_token);
                     xhr.send(formdata);
                 },
                 uploadFile: function (file) {
@@ -605,6 +589,7 @@ var hi=0;
                     });
 					//$('#show-status1').append('b ');
                     xhr.open("post", para.url, true);
+                    xhr.setRequestHeader("X-CSRF-TOKEN", para.csrf_token);
                     xhr.send(formdata);
                 },
                 checkComplete:function() {
@@ -649,30 +634,8 @@ var hi=0;
                     reader.readAsDataURL(file);
                 }
             }
-            var nums=0;
+
             $(document).on("change", para.uploadButton, function () {
-            	
-            	nums++;
-      
-            	if(para.uploadButton == "#fileImage"){
-            		
-	                if(nums>1){
-	                    mui.alert("封面只能上传1张图片");
-	                    return;
-	                };
-            	}else if(para.uploadButton == "#newfang_fileImage"){
-            		if(nums>1){
-	                    mui.alert("封面只能上传1张图片");
-	                    return;
-	                };
-            	}else{
-            	
-	                if(nums>5){
-	                    mui.alert("轮播图最多只能上传5张图片");
-	                    return;
-	                };
-            	}
-                
                 core.fileSelected();
             });
 

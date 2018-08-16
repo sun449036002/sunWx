@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>买房返现</title>
+    <meta name="apple-tel-web-app-capable" content="yes">
+    <meta name="apple-tel-web-app-status-bar-style" content="black">
+    <title>购房返现</title>
     <link href="{{asset('css/mui.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/mui.picker.min.css')}}" />
     <link href="{{asset('css/mui.styles.css')}}" rel="stylesheet" />
@@ -30,11 +30,11 @@
         </div>
         <div class="mui-input-row">
             <label for="houses">楼盘面积</label>
-            <input id="area" name="area" type="text" class="mui-input-clear" placeholder="单位：㎡">
+            <input id="acreage" name="acreage" type="text" class="mui-input-clear" placeholder="单位：㎡">
         </div>
         <div class="mui-input-row">
-            <label for="buytime">购买时间</label>
-            <input id="buytime" name="buytime" data-options='{"type":"date"}' type="text" class="mui-input-clear" placeholder="请填写购买时间">
+            <label for="buyTime">购买时间</label>
+            <input id="buyTime" name="buyTime" data-options='{"type":"date"}' type="text" class="mui-input-clear" placeholder="请填写购买时间">
         </div>
         <div class="mui-input-row">
             <label for="amount">房款金额</label>
@@ -50,8 +50,8 @@
             <input id="type2" name="type2" type="text" style="display: none;" class="mui-input-clear" placeholder="请选择购房方式">
         </div>
         <div class="mui-input-row">
-            <label for="mobile">联系电话</label>
-            <input id="mobile" name="mobile" type="text" class="mui-input-clear" placeholder="联系电话">
+            <label for="tel">联系电话</label>
+            <input id="tel" name="tel" type="text" class="mui-input-clear" placeholder="联系电话">
         </div>
         <div class="mui-input-row upload-row">
             <div class="mui-row">
@@ -92,22 +92,20 @@
         uploadButton: "#fileImage",
         uploadButtonName: 'fileImage',
         fileInfoId: '#imgs',
+        csrf_token:"{{csrf_token()}}",
         uploadComplete: uploadIndexComplete
     });
 
+    var imgs = [];
     function uploadIndexComplete(res) {
-        var pul2 = '';
-        if (res.match(/\|/g) == null) {
-            pul2 = res
-        } else {
-            var lu = res.split('|')
-            console.log(lu)
-            pul2 = lu[1]
+        res = JSON.parse(res);
+        if (res.code === 0) {
+            if ((res.imgs || []).length > 0) {
+                imgs.push(res.imgs[0]);
+            }
         }
-        console.log(pul2)
-        $("#imgs").val(pul2);
-
-        console.log("uploadComplete", $("#imgs").val());
+        console.log(imgs);
+        $("#imgs").val(imgs);
     }
 </script>
 
@@ -121,7 +119,7 @@
         mui(".last-btn-div").on('tap', '#submitBtn', checkForm);
 
         /*选择看房时间*/
-        mui(".mui-input-row").on('tap', '#buytime', function() {
+        mui(".mui-input-row").on('tap', '#buyTime', function() {
 
             var optionsJson = this.getAttribute('data-options') || '{}';
             var options = JSON.parse(optionsJson);
@@ -130,7 +128,7 @@
 
             picker.show(function(rs) {
 
-                $("#buytime").val(rs.text);
+                $("#buyTime").val(rs.text);
 
                 picker.dispose();
             });
@@ -147,19 +145,17 @@
         var check = true;
 
         var houses = $("#houses").val();
-        var buytime = $("#buytime").val();
+        var buyTime = $("#buyTime").val();
         var amount = $("#amount").val();
         var buyers = $("#buyers").val();
-        var mobile = $("#mobile").val();
+        var tel = $("#tel").val();
         var alipay = $("#alipay").val();
         var weixin = $("#weixin").val();
         var bankcard = $("#bankcard").val();
         var address = $("#address").val();
-        var area = $("#area").val();
+        var acreage = $("#acreage").val();
         var img=$("#imgs").val();
         var mortgage=$('#type2').val();
-        //				var regx = /^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$ 或 ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;
-
         var payTypeNum = 0;
 
         mui(".feedback-form input[type=text]").each(function() {
@@ -183,13 +179,13 @@
             return false;
         }
 
-        if(isNaN(area)) {
+        if(isNaN(acreage)) {
             mui.alert('请输入正确的面积！');
             $this.text('提交');
             return false;
         }
 
-        if(!(/^1[3|4|5|7|8]\d{9}$/.test(mobile))) {
+        if(!(/^1[3|4|5|7|8]\d{9}$/.test(tel))) {
 
             mui.alert('请输入正确的手机号！');
             $this.text('提交');
@@ -205,38 +201,37 @@
             mui.alert('请填写数字');
             $this.text('提交');
             return false;
-        } else {
-            //              	console.log("ok");
-            //              	console.log(houses + "|" + buytime + "|" + amount + "|" + buyers + "|" + mobile + "|" + alipay + "|" + weixin + "|" + bankcard);
-            //              	return;
-            $.post('/index/SubmitCash', {
+        }
+
+        $.ajax({
+            type : 'post',
+            url : "/my/submitBackMoney",
+            data : {
                 houses: houses,
-                buytime: buytime,
+                buyTime: buyTime,
                 amount: amount,
                 buyers: buyers,
-                mobile: mobile,
+                tel: tel,
                 alipay: alipay,
                 weixin: weixin,
                 bankcard: bankcard,
                 address: address,
-                area: area,
+                acreage: acreage,
                 img:img,
                 mortgage:mortgage
-            }, function(data) {
-                console.log(data);
-                var jsondata = eval('(' + data + ')');
-
-                if(jsondata.status == "ok") {
-                    $("input[type=text]").val("");
-                    mui.alert("提交成功", function() {
-                        mui.back();
-                    });
+            },
+            dataType : "json",
+            headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},
+            success : function(res){
+                if (res.code > 0) {
+                    mui.alert(res.msg);
                 } else {
-                    mui.alert(""+json.data.message+"");
-                    $this.text('提交');
+                    mui.alert("提交成功", function(){
+                        window.location.href = "/my"
+                    });
                 }
-            });
-        }
+            }
+        });
 
     }
 </script>
@@ -244,20 +239,11 @@
     (function($, doc) {
         $.init();
         $.ready(function() {
-            /**
-             * 获取对象属性的值
-             * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
-             * @param {Object} obj 对象
-             * @param {String} param 属性名
-             */
-            var _getParam = function(obj, param) {
-                return obj[param] || '';
-            };
             //普通示例
             var userPicker = new $.PopPicker();
             userPicker.setData([{
                 value: '0',
-                text: '一次性付款'
+                text: '全额付款'
             }, {
                 value: '1',
                 text: '按揭'
