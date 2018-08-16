@@ -2,6 +2,7 @@
 namespace App\Logic;
 use App\Model\AreaModel;
 use App\Model\RoomCategoryModel;
+use App\Model\RoomSourceModel;
 
 /**
  * Created by PhpStorm.
@@ -9,8 +10,13 @@ use App\Model\RoomCategoryModel;
  * Date: 2018/8/14
  * Time: 13:30
  */
-class RoomSourceLogic
+class RoomSourceLogic extends BaseLogic
 {
+
+    public function getRoomSouceList() {
+        $list = (new RoomSourceModel())->getList(['*'], ['isDel' => 0]);
+        return $this->formatRoomList($list);
+    }
     /**
      * 格式化房源列表
      * @param $roomList
@@ -34,12 +40,8 @@ class RoomSourceLogic
         foreach ($roomList as $key => $row) {
             $row->categoryName = empty($row->roomCategoryId) ? "" : ($cateArr[$row->roomCategoryId] ?? "未知");
             $row->area = empty($row->areaId) ? "" : ($areaArr[$row->areaId] ?? "未知");
-            if (!empty($row->imgJson)) {
-                $imgs = json_decode($row->imgJson);
-                $row->cover = $imgs->cover ?? "";
-                $row->imgs = $imgs->imgs ?? [];
-                unset($row->imgJson);
-            }
+            $row->cover = str_replace("http://picl.whatareu.top", env('IMG_DOMAIN'),$row->cover ?? "");
+            $row->imgs = $row->imgs ?? [];
         }
 
         return $roomList;

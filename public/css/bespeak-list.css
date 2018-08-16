@@ -1,0 +1,32 @@
+.main.bespeak {
+    width:100vw;
+    height:100vh;
+    background-color: #eee;
+    font-size: .2rem;
+}
+
+.bespeak .bespeak-item {
+    display: flex;
+    background-color:#fff;
+    margin-bottom:.03rem;
+    padding: .15rem;
+}
+.bespeak .bespeak-item img {
+    width:2rem;
+    height: 1.5rem;
+    align-self: center;
+}
+.bespeak .bespeak-item .info {
+    margin-left: .15rem;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    height: 1.5rem;
+    justify-content: space-around;
+}
+.bespeak .bespeak-item .info .num {
+    color:#e60012;
+}
+.bespeak .bespeak-item .info .time {
+    color:#888;
+}

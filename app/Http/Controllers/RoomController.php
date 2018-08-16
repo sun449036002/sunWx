@@ -149,6 +149,13 @@ class RoomController extends Controller
         }
 
         $model = new BespeakModel();
+
+        //查询此房源当前用户是否预约过
+        $count = $model->where("roomId", $data['roomId'])->where('userId', $this->user['id'])->where("tel", $data['tel'])->count();
+        if ($count) {
+            return ResultClientJson(100, '当前房源您有还未完成的预约,请更换账号或者联系的手机号');
+        }
+
         $newId = $model->insert([
             'userId' => $this->user['id'],
             'adminId' => $this->user['admin_id'],
@@ -162,6 +169,8 @@ class RoomController extends Controller
         ]);
 
         if ($newId) {
+            //TODO 发送短信消息给对应的手机号
+
             return ResultClientJson(0, '预约成功');
         }
         return ResultClientJson(100, '预约失败');

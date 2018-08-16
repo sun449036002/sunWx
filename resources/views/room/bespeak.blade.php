@@ -119,11 +119,11 @@
                 headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},
                 success : function(res){
                     if (res.code > 0) {
-                        mui.alert("预约成功", function(){
-                            window.location.href = "/my/bespeak-list"
-                        });
-                    } else {
                         mui.alert(res.msg);
+                    } else {
+                        mui.alert("预约成功", function(){
+                            window.location.href = "/my/bespeakList"
+                        });
                     }
                     speaking = false;
                 },

@@ -55,7 +55,7 @@
                 <div class="right-side"></div>
             </div>
             </a>
-            <a href="">
+            <a href="{{route('/my/bespeakList')}}">
             <div class="item">
                 <div class="left-side user-icon-2">预约记录</div>
                 <div class="right-side"></div>
@@ -67,7 +67,7 @@
                 <div class="right-side"></div>
             </div>
             </a>
-            <a href="">
+            <a href="{{route('/my/backMoneyPage')}}">
             <div class="item">
                 <div class="left-side user-icon-4">购房返现</div>
                 <div class="right-side"></div>

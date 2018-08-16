@@ -28,6 +28,9 @@ Route::get('/category/list', "RoomController@getCategoryList")->middleware("weix
 
 //我的个人中心
 Route::get('/my', "MyController@index")->middleware("weixinOAuth");
+Route::get('/my/bespeakList', "MyController@bespeakList")->middleware("weixinOAuth")->name("/my/bespeakList");
+Route::get('/my/bespeakDetail', "MyController@bespeakDetail")->middleware("weixinOAuth");
+Route::get('/my/backMoneyPage', "MyController@backMoneyPage")->middleware("weixinOAuth")->name("/my/backMoneyPage");
 
 //领现金红包
 Route::get('cash-red-pack', "IndexController@cashRedPack")->middleware("weixinOAuth");
