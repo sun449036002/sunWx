@@ -95,7 +95,7 @@ class wxController extends Controller
                             $avatar_url = $saleFilePath;
                         }
                     }
-                    $adminId = 0;
+
                     $qr_scene_data=[];
                     $qr_scene_str = $userinfo['qr_scene_str'];
                     foreach (explode(";", $qr_scene_str) as $item) {
