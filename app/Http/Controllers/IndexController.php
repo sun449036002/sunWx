@@ -133,7 +133,7 @@ class IndexController extends Controller
                 $record->userId = $this->user['id'];
                 $record->money = $insertData['received'];
                 $record->headImgUrl = $this->user['avatar_url'] ?? "";
-                $record->time = 1;
+                $record->time = beforeWhatTime(1);
                 $this->pageData['redPackRecordList'][] = $record;
             } else {
                 exit("SQL执行失败");
