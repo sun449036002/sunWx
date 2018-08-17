@@ -53,6 +53,14 @@
             <label for="tel">联系电话</label>
             <input id="tel" name="tel" type="text" class="mui-input-clear" placeholder="联系电话">
         </div>
+        <div class="mui-input-row">
+            <label for="tel">我的红包余额</label>
+            <input id="tel" name="balance" type="text" class="mui-input-clear" placeholder="我的红包余额，显示最大多少余额">
+        </div>
+        <div class="mui-input-row">
+            <label for="tel">朋友赠送的红包</label>
+            <input id="tel" name="friendBalance" type="text" class="mui-input-clear" placeholder="朋友赠送的红包下拉选择框，好友分组，显示金额，从大到小排序">
+        </div>
         <div class="mui-input-row upload-row">
             <div class="mui-row">
                 <label>购房凭证</label>

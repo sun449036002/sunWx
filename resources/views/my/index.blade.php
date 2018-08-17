@@ -33,12 +33,12 @@
                         <span class="text">未使用</span>
                     </div>
                 </a>
-                <a href="#">
-                    <div class="red-pack-item">
-                        <span class="icon used"></span>
-                        <span class="text">已使用</span>
-                    </div>
-                </a>
+                {{--<a href="#">--}}
+                    {{--<div class="red-pack-item">--}}
+                        {{--<span class="icon used"></span>--}}
+                        {{--<span class="text">已使用</span>--}}
+                    {{--</div>--}}
+                {{--</a>--}}
                 <a href="#">
                     <div class="red-pack-item">
                         <span class="icon expired"></span>
