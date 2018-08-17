@@ -10,6 +10,34 @@
     <link href="{{asset('css/mui.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/mui.picker.min.css')}}" />
     <link href="{{asset('css/mui.styles.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{asset("css/my-red-pack-list.css")}}"/>
+
+    <style type="text/css">
+        html {
+            font-size: calc(100vw/7.5);
+        }
+        body {
+            margin:0;
+            width: 7.5rem;
+            font-size: .3rem;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        p {
+            margin:0;
+            padding:0;
+        }
+
+        .red-pack-main {
+            display: none;
+            position: absolute;
+            top:0;
+            left:100vw;
+            z-index: 11;
+        }
+    </style>
 
 </head>
 
@@ -54,12 +82,14 @@
             <input id="tel" name="tel" type="text" class="mui-input-clear" placeholder="联系电话">
         </div>
         <div class="mui-input-row">
-            <label for="tel">我的红包余额</label>
-            <input id="tel" name="balance" type="text" class="mui-input-clear" placeholder="我的红包余额，显示最大多少余额">
+            <label for="tel">我的可用红包</label>
+            <input id="redPackIdsClick" type="text" class="mui-input-clear" placeholder="点击选取我的红包" readonly>
+            <input id="redPackIds" type="hidden" name="redPackIds" value="">
         </div>
         <div class="mui-input-row">
-            <label for="tel">朋友赠送的红包</label>
-            <input id="tel" name="friendBalance" type="text" class="mui-input-clear" placeholder="朋友赠送的红包下拉选择框，好友分组，显示金额，从大到小排序">
+            <label for="tel">赠送的红包</label>
+            <input id="friendRedPackIdsClick" type="text" class="mui-input-clear" placeholder="点击选取朋友赠送的红包，朋友赠送的红包下拉选择框，好友分组，显示金额，从大到小排序" readonly>
+            <input id="friendRedPackIds" type="hidden" value="">
         </div>
         <div class="mui-input-row upload-row">
             <div class="mui-row">
@@ -90,6 +120,14 @@
         <div class="last-btn-div"><button type="submit" class="mui-btn mui-btn-red" id="submitBtn">提交</button></div>
     </div>
 </div>
+
+
+<div class="red-pack-main">
+    <div class="red-pack-box">
+        <div class="list"></div>
+    </div>
+</div>
+
 <script src="{{asset('js/zepto.min.js')}}"></script>
 <script src="{{asset('js/h5upload.js')}}"></script>
 <script type="text/javascript">
@@ -140,6 +178,57 @@
 
                 picker.dispose();
             });
+        });
+
+        function showRedPackList(list) {
+            var redPackListDom = $(".red-pack-main .list");
+            redPackListDom.empty();
+            $.each(list, function(k,item){
+                console.log(item);
+                var html = '<div class="item">' +
+                    '<div class="bg"></div>' +
+                    '<div class="data">' +
+                        '<div class="money">' + item.total + '元</div>' +
+                        '<div class="from">活动</div>' +
+                        '<div class="expiredTime">过期时间:' + item.useExpiredTime + '</div>' +
+                    '</div>' +
+                    '</div>';
+                redPackListDom.append(html);
+
+            });
+        }
+
+        //红包选择
+        $("#redPackIdsClick").on("click", function(){
+            var self = $(this);
+            console.log(self);
+            console.log("我被点击啦，AJAX获取我的红包列表，再打勾选择，再计算汇总显示");
+            $.ajax({
+                type : 'get',
+                url : "{{route('/my/getMyEnabledRedPackList')}}",
+                data : {},
+                dataType : "json",
+                headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},
+                success : function(res){
+                    if (res.code > 0) {
+                        mui.alert(res.msg);
+                    } else {
+                        var list = res.data || [];
+                        if (list.length === 0) {
+                            self.val("暂无可用红包");
+                            return false;
+                        } else {
+                            showRedPackList(list);
+                            $(".red-pack-main").show().animate({
+                                left : 0
+                            }, 100, "linear");
+                        }
+                    }
+                }
+            });
+        });
+        $("#friendRedPackIdsClick").on("click", function(){
+            console.log("我也被点击啦，AJAX获取我的红包列表，再打勾选择，再计算汇总显示");
         });
     });
 

@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Logic\BespeakLogic;
 use App\Model\CashbackModel;
+use App\Model\RedPackModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -115,5 +116,71 @@ class MyController extends Controller
         }
         return ResultClientJson(100, '提交失败');
 
+    }
+
+    /**
+     * 我的红包列表
+     * 类型分为：全部，未完成，未使用，已过期
+     */
+    public function redPackList(Request $request) {
+        $type = $request->get("type", 'all');
+        $this->pageData['type'] = $type;
+
+        $where = ['userId' => $this->user['id']];
+        switch ($type) {
+            case 'unFinish':
+                $where['status'] = 0;
+                $where[] = ["expiredTime", "<", time()];
+                break;
+            case 'unUse':
+                $where['status'] = 1;
+                $where[] = ["useExpiredTime", ">", time()];
+                break;
+            case 'expired':
+                $where['status'] = 1;
+                $where[] = ["useExpiredTime", "<=", time()];
+                break;
+        }
+        $list = (new RedPackModel())->getList(['*'], $where);
+        foreach ($list as $item) {
+            if ($item->status == 0) {
+                if ($item->expiredTime >= time()) {
+                    $item->type = 'unFinish';
+                } else {
+                    $item->type = 'expired';
+                }
+            } else if ($item->status == 1){
+                if ($item->useExpiredTime >= time()) {
+                    $item->type = 'unUse';
+                } else {
+                    $item->type = 'useExpired';
+                }
+            }
+        }
+
+//        dd($list);
+
+        $this->pageData['list'] = $list;
+        return view('my/redPackList', $this->pageData);
+
+    }
+
+    /**
+     * 获取我可用的红包列表
+     * @return string
+     */
+    public function getMyEnabledRedPackList() {
+        $where = [
+            'status' => 1,
+            'userId' => $this->user['id'],
+            ["useExpiredTime", ">", time()]
+        ];
+        $list = (new RedPackModel())->getList(['*'], $where);
+
+        foreach ($list as $item) {
+            $item->useExpiredTime = date("Y-m-d H:i:s", $item->useExpiredTime);
+        }
+
+        return ResultClientJson(0, 'ok', $list);
     }
 }

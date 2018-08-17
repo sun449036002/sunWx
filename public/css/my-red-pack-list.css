@@ -1,0 +1,56 @@
+.red-pack-main {
+    font-size: .24rem;
+    width:100vw;
+    min-height:100vh;
+    background-image:linear-gradient(#EEE,#CCC);
+}
+.red-pack-main .bar {
+    display: flex;
+    height: 1rem;
+    line-height: 1rem;
+    background-color: #FFF;
+    justify-content: space-around;
+}
+
+.bar .bar-item {
+    width:25vw;
+    text-align: center;
+}
+.bar .bar-item.selected {
+    color:#169ada;
+    border-bottom: .03rem solid #169ada;
+}
+
+.red-pack-main .red-pack-box {
+    margin-top: 0.2rem;
+    padding: .15rem;
+}
+.red-pack-main .red-pack-box .list {
+}
+.red-pack-main .red-pack-box .list .item {
+    display: flex;
+    background-color: #FFF;
+    margin-bottom: .15rem;
+    border-radius: .1rem;
+    border: 1px solid #CCC;
+
+}
+.red-pack-main .red-pack-box .list .item .bg {
+    width: 3rem;
+    height: 2rem;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../imgs/my-red-pack-bg.png");
+}
+.red-pack-main .red-pack-box .list .item .data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: .15rem;
+}
+.red-pack-main .red-pack-box .list .item .data .money {
+    font-weight: 600;
+    color: #ca4040;
+    font-size: .3rem;
+}

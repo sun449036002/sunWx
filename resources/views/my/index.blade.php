@@ -15,19 +15,19 @@
         <div class="red-pack">
             <div class="title">我的红包</div>
             <div class="red-pack-items">
-                <a href="#">
+                <a href="{{route('/my/redPackList')}}">
                 <div class="red-pack-item">
                     <span class="icon all"></span>
                     <span class="text">全部</span>
                 </div>
                 </a>
-                <a href="#">
+                <a href="{{route('/my/redPackList')}}?type=unFinish">
                     <div class="red-pack-item">
                         <span class="icon un-complete"></span>
                         <span class="text">未完成</span>
                     </div>
                 </a>
-                <a href="#">
+                <a href="{{route('/my/redPackList')}}?type=unUse">
                     <div class="red-pack-item">
                         <span class="icon un-use"></span>
                         <span class="text">未使用</span>
@@ -39,7 +39,7 @@
                         {{--<span class="text">已使用</span>--}}
                     {{--</div>--}}
                 {{--</a>--}}
-                <a href="#">
+                <a href="{{route('/my/redPackList')}}?type=expired">
                     <div class="red-pack-item">
                         <span class="icon expired"></span>
                         <span class="text">已过期</span>
