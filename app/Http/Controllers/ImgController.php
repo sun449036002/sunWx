@@ -26,7 +26,7 @@ class ImgController
         $destinationPath = "/images/cash-back/" . date("Ymd");
         if (!empty($data['mfile'])) {
             $filePath = $request->file("mfile")->store($destinationPath);
-            $result['imgs'][] = env('IMG_DOMAIN') . "/" . ltrim($filePath, "/");
+            $result['imgs'][] = "/" . ltrim($filePath, "/");
             return $result;
         } else if (!empty($data['imgs'])) {
             $filePath = [];
@@ -46,7 +46,7 @@ class ImgController
                     $fileName = date('YmdHis').mt_rand(100,999) . '.'.$extension; // 重命名
                     $ok = $img->move(storage_path() . "/app" . $destinationPath, $fileName); // 保存图片
                     $result['isOk'][] = $ok;
-                    $filePath[] = env('IMG_DOMAIN') . $destinationPath.'/'.$fileName;
+                    $filePath[] = $destinationPath.'/'.$fileName;
                 }
             }
             $result['imgs'] = $filePath;
