@@ -102,6 +102,11 @@ class RoomController extends Controller
         return ResultClientJson(0, '数据获取成功', ['list' => $roomList, 'isEnd' => empty($roomList)]);
     }
 
+    /**
+     * 房源详情
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function detail(Request $request) {
         $id = $request->get("id");
 
@@ -124,7 +129,7 @@ class RoomController extends Controller
      */
     public function mark(Request $request) {
         $roomId = $request->post("roomId");
-        $markStatus = $request->post("markStatus");
+        $markStatus = intval($request->post("markStatus"));
 
         $model = new RoomSourceMarkModel();
         $row = $model->getOne(['id'], ['userId' => $this->user['id'], 'roomId' => $roomId]);
