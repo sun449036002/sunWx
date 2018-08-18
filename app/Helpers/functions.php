@@ -83,6 +83,6 @@ function headImgUrl($headImgUrl) {
     if (strpos($headImgUrl, 'images/wxUserHead') === false) {
         return $headImgUrl;
     } else {
-        return env('IMG_DOMAIN') . "/" . ltrim($headImgUrl, '/');
+        return env('APP_IMG_DOMAIN') . "/" . ltrim($headImgUrl, '/');
     }
 }
