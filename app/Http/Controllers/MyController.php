@@ -105,7 +105,9 @@ class MyController extends Controller
             'buyers' => $data['buyers'],
             'tel' => $data['tel'],
             'buyTime' => $data['buyTime'],
-            'type' => $data['mortgage'],
+            'type' => $data['mortgage'],//购房方式
+            'redPackIds' => $data['redPackIds'],
+            'friendRedPackIds' => $data['friendRedPackIds'],
             'imgs' => json_encode($imgs, JSON_UNESCAPED_UNICODE),
             'paymentMethod' => json_encode($paymentMethodList, JSON_UNESCAPED_UNICODE),
             'createTime' => time(),
@@ -169,16 +171,49 @@ class MyController extends Controller
      * 获取我可用的红包列表
      * @return string
      */
-    public function getMyEnabledRedPackList() {
-        $where = [
-            'status' => 1,
-            'userId' => $this->user['id'],
-            ["useExpiredTime", ">", time()]
-        ];
-        $list = (new RedPackModel())->getList(['*'], $where);
+    public function getMyEnabledRedPackList(Request $request) {
+        $type = $request->get("type", "my");
 
-        foreach ($list as $item) {
-            $item->useExpiredTime = date("Y-m-d H:i:s", $item->useExpiredTime);
+        if ($type == 'friend') {
+            $where = [
+                'status' => 1,
+                'userId' => $this->user['id'],
+                ["useExpiredTime", ">", time()],
+                ['fromUserId', '>', 0]
+            ];
+            $list = (new RedPackModel())->getList(['*'], $where);
+            $friendTotalMoney = [];
+            if (!empty($list)) {
+                foreach ($list as $item) {
+                    if (empty($friendTotalMoney[$item->fromUserId])) {
+                        $friendTotalMoney[$item->fromUserId] = 0;
+                    } else {
+                        $friendTotalMoney[$item->fromUserId] += $item->total;
+                    }
+                }
+                arsort($friendTotalMoney);
+                $useFriendId = array_keys(array_slice($friendTotalMoney, 0, 1, true))[0] ?? 0;
+                foreach ($list as $key => $item) {
+                    if ($useFriendId != $item->fromUserId || $item->userId == $item->fromUserId) {
+                        unset($list[$key]);
+                        continue;
+                    }
+                    $item->type = $type;
+                    $item->useExpiredTime = date("Y-m-d H:i:s", $item->useExpiredTime);
+                }
+            }
+        } else {
+            $where = [
+                'status' => 1,
+                'userId' => $this->user['id'],
+                'fromUserId' => 0,
+                ["useExpiredTime", ">", time()]
+            ];
+            $list = (new RedPackModel())->getList(['*'], $where);
+            foreach ($list as $item) {
+                $item->type = $type;
+                $item->useExpiredTime = date("Y-m-d H:i:s", $item->useExpiredTime);
+            }
         }
 
         return ResultClientJson(0, 'ok', $list);

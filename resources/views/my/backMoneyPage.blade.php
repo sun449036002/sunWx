@@ -34,8 +34,46 @@
             display: none;
             position: absolute;
             top:0;
+            bottom:0;
             left:100vw;
             z-index: 11;
+        }
+        .red-pack-main .bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            z-index: 12;
+            justify-content: space-between;
+            padding: 0 .3rem;
+        }
+        .red-pack-main .red-pack-box {
+            margin-top:1.2rem;
+        }
+        .red-pack-main .item {
+            position: relative;
+        }
+        .red-pack-main .item.selected .selected-icon {
+            width: 1rem;
+            height: 1rem;
+            background-size: cover;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-image: url('{{asset("imgs/selected.png")}}');
+        }
+        .red-pack-main .bar span {
+            padding: 0 .1rem;
+            font-weight: 600;
+        }
+        .red-pack-main .bar .btn-select-sure {
+            background-color: #1ab394;
+            color: #FFF;
+            height: .6rem;
+            margin-top: .2rem;
+            line-height: .6rem;
+            padding: 0 .3rem;
+            border-radius: .1rem;
         }
     </style>
 
@@ -89,7 +127,7 @@
         <div class="mui-input-row">
             <label for="tel">赠送的红包</label>
             <input id="friendRedPackIdsClick" type="text" class="mui-input-clear" placeholder="点击选取朋友赠送的红包，朋友赠送的红包下拉选择框，好友分组，显示金额，从大到小排序" readonly>
-            <input id="friendRedPackIds" type="hidden" value="">
+            <input id="friendRedPackIds" type="hidden" name="friendRedPackIds" value="">
         </div>
         <div class="mui-input-row upload-row">
             <div class="mui-row">
@@ -121,8 +159,14 @@
     </div>
 </div>
 
-
+{{-- 红包展示区域 --}}
 <div class="red-pack-main">
+    <div class="bar">
+        <div class="info">
+            选择<span class="num">0</span>个红包，总价值<span class="total-val">0</span>元
+        </div>
+        <div class="btn-select-sure">确定</div>
+    </div>
     <div class="red-pack-box">
         <div class="list"></div>
     </div>
@@ -185,10 +229,11 @@
             redPackListDom.empty();
             $.each(list, function(k,item){
                 console.log(item);
-                var html = '<div class="item">' +
+                var html = '<div class="item ' + item.type + '" data-id="' + item.id + '">' +
+                    '<div class="selected-icon"></div>' +
                     '<div class="bg"></div>' +
                     '<div class="data">' +
-                        '<div class="money">' + item.total + '元</div>' +
+                        '<div class="money"><span>' + item.total + '</span>元</div>' +
                         '<div class="from">活动</div>' +
                         '<div class="expiredTime">过期时间:' + item.useExpiredTime + '</div>' +
                     '</div>' +
@@ -198,11 +243,17 @@
             });
         }
 
-        //红包选择
+        //我的红包选择
         $("#redPackIdsClick").on("click", function(){
             var self = $(this);
-            console.log(self);
-            console.log("我被点击啦，AJAX获取我的红包列表，再打勾选择，再计算汇总显示");
+
+            //清空原先的数据
+            self.val('');
+            $("#redPackIds").val('');
+            $(".red-pack-main .bar .num").text(0);
+            $(".red-pack-main .bar .total-val").text(0);
+
+            //获取数据
             $.ajax({
                 type : 'get',
                 url : "{{route('/my/getMyEnabledRedPackList')}}",
@@ -222,13 +273,80 @@
                             $(".red-pack-main").show().animate({
                                 left : 0
                             }, 100, "linear");
+                            $(document).scrollTop(0);
                         }
                     }
                 }
             });
         });
+        //朋友赠送的红包选择
         $("#friendRedPackIdsClick").on("click", function(){
-            console.log("我也被点击啦，AJAX获取我的红包列表，再打勾选择，再计算汇总显示");
+            var self = $(this);
+
+            //清空原先的数据
+            self.val('');
+            $("#friendRedPackIds").val('');
+            $(".red-pack-main .bar .num").text(0);
+            $(".red-pack-main .bar .total-val").text(0);
+
+            //获取数据
+            $.ajax({
+                type : 'get',
+                url : "{{route('/my/getMyEnabledRedPackList')}}",
+                data : {
+                    type : 'friend'
+                },
+                dataType : "json",
+                headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},
+                success : function(res){
+                    if (res.code > 0) {
+                        mui.alert(res.msg);
+                    } else {
+                        var list = res.data || [];
+                        if (list.length === 0) {
+                            self.val("暂无可用红包");
+                            return false;
+                        } else {
+                            showRedPackList(list);
+                            $(".red-pack-main").show().animate({
+                                left : 0
+                            }, 100, "linear");
+                            $(document).scrollTop(0);
+                        }
+                    }
+                }
+            });
+        });
+
+        //红包选择
+        $(".red-pack-main").on("click", ".item", function(e){
+            $(this).toggleClass("selected");
+            var totalMoney = 0;
+            var selectedItems = $(".red-pack-main .item.selected");
+            var redPackIds = [];
+            selectedItems.each(function(){
+                var v = $(this).find(".money span").text();
+                totalMoney += parseInt(v);
+                redPackIds.push($(this).data("id"));
+            });
+            $(".red-pack-main .bar .num").text(selectedItems.length);
+            $(".red-pack-main .bar .total-val").text(totalMoney);
+
+            //区别是我的红包选择，还是朋友红包的选择
+            if($(this).hasClass("friend")) {
+                $("#friendRedPackIds").val(redPackIds);
+                $("#friendRedPackIdsClick").val("您选择了" + selectedItems.length + "个红包，价值" + totalMoney + '元');
+            } else {
+                $("#redPackIds").val(redPackIds);
+                $("#redPackIdsClick").val("您选择了" + selectedItems.length + "个红包，价值" + totalMoney + '元');
+            }
+        });
+
+        //确认选择
+        $(".red-pack-main").on("click", ".btn-select-sure", function(e){
+            $(".red-pack-main").animate({
+                left : "100vw"
+            }).hide();
         });
     });
 
