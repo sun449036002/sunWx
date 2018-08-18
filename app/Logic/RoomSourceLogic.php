@@ -40,10 +40,10 @@ class RoomSourceLogic extends BaseLogic
         foreach ($roomList as $key => $row) {
             $row->categoryName = empty($row->roomCategoryId) ? "" : ($cateArr[$row->roomCategoryId] ?? "未知");
             $row->area = empty($row->areaId) ? "" : ($areaArr[$row->areaId] ?? "未知");
-            $row->cover = empty($row->cover) ? "" : env('APP_IMG_DOMAIN') . $row->cover;
+            $row->cover = empty($row->cover) ? "" : env('MEMBER_IMG_DOMAIN') . $row->cover;
             $row->imgs = $row->imgs ?? [];
             foreach ($row->imgs as $k => $img) {
-                $row->imgs[$k] = env('APP_IMG_DOMAIN') . $img;
+                $row->imgs[$k] = env('MEMBER_IMG_DOMAIN') . $img;
             }
         }
 
