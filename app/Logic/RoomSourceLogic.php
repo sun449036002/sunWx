@@ -1,6 +1,7 @@
 <?php
 namespace App\Logic;
 use App\Model\AreaModel;
+use App\Model\HouseTypeModel;
 use App\Model\RoomCategoryModel;
 use App\Model\RoomSourceModel;
 
@@ -31,6 +32,12 @@ class RoomSourceLogic extends BaseLogic
             $cateArr[$cate->id] = $cate->name;
         }
 
+        $houseTypeArr = [];
+        $houseTypeList = (new HouseTypeModel())->getList(['*'], ['isDel' => 0]);
+        foreach ($houseTypeList as $houseType) {
+            $houseTypeArr[$houseType->id] = $houseType->name;
+        }
+
         $areaArr = [];
         $areaList = (new AreaModel())->getList(['id', 'name'], ['isDel' => 0]);
         foreach ($areaList as $area) {
@@ -38,6 +45,7 @@ class RoomSourceLogic extends BaseLogic
         }
 
         foreach ($roomList as $key => $row) {
+            $row->houseType = empty($row->houseTypeId) ? "" : ($houseTypeArr[$row->houseTypeId] ?? "未知");
             $row->categoryName = empty($row->roomCategoryId) ? "" : ($cateArr[$row->roomCategoryId] ?? "未知");
             $row->area = empty($row->areaId) ? "" : ($areaArr[$row->areaId] ?? "未知");
             $row->cover = empty($row->cover) ? "" : env('MEMBER_IMG_DOMAIN') . $row->cover;
