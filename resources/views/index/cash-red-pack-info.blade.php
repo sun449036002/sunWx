@@ -168,7 +168,7 @@
         </div>
         <div class="product-list">
             @foreach($roomList as $room)
-                <a href="/room-source/detail?id={{$room->id}}">
+                <a href="/room/detail?id={{$room->id}}">
                 <div class="item">
                     <div class="img"><img src="{{$room->cover}}"/></div>
                     <div class="product-info">
