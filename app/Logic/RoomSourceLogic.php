@@ -49,5 +49,4 @@ class RoomSourceLogic extends BaseLogic
 
         return $roomList;
     }
-
 }
