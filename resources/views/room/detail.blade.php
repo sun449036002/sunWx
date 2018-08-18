@@ -29,7 +29,7 @@
 
         //预约看房
         $(".btn-box .btn-see").on("click", function(){
-            window.location.href = "room/bespeak?roomId={{$row->id}}";
+            window.location.href = "/room/bespeak?roomId={{$row->id}}";
         });
 
         //TODO 致电案场经理
