@@ -48,13 +48,18 @@ class RoomSourceLogic extends BaseLogic
             $row->houseType = empty($row->houseTypeId) ? "" : ($houseTypeArr[$row->houseTypeId] ?? "未知");
             $row->categoryName = empty($row->roomCategoryId) ? "" : ($cateArr[$row->roomCategoryId] ?? "未知");
             $row->area = empty($row->areaId) ? "" : ($areaArr[$row->areaId] ?? "未知");
-            $row->cover = empty($row->cover) ? "" : env('MEMBER_IMG_DOMAIN') . $row->cover;
+
             //封面图片有缩略图 用缩略图
+            $img = json_decode($row->imgJson);
+            $row->cover = empty($img->cover) ? "" : env('MEMBER_IMG_DOMAIN') . $img->cover;
             $row->cover = str_replace("room-source", 'room-source-thumbnail', $row->cover);
-            $row->imgs = $row->imgs ?? [];
-            foreach ($row->imgs as $k => $img) {
-                $row->imgs[$k] = env('MEMBER_IMG_DOMAIN') . $img;
+
+            //其他图片
+            $otherImgs = [];
+            foreach ($img->imgs as $k => $_img) {
+                $otherImgs[] = env('MEMBER_IMG_DOMAIN') . $_img;
             }
+            $row->imgs = $otherImgs;
         }
 
         return $roomList;

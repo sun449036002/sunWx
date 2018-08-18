@@ -99,6 +99,8 @@ class RoomController extends Controller
 
         $roomList = (new RoomSourceLogic())->formatRoomList($roomList);
 
+//        dd($roomList);
+
         return ResultClientJson(0, '数据获取成功', ['list' => $roomList, 'isEnd' => empty($roomList)]);
     }
 
