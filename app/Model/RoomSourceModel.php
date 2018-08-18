@@ -26,7 +26,6 @@ class RoomSourceModel extends BaseModel
             $imgs = json_decode($row->imgJson);
             $row->cover = $imgs->cover ?? "";
             $row->imgs = $imgs->imgs ?? [];
-            unset($row->imgJson);
         }
         return $row;
     }
@@ -59,7 +58,6 @@ class RoomSourceModel extends BaseModel
                 $imgs = json_decode($row->imgJson);
                 $row->cover = $imgs->cover ?? "";
                 $row->imgs = $imgs->imgs ?? [];
-                unset($row->imgJson);
             }
         }
 
