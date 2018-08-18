@@ -15,7 +15,7 @@
                 url : "/room/mark",
                 data : {
                     roomId : "{{$row->id}}",
-                    markStatus : !isMark
+                    markStatus : isMark ? 0 : 1
                 },
                 dataType : "json",
                 headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},

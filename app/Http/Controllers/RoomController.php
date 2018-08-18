@@ -116,9 +116,9 @@ class RoomController extends Controller
 
         //查询是否已经收藏
         $model = new RoomSourceMarkModel();
-        $markRow = $model->getOne(['id'], ['userId' => $this->user['id'], 'roomId' => $id]);
+        $markRow = $model->getOne(['status'], ['userId' => $this->user['id'], 'roomId' => $id]);
 
-        $this->pageData['isMark'] = !empty($markRow);
+        $this->pageData['isMark'] = !empty($markRow->status);
         $this->pageData['row'] = $row;
         $this->pageData['title'] = '详情 - ' . $row->name;
         return view('room/detail', $this->pageData);
@@ -137,6 +137,7 @@ class RoomController extends Controller
             $model->insert([
                 'userId' => $this->user['id'],
                 'roomId' => $roomId,
+                'createTime' => time(),
                 'status' => 1
             ]);
         } else {
