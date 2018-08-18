@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Consts\CookieConst;
 use App\Consts\WxConst;
+use App\Logic\RoomSourceLogic;
 use App\Model\AdsModel;
 use App\Model\RedPackConfigModel;
 use App\Model\RedPackModel;
@@ -158,10 +159,14 @@ class IndexController extends Controller
 
         //取得所有房源
         $roomSourceModel = new RoomSourceModel();
-        $this->pageData['roomList'] = $roomSourceModel->getList(
+        $roomList = $roomSourceModel->getList(
             ['id', "type", "roomCategoryId", "name", "areaId", "houseTypeId", "avgPrice", "imgJson"],
-            ['isDel' => 0]
+            [
+                'isDel' => 0,
+                'isRecommend' => 1
+            ]
         );
+        $this->pageData['roomList'] = (new RoomSourceLogic())->formatRoomList($roomList);
 
 //        dd($this->pageData['roomList']);
 
