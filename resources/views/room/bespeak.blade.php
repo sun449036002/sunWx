@@ -163,3 +163,5 @@
         <div class="input-btn">提交</div>
     </div>
 </div>
+
+@include('components/bottomMenu')
