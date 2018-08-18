@@ -50,16 +50,18 @@ class RoomSourceLogic extends BaseLogic
             $row->area = empty($row->areaId) ? "" : ($areaArr[$row->areaId] ?? "未知");
 
             //封面图片有缩略图 用缩略图
-            $img = json_decode($row->imgJson);
-            $row->cover = empty($img->cover) ? "" : env('MEMBER_IMG_DOMAIN') . $img->cover;
-            $row->cover = str_replace("room-source", 'room-source-thumbnail', $row->cover);
+            if (!empty($row->imgJson)) {
+                $img = json_decode($row->imgJson);
+                $row->cover = empty($img->cover) ? "" : env('MEMBER_IMG_DOMAIN') . $img->cover;
+                $row->cover = str_replace("room-source", 'room-source-thumbnail', $row->cover);
 
-            //其他图片
-            $otherImgs = [];
-            foreach ($img->imgs as $k => $_img) {
-                $otherImgs[] = env('MEMBER_IMG_DOMAIN') . $_img;
+                //其他图片
+                $otherImgs = [];
+                foreach ($img->imgs as $k => $_img) {
+                    $otherImgs[] = env('MEMBER_IMG_DOMAIN') . $_img;
+                }
+                $row->imgs = $otherImgs;
             }
-            $row->imgs = $otherImgs;
         }
 
         return $roomList;
