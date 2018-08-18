@@ -14,6 +14,7 @@ use App\Model\AreaModel;
 use App\Model\BespeakModel;
 use App\Model\HouseTypeModel;
 use App\Model\RoomCategoryModel;
+use App\Model\RoomSourceMarkModel;
 use App\Model\RoomSourceModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -106,9 +107,38 @@ class RoomController extends Controller
 
         $row = (new RoomSourceModel())->getOne(['*'], ['id' => $id]);
         list($row) = (new RoomSourceLogic())->formatRoomList([$row]);
+
+
+        //查询是否已经收藏
+        $model = new RoomSourceMarkModel();
+        $markRow = $model->getOne(['id'], ['userId' => $this->user['id'], 'roomId' => $id]);
+
+        $this->pageData['isMark'] = !empty($markRow);
         $this->pageData['row'] = $row;
         $this->pageData['title'] = '详情 - ' . $row->name;
         return view('room/detail', $this->pageData);
+    }
+
+    /**
+     * 房源收藏
+     */
+    public function mark(Request $request) {
+        $roomId = $request->post("roomId");
+        $markStatus = $request->post("markStatus");
+
+        $model = new RoomSourceMarkModel();
+        $row = $model->getOne(['id'], ['userId' => $this->user['id'], 'roomId' => $roomId]);
+        if (empty($row)) {
+            $model->insert([
+                'userId' => $this->user['id'],
+                'roomId' => $roomId,
+                'status' => 1
+            ]);
+        } else {
+            $model->updateData(['status' => $markStatus], ['id' => $row->id]);
+        }
+
+        return ResultClientJson(0, '操作成功');
     }
 
     /**

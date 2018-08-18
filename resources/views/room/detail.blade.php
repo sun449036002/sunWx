@@ -5,6 +5,37 @@
     $(document).ready(function () {
         //房源内容HTML
         $(".detail-box .content").html(htmlDecode("{{$row->desc}}"));
+
+        //收藏
+        $(".house-box .btn-mark").on("click", function(){
+            var self = $(this);
+            var isMark = $(this).hasClass("marked");
+            $.ajax({
+                type : 'post',
+                url : "/room/mark",
+                data : {
+                    roomId : "{{$row->id}}",
+                    markStatus : !isMark
+                },
+                dataType : "json",
+                headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},
+                success : function(res){
+                    if (res.code === 0) {
+                        isMark ? self.removeClass("marked") : self.addClass("marked");
+                    }
+                }
+            });
+        });
+
+        //预约看房
+        $(".btn-box .btn-see").on("click", function(){
+            window.location.href = "room/bespeak?roomId={{$row->id}}";
+        });
+
+        //TODO 致电案场经理
+        $(".btn-box .btn-tel").on("click", function(){
+            alert('拨打电话功能')
+        });
     });
 </script>
 
@@ -18,7 +49,7 @@
                 <div class="title">[{{$row->name}}]{{$row->area}}</div>
                 <div class="create-time">发布:{{date("Y-m-d H:i:s", $row->createTime)}}</div>
             </div>
-            <div class="btn-mark">收藏</div>
+            <div class="btn-mark {{$isMark ? "marked" : ""}}"></div>
         </div>
         <div class="mid-box">
             <div class="price-box">

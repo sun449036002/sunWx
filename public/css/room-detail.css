@@ -32,10 +32,14 @@ body {
 }
 
 .main .house-box .title-box .btn-mark {
-    font-size: 0.3rem;
-    background-color: #afdafc;
-    padding: 0.2rem 0.3rem;
-    border-radius: 0.2rem;
+    width: 1rem;
+    height: 1rem;
+    background-image: url(../imgs/mark.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.main .house-box .title-box .btn-mark.marked {
+    background-image: url(../imgs/marked.png);
 }
 
 .main .house-box .mid-box {
