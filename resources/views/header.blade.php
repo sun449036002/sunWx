@@ -8,6 +8,7 @@
     <title>{{$title ?? "首页"}}</title>
 
     <script src="{{asset('js/jquery-2.1.1.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{asset('js/jquery.easing.min.js')}}" type="text/javascript" charset="utf-8"></script>
     <script src="{{asset('js/jweixin-1.2.0.js')}}" type="text/javascript" charset="utf-8"></script>
     <script src="{{asset('js/common.js')}}" type="text/javascript" charset="utf-8"></script>
 

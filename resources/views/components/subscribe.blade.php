@@ -16,7 +16,7 @@
     left: 1.3rem;
     right: 0;
     bottom: 0;
-    top: 50%;
+    top: -100%;
     margin: auto;
     height: 100vh;
 }
@@ -49,6 +49,13 @@
             var jsonData = res.data || {};
             $(".subscribeBox .qr-code-img").attr("src", jsonData.qrCodeUrl || "");
             $(".subscribeBox").show();
+            $(".subscribeBox .qr-box").animate({
+                top:"50%"
+            }, {
+                easing: "easeOutBounce",
+                duration: 500,
+                complete:function(){}
+            });
         });
     }
 </script>
