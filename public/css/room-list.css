@@ -16,7 +16,7 @@ body {
     height: .8rem;
     z-index: 99;
     border-bottom: 1px solid #888;
-    justify-content: space-evenly;
+    justify-content: space-around;
     background-color: #4d8ebb;
 }
 
