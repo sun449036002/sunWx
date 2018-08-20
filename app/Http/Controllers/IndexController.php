@@ -78,7 +78,7 @@ class IndexController extends Controller
         $model = new RedPackRecordModel();
         $rows = $model->join("red_pack as b", "redPackId", "=", "b.id")
             ->select(['b.userId', 'red_pack_record.money', "red_pack_record.createTime"])
-            ->groupBy("redPackId", "userId", "money", "createTime")
+            ->groupBy("red_pack_record.id", "redPackId", "userId", "money", "createTime")
             ->orderBy("red_pack_record.id", "desc")
             ->limit(10)->get();
         if (!empty($rows)) {
