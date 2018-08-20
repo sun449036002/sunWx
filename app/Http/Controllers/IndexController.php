@@ -22,6 +22,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
+use Monolog\Handler\IFTTTHandler;
 
 class IndexController extends Controller
 {
@@ -40,7 +41,11 @@ class IndexController extends Controller
         $this->pageData['roomList'] = $roomList;
 
         //取得所有可用的广告
-        $this->pageData['adsList'] = (new AdsModel())->getList(['*'], ['isDel' => 0]);
+        $adsList = (new AdsModel())->getList(['*'], ['isDel' => 0]);
+        foreach ($adsList as $ad) {
+            //TODO 图片地址 拼接上 env('MEMBER_IMG_DOMAIN')
+        }
+        $this->pageData['adsList'] = $adsList;
 
         return view('index/home', $this->pageData);
     }
@@ -104,8 +109,8 @@ class IndexController extends Controller
             $rdConfig = $redPackConfigModel->getOne(['*'], [['id', '>', 0]]);
 
             $totalMoney = mt_rand($rdConfig->minMoney ?? 0, $rdConfig->maxMoney ?? 0);
-            $min = $totalMoney * 0.4 * 100;
-            $max = $totalMoney * 0.6 * 100;
+            $min = $totalMoney * (intval($rdConfig->firstMinPercent) / 100) * 100;
+            $max = $totalMoney * (intval($rdConfig->firstMaxPercent) / 100) * 100;
             $curReceived = number_format(mt_rand($min, $max)/100, 2);
             $insertData = [
                 'userId' => $this->user['id'],
@@ -133,6 +138,7 @@ class IndexController extends Controller
                 $record = new \stdClass();
                 $record->userId = $this->user['id'];
                 $record->money = $insertData['received'];
+                $record->nickname = $this->user['username'] ?? "";
                 $record->headImgUrl = $this->user['avatar_url'] ?? "";
                 $record->time = beforeWhatTime(1);
                 $this->pageData['redPackRecordList'][] = $record;
@@ -161,10 +167,7 @@ class IndexController extends Controller
         $roomSourceModel = new RoomSourceModel();
         $roomList = $roomSourceModel->getList(
             ['id', "type", "roomCategoryId", "name", "areaId", "houseTypeId", "avgPrice", "imgJson"],
-            [
-                'isDel' => 0,
-                'isRecommend' => 1
-            ]
+            ['isDel' => 0,'isRecommend' => 1]
         );
         $this->pageData['roomList'] = (new RoomSourceLogic())->formatRoomList($roomList);
 
@@ -229,8 +232,16 @@ class IndexController extends Controller
         $unCompleteRedPack = $redPackModel->getUnComplete($this->user['id']);
         $jsonData['unCompleteRedPackId'] = !empty($unCompleteRedPack->id) ? $unCompleteRedPack->id : 0;
 
-        //TODO 检测今天是否已经对此用户助力过
+        $redPackRecordModel = new RedPackRecordModel();
 
+        //今天是否助力过
+        $isHelped = $redPackRecordModel->where([
+            "redPackId" => $data['redPackId'],
+            'userId' => $this->user['id'],
+        ])->count();
+        if ($isHelped) {
+            exit(ResultClientJson(101, '您已经帮他助力过，不能重复助力'));
+        }
 
         //若当前红包已不需要助力，则跳过
         $row = $redPackModel->getOne(['id', 'userId','total', 'received'], ['id' => $data['redPackId'], 'status' => 0, ['expiredTime', ">", time()]]);
@@ -245,6 +256,18 @@ class IndexController extends Controller
         //增加一次助力
         $minMoney = ($rdConfig->minAssistanceMoney ?? 0) * 100;
         $maxMoney = ($rdConfig->maxAssistanceMoney ?? 0) * 100;
+
+        //若配置了最低助力限制 且 剩余的金额低于这个值，则取新的助力范围
+        $remainderAssistanceMoney = intval($rdConfig->remainderAssistanceMoney);
+        $remainderMoney = $row->total - $row->received;
+        if ($remainderAssistanceMoney > 0 &&  $remainderMoney <= $remainderAssistanceMoney) {
+            if (!empty($rdConfig->secondMinAssistanceMoney) && !empty($rdConfig->secondMaxAssistanceMoney)) {
+                $minMoney = ($rdConfig->secondMinAssistanceMoney) * 100;
+                $maxMoney = ($rdConfig->secondMaxAssistanceMoney) * 100;
+            }
+        }
+
+        //颠倒则互换
         if ($minMoney > $maxMoney) {
             list($minMoney, $maxMoney) = [$maxMoney, $minMoney];
         }
@@ -255,7 +278,6 @@ class IndexController extends Controller
         if ($isLast) {
             $curReceivedMoney = $row->total - $row->received;
         }
-        $redPackRecordModel = new RedPackRecordModel();
         $recordData = [
             'redPackId' => $data['redPackId'],
             'userId' => $this->user['id'],

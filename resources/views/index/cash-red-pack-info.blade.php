@@ -187,6 +187,7 @@
         </div>
 
         <div class="help-list" style="display: none;">
+            {{--{{dd($redPackRecordList)}}--}}
             @foreach($redPackRecordList as $item)
                 <div class="help-item">
                     <div class="head-img">
