@@ -433,7 +433,9 @@
                 address: address,
                 acreage: acreage,
                 img:img,
-                mortgage:mortgage
+                mortgage:mortgage,
+                redPackIds : $("#redPackIds").val(),
+                friendRedPackIds : $("#friendRedPackIds").val()
             },
             dataType : "json",
             headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},
