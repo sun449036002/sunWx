@@ -10,8 +10,10 @@ namespace App\Http\Controllers;
 
 
 use App\Logic\BespeakLogic;
+use App\Logic\RoomSourceLogic;
 use App\Model\CashbackModel;
 use App\Model\RedPackModel;
+use App\Model\RoomSourceModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -217,5 +219,16 @@ class MyController extends Controller
         }
 
         return ResultClientJson(0, 'ok', $list);
+    }
+
+    /**
+     * 我收藏的房源
+     */
+    public function markRoomList() {
+        $list = (new RoomSourceLogic())->getMarkRoomList();
+        $this->pageData['title'] = '收藏的房源';
+        $this->pageData['list'] = $list;
+
+        return view('my/markRoomList', $this->pageData);
     }
 }

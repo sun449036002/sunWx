@@ -41,6 +41,8 @@ Route::post('/my/submitBackMoney', "MyController@submitBackMoney")->middleware("
 //我的红包
 Route::get('/my/redPackList', "MyController@redPackList")->middleware("weixinOAuth")->name("/my/redPackList");
 Route::get('/my/getMyEnabledRedPackList', "MyController@getMyEnabledRedPackList")->middleware("weixinOAuth")->name("/my/getMyEnabledRedPackList");
+//我收藏的房源
+Route::get('/my/markRooms', "MyController@markRoomList")->middleware("weixinOAuth")->name("/my/markRooms");
 
 
 //领现金红包

@@ -18,6 +18,22 @@ class RoomSourceLogic extends BaseLogic
         $list = (new RoomSourceModel())->getList(['*'], ['isDel' => 0]);
         return $this->formatRoomList($list);
     }
+
+
+    /**
+     * 获取我收藏的房源
+     * @return array
+     */
+    public function getMarkRoomList() {
+        $list = (new RoomSourceModel())->join("room_source_mark as m", "room_source.id", "=", "m.roomId")->select("room_source.*")->where("m.userId", $this->user['id'])->get();
+        if (!empty($list)) {
+            $list = $this->formatRoomList($list);
+            return $list;
+        }
+
+        return [];
+    }
+
     /**
      * 格式化房源列表
      * @param $roomList
