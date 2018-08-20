@@ -47,7 +47,6 @@
         <div class="title-box">
             <div class="info">
                 <div class="title">[{{$row->name}}]{{$row->area}}</div>
-                <div class="create-time">发布:{{date("Y-m-d H:i:s", $row->createTime)}}</div>
             </div>
             <div class="btn-mark {{$isMark ? "marked" : ""}}"></div>
         </div>
@@ -64,7 +63,9 @@
             </div>
             <div class="desc-box">
                 <div class="label">楼盘介绍</div>
-                <div class="name"><span>楼盘名称:</span>{{$row->name}}</div>
+                <div class="name"><span>楼盘名称:</span>{{$row->name}} [{{$row->categoryName}}]</div>
+                <div class="area"><span>楼盘面积:</span>{{$row->acreage}} m²</div>
+                <div class="area"><span>楼盘总价:</span>{{$row->totalPrice}} 万元</div>
                 <div class="area"><span>所在区域:</span>{{$row->area}}</div>
             </div>
             <div class="detail-box">

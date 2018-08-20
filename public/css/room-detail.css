@@ -22,10 +22,13 @@ body {
     margin-bottom: .3rem;
     background-color: #FFF;
 }
+.main .house-box .title-box .info {
+    display: flex;
+}
 .main .house-box .title-box .info .title {
+    align-self: center;
     font-size: .3rem;
     font-weight: 600;
-    margin-bottom: .1rem;
 }
 .main .house-box .title-box .info .create-time {
     color:#888;
@@ -72,7 +75,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 1.8rem;
+    height: 2.8rem;
 }
 .main .house-box .mid-box .desc-box span {
     padding-right:.2rem;

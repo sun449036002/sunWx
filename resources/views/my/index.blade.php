@@ -49,9 +49,9 @@
         </div>
 
         <div class="items">
-            <a href="">
+            <a href="{{route('/my/markRooms')}}">
             <div class="item">
-                <div class="left-side user-icon-1">我的关注</div>
+                <div class="left-side user-icon-1">我的收藏</div>
                 <div class="right-side"></div>
             </div>
             </a>
