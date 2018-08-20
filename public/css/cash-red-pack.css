@@ -81,12 +81,11 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     margin: auto;
-    overflow: hidden;
+    /*overflow: hidden;*/
     width: 5rem;
     height: 2rem;
-    font-size: 0.36rem;
+    font-size: 0.3rem;
     padding: 0;
-    /* border: 1px solid aqua; */
 }
 
 .cash-red-pack-main .withdraw-list .item {
