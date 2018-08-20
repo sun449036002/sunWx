@@ -74,7 +74,7 @@ class IndexController extends Controller
 //        exit('建设中');
         $this->pageData['title'] = "现金红包";
 
-        //获取已经集满的红包数据  //TODO 取最近10条记录即可，不重复的用户,不重复的红包ID
+        //获取已经集满的红包数据 (取最近10条记录即可，不重复的用户,不重复的红包ID)
         $model = new RedPackRecordModel();
         $rows = $model->join("red_pack as b", "redPackId", "=", "b.id")
             ->select(['b.userId', 'red_pack_record.money', "red_pack_record.createTime"])
