@@ -300,6 +300,16 @@ class IndexController extends Controller
     }
 
     /**
+     *
+     * 红包规则
+     */
+    public function rule() {
+        $row = (new RedPackConfigModel())->getOne(['rule'], []);
+
+        return ResultClientJson(0, 'ok', ['rule' => $row->rule ?? ""]);
+    }
+
+    /**
      * 模拟用户登录
      * @param Request $request
      */
@@ -316,4 +326,5 @@ class IndexController extends Controller
     public function getCookie() {
         var_dump(Cookie::get(CookieConst::WECHAT_USER));
     }
+
 }

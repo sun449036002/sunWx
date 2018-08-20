@@ -44,10 +44,11 @@ Route::get('/my/getMyEnabledRedPackList', "MyController@getMyEnabledRedPackList"
 
 
 //领现金红包
-Route::get('cash-red-pack', "IndexController@cashRedPack")->middleware("weixinOAuth");
-Route::get('cash-red-pack-info', "IndexController@cashRedPackInfo")->middleware("weixinOAuth");
-Route::get('assistance-page', "IndexController@assistancePage")->middleware("weixinOAuth");
-Route::post('assistance', "IndexController@assistance")->middleware("weixinOAuth");
+Route::get('/cash-red-pack', "IndexController@cashRedPack")->middleware("weixinOAuth");
+Route::get('/cash-red-pack-info', "IndexController@cashRedPackInfo")->middleware("weixinOAuth");
+Route::get('/assistance-page', "IndexController@assistancePage")->middleware("weixinOAuth");
+Route::post('/assistance', "IndexController@assistance")->middleware("weixinOAuth");
+Route::get('/red-pack/rule', "IndexController@rule")->middleware("weixinOAuth");
 
 
 /**

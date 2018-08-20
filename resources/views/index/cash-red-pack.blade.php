@@ -95,7 +95,7 @@
 </head>
 <body>
 <div class="cash-red-pack-main">
-    <div class="tips">您有一个现金红包未领取</div>
+    <div class="tips">您有一个500元现金红包未领取</div>
     <div class="rule">活动规则</div>
     <div class="mid">
         <div class="red-pack-info">
@@ -114,7 +114,7 @@
                 </ul>
             </div>
         </div>
-        <div class="msg">最高可领100元现金~</div>
+        <div class="msg">最高可领500元现金~</div>
     </div>
 </div>
 

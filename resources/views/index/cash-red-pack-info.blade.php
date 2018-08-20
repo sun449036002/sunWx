@@ -191,7 +191,7 @@
                 <div class="help-item">
                     <div class="head-img">
                         <img src="{{$item->headImgUrl}}">
-                        <div class="nickname">明白清风,在{{$item->time}}</div>
+                        <div class="nickname">{{$item->nickname}},在{{$item->time}}</div>
                     </div>
                     <div class="text">助力{{$item->money}}元</div>
                 </div>
