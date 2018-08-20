@@ -76,7 +76,21 @@ class IndexController extends Controller
 
         //获取已经集满的红包数据  //TODO 取最近10条记录即可，不重复的用户,不重复的红包ID
         $model = new RedPackRecordModel();
-        $rows = $model->getList(['userId', 'money']);
+        $rows = $model->join("red_pack as b", "redPackId", "=", "b.id")
+            ->select(['b.userId', 'red_pack_record.money', "red_pack_record.createTime"])
+            ->groupBy("redPackId", "userId", "money", "createTime")
+            ->orderBy("red_pack_record.id", "desc")
+            ->limit(10)->get();
+        if (!empty($rows)) {
+            $userModel = new UserModel();
+            foreach ($rows as $row) {
+                $_u = $userModel->getUserinfoByOpenid($row->userId);
+                $row->nickname = $_u['username'] ?? "";
+                $row->headImgUrl = $_u['avatar_url'] ?? "";
+                $row->time = beforeWhatTime($row->createTime ?? 0);
+            }
+        }
+
         $this->pageData['rows'] = $rows;
 
         return view("index/cash-red-pack", $this->pageData);
