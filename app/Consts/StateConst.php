@@ -16,4 +16,11 @@ class StateConst {
 
     //红包集满状态
     const RED_PACK_FILL_UP = 1;
+
+    //红包使用审核中
+    const RED_PACK_USING = 2;
+
+    //红包已使用
+    const RED_PACK_USED = 3;
+
 }

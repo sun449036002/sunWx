@@ -9,12 +9,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Consts\StateConst;
 use App\Logic\BespeakLogic;
 use App\Logic\RoomSourceLogic;
 use App\Model\CashbackModel;
 use App\Model\RedPackModel;
 use App\Model\RoomSourceModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class MyController extends Controller
@@ -116,6 +118,15 @@ class MyController extends Controller
         ]);
 
         if ($insertId) {
+            //红包变更为使用中
+            $allRedPackIds = array_merge(explode(",", $data['redPackIds']), explode(",", $data['friendRedPackIds']));
+            if (!empty($allRedPackIds)) {
+                $ok = (new RedPackModel())->updateData(['status' => StateConst::RED_PACK_USING], [["id", "in", $allRedPackIds]]);
+                if (empty($ok)) {
+                    Log::warning("submitBackMoney", ['msg' => '红包状态更新失败', 'allRedPackIds' => $allRedPackIds]);
+                }
+            }
+
             return ResultClientJson(0, '提交成功');
         }
         return ResultClientJson(100, '提交失败');
@@ -133,27 +144,27 @@ class MyController extends Controller
         $where = ['userId' => $this->user['id']];
         switch ($type) {
             case 'unFinish':
-                $where['status'] = 0;
+                $where['status'] = StateConst::RED_PACK_UN_FILL_UP;
                 $where[] = ["expiredTime", "<", time()];
                 break;
             case 'unUse':
-                $where['status'] = 1;
+                $where['status'] = StateConst::RED_PACK_FILL_UP;
                 $where[] = ["useExpiredTime", ">", time()];
                 break;
             case 'expired':
-                $where['status'] = 1;
+                $where['status'] = StateConst::RED_PACK_FILL_UP;
                 $where[] = ["useExpiredTime", "<=", time()];
                 break;
         }
         $list = (new RedPackModel())->getList(['*'], $where);
         foreach ($list as $item) {
-            if ($item->status == 0) {
+            if ($item->status == StateConst::RED_PACK_UN_FILL_UP) {
                 if ($item->expiredTime >= time()) {
                     $item->type = 'unFinish';
                 } else {
                     $item->type = 'expired';
                 }
-            } else if ($item->status == 1){
+            } else if ($item->status == StateConst::RED_PACK_FILL_UP){
                 if ($item->useExpiredTime >= time()) {
                     $item->type = 'unUse';
                 } else {
@@ -170,7 +181,7 @@ class MyController extends Controller
     }
 
     /**
-     * 获取我可用的红包列表
+     * 返现申请中，获取我可用的红包 与 朋友赠送的可用红包
      * @return string
      */
     public function getMyEnabledRedPackList(Request $request) {
@@ -178,7 +189,7 @@ class MyController extends Controller
 
         if ($type == 'friend') {
             $where = [
-                'status' => 1,
+                'status' => StateConst::RED_PACK_FILL_UP,
                 'userId' => $this->user['id'],
                 ["useExpiredTime", ">", time()],
                 ['fromUserId', '>', 0]
@@ -206,7 +217,7 @@ class MyController extends Controller
             }
         } else {
             $where = [
-                'status' => 1,
+                'status' => StateConst::RED_PACK_FILL_UP,
                 'userId' => $this->user['id'],
                 'fromUserId' => 0,
                 ["useExpiredTime", ">", time()]
