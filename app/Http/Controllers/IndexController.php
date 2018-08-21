@@ -306,7 +306,7 @@ class IndexController extends Controller
             $nowReceived = $row->received + $recordData['money'];
             $updateData = ['received' => $nowReceived];
             if ($isLast) {
-                $updateData['useExpiredTime'] = time() + 86400;
+                $updateData['useExpiredTime'] = time() + 30 * 86400;
                 $updateData['status'] = 1;
             }
             $redPackModel->updateData($updateData, ['id' => $data['redPackId']]);
