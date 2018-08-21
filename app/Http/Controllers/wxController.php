@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Consts\CacheConst;
 use App\Consts\WxConst;
 use App\Model\UserModel;
 use EasyWeChat\Kernel\Messages\News;
@@ -116,8 +117,14 @@ class wxController extends Controller
                         'user_json' => json_encode($userinfo, JSON_UNESCAPED_UNICODE) ?? "",
                         'admin_id' => $adminId,//推广员后台账户ID
                         'is_subscribe' => 1,
+                        'subscribe_time' => time(),
                     ]);
                     if ($newId) {
+                        //累计今日关注用户数
+                        $cacheKey = sprintf(CacheConst::TODAY_SUBSCRIBE_NUM, date("Ymd"));
+                        Redis::incr($cacheKey);
+
+                        //发送相应的图文消息
                         $subscribeType = $qr_scene_data['r'] ?? "";
                         switch ($subscribeType) {
                             case 'receive':

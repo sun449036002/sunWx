@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Consts\CacheConst;
 use App\Consts\CookieConst;
 use App\Consts\WxConst;
 use App\Logic\RoomSourceLogic;
@@ -22,7 +23,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
-use Monolog\Handler\IFTTTHandler;
 
 class IndexController extends Controller
 {
