@@ -40,6 +40,9 @@ class BaseModel extends Model
         if (!empty($where)) {
             $this->bindWhere($where, $builder);
         }
+        if (!empty($order)) {
+            $this->orderBy($order[0], $order[1]);
+        }
         $rows = $builder->get();
         if (!empty($rows)) {
             return $rows->toArray();

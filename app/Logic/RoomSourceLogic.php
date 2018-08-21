@@ -71,12 +71,19 @@ class RoomSourceLogic extends BaseLogic
                 $row->cover = empty($img->cover) ? "" : env('MEMBER_IMG_DOMAIN') . $img->cover;
                 $row->cover = str_replace("room-source", 'room-source-thumbnail', $row->cover);
 
-                //其他图片
+                //详情轮播图
                 $otherImgs = [];
                 foreach ($img->imgs as $k => $_img) {
                     $otherImgs[] = env('MEMBER_IMG_DOMAIN') . $_img;
                 }
                 $row->imgs = $otherImgs;
+
+                //户型图
+                $houseTypeImgs = [];
+                foreach ($img->houseTypeImgs as $k => $_img) {
+                    $houseTypeImgs[] = env('MEMBER_IMG_DOMAIN') . $_img;
+                }
+                $row->houseTypeImgs = $houseTypeImgs;
             }
         }
 

@@ -1,5 +1,7 @@
 @include('header')
 <link rel="stylesheet" type="text/css" href="{{asset("css/room-detail.css")}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset("css/idangerous.swiper.css")}}"/>
+<script src="{{asset('js/idangerous.swiper.min.js')}}" type="text/javascript" charset="utf-8"></script>
 
 <script>
     $(document).ready(function () {
@@ -32,9 +34,14 @@
             window.location.href = "/room/bespeak?roomId={{$row->id}}";
         });
 
-        //TODO 致电案场经理
+        //致电案场经理
         $(".btn-box .btn-tel").on("click", function(){
-            alert('拨打电话功能')
+            window.location.href = "/room/customServiceList";
+        });
+
+        //户型图点击
+        $(".house-box .item.house-type").on("click", function(){
+            window.location.href = "/room/houseTypeImgs?id={{$row->id}}";
         });
     });
 </script>

@@ -21,6 +21,8 @@ Route::get('/room/list', "RoomController@index")->middleware("weixinOAuth");
 Route::get('/room/getRoomList', "RoomController@getRoomList")->middleware("weixinOAuth");
 Route::get('/room/detail', "RoomController@detail")->middleware("weixinOAuth");
 Route::get('/room/bespeak', "RoomController@bespeak")->middleware("weixinOAuth");
+Route::get('/room/customServiceList', "RoomController@customServiceList")->middleware("weixinOAuth");
+Route::get('/room/houseTypeImgs', "RoomController@houseTypeImgs")->middleware("weixinOAuth");
 Route::post('/room/bespeaking', "RoomController@bespeaking")->middleware("weixinOAuth");
 Route::post('/room/mark', "RoomController@mark")->middleware("weixinOAuth");
 

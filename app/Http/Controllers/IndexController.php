@@ -181,7 +181,8 @@ class IndexController extends Controller
         $roomSourceModel = new RoomSourceModel();
         $roomList = $roomSourceModel->getList(
             ['id', "type", "roomCategoryId", "name", "areaId", "houseTypeId", "avgPrice", "imgJson"],
-            ['isDel' => 0,'isRecommend' => 1]
+            ['isDel' => 0,'isRecommend' => 1],
+            ['id', "DESC"]
         );
         $this->pageData['roomList'] = (new RoomSourceLogic())->formatRoomList($roomList);
 

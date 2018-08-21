@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\Logic\RoomSourceLogic;
 use App\Model\AreaModel;
 use App\Model\BespeakModel;
+use App\Model\CustomServiceModel;
 use App\Model\HouseTypeModel;
 use App\Model\RoomCategoryModel;
 use App\Model\RoomSourceMarkModel;
@@ -93,7 +94,7 @@ class RoomController extends Controller
         //取得所有推荐的房源
         $roomSourceModel = new RoomSourceModel();
         $roomList = $roomSourceModel->select(['id', "type", "roomCategoryId", "name", "areaId", "avgPrice", "totalPrice", "imgJson"])
-            ->where($where)->offset($offset)->limit($pageSize)->get();
+            ->where($where)->orderBy("id", "DESC")->offset($offset)->limit($pageSize)->get();
 
 //        dd(DB::getQueryLog());
 
@@ -114,7 +115,6 @@ class RoomController extends Controller
 
         $row = (new RoomSourceModel())->getOne(['*'], ['id' => $id]);
         list($row) = (new RoomSourceLogic())->formatRoomList([$row]);
-
 
         //查询是否已经收藏
         $model = new RoomSourceMarkModel();
@@ -238,4 +238,22 @@ class RoomController extends Controller
         return (new RoomCategoryModel())->getList(['*'], ['isDel' => 0]);
     }
 
+    /**
+     * 案场经理 客服列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function customServiceList() {
+        $this->pageData['title'] = '客服列表';
+        $this->pageData['customServiceList'] = (new CustomServiceModel())->getList(['*'], ['isDel' => 0]);
+        return view('room/customServiceList', $this->pageData);
+    }
+
+    public function houseTypeImgs(Request $request) {
+        $id = $request->get("id");
+        $row = (new RoomSourceModel())->getOne(['imgJson'], ['id' => $id]);
+        list($row) = (new RoomSourceLogic())->formatRoomList([$row]);
+
+        $this->pageData['row'] = $row;
+        return view('room/houseTypeImgs', $this->pageData);
+    }
 }
