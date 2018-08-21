@@ -1,7 +1,5 @@
 @include('header')
 <link rel="stylesheet" type="text/css" href="{{asset("css/room-detail.css")}}"/>
-<link rel="stylesheet" type="text/css" href="{{asset("css/idangerous.swiper.css")}}"/>
-<script src="{{asset('js/idangerous.swiper.min.js')}}" type="text/javascript" charset="utf-8"></script>
 
 <script>
     $(document).ready(function () {

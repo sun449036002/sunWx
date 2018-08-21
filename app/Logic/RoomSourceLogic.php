@@ -80,7 +80,7 @@ class RoomSourceLogic extends BaseLogic
 
                 //户型图
                 $houseTypeImgs = [];
-                foreach ($img->houseTypeImgs as $k => $_img) {
+                foreach ($img->houseTypeImgs ?? [] as $k => $_img) {
                     $houseTypeImgs[] = env('MEMBER_IMG_DOMAIN') . $_img;
                 }
                 $row->houseTypeImgs = $houseTypeImgs;

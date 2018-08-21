@@ -43,7 +43,7 @@ class IndexController extends Controller
         //取得所有可用的广告
         $adsList = (new AdsModel())->getList(['*'], ['isDel' => 0]);
         foreach ($adsList as $ad) {
-            //TODO 图片地址 拼接上 env('MEMBER_IMG_DOMAIN')
+            $ad->img = env('MEMBER_IMG_DOMAIN') . $ad->img;
         }
         $this->pageData['adsList'] = $adsList;
 
