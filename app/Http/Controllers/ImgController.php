@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImgController
 {
@@ -55,16 +56,21 @@ class ImgController
         } else if(!empty($data['base64str'])) {
             $file = $data['base64str'];
             try {
-                if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $file, $result)) {
-                    $type = $result[2];
-                    $new_file = $destinationPath . date("/Ymdhis-") . mt_rand(10000, 99999) . "." . $type;
-                    if (file_put_contents($new_file, base64_decode(str_replace($result[1], '', $file)))) {
+                if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $file, $match)) {
+                    //创建目录
+                    Storage::makeDirectory($destinationPath);
+
+                    //上传文件
+                    $type = $match[2];
+                    $new_file = $destinationPath . date("/YmdHis-") . mt_rand(10000, 99999) . "." . $type;
+                    $realPath = storage_path() . "/app" . $new_file;
+                    if (file_put_contents($realPath, base64_decode(str_replace($match[1], '', $file)))) {
                         $result['imgs'][] = $new_file;
                         return $result;
                     }
                 }
             } catch (\Exception $e) {
-                dd($e);
+                dd($e->getMessage());
             }
         }
         return $result;
