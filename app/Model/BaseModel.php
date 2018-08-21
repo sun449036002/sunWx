@@ -71,7 +71,8 @@ class BaseModel extends Model
         }
 
         $builder = $this->getBuilder();
-        $affectedRows = $builder->where($where)->update($data);
+        $this->bindWhere($where, $builder);
+        $affectedRows = $builder->update($data);
         return $affectedRows;
     }
 
