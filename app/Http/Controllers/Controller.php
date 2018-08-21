@@ -35,6 +35,30 @@ class Controller extends BaseController
      */
     public $user = ['id' => 0];
 
+    //红包各个状态信息
+    private $redPackStatusConfig = [
+        0 => [
+            'status' => '未完成',
+            'element-class' => 'warning'
+        ],
+        1 => [
+            'status' => '可使用',
+            'element-class' => 'info'
+        ],
+        2 => [
+            'status' => '使用中',
+            'element-class' => 'success'
+        ],
+        3 => [
+            'status' => '已使用',
+            'element-class' => 'danger'
+        ],
+        4 => [
+            'status' => '作废',
+            'element-class' => 'danger'
+        ],
+    ];
+
 
     public function __construct()
     {
@@ -48,6 +72,7 @@ class Controller extends BaseController
             $this->pageData['user'] = $this->user;
             $this->pageData['wxapp'] = $this->wxapp;
             $this->pageData['adminId'] = $request->get("adminId", 0);
+            $this->pageData['redPackStatusConfig'] = $this->redPackStatusConfig;
 
             return $next($request);
         });

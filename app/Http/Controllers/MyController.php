@@ -15,15 +15,23 @@ use App\Logic\RoomSourceLogic;
 use App\Model\CashbackModel;
 use App\Model\RedPackModel;
 use App\Model\RoomSourceModel;
+use App\Model\SuggestionModel;
+use App\Model\SystemModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class MyController extends Controller
 {
+    //用户中心
     public function index() {
         $this->pageData['title'] = "我的";
         return view('my/index', $this->pageData);
+    }
+
+    //我的余额
+    public function balance() {
+        return view('/my/balanceList', $this->pageData);
     }
 
     /**
@@ -156,7 +164,7 @@ class MyController extends Controller
                 $where[] = ["useExpiredTime", "<=", time()];
                 break;
         }
-        $list = (new RedPackModel())->getList(['*'], $where);
+        $list = (new RedPackModel())->getList(['*'], $where, ['status']);
         foreach ($list as $item) {
             if ($item->status == StateConst::RED_PACK_UN_FILL_UP) {
                 if ($item->expiredTime >= time()) {
@@ -164,12 +172,18 @@ class MyController extends Controller
                 } else {
                     $item->type = 'expired';
                 }
-            } else if ($item->status == StateConst::RED_PACK_FILL_UP){
+            } else if ($item->status == StateConst::RED_PACK_FILL_UP) {
                 if ($item->useExpiredTime >= time()) {
                     $item->type = 'unUse';
                 } else {
                     $item->type = 'useExpired';
                 }
+            } else if ($item->status == StateConst::RED_PACK_USING) {
+                $item->type = "using";
+            } else if ($item->status == StateConst::RED_PACK_USED) {
+                $item->type = "used";
+            } else {
+                $item->type = "other";
             }
         }
 
@@ -241,5 +255,36 @@ class MyController extends Controller
         $this->pageData['list'] = $list;
 
         return view('my/markRoomList', $this->pageData);
+    }
+
+    /**
+     * 意见反馈
+     */
+    public function suggestion() {
+        return view("my/suggestion");
+    }
+
+    /**
+     * 提交意见反馈
+     */
+    public function suggestionSubmit(Request $request) {
+        $data = $request->all();
+        $data['userId'] = $this->user['id'];
+
+        unset($data['csrf_token']);
+        $insertId = (new SuggestionModel())->insert($data);
+
+        return ResultClientJson(0, '提交成功，谢谢您的建议');
+    }
+
+    /**
+     * 关于我们
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function aboutUs() {
+        $row = (new SystemModel())->getOne(['aboutUs'], []);
+
+        $this->pageData['aboutUs'] = $row->aboutUs ?? "暂无介绍";
+        return view("/my/aboutUs", $this->pageData);
     }
 }

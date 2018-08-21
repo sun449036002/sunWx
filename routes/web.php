@@ -34,6 +34,7 @@ Route::get('/category/list', "RoomController@getCategoryList")->middleware("weix
 
 //我的个人中心
 Route::get('/my', "MyController@index")->middleware("weixinOAuth");
+Route::get('/my/balance', "MyController@balance")->middleware("weixinOAuth")->name('/my/balance');
 //预约看房
 Route::get('/my/bespeakList', "MyController@bespeakList")->middleware("weixinOAuth")->name("/my/bespeakList");
 Route::get('/my/bespeakDetail', "MyController@bespeakDetail")->middleware("weixinOAuth");
@@ -45,6 +46,10 @@ Route::get('/my/redPackList', "MyController@redPackList")->middleware("weixinOAu
 Route::get('/my/getMyEnabledRedPackList', "MyController@getMyEnabledRedPackList")->middleware("weixinOAuth")->name("/my/getMyEnabledRedPackList");
 //我收藏的房源
 Route::get('/my/markRooms', "MyController@markRoomList")->middleware("weixinOAuth")->name("/my/markRooms");
+//意见反馈 关于我们
+Route::get('/aboutUs', "MyController@aboutUs")->middleware("weixinOAuth")->name("/aboutUs");
+Route::get('/my/suggestion', "MyController@suggestion")->middleware("weixinOAuth")->name("/my/suggestion");
+Route::post('/my/suggestionSubmit', "MyController@suggestionSubmit")->middleware("weixinOAuth")->name("/my/suggestionSubmit");
 
 
 //领现金红包

@@ -61,7 +61,7 @@
                 <div class="right-side"></div>
             </div>
             </a>
-            <a href="">
+            <a href="{{route('/my/balance')}}">
             <div class="item">
                 <div class="left-side user-icon-3">我的余额</div>
                 <div class="right-side"></div>
@@ -73,13 +73,13 @@
                 <div class="right-side"></div>
             </div>
             </a>
-            <a href="">
+            <a href="{{route("/my/suggestion")}}">
             <div class="item">
                 <div class="left-side user-icon-5">意见反馈</div>
                 <div class="right-side"></div>
             </div>
             </a>
-            <a href="">
+            <a href="{{route('/aboutUs')}}">
             <div class="item">
                 <div class="left-side user-icon-6">关于我们</div>
                 <div class="right-side"></div>

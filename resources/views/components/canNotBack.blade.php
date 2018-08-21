@@ -21,12 +21,19 @@
         height: 2rem;
         justify-content: space-around;
     }
+    .mySweetAlert .box .tips {
+        height: 1.5rem;
+        line-height: 0.6rem;
+    }
 
     .mySweetAlert .box .buttons {
         display: flex;
         justify-content: space-around;
     }
 
+    .mySweetAlert .box .buttons div {
+        padding: .15rem .3rem;
+    }
     .mySweetAlert .box .buttons .cancel {
         color:#6E6E6E;
     }
