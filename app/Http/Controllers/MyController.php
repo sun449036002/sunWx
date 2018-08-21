@@ -127,7 +127,7 @@ class MyController extends Controller
 
         if ($insertId) {
             //红包变更为使用中
-            $allRedPackIds = array_merge(explode(",", $data['redPackIds']), explode(",", $data['friendRedPackIds']));
+            $allRedPackIds = array_filter(array_merge(explode(",", $data['redPackIds']), explode(",", $data['friendRedPackIds'])));
             if (!empty($allRedPackIds)) {
                 $ok = (new RedPackModel())->updateData(['status' => StateConst::RED_PACK_USING], [["id", "in", $allRedPackIds]]);
                 if (empty($ok)) {
