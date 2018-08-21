@@ -375,165 +375,37 @@ var hi=0;
 					//$('#show-status1').append("共有" + count + "个文件");
 					try{
                     for (var i = 0; i < count; i++) {
-                        if (i >= para.limitCount) {
-                            // imClient.customerSay("最多只能选择"+para.limitCount+"张图片!");
-                            break;
-                        }
                         var item = files[i];
                         console.log("原图片大小", item.size);
                         $('#show-status').text('原图片大小：' + (parseFloat(item.size)/1024/1024));
-                        if (item.size > 1024 * 1024 *1) {
+                        if (item.size > 1024 * 1024) {
                             console.log("图片大于1M，开始进行压缩...");
                             $('#show-status').text('图片大于1M，开始进行压缩...');
-							if(i==0){
-								var img0=new Image();
-								var canvas0 = document.createElement("canvas"); 
-								var ctx0 = canvas0.getContext('2d'); 
-								var reader0 = new FileReader();   
-								reader0.onload = function() {   
-									var url = reader0.result;		//读取到的文件内容.这个属性只在读取操作完成之后才有效,并且数据的格式取决于读取操作是由哪个方法发起的.所以必须使用reader.onload，   
-									img0.src=url;		//reader读取的文件内容是base64,利用这个url就能实现上传前预览图片   
-								};								
-								img0.onload = function() {
-									var w = img0.naturalWidth,   
-										h = img0.naturalHeight;  
-									if(w>500){
-										w=500;
-										h=w*0.75;									
-									}
-									canvas0.width = w;   
-									canvas0.height = h;   
-									ctx0.drawImage(img0, 0, 0, w, h, 0, 0, w, h); 
-									
-									var base64_0 = getBase64Image(img0);
-									if (para.auto) core.uploadBase64str(base64_0);
-								};   
-								reader0.readAsDataURL(item);							
-							}else if(i==1){
-								var img1=new Image();
-								var canvas1 = document.createElement("canvas"); 
-								var ctx1 = canvas1.getContext('2d'); 
-								var reader1 = new FileReader();   
-								reader1.onload = function() {   
-									var url = reader1.result;		//读取到的文件内容.这个属性只在读取操作完成之后才有效,并且数据的格式取决于读取操作是由哪个方法发起的.所以必须使用reader.onload，   
-									img1.src=url;		//reader读取的文件内容是base64,利用这个url就能实现上传前预览图片   
-								};								
-								img1.onload = function() {
-									var w = img1.naturalWidth,   
-										h = img1.naturalHeight;  
-									if(w>500){
-										w=500;
-										h=w*0.75;									
-									}
-									canvas1.width = w;   
-									canvas1.height = h;   
-									ctx1.drawImage(img1, 0, 0, w, h, 0, 0, w, h); 
-									
-									var base64_1 = getBase64Image(img1);
-									if (para.auto) core.uploadBase64str(base64_1);
-								};   
-								reader1.readAsDataURL(item);
-							}else if(i==2){
-								var img2=new Image();
-								var canvas2 = document.createElement("canvas"); 
-								var ctx2 = canvas2.getContext('2d'); 
-								var reader2 = new FileReader();   
-								reader2.onload = function() {   
-									var url = reader2.result;		//读取到的文件内容.这个属性只在读取操作完成之后才有效,并且数据的格式取决于读取操作是由哪个方法发起的.所以必须使用reader.onload，   
-									img2.src=url;		//reader读取的文件内容是base64,利用这个url就能实现上传前预览图片   
-								};								
-								img2.onload = function() {
-									var w = img2.naturalWidth,   
-										h = img2.naturalHeight;  
-									if(w>500){
-										w=500;
-										h=w*0.75;									
-									}
-									canvas2.width = w;   
-									canvas2.height = h;   
-									ctx2.drawImage(img2, 0, 0, w, h, 0, 0, w, h); 
-									
-									var base64_2 = getBase64Image(img2);
-									if (para.auto) core.uploadBase64str(base64_2);
-								};   
-								reader2.readAsDataURL(item);
-							}else if(i==3){
-								var img3=new Image();
-								var canvas = document.createElement("canvas"); 
-								var ctx = canvas.getContext('2d'); 
-								var reader = new FileReader();   
-								reader.onload = function() {   
-									var url = reader.result;		//读取到的文件内容.这个属性只在读取操作完成之后才有效,并且数据的格式取决于读取操作是由哪个方法发起的.所以必须使用reader.onload，   
-									img3.src=url;		//reader读取的文件内容是base64,利用这个url就能实现上传前预览图片   
-								};								
-								img3.onload = function() {
-									var w = img3.naturalWidth,   
-										h = img3.naturalHeight;  
-									if(w>500){
-										w=500;
-										h=w*0.75;									
-									}
-									canvas.width = w;   
-									canvas.height = h;   
-									ctx.drawImage(img3, 0, 0, w, h, 0, 0, w, h); 
-									
-									var base64_3 = getBase64Image(img3);
-									if (para.auto) core.uploadBase64str(base64_3);
-								};   
-								reader.readAsDataURL(item);
-							}else if(i==4){
-								var img4=new Image();
-								var canvas = document.createElement("canvas"); 
-								var ctx = canvas.getContext('2d'); 
-								var reader = new FileReader();   
-								reader.onload = function() {   
-									var url = reader.result;		//读取到的文件内容.这个属性只在读取操作完成之后才有效,并且数据的格式取决于读取操作是由哪个方法发起的.所以必须使用reader.onload，   
-									img4.src=url;		//reader读取的文件内容是base64,利用这个url就能实现上传前预览图片   
-								};								
-								img4.onload = function() {
-									var w = img4.naturalWidth,   
-										h = img4.naturalHeight;  
-									if(w>500){
-										w=500;
-										h=w*0.75;									
-									}
-									canvas.width = w;   
-									canvas.height = h;   
-									ctx.drawImage(img4, 0, 0, w, h, 0, 0, w, h); 
-									
-									var base64_4 = getBase64Image(img4);
-									if (para.auto) core.uploadBase64str(base64_4);
-								};   
-								reader.readAsDataURL(item);
-							}else{
-								var img=new Image();
-								var canvas = document.createElement("canvas"); 
-								var ctx = canvas.getContext('2d'); 
-								var reader = new FileReader();   
-								reader.onload = function() {   
-									var url = reader.result;		//读取到的文件内容.这个属性只在读取操作完成之后才有效,并且数据的格式取决于读取操作是由哪个方法发起的.所以必须使用reader.onload，   
-									img.src=url;		//reader读取的文件内容是base64,利用这个url就能实现上传前预览图片   
-								};
-								
-								img.onload = function() {
-									var w = img.naturalWidth,   
-										h = img.naturalHeight;  
-									if(w>500){
-										w=500;
-										h=w*0.75;									
-									}
-									canvas.width = w;   
-									canvas.height = h;   
-									ctx.drawImage(img, 0, 0, w, h, 0, 0, w, h); 
-									
-									var base64 = getBase64Image(img);
-									if (para.auto) core.uploadBase64str(base64);
-								};   
-								reader.readAsDataURL(item);
-							}
-							
-									
 
+                            var img=new Image();
+                            var canvas = document.createElement("canvas");
+                            var ctx = canvas.getContext('2d');
+                            var reader = new FileReader();
+                            reader.onload = function() {
+                                var url = reader.result;		//读取到的文件内容.这个属性只在读取操作完成之后才有效,并且数据的格式取决于读取操作是由哪个方法发起的.所以必须使用reader.onload，
+                                img.src=url;		//reader读取的文件内容是base64,利用这个url就能实现上传前预览图片
+                            };
+
+                            img.onload = function() {
+                                var w = img.naturalWidth,
+                                    h = img.naturalHeight;
+                                if(w>500){
+                                    w=500;
+                                    h=w*0.75;
+                                }
+                                canvas.width = w;
+                                canvas.height = h;
+                                ctx.drawImage(img, 0, 0, w, h, 0, 0, w, h);
+
+                                var base64 = getBase64Image(img);
+                                if (para.auto) core.uploadBase64str(base64);
+                            };
+                            reader.readAsDataURL(item);
                         } else {
                             if (para.auto){
 								core.uploadFile(item);

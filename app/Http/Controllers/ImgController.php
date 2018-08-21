@@ -24,6 +24,7 @@ class ImgController
 
         $data = $request->all();
         $destinationPath = "/images/cash-back/" . date("Ymd");
+//        dd(!empty($data['mfile']));
         if (!empty($data['mfile'])) {
             $filePath = $request->file("mfile")->store($destinationPath);
             $result['imgs'][] = "/" . ltrim($filePath, "/");
@@ -51,6 +52,20 @@ class ImgController
             }
             $result['imgs'] = $filePath;
             return $result;
+        } else if(!empty($data['base64str'])) {
+            $file = $data['base64str'];
+            try {
+                if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $file, $result)) {
+                    $type = $result[2];
+                    $new_file = $destinationPath . date("/Ymdhis-") . mt_rand(10000, 99999) . "." . $type;
+                    if (file_put_contents($new_file, base64_decode(str_replace($result[1], '', $file)))) {
+                        $result['imgs'][] = $new_file;
+                        return $result;
+                    }
+                }
+            } catch (\Exception $e) {
+                dd($e);
+            }
         }
         return $result;
     }
