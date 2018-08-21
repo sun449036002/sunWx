@@ -263,7 +263,7 @@ var hi=0;
                 filebutton: ".filePicker",
                 uploadButton: null,
                 url: "/img/upload",
-                base64strUrl: "/upload2/FromImgBase64Str",
+                base64strUrl: "/img/upload",
                 filebase: "mfile", //mvc后台需要对应的名称
                 auto: true,
                 previewZoom: null,
