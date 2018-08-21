@@ -10,8 +10,8 @@ body {
 .main .item {
     display: flex;
     justify-content: space-around;
-    height: 0.8rem;
-    line-height: 0.8rem;
+    height: 1rem;
+    line-height: 1rem;
     border-bottom: 1px solid #CCC;
     background-color: #FFF;
 }
