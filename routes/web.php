@@ -63,6 +63,7 @@ Route::get('/red-pack/rule', "IndexController@rule")->middleware("weixinOAuth");
 //赠送好友红包
 Route::get('/index/grantRedPack', "IndexController@grantRedPack")->middleware("weixinOAuth");
 Route::post('/index/initGrantRedPack', "IndexController@initGrantRedPack")->middleware("weixinOAuth");
+Route::post('/index/receiveGrantRedPack', "IndexController@receiveGrantRedPack")->middleware("weixinOAuth");
 
 
 /**

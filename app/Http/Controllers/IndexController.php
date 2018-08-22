@@ -428,6 +428,9 @@ class IndexController extends Controller
         if (time() >= $redPack->useExpiredTime) {
             return ResultClientJson(100, '此红包已过期，无法领取');
         }
+        if ($redPack->userId == $this->user['id']) {
+            return ResultClientJson(100, "赠送给好友的红包,自己不能领取");
+        }
 
         //分享的时候设置一个缓存，有这个缓存，则能领取，没有这个缓存，则不能领取(限制只能一个人能够领取成功)，缓存可设置为30天后过期，即分享后，30内未领取，则不能再领取
         Redis::del($cacheKey);

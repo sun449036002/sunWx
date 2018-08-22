@@ -28,20 +28,18 @@
                 type : 'post',
                 url : "/index/receiveGrantRedPack",
                 data : {
-                    id : "{{$row->id}}",
+                    redPackId : "{{$row->id}}",
                     ticket : "{{$ticket}}"
                 },
                 dataType : "json",
                 headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},
                 success : function(res){
-                    if (res.code > 0) {
-                        mui.alert(res.msg);
-                        return false;
-                    } else {
-                        mui.alert(res.msg, function(){
-                            window.location.href = "/my";
-                        })
-                    }
+                    alertPopup.show({
+                        msg : res.msg,
+                        cb : function(){
+                            window.location.href = res.code > 0 ? "/" : "/my";
+                        }
+                    });
                 }
             });
         });
@@ -70,4 +68,5 @@
 </div>
 
 @include("components/subscribe")
+@include('components/alertPopup')
 @include('components/shareLayer', ['msg' => '通过分享赠送给好友~'])
