@@ -206,6 +206,11 @@ class IndexController extends Controller
         if (empty($redPack)) {
             exit('此红包不存在');
         }
+
+        if ($redPack->userId == $this->user['id']) {
+            return redirect('/cash-red-pack-info?redPackId=' . $data['redPackId']);
+        }
+
         $_u = (new UserModel())->getUserinfoByOpenid($redPack->userId);
         $redPack->nickname = $_u['username'] ?? "";
         $redPack->headImgUrl = $_u['avatar_url'] ?? "";
