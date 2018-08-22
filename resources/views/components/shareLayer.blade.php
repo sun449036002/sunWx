@@ -19,7 +19,7 @@
     .share-layer .share-tips {
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: space-around;
         position: absolute;
         top: 3rem;
         left: 0.375rem;
