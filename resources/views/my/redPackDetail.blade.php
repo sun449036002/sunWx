@@ -31,7 +31,9 @@
         $(".red-pack-detail.main .btn-grant").on("click", function () {
             initGrantRedPack(function(res){
                 if (res.code > 0) {
-                    mui.alert(res.msg);
+                    alertPopup.alert({
+                        msg : res.msg
+                    });
                     return false
                 }
                 //用ready方法来接收验证成功
@@ -60,7 +62,7 @@
                         type: 'link', // 分享类型,music、video或link，不填默认为link
                         dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                         success: function (res) {
-                            alert(res);
+                            alert(JSON.stringify(res));
                             // 用户点击了分享后执行的回调函数
                             $(".share-layer").hide();
                         }
@@ -93,4 +95,5 @@
     </div>
 </div>
 
+@include('components/alertPopup')
 @include('components/shareLayer', ['msg' => '通过分享赠送给好友~'])
