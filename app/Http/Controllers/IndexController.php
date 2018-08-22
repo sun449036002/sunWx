@@ -21,6 +21,7 @@ use App\Model\RoomSourceModel;
 use App\Model\SigninModel;
 use App\Model\UserModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
@@ -214,6 +215,7 @@ class IndexController extends Controller
         $cacheKey = sprintf(CacheConst::RED_PACK_HAS_ASSISTANCE, $data['redPackId']);
         $helpedUserIds = Redis::get($cacheKey);
         $helpedUserIds = empty($helpedUserIds) ? [] : $helpedUserIds;
+        $helpedUserIds = is_string($helpedUserIds) ? json_decode($helpedUserIds, true) : $helpedUserIds;
         $isHelped = in_array($this->user['id'], $helpedUserIds);
         $this->pageData['isHelped'] = $isHelped;
 
@@ -257,6 +259,7 @@ class IndexController extends Controller
         $cacheKey = sprintf(CacheConst::RED_PACK_HAS_ASSISTANCE, $data['redPackId']);
         $helpedUserIds = Redis::get($cacheKey);
         $helpedUserIds = empty($helpedUserIds) ? [] : $helpedUserIds;
+        $helpedUserIds = is_string($helpedUserIds) ? json_decode($helpedUserIds, true) : $helpedUserIds;
         $isHelped = in_array($this->user['id'], $helpedUserIds);
         if ($isHelped) {
             exit(ResultClientJson(101, '您已经帮他助力过，不能重复助力'));
@@ -308,7 +311,7 @@ class IndexController extends Controller
         if ($newRecordId) {
             //设置助力缓存
             array_push($helpedUserIds, $this->user['id']);
-            Redis::setex($cacheKey, 2 * 86400, $helpedUserIds);
+            Redis::setex($cacheKey, 2 * 86400, json_encode($helpedUserIds, JSON_UNESCAPED_UNICODE));
 
             //增加received金额
             $nowReceived = $row->received + $recordData['money'];
