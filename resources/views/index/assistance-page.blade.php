@@ -3,7 +3,7 @@
 <link href="css/assistance-page.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" charset="utf-8">
-    wx.config(<?php echo $wxapp->jssdk->buildConfig(['onMenuShareTimeline','onMenuShareAppMessage'], true) ?>);
+    wx.config(<?php echo $wxapp->jssdk->buildConfig(['onMenuShareTimeline','onMenuShareAppMessage'], false) ?>);
 
     //用ready方法来接收验证成功
     wx.ready(function() {
@@ -12,7 +12,7 @@
 
         //分享到微信朋友圈
         wx.onMenuShareTimeline({
-            title: '分享到微信朋友圈，赚更多的现金', // 分享标题
+            title: '分享到微信朋友圈，赚更多的赏金', // 分享标题
             link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: '{{asset('imgs/share-icon-1.png')}}', // 分享图标
             success: function () {
@@ -22,7 +22,7 @@
 
         //分享给微信好友
         wx.onMenuShareAppMessage({
-            title: '分享给朋友们，赚更多的现金', // 分享标题
+            title: '分享给朋友们，赚更多的赏金', // 分享标题
             desc: '朋友点击支持后，双方都可获得赏金', // 分享描述
             link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: '{{asset('imgs/share-icon-1.png')}}', // 分享图标
