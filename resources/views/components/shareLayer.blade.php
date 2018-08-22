@@ -44,6 +44,6 @@
     <img src="{{asset("imgs/jiantou.png")}}" />
     <div class="share-tips">
         <div>点击右上角按钮</div>
-        <div>邀请更多好友来助力吧~</div>
+        <div>{{$msg ?? "邀请更多好友来助力吧~"}}</div>
     </div>
 </div>

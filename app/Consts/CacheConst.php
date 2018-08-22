@@ -13,4 +13,6 @@ class CacheConst {
     //今日关注用户数 %s => Ymd
     const TODAY_SUBSCRIBE_NUM = "today_subscribe_num_%s";
 
+    //红包赠送凭证 %s => 红包ID 值为用户ID
+    const RED_PACK_GRANT_TICKET = "red_pack_grant_ticket_%s";
 }

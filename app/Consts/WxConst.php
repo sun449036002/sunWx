@@ -19,5 +19,4 @@ class WxConst
 
     //用户ID 对接的推广二维码 %s ===> adminId (推广业务员的后台账号ID) %s => 红包ID
     const QR_CODE_FOR_ADMIN_USER = 'qr_code_for_admin_user_%s_%s';
-
 }

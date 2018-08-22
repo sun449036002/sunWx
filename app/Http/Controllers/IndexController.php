@@ -348,6 +348,27 @@ class IndexController extends Controller
 
 
     /**
+     * 设置赠送凭证缓存
+     */
+    public function initGrantRedPack(Request $request) {
+        $id = $request->post("id");
+        if (!empty($id)) {
+            $count = (new RedPackModel())->where("id", $id)->count();
+            if ($count) {
+                $cacheKey = sprintf(CacheConst::RED_PACK_GRANT_TICKET, $id);
+                $ticket = Redis::get($cacheKey);
+                if (empty($ticket)) {
+                    $ticket = md5(date("YmdHis") . "-" . $id . "-" . $this->user['id']);
+                    Redis::setex($cacheKey, 30 * 86400, $ticket);
+                }
+                return ResultClientJson(0, 'cache ok', ['ticket' => $ticket]);
+            }
+            return ResultClientJson(0 , '未找到相应数据');
+        }
+
+        return ResultClientJson(0, '参数错误');
+    }
+    /**
      * 赠送红包页面
      */
     public function grantRedPack() {
