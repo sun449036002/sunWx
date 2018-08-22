@@ -54,7 +54,11 @@
             }
 
             if ($(this).hasClass("is-helped")) {
+                @if(!empty($unCompleteRedPackId))
+                window.location.href = "/cash-red-pack-info?redPackId={{$unCompleteRedPackId}}";
+                @else
                 window.location.href = "/cash-red-pack";
+                @endif
                 return false;
             }
 
