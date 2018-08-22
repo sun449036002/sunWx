@@ -116,6 +116,6 @@ class Controller extends BaseController
         if (!empty($userInDb)) {
             return array_merge($user, $userInDb);
         }
-        return $defaultUser;
+        return array_merge($user, $defaultUser);
     }
 }
