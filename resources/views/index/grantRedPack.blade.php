@@ -19,7 +19,7 @@
             //未关注
             var isSubscribe = parseInt("{{$user['is_subscribe'] ?? 0}}");
             if (!isSubscribe) {
-                showSubscribeQrCode("{{$adminId}}", "{{$row->userId}}", "{{$row->id}}", "help");
+                showSubscribeQrCode("{{$adminId}}", "{{$row->userId}}", "{{$row->id}}", "accept");
                 return false;
             }
 
