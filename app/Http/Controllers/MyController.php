@@ -153,7 +153,7 @@ class MyController extends Controller
         switch ($type) {
             case 'unFinish':
                 $where['status'] = StateConst::RED_PACK_UN_FILL_UP;
-                $where[] = ["expiredTime", "<", time()];
+                $where[] = ["expiredTime", ">", time()];
                 break;
             case 'unUse':
                 $where['status'] = StateConst::RED_PACK_FILL_UP;
@@ -164,8 +164,11 @@ class MyController extends Controller
                 $where[] = ["useExpiredTime", "<=", time()];
                 break;
         }
+
         $list = (new RedPackModel())->getList(['*'], $where, ['status']);
         foreach ($list as $item) {
+            $item->expiredTimeStr = date("Y-m-d H:i:s", $item->expiredTime);
+            $item->useExpiredTimeStr = $item->useExpiredTime ? date("Y-m-d H:i:s", $item->useExpiredTime) : "";
             if ($item->status == StateConst::RED_PACK_UN_FILL_UP) {
                 if ($item->expiredTime >= time()) {
                     $item->type = 'unFinish';
@@ -187,12 +190,29 @@ class MyController extends Controller
             }
         }
 
-//        dd($list);
-
         $this->pageData['list'] = $list;
         return view('my/redPackList', $this->pageData);
 
     }
+
+    /**
+     *  红包详情
+     */
+    public function redPackDetail(Request $request) {
+        //可赠送 可消费
+        $id = $request->get("id");
+
+        $row = (new RedPackModel())->getOne(['id', 'total'], ['id' => $id, 'userId' => $this->user['id']]);
+        if (empty($row)) {
+            return back()->withErrors("您没有这么一个红包");
+        }
+
+        $this->pageData['row'] = $row;
+
+        return view("my/redPackDetail", $this->pageData);
+
+    }
+
 
     /**
      * 返现申请中，获取我可用的红包 与 朋友赠送的可用红包

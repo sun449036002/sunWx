@@ -16,6 +16,8 @@
                     window.location.href = "/cash-red-pack-info?redPackId=" + $(this).data("redPackId");
                     break;
                 case 1://未使用
+                    window.location.href = "/my/redPackDetail?id=" + $(this).data("redPackId");
+                    break;
                 case 2://使用中
                 case 3://已使用
                 case 4://作废
@@ -42,8 +44,8 @@
                 <div class="data">
                     <div class="money">{{$item->type == 'unFinish' ? $item->received . "/" . $item->total : $item->total}}元</div>
                     <div class="from">来源:{{$item->fromUserId == 0 ? "活动" : "好友赠送"}}</div>
-                    <div class="from">状态:{{$redPackStatusConfig[$item->status]['status']}}</div>
-                    <div class="expiredTime">过期时间:{{$item->type == 'unFinish' ? date("Y-m-d H:i:s", $item->expiredTime) : date("Y-m-d H:i:s", $item->useExpiredTime)}}</div>
+                    <div class="from">状态:{{$redPackStatusConfig[$item->status]['status']}} {{in_array($item->type, ['expired', 'useExpired']) ? "【已过期】" : ""}}</div>
+                    <div class="expiredTime">过期时间: {{$item->type == 'unFinish' ? $item->expiredTimeStr : $item->useExpiredTimeStr }}</div>
                 </div>
             </div>
             @endforeach

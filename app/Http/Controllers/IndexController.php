@@ -346,6 +346,25 @@ class IndexController extends Controller
         return ResultClientJson(0, 'ok', ['rule' => $row->rule ?? ""]);
     }
 
+
+    /**
+     * 赠送红包页面
+     */
+    public function grantRedPack() {
+
+    }
+    /**
+     * 领取赠送的红包
+     */
+    public function receiveGrantRedPack() {
+        //只能一个人领取
+
+        //分享的时候设置一个缓存，有这个缓存，则能领取，没有这个缓存，则不能领取，缓存可设置为30天后过期，即分享后，30内未领取，则不能再领取
+
+        //领取时，判断红包的状态，是否为可用状态,可用才能领取
+    }
+
+
     /**
      * 模拟用户登录
      * @param Request $request
@@ -355,13 +374,4 @@ class IndexController extends Controller
         $user = (new UserModel())->getOne(["*"], ['id' => $id]);
         Cookie::queue(CookieConst::WECHAT_USER, json_encode($user, JSON_UNESCAPED_UNICODE), 60 * 24);
     }
-
-    public function clearCookie() {
-        setcookie(CookieConst::WECHAT_USER, '', -1, '/');
-    }
-
-    public function getCookie() {
-        var_dump(Cookie::get(CookieConst::WECHAT_USER));
-    }
-
 }
