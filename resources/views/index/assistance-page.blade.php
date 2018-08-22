@@ -113,7 +113,7 @@
                         <p>他还差 {{$redPack->total - $redPack->received}} 元</p>
                     @endif
                 </div>
-                <div class="{{$isHelped ? "is-helped" : ""}} btn-assistance">{{$isHelped ? "我也要领红包" : "帮他助力"}}</div>
+                <div class="{{$isHelped ? "is-helped" : ""}} btn-assistance">{{$isHelped ? (!empty($unCompleteRedPackId) ? "我的现金红包" : "我也要领红包") : "帮他助力"}}</div>
             </div>
         </div>
     </div>

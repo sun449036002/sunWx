@@ -211,11 +211,10 @@ class IndexController extends Controller
         $this->pageData['redPack'] = $redPack;
 
         //今天是否助力过
-        $recordModel = new RedPackRecordModel();
-        $isHelped = $recordModel->where([
-            "redPackId" => $data['redPackId'],
-            'userId' => $this->user['id'],
-        ])->count();
+        $cacheKey = sprintf(CacheConst::RED_PACK_HAS_ASSISTANCE, $data['redPackId']);
+        $helpedUserIds = Redis::get($cacheKey);
+        $helpedUserIds = empty($helpedUserIds) ? [] : $helpedUserIds;
+        $isHelped = in_array($this->user['id'], $helpedUserIds);
         $this->pageData['isHelped'] = $isHelped;
 
         //红包是否已经集满
@@ -224,6 +223,10 @@ class IndexController extends Controller
         //助力的红包ID
         $this->pageData['title'] = "好友助力";
         $this->pageData['redPackId'] = $data['redPackId'];
+
+        //查询当前用户是否有未完成的红包
+        $unCompleteRedPack = $model->getUnComplete($this->user['id']);
+        $this->pageData['unCompleteRedPackId'] = !empty($unCompleteRedPack->id) ? $unCompleteRedPack->id : 0;
 
         return view("index/assistance-page", $this->pageData);
 
@@ -251,10 +254,10 @@ class IndexController extends Controller
         $redPackRecordModel = new RedPackRecordModel();
 
         //今天是否助力过
-        $isHelped = $redPackRecordModel->where([
-            "redPackId" => $data['redPackId'],
-            'userId' => $this->user['id'],
-        ])->count();
+        $cacheKey = sprintf(CacheConst::RED_PACK_HAS_ASSISTANCE, $data['redPackId']);
+        $helpedUserIds = Redis::get($cacheKey);
+        $helpedUserIds = empty($helpedUserIds) ? [] : $helpedUserIds;
+        $isHelped = in_array($this->user['id'], $helpedUserIds);
         if ($isHelped) {
             exit(ResultClientJson(101, '您已经帮他助力过，不能重复助力'));
         }
@@ -303,6 +306,10 @@ class IndexController extends Controller
         ];
         $newRecordId = $redPackRecordModel->insert($recordData);
         if ($newRecordId) {
+            //设置助力缓存
+            array_push($helpedUserIds, $this->user['id']);
+            Redis::setex($cacheKey, 2 * 86400, $helpedUserIds);
+
             //增加received金额
             $nowReceived = $row->received + $recordData['money'];
             $updateData = ['received' => $nowReceived];
@@ -311,7 +318,6 @@ class IndexController extends Controller
                 $updateData['status'] = 1;
             }
             $redPackModel->updateData($updateData, ['id' => $data['redPackId']]);
-
 
             //发送模板消息，通知红包所属人进度
             $who = (new UserModel())->getOne(['openid'], ['id' => $row->userId]);

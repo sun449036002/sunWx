@@ -83,11 +83,12 @@ body {
 }
 
 .cash-red-pack-main .mid .box .btn-assistance {
-    width: 3rem;
+    width: 4rem;
     margin: 0.4rem auto 0;
     background-color: #fbda30;
-    border-radius: 0.2rem;
+    border-radius: 0.3rem;
     color: rgba(155,17,4,1);
+    box-shadow: 1px 1px 1px #000;
 }
 
 

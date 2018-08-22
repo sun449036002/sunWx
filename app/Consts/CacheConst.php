@@ -18,4 +18,7 @@ class CacheConst {
 
     //我的临时凭证缓存 $s => openid, %s => 红包ID
     const MY_TEMP_TICKET = "my_temp_ticket_%s_%s";
+
+    //今天是否助力过此红包 %s => 红包ID
+    const RED_PACK_HAS_ASSISTANCE = "red_pack_has_assistance_%s";
 }
