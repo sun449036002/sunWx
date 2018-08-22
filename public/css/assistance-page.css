@@ -69,6 +69,7 @@ body {
 .cash-red-pack-main .mid .box .head-img {
     display: flex;
     justify-content: center;
+    margin-bottom: 0.3rem;
 }
 
 .cash-red-pack-main .mid .box .head-img span {
@@ -83,8 +84,61 @@ body {
 
 .cash-red-pack-main .mid .box .btn-assistance {
     width: 3rem;
-    margin: 0.7rem auto 0;
+    margin: 0.4rem auto 0;
     background-color: #fbda30;
     border-radius: 0.2rem;
     color: rgba(155,17,4,1);
 }
+
+
+.assistance-success-main {
+    display: none;
+    position: fixed;
+    top:0;
+    bottom:0;
+    width:100vw;
+    background-color: rgba(0,0,0,0.8);
+}
+.assistance-success-main .bg {
+    position: absolute;
+    width: 5.2rem;
+    height: 7rem;
+    top: 2rem;
+    left: 1rem;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../imgs/help-success-bg.png);
+    text-align: center;
+    color:#FFF;
+    font-weight:600;
+}
+.assistance-success-main .bg .text {
+    margin-top: 0.5rem;
+    padding: 0 .3rem;
+    color: #fd3830;
+}
+
+.assistance-success-main .bg .tips {
+    margin-top: 2.6rem;
+    font-size: 0.4rem;
+    letter-spacing: .04rem;
+    transform: rotate(-14deg);
+    -webkit-transform: rotate(-14deg);
+    -moz-transform: rotate(-14deg);
+    -ms-transform: rotate(-14deg);
+    -o-transform: rotate(-14deg);
+}
+
+.assistance-success-main .bg .btn-me-too {
+    margin: 1.9rem auto 0 auto;
+    background-color: #e72317;
+    width: 3.9rem;
+    height: .6rem;
+    line-height: .6rem;
+    border-radius: .3rem;
+    letter-spacing: 0.06rem;
+    font-weight: 100;
+    box-shadow: 1px 1px 1px #000;
+}
+
+

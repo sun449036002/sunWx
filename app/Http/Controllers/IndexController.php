@@ -331,6 +331,8 @@ class IndexController extends Controller
                 ]);
             }
 
+            $jsonData['money'] = $recordData['money'];
+            $jsonData['total'] = $nowReceived;
             exit(ResultClientJson(0, '助力成功', $jsonData));
         }
 

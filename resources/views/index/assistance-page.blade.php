@@ -1,6 +1,6 @@
 @include("header")
 <!-- Styles -->
-<link href="css/assistance-page.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{{asset("css/assistance-page.css")}}" />
 
 <script type="text/javascript" charset="utf-8">
     wx.config(<?php echo $wxapp->jssdk->buildConfig(['onMenuShareTimeline','onMenuShareAppMessage'], false) ?>);
@@ -67,15 +67,25 @@
                 dataType : "json",
                 headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},
                 success : function(res){
-                    res.cb = function (res) {
+                    if(res.code === 0) {
+                        //显示助力成功效果
+                        $(".assistance-success-main .assistance-money").html(res.data.money || 0);
+                        $(".assistance-success-main .total-money").html(res.data.total || 0);
                         var unCompleteRedPackId = res.data.unCompleteRedPackId || 0;
                         if (unCompleteRedPackId > 0) {
-                            window.location.href = "/cash-red-pack-info?redPackId=" + unCompleteRedPackId;
-                        } else {
-                            window.location.href = "/cash-red-pack";
+                            $(".assistance-success-main .btn-me-too").addClass("my-red-pack").html("我的现金红包").on("click", function(){
+                                if (unCompleteRedPackId > 0) {
+                                    window.location.href = "/cash-red-pack-info?redPackId=" + unCompleteRedPackId;
+                                } else {
+                                    window.location.href = "/cash-red-pack";
+                                }
+                            });
                         }
-                    };
-                    alertPopup.show(res);
+                        $(".assistance-success-main").show();
+                        return false;
+                    } else {
+                        alertPopup.show(res);
+                    }
                 }
             });
         });
@@ -106,6 +116,14 @@
                 <div class="{{$isHelped ? "is-helped" : ""}} btn-assistance">{{$isHelped ? "我也要领红包" : "帮他助力"}}</div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="assistance-success-main">
+    <div class="bg">
+        <div class="text">助力好友成功，助力<span class="assistance-money">85.99</span>元</div>
+        <div class="tips">ta已获得<span class="total-money">698.53</span>元</div>
+        <div class="btn-me-too">我也要领现金红包</div>
     </div>
 </div>
 
