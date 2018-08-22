@@ -55,7 +55,7 @@
 
                     //分享给微信好友
                     wx.onMenuShareAppMessage({
-                        title: '我赠送给你了{{$row->total}}元，快来领取吧~', // 分享标题
+                        title: '我赠送给你了{{$row->total}}元~', // 分享标题
                         desc: '先到先得哦，抓紧领取哦', // 分享描述
                         link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                         imgUrl: '{{asset('imgs/share-icon-1.png')}}', // 分享图标
