@@ -45,7 +45,7 @@
             redPackId : redPackId || 0,
             r : type || "receive"
         };
-        $.getJSON("weixin/qrCode", data, function (res) {
+        $.getJSON("/weixin/qrCode", data, function (res) {
             var jsonData = res.data || {};
             $(".subscribeBox .qr-code-img").attr("src", jsonData.qrCodeUrl || "");
             $(".subscribeBox").show();
