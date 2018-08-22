@@ -15,4 +15,7 @@ class CacheConst {
 
     //红包赠送凭证 %s => 红包ID 值为用户ID
     const RED_PACK_GRANT_TICKET = "red_pack_grant_ticket_%s";
+
+    //我的临时凭证缓存 $s => openid, %s => 红包ID
+    const MY_TEMP_TICKET = "my_temp_ticket_%s_%s";
 }

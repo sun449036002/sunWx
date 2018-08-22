@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Consts\CacheConst;
 use App\Consts\CookieConst;
+use App\Consts\StateConst;
 use App\Consts\WxConst;
 use App\Logic\RoomSourceLogic;
 use App\Model\AdsModel;
@@ -351,6 +352,7 @@ class IndexController extends Controller
      * 设置赠送凭证缓存
      */
     public function initGrantRedPack(Request $request) {
+        //红包ID
         $id = $request->post("id");
         if (!empty($id)) {
             $count = (new RedPackModel())->where("id", $id)->count();
@@ -363,26 +365,80 @@ class IndexController extends Controller
                 }
                 return ResultClientJson(0, 'cache ok', ['ticket' => $ticket]);
             }
-            return ResultClientJson(0 , '未找到相应数据');
+            return ResultClientJson(100 , '未找到相应数据');
         }
 
-        return ResultClientJson(0, '参数错误');
+        return ResultClientJson(100, '参数错误');
     }
     /**
      * 赠送红包页面
      */
-    public function grantRedPack() {
+    public function grantRedPack(Request $request) {
+        $ticket = $request->get("ticket");
+        $redPackId = $request->get("redPackId");
 
+        //未关注用户，存下关系，关注后消息中使用
+        if (!empty($ticket) && empty($this->user['id'])) {
+            //可能是从微信的消息中跳转过来，需要从缓存中获取
+            $cacheKey = sprintf(CacheConst::MY_TEMP_TICKET, $this->user['openid'], $redPackId);
+            Redis::setex($cacheKey, 7 * 86400, $ticket);
+        }
+
+        $row = (new RedPackModel())->getOne(['id', 'total', 'userId'], ['id' => $redPackId]);
+        if(!empty($row)) {
+            $user = (new UserModel())->getUserinfoByOpenid($row->userId);
+            $row->nickname = mb_substr($user['username'], 0, 4);
+        }
+
+        $this->pageData['row'] = $row;
+        $this->pageData['ticket'] = $ticket;
+        $this->pageData['redPackId'] = $redPackId;
+        return view('index/grantRedPack', $this->pageData);
     }
     /**
      * 领取赠送的红包
      */
-    public function receiveGrantRedPack() {
-        //只能一个人领取
+    public function receiveGrantRedPack(Request $request) {
+        $ticket = $request->post("ticket");
+        $redPackId = $request->post("redPackId");
 
-        //分享的时候设置一个缓存，有这个缓存，则能领取，没有这个缓存，则不能领取，缓存可设置为30天后过期，即分享后，30内未领取，则不能再领取
+        if (empty($ticket) || empty($redPackId)) {
+            return ResultClientJson(100, '领取赠送的红包时，参数错误');
+        }
+
+        //TICKET 凭证检测
+        $cacheKey = sprintf(CacheConst::RED_PACK_GRANT_TICKET, $redPackId);
+        $ticketInCache = Redis::get($cacheKey);
+        if (empty($ticketInCache)) {
+            return ResultClientJson(100, '来晚了，红包已被人抢先领走啦~');
+        }
+        if (trim($ticket) != $ticketInCache) {
+            return ResultClientJson(100, '您不能领取此红包');
+        }
 
         //领取时，判断红包的状态，是否为可用状态,可用才能领取
+        $redPackModel = new RedPackModel();
+        $redPack = $redPackModel->getOne(['userId', 'useExpiredTime', 'status'], ['id' => $redPackId, 'isDel' => 0]);
+        if (empty($redPack)) {
+            return ResultClientJson(100, '此红包已被删除或不存在');
+        }
+        if ($redPack->status != StateConst::RED_PACK_FILL_UP) {
+            return ResultClientJson(100, '此红包已被使用');
+        }
+        if (time() >= $redPack->useExpiredTime) {
+            return ResultClientJson(100, '此红包已过期，无法领取');
+        }
+
+        //分享的时候设置一个缓存，有这个缓存，则能领取，没有这个缓存，则不能领取(限制只能一个人能够领取成功)，缓存可设置为30天后过期，即分享后，30内未领取，则不能再领取
+        Redis::del($cacheKey);
+
+        //更新红包信息
+        $redPackModel->updateData([
+            'userId' => $this->user['id'],
+            'fromUserId' => $redPack->userId,
+        ], ['id' => $redPackId]);
+
+        return ResultClientJson(0, '领取成功');
     }
 
 

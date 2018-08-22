@@ -60,6 +60,10 @@ Route::get('/assistance-page', "IndexController@assistancePage")->middleware("we
 Route::post('/assistance', "IndexController@assistance")->middleware("weixinOAuth");
 Route::get('/red-pack/rule', "IndexController@rule")->middleware("weixinOAuth");
 
+//赠送好友红包
+Route::get('/index/grantRedPack', "IndexController@grantRedPack")->middleware("weixinOAuth");
+Route::post('/index/initGrantRedPack', "IndexController@initGrantRedPack")->middleware("weixinOAuth");
+
 
 /**
  * 微信相关

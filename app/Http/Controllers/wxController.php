@@ -148,11 +148,13 @@ class wxController extends Controller
                                 ]);
                                 break;
                             case 'accept':
+                                $cacheKey = sprintf(CacheConst::MY_TEMP_TICKET, $message['FromUserName'], $qr_scene_data['rid'] ?? 0);
+                                $ticket = Redis::get($cacheKey);
                                 $news = new News([
                                     new NewsItem([
                                         'title'       => '您朋友赠送给您一个大礼包~',
                                         'description' => '',
-                                        'url'         => env('APP_URL') . "/",
+                                        'url'         => env('APP_URL') . "/index/grantRedPack?redPackId=" . ($qr_scene_data['rid'] ?? 0) . "&ticket=" . $ticket,
                                         'image'       => asset("imgs/big-red-pack.png"),
                                     ])
                                 ]);
