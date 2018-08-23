@@ -45,6 +45,7 @@
 </style>
 <script>
     $(document).ready(function(){
+        debugger;
         //禁止退出
         if (window.history && window.history.pushState) {
             $(window).on('popstate', function () {
