@@ -31,6 +31,10 @@ class IndexController extends Controller
     public function __construct()
     {
         parent::__construct();
+
+        echo "<pre>";
+        print_r($this->user);
+        exit;
     }
 
     public function home() {
