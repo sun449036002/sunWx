@@ -64,7 +64,7 @@
 
         //放弃
         $(".mySweetAlert .cancel").on("click", function(){
-            window.history.state ? window.history.back() : window.close();
+            window.history.state ? window.history.back() : WeixinJSBridge.call('closeWindow');
         });
 
         //继续分享
