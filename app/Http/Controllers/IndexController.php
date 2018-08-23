@@ -319,7 +319,7 @@ class IndexController extends Controller
             Redis::setex($cacheKey, 2 * 86400, json_encode($helpedUserIds, JSON_UNESCAPED_UNICODE));
 
             //增加received金额
-            $nowReceived = $row->received + $recordData['money'];
+            $nowReceived = $row->received + $curReceivedMoney;
             $updateData = ['received' => $nowReceived];
             if ($isLast) {
                 $updateData['useExpiredTime'] = time() + 30 * 86400;
@@ -345,8 +345,8 @@ class IndexController extends Controller
                 ]);
             }
 
-            $jsonData['money'] = $recordData['money'];
-            $jsonData['total'] = $nowReceived;
+            $jsonData['money'] = $curReceivedMoney;
+            $jsonData['total'] = number_format($nowReceived, 2);
             exit(ResultClientJson(0, '助力成功', $jsonData));
         }
 
