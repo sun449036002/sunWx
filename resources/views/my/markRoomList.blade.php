@@ -1,5 +1,5 @@
 @include('header')
-<link rel="stylesheet" type="text/css" href="{{asset("css/home.css")}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset("css/mark-rooms.css")}}"/>
 
 <div class="main">
     <div class="recommend-house-box">

@@ -1,0 +1,46 @@
+body {
+    font-size: 0.24rem;
+}
+.main {
+    width:100vw;
+    /*min-height: 100vh;*/
+    margin-bottom: 1rem;
+    background-color: #EEE;
+}
+/**
+推荐房源区
+ */
+.main .recommend-house-box .house-list {
+    overflow: scroll;
+}
+.main .recommend-house-box .house-list .item {
+    display: flex;
+    background-color: #FFF;
+    margin-bottom:0.03rem;
+}
+.main .recommend-house-box .house-list .item .cover {
+    width:3.8rem;
+    height: 2.8rem;
+    margin-top: 0.1rem;
+    background-size: cover;
+}
+.main .recommend-house-box .house-list .item .info {
+    display: flex;    
+    padding: 0 0.3rem;
+    flex-direction: column;
+    justify-content: space-around;
+    color: #000;
+
+}
+.main .recommend-house-box .house-list .item .info .name {
+    color:#e94219;
+    font-weight:600;
+}
+.main .recommend-house-box .house-list .item .info .btn-see-house {
+    background-color: #e99421;
+    color: #FFF;
+    text-align: center;
+    border-radius: 0.1rem;
+    width: 1.2rem;
+    padding: 0.1rem;
+}
