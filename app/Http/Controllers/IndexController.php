@@ -30,11 +30,12 @@ class IndexController extends Controller
 {
     public function __construct()
     {
+        var_dump('before parent');
         parent::__construct();
+        var_dump("after parent");
 
         echo "<pre>";
-        print_r($this->user);
-        exit;
+        dd($this->user);
     }
 
     public function home() {

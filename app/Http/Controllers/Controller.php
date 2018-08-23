@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Consts\CookieConst;
-use App\Consts\WxConst;
 use App\Model\UserModel;
 use EasyWeChat\Factory;
-use function foo\func;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Log;
 
 class Controller extends BaseController
 {
@@ -63,7 +60,9 @@ class Controller extends BaseController
 
     public function __construct()
     {
+        var_dump("parent __construct");
         $this->middleware(function($request, $next){
+            var_dump("parent middleware");
             //获取用户信息
             $this->user = $this->getUserinfo();
 
