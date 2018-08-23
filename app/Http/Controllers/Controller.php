@@ -61,7 +61,6 @@ class Controller extends BaseController
     public function __construct()
     {
         $this->middleware(function($request, $next){
-            var_dump("parent middleware");
             //获取用户信息
             $this->user = $this->getUserinfo();
 
