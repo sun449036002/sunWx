@@ -45,6 +45,7 @@
 </style>
 <script>
     $(document).ready(function(){
+        alert('test');
         debugger;
         //禁止退出
         if (window.history && window.history.pushState) {
