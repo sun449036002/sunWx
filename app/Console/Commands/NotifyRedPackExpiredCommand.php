@@ -31,7 +31,8 @@ class NotifyRedPackExpiredCommand extends Command
     public function handle() {
         $type = $this->option('type');
         if (empty($type)) {
-            exit('type参数错误,不得为空');
+            $this->info("type参数错误,不得为空");
+            exit();
         }
         DB::connection()->enableQueryLog(); // 开启查询日志
 
@@ -51,7 +52,8 @@ class NotifyRedPackExpiredCommand extends Command
             ];
         }
         if (empty($where)) {
-            exit('type参数错误,type=' . $type);
+            $this->info('type参数错误,type=' . $type);
+            exit();
         }
 
         $model = new RedPackModel();
@@ -74,7 +76,10 @@ class NotifyRedPackExpiredCommand extends Command
 
             $wxapp = Factory::officialAccount(getWxConfig());
             foreach ($list as $item) {
-                if (!isset($openidList[$item->userId])) continue;
+                if (!isset($openidList[$item->userId])) {
+                    $this->warn("当前用户ID:" . $item->userId . "不在" . var_export($openidList) .  "数组里面");
+                    continue;
+                }
 
                 if ($type == 'use') {
                     //使用过期消息提醒
