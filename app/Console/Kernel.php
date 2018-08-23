@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\NotifyRedPackExpiredCommand;
+use App\Console\Commands\TestCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         NotifyRedPackExpiredCommand::class,
+        TestCommand::class
     ];
 
     /**
@@ -25,6 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command("sym:test")->everyMinute()->appendOutputTo(storage_path() . "/logs/test-" . date("Ymd") . ".log");
         $schedule->command("NotifyRedPackExpiredCommand --type=normal")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/logs/command/NotifyRedPackExpiredCommand-normal/" . date("Ymd") . ".log");
         $schedule->command("NotifyRedPackExpiredCommand --type=use")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/logs/command/NotifyRedPackExpiredCommand-use/" . date("Ymd") . ".log");
     }
