@@ -4,10 +4,10 @@
 
 <div class="main">
     <div class="top">
-        <div class="head-img" style="background-image: url('{{$user["avatar_url"]}}')"></div>
+        <div class="head-img" style="background-image: url('{{$user["avatar_url"] ?? ''}}')"></div>
         <div class="info">
-            <div class="nickname">{{$user['username']}}</div>
-            <div class="balance">余额：{{$user['balance']}} 元</div>
+            <div class="nickname">{{$user['username'] ?? ''}}</div>
+            <div class="balance">余额：{{$user['balance'] ?? 0}} 元</div>
         </div>
     </div>
     <div class="mid">
