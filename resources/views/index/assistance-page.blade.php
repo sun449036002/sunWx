@@ -75,16 +75,19 @@
                         //显示助力成功效果
                         $(".assistance-success-main .assistance-money").html(res.data.money || 0);
                         $(".assistance-success-main .total-money").html(res.data.total || 0);
+
+                        var btnMeToo = $(".assistance-success-main .btn-me-too");
                         var unCompleteRedPackId = res.data.unCompleteRedPackId || 0;
                         if (unCompleteRedPackId > 0) {
-                            $(".assistance-success-main .btn-me-too").addClass("my-red-pack").html("我的现金红包").on("click", function(){
-                                if (unCompleteRedPackId > 0) {
-                                    window.location.href = "/cash-red-pack-info?redPackId=" + unCompleteRedPackId;
-                                } else {
-                                    window.location.href = "/cash-red-pack";
-                                }
-                            });
+                            btnMeToo.html("我的现金红包");
                         }
+                        btnMeToo.on("click", function(){
+                            if (unCompleteRedPackId > 0) {
+                                window.location.href = "/cash-red-pack-info?redPackId=" + unCompleteRedPackId;
+                            } else {
+                                window.location.href = "/cash-red-pack";
+                            }
+                        });
                         $(".assistance-success-main").show();
                         return false;
                     } else {
