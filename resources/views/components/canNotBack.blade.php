@@ -49,17 +49,17 @@
         if (window.history && window.history.pushState) {
             $(window).on('popstate', function () {
                 var hashLocation = location.hash;
-                var hashSplit = hashLocation.split("#");
+                var hashSplit = hashLocation.split("#!/");
                 var hashName = hashSplit[1];
                 if (hashName !== '') {
                     var hash = window.location.hash;
-                    if (hash !== '') {
+                    if (hash === '') {
                         $(".mySweetAlert").show();
                         return false;
                     }
                 }
             });
-            window.history.pushState('forward', null, window.location.href.replace("#forward", "") + "#forward");
+            window.history.pushState('forward', null, window.location.href);
         }
 
         //放弃
