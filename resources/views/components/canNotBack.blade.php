@@ -45,33 +45,26 @@
 </style>
 <script>
     $(document).ready(function(){
-        alert('test');
-        debugger;
         //禁止退出
         if (window.history && window.history.pushState) {
             $(window).on('popstate', function () {
-                debugger;
                 var hashLocation = location.hash;
-                var hashSplit = hashLocation.split("#!/");
+                var hashSplit = hashLocation.split("#");
                 var hashName = hashSplit[1];
                 if (hashName !== '') {
                     var hash = window.location.hash;
-                    if (hash === '') {
+                    if (hash !== '') {
                         $(".mySweetAlert").show();
                         return false;
                     }
                 }
             });
-            window.history.pushState('forward', null, window.location.href);
+            window.history.pushState('forward', null, window.location.href.replace("#forward", "") + "#forward");
         }
 
         //放弃
         $(".mySweetAlert .cancel").on("click", function(){
-            if (window.history.state === 'forward') {
-                window.history.back();
-            } else {
-                WeixinJSBridge.call('closeWindow');
-            }
+            WeixinJSBridge.call('closeWindow');
         });
 
         //继续分享
