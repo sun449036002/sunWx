@@ -109,7 +109,10 @@
             var _timer = setInterval(function(){
                 t = t - 1;
                 if(t < 0) {
-                    WeixinJSBridge.call('showOptionMenu');
+                    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+                        // 通过下面这个API隐藏右上角按钮
+                        WeixinJSBridge.call('hideOptionMenu');
+                    });
                     $(".time-box").html("此红包已过期");
                     $(".cash-red-pack-main .mid .red-pack-box .go-on-share").css("background-color", "#CCC").addClass("disabled");
                     clearInterval(_timer);
@@ -126,7 +129,10 @@
                 tg.find(".s").html(s);
             }, 1000);
         } else {
-            WeixinJSBridge.call('showOptionMenu');
+            document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+                // 通过下面这个API隐藏右上角按钮
+                WeixinJSBridge.call('hideOptionMenu');
+            });
             $(".time-box").html("此红包已过期");
             $(".cash-red-pack-main .mid .red-pack-box .go-on-share").css("background-color", "#CCC").addClass("disabled");
         }
