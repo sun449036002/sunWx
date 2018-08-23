@@ -30,9 +30,7 @@ class IndexController extends Controller
 {
     public function __construct()
     {
-        var_dump('before parent');
         parent::__construct();
-        var_dump("after parent");
     }
 
     public function home() {
@@ -197,8 +195,6 @@ class IndexController extends Controller
 
     //红包助力页
     public function assistancePage(Request $request) {
-        echo "<pre>";
-        dd($this->user);
         $data = $request->all();
         if (empty($data['redPackId'])) {
             exit('redPackId不存在');
