@@ -77,7 +77,7 @@ class NotifyRedPackExpiredCommand extends Command
             $wxapp = Factory::officialAccount(getWxConfig());
             foreach ($list as $item) {
                 if (!isset($openidList[$item->userId])) {
-                    $this->warn("当前用户ID:" . $item->userId . "不在" . var_export($openidList) .  "数组里面");
+                    $this->warn("当前用户ID:" . $item->userId . "不在" . json_encode($openidList) .  "数组里面");
                     continue;
                 }
 
