@@ -108,6 +108,12 @@
         if(t > 0) {
             setInterval(function(){
                 t = t - 1;
+                console.log("剩余秒数:" + t);
+                if(t < 0) {
+                    $(".time-box").html("此红包已过期");
+                    $(".cash-red-pack-main .mid .red-pack-box .go-on-share").css("background-color", "#CCC").addClass("disabled");
+                    return false;
+                }
                 var m = parseInt(t / 60) % 60;
                 var h = parseInt(t / 3600) % 60;
                 var s = t % 60;
