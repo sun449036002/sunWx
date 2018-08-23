@@ -65,7 +65,7 @@ class RoomSourceLogic extends BaseLogic
             $row->categoryName = empty($row->roomCategoryId) ? "" : ($cateArr[$row->roomCategoryId] ?? "未知");
             $row->area = empty($row->areaId) ? "" : ($areaArr[$row->areaId] ?? "未知");
 
-            //封面图片有缩略图 用缩略图
+            //图片有缩略图 用缩略图
             if (!empty($row->imgJson)) {
                 $img = json_decode($row->imgJson);
                 $row->cover = empty($img->cover) ? "" : env('MEMBER_IMG_DOMAIN') . $img->cover;
@@ -74,6 +74,7 @@ class RoomSourceLogic extends BaseLogic
                 //详情轮播图
                 $otherImgs = [];
                 foreach ($img->imgs as $k => $_img) {
+                    $_img = str_replace("room-source", 'room-source-thumbnail', $_img);
                     $otherImgs[] = env('MEMBER_IMG_DOMAIN') . $_img;
                 }
                 $row->imgs = $otherImgs;
@@ -81,6 +82,7 @@ class RoomSourceLogic extends BaseLogic
                 //户型图
                 $houseTypeImgs = [];
                 foreach ($img->houseTypeImgs ?? [] as $k => $_img) {
+                    $_img = str_replace("room-source", 'room-source-thumbnail', $_img);
                     $houseTypeImgs[] = env('MEMBER_IMG_DOMAIN') . $_img;
                 }
                 $row->houseTypeImgs = $houseTypeImgs;
