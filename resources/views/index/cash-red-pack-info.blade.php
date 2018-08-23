@@ -87,6 +87,9 @@
 
         //分享
         $(".btn-share-friend, .go-on-share").on("click", function(){
+            if($(this).hasClass("disabled")) {
+                return false;
+            }
             $(".share-layer").show();
         });
 
@@ -115,6 +118,9 @@
                 tg.find(".m").html(m);
                 tg.find(".s").html(s);
             }, 1000);
+        } else {
+            $(".time-box").html("此红包已过期");
+            $(".cash-red-pack-main .mid .red-pack-box .go-on-share").css("background-color", "#CCC").addClass("disabled");
         }
 
 
