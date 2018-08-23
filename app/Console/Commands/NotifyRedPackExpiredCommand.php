@@ -88,7 +88,10 @@ class NotifyRedPackExpiredCommand extends Command
                         'template_id' => WxConst::TEMPLATE_ID_FOR_SEND_RED_PACK_EXPIRE_MSG,
                         'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $item->id,
                         'data' => [
-                            'first' => "您有一个{$item->total}元的红包还未使用，快去看看吧~",
+                            'first' => [
+                                'value' => "您有一个{$item->total}元的红包还未使用，快去看看吧~\r\n",
+                                'color' => "#d22e20"
+                            ],
                             'keyword1' => "",
                             'keyword2' => "过期时间:" . date("Y-m-d H:i:s", $item->useExpiredTime),
                             'keyword3' => '',
@@ -106,7 +109,10 @@ class NotifyRedPackExpiredCommand extends Command
                         'template_id' => WxConst::TEMPLATE_ID_FOR_SEND_RED_PACK_EXPIRE_MSG,
                         'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $item->id,
                         'data' => [
-                            'first' => "您有一个{$item->total}元的红包快要过期啦，快去邀请好友助力吧~",
+                            'first' => [
+                                'value' => "您有一个{$item->total}元的红包快要过期啦，快去邀请好友助力吧 >> \r\n",
+                                'color' => "#d22e20"
+                            ],
                             'keyword1' => "还差" . ($item->total - $item->received) . "元",
                             'keyword2' => "过期时间:" . date("Y-m-d H:i:s", $item->expiredTime),
                             'keyword3' => '',

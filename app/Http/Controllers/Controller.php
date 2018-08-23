@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Consts\CookieConst;
+use App\Consts\WxConst;
 use App\Model\UserModel;
 use EasyWeChat\Factory;
 use function foo\func;

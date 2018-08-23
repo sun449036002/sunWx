@@ -336,10 +336,16 @@ class IndexController extends Controller
                     'template_id' => WxConst::TEMPLATE_ID_FOR_SEND_HELP_MSG,
                     'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $data['redPackId'],
                     'data' => [
-                        'first' => $this->user['username'] . "给你的红包助力啦~",
+                        'first' => [
+                            "value" => $this->user['username'] . "给你的红包助力啦 >>\r\n",
+                            "color" => "#169ADA"
+                        ],
                         'keyword1' => "现金红包",
                         'keyword2' => $this->user['username'],
-                        'keyword3' => $curReceivedMoney,
+                        'keyword3' => [
+                            "value" => $curReceivedMoney . "元",
+                            'color' => '#d22e20'
+                        ],
                         'keyword4' => date("Y-m-d H:i:s"),
                     ],
                 ]);
