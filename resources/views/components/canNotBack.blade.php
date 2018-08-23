@@ -45,10 +45,10 @@
 </style>
 <script>
     $(document).ready(function(){
-        debugger;
         //禁止退出
         if (window.history && window.history.pushState) {
             $(window).on('popstate', function () {
+                debugger;
                 var hashLocation = location.hash;
                 var hashSplit = hashLocation.split("#!/");
                 var hashName = hashSplit[1];
