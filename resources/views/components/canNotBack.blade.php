@@ -64,7 +64,7 @@
 
         //放弃
         $(".mySweetAlert .cancel").on("click", function(){
-            window.history.back();
+            window.history.state ? window.history.back() : window.close();
         });
 
         //继续分享
