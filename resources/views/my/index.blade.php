@@ -2,6 +2,14 @@
 
 <link rel="stylesheet" type="text/css" href="{{asset("css/my-index.css")}}"/>
 
+<script>
+    $(document).ready(function () {
+        @if(empty($user['id']))
+        showSubscribeQrCode("{{$adminId}}", 0, 0, "others");
+        @endif
+    });
+</script>
+
 <div class="main">
     <div class="top">
         <div class="head-img" style="background-image: url('{{$user["avatar_url"] ?? ''}}')"></div>
@@ -90,3 +98,4 @@
 </div>
 
 @include('components/bottomMenu')
+@include('components/subscribe')
