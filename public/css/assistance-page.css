@@ -105,7 +105,8 @@ body {
     width: 5.2rem;
     height: 7rem;
     top: 2rem;
-    left: 1rem;
+    left: -100vw;
+    /*left: 1rem;*/
     background-size: cover;
     background-position: center;
     background-image: url(../imgs/help-success-bg.png);

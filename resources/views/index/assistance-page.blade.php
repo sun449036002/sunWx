@@ -89,6 +89,7 @@
                             }
                         });
                         $(".assistance-success-main").show();
+                        $(".assistance-success-main .bg").animate({left : "1rem"}, {easing: "easeOutBounce",duration: 500});
                         return false;
                     } else {
                         alertPopup.show(res);
