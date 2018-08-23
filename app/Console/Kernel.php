@@ -29,7 +29,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         Storage::makeDirectory("logs/command");
-//        $schedule->command("sym:test")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/logs/command-test/test/" . date("Ymd") . ".log");
         $schedule->command("NotifyRedPackExpiredCommand --type=normal")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/app/logs/command/NotifyRedPackExpiredCommand-normal-" . date("Ymd") . ".log");
         $schedule->command("NotifyRedPackExpiredCommand --type=use")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/app/logs/command/NotifyRedPackExpiredCommand-use-" . date("Ymd") . ".log");
     }
