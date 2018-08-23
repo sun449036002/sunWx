@@ -6,6 +6,7 @@ use App\Console\Commands\NotifyRedPackExpiredCommand;
 use App\Console\Commands\TestCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Storage;
 
 class Kernel extends ConsoleKernel
 {
@@ -27,9 +28,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command("sym:test")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/logs/command-test/test/" . date("Ymd") . ".log");
-        $schedule->command("NotifyRedPackExpiredCommand --type=normal")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/logs/command/NotifyRedPackExpiredCommand-normal/" . date("Ymd") . ".log");
-        $schedule->command("NotifyRedPackExpiredCommand --type=use")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/logs/command/NotifyRedPackExpiredCommand-use/" . date("Ymd") . ".log");
+        Storage::make("command");
+//        $schedule->command("sym:test")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/logs/command-test/test/" . date("Ymd") . ".log");
+        $schedule->command("NotifyRedPackExpiredCommand --type=normal")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/logs/command/NotifyRedPackExpiredCommand-normal-/" . date("Ymd") . ".log");
+        $schedule->command("NotifyRedPackExpiredCommand --type=use")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/logs/command/NotifyRedPackExpiredCommand-use-/" . date("Ymd") . ".log");
     }
 
     /**
