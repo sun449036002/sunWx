@@ -66,9 +66,6 @@ class Controller extends BaseController
         $this->middleware(function($request, $next){
             //获取用户信息
             $this->user = $this->getUserinfo();
-            echo "<pre>";
-            print_r($this->user);
-            exit;
 
             //wxapp对象
             $this->wxapp = Factory::officialAccount(getWxConfig());
