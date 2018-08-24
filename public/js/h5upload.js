@@ -296,6 +296,7 @@ var hi=0;
             var multiple = "";  // 设置多选的参数
             para.multiple ? multiple = "multiple" : multiple = "";
 
+
             $self.css('position', 'relative');
             $self.append('<input id="'+para.uploadButtonName+'"  style="opacity:0;position:absolute;top: 0;left: 0;width:100%;height:100%" accept="image/jpg,image/jpeg,image/png"  type="file" size="30" name="'+para.uploadButtonName+'[]" ' + multiple + '>');
 
