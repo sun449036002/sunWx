@@ -63,7 +63,7 @@
     </head>
     <body>
         <form action="#" >
-            <input type="file" name="img" value="" multiple="multiple" />
+            <input type="file" name="img" value="" multiple accept="image/*" />
         </form>
     </body>
 </html>
