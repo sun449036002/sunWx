@@ -20,6 +20,7 @@
             success: function () {
                 // 用户点击了分享后执行的回调函数
                 $(".share-layer").hide();
+                $(".share-success-box").show();
             }
         });
 
@@ -34,6 +35,7 @@
             success: function () {
                 // 用户点击了分享后执行的回调函数
                 $(".share-layer").hide();
+                $(".share-success-box").show();
             }
         });
     });
@@ -101,6 +103,17 @@
             $("." + class1).show();
             $("." + class2).hide();
         });
+
+        //关闭继续分享弹窗
+        $(".share-success-box .share-main .title-bar .btn-close").on("click", function(){
+            $(".share-success-box").hide();
+        });
+
+        //继续分享
+        $(".share-success-box .share-main .content .btn-share-again").on("click", function(){
+            $(".btn-share-friend, .go-on-share").trigger("click");
+        });
+
 
         //倒计时
         var tg = $(".remainingTime");
@@ -231,6 +244,20 @@
             <div class="total">{{$total}}<span>元</span></div>
             <div class="received">已拆得{{$received}}元</div>
             <div class="btn-share-friend">分享给好友帮忙助力</div>
+        </div>
+    </div>
+</div>
+
+<div class="share-success-box">
+    <div class="share-main">
+        <div class="title-bar">
+            <img src="{{asset("imgs/share-ok.png")}}" />
+            <div>分享成功</div>
+            <div class="btn-close">x</div>
+        </div>
+        <div class="content">
+            <div>人多力量大，分享给更多的好友，加速收集红包~</div>
+            <div class="btn-share-again">继续分享</div>
         </div>
     </div>
 </div>
