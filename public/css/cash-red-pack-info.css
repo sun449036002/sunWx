@@ -38,7 +38,7 @@ body {
 }
 
 .cash-red-pack-main .mid {
-    padding: 0 .3rem;
+    padding: .9rem .3rem 0 .3rem;
     color: #FFF;
     line-height: .6rem;
 }
@@ -49,9 +49,9 @@ body {
     justify-content: space-between;
     background-color: #fff;
     border-radius: 0.15rem;
-    height: 4rem;
+    /*height: 5.2rem;*/
     margin-top: .3rem;
-    padding:0.3rem;
+    padding:0.3rem .3rem .1rem;
     color: #000;
     text-align: center;
 }
@@ -74,11 +74,45 @@ body {
     line-height: .8rem;
 }
 
+.cash-red-pack-main .mid .red-pack-box .time-box {
+    margin-top: .3rem;
+    margin-bottom: 0.2rem;
+}
+
 .cash-red-pack-main .mid .red-pack-box .time-box .h,.cash-red-pack-main .mid .red-pack-box .time-box .m,.cash-red-pack-main .mid .red-pack-box .time-box .s {
     background-color: #000;
     color: #fff;
     padding: .07rem;
     border-radius: 0.1rem;
+}
+
+.assistance-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 6.2rem;
+    margin-top: .3rem;
+    border-top: 1px dashed #888;
+    padding-top: .1rem;
+}
+
+.assistance-list .assistance-item {
+    position: relative;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin: 0 .1rem .5rem 0.1rem;
+    background-size: cover;
+    border-radius: 0.5rem;
+}
+.assistance-list .assistance-item .money {
+    position: absolute;
+    background-color: #d22e20;
+    color: #fff;
+    bottom: -0.4rem;
+    border-radius: 0.2rem;
+    padding: 0 .1rem;
+    font-size: .2rem;
+    height: 0.4rem;
+    line-height: .35rem;
 }
 
 /**
@@ -101,6 +135,9 @@ body {
     font-size: 0.4rem;
     color: #76520c;
     padding: .2rem 0;
+    background-image: url("../imgs/line10.png");
+    background-repeat: no-repeat;
+    background-position: 0 center;
 }
 
 .sale-tab-title .tab.selected {

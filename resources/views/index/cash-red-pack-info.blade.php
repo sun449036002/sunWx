@@ -176,7 +176,7 @@
 </head>
 <body>
 <div class="cash-red-pack-main">
-    <div class="tips">天天拆红包 领百元现金</div>
+    {{--<div class="tips">天天拆红包 领百元现金</div>--}}
     <div class="rule">活动规则</div>
     <div class="mid">
 
@@ -193,13 +193,20 @@
                 后失效，赶紧找人助力~
             </div>
             <div class="go-on-share">再找人助力</div>
+            <div class="assistance-list">
+                @foreach($redPackRecordList as $item)
+                <div class="assistance-item" style="background-image: url('{{$item->headImgUrl}}');">
+                    <div class="money">{{$item->money}}</div>
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
 
     <div class="sale-main">
         <div class="sale-tab-title">
-            <div class="tab selected" data-for-class="product-list">推荐房源</div>
-            <div class="tab" data-for-class="help-list">我的助力团</div>
+            {{--<div class="tab selected" data-for-class="product-list"></div>--}}
+            {{--<div class="tab" data-for-class="help-list">我的助力团</div>--}}
         </div>
         <div class="product-list">
             @foreach($roomList as $room)
