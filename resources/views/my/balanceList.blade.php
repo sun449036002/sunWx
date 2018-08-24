@@ -5,7 +5,7 @@
 <div class="main">
     <div class="top">
         <div class="info">
-            <div class="balance">￥{{number_format($user['balance'], 2)}} <span>元</span></div>
+            <div class="balance">￥{{number_format($balance, 2)}} <span>元</span></div>
         </div>
     </div>
     <div class="mid"></div>

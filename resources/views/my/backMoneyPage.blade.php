@@ -66,7 +66,10 @@
             padding: 0 .1rem;
             font-weight: 600;
         }
-        .red-pack-main .bar .btn-select-sure {
+        .red-pack-main .bar .info {
+            width:4.5rem;
+        }
+        .red-pack-main .bar .btn {
             background-color: #1ab394;
             color: #FFF;
             height: .6rem;
@@ -165,7 +168,8 @@
         <div class="info">
             选择<span class="num">0</span>个红包，总价值<span class="total-val">0</span>元
         </div>
-        <div class="btn-select-sure">确定</div>
+        <div class="btn btn-select-all">全选</div>
+        <div class="btn btn-select-sure">确定</div>
     </div>
     <div class="red-pack-box">
         <div class="list"></div>
@@ -246,7 +250,6 @@
         //我的红包选择
         $("#redPackIdsClick").on("click", function(){
             var self = $(this);
-
             //清空原先的数据
             self.val('');
             $("#redPackIds").val('');
@@ -282,7 +285,6 @@
         //朋友赠送的红包选择
         $("#friendRedPackIdsClick").on("click", function(){
             var self = $(this);
-
             //清空原先的数据
             self.val('');
             $("#friendRedPackIds").val('');
@@ -347,6 +349,11 @@
             $(".red-pack-main").animate({
                 left : "100vw"
             }).hide();
+        });
+
+        //全选
+        $(".red-pack-main").on("click", ".btn-select-all", function(e){
+            $(".red-pack-main .red-pack-box .item").trigger("click");
         });
     });
 

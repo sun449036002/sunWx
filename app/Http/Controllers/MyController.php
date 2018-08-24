@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Consts\StateConst;
 use App\Logic\BespeakLogic;
+use App\Logic\RedPackLogic;
 use App\Logic\RoomSourceLogic;
 use App\Model\CashbackModel;
 use App\Model\RedPackModel;
@@ -26,11 +27,18 @@ class MyController extends Controller
     //用户中心
     public function index() {
         $this->pageData['title'] = "我的";
+
+        //我的余额显示可使用的，未过期的红包总额
+        $this->pageData['balance'] = (new RedPackLogic())->getRedPackBalance();
+
         return view('my/index', $this->pageData);
     }
 
     //我的余额
     public function balance() {
+        //我的余额显示可使用的，未过期的红包总额
+        $this->pageData['balance'] = (new RedPackLogic())->getRedPackBalance();
+
         return view('/my/balanceList', $this->pageData);
     }
 
@@ -228,36 +236,14 @@ class MyController extends Controller
                 ["useExpiredTime", ">", time()],
                 ['fromUserId', '>', 0]
             ];
-            $list = (new RedPackModel())->getList(['*'], $where);
-            $friendTotalMoney = [];
-            if (!empty($list)) {
-                foreach ($list as $item) {
-                    if (empty($friendTotalMoney[$item->fromUserId])) {
-                        $friendTotalMoney[$item->fromUserId] = 0;
-                    } else {
-                        $friendTotalMoney[$item->fromUserId] += $item->total;
-                    }
-                }
-                arsort($friendTotalMoney);
-                $useFriendId = array_keys(array_slice($friendTotalMoney, 0, 1, true))[0] ?? 0;
-                foreach ($list as $key => $item) {
-                    if ($useFriendId != $item->fromUserId || $item->userId == $item->fromUserId) {
-                        unset($list[$key]);
-                        continue;
-                    }
-                    $item->type = $type;
-                    $item->useExpiredTime = date("Y-m-d H:i:s", $item->useExpiredTime);
-                }
-            }
+            $row = (new RedPackModel())->getOne(['*'], $where);
+            $list = empty($row) ? [] : [$row];
         } else {
-            $where = [
-                'status' => StateConst::RED_PACK_FILL_UP,
-                'userId' => $this->user['id'],
-                'fromUserId' => 0,
-                ["useExpiredTime", ">", time()]
-            ];
-            $list = (new RedPackModel())->getList(['*'], $where);
-            foreach ($list as $item) {
+            $list = (new RedPackLogic())->getMyEnabledRedPacks();
+        }
+
+        if (!empty($list)) {
+            foreach ($list as $key => $item) {
                 $item->type = $type;
                 $item->useExpiredTime = date("Y-m-d H:i:s", $item->useExpiredTime);
             }

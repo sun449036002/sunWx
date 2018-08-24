@@ -131,7 +131,7 @@ class RoomController extends Controller
 
         //查询当前推广员的手机号
         $admin = (new AdminModel())->getOne(['tel'], ['id' => $this->user['admin_id']]);
-        $row->adminTel = $admin->tel ?: "";
+        $row->adminTel = $admin->tel ?? "";
 
         $this->pageData['isMark'] = !empty($markRow->status);
         $this->pageData['row'] = $row;
