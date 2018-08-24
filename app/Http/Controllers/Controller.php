@@ -116,4 +116,8 @@ class Controller extends BaseController
         }
         return array_merge($user, $defaultUser);
     }
+
+    public function test() {
+        return view("test");
+    }
 }

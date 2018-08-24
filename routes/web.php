@@ -12,6 +12,7 @@
 */
 //首页
 Route::get('/', "IndexController@home")->middleware("weixinOAuth");
+Route::get('/test', "Controller@test")->middleware("weixinOAuth");
 
 //图片上传
 Route::post("/img/upload", "ImgController@upload")->middleware("weixinOAuth");
