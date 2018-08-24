@@ -75,6 +75,12 @@
         $(".house-box .item.house-type").on("click", function(){
             window.location.href = "/room/houseTypeImgs?id={{$row->id}}";
         });
+
+        //相似房源
+        getRoomList({
+            exceptedId : "{{$row->id}}",
+            categoryId : "{{$row->roomCategoryId}}"
+        });
     });
 </script>
 
@@ -93,7 +99,7 @@
             <div class="price-box">
                 <div class="price item">
                     <div class="val">{{$row->avgPrice}} / m²</div>
-                    <div>价格</div>
+                    <div>均价</div>
                 </div>
                 <div class="house-type item">
                     <div class="val">{{$row->houseType}}</div>
@@ -102,19 +108,40 @@
             </div>
             <div class="desc-box">
                 <div class="label">楼盘介绍</div>
-                <div class="name"><span>楼盘名称:</span>{{$row->name}} [{{$row->categoryName}}]</div>
-                <div class="area"><span>楼盘面积:</span>{{$row->acreage}} m²</div>
-                <div class="area"><span>楼盘总价:</span>{{$row->totalPrice}} 万元</div>
-                <div class="area"><span>所在区域:</span>{{$row->area}}</div>
+                <div class="name"><span>名称:</span>{{$row->name}} [{{$row->categoryName}}] [{{$row->decoration ? "精装" : "毛柸"}}]</div>
+                <div class="area"><span>区域:</span>{{$row->area}}</div>
+                <div class="area"><span>面积:</span>{{$row->acreage}} m²</div>
+                <div class="area"><span>总价:</span>{{$row->totalPrice}} 万元起</div>
+                <div class="area"><span>首付:</span>{{$row->firstPay}} 万元</div>
+                <div class="tag-list">
+                    <span>标签:</span>
+                    <div class="tag">
+                        @foreach($row->tagNameList as $tagName)
+                            <span class="tag-name">{{$tagName}}</span>
+                        @endforeach
+                    </div>
+                </div>
             </div>
             <div class="detail-box">
                 <div class="label">房源描述</div>
                 <div class="content"></div>
             </div>
+
+            {{-- 相似房源 --}}
+            <div class="similar-box">
+                <div class="label">相似房源</div>
+                <div class="house-list">
+                    <div class="loading"></div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="btn-box">
+        @if(!empty($row->adminTel))
+        <a href="tel:{{$row->adminTel}}"><div class="btn btn-tel">致电案场经理</div></a>
+        @else
         <div class="btn btn-tel">致电案场经理</div>
+        @endif
         <div class="btn btn-see">预约看房</div>
     </div>
 </div>

@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Logic\RoomSourceLogic;
+use App\Model\AdminModel;
 use App\Model\AreaModel;
 use App\Model\BespeakModel;
 use App\Model\CustomServiceModel;
@@ -25,7 +26,7 @@ class RoomController extends Controller
 {
     //列表
     public function index(Request $request) {
-        $this->pageData['title'] = "房源列表";
+        $this->pageData['title'] = env('APP_NAME');
         $this->pageData['keyword'] = $request->get("keyword", '');
         return view('room/list', $this->pageData);
     }
@@ -38,6 +39,7 @@ class RoomController extends Controller
     public function getRoomList(Request $request) {
 //        DB::connection()->enableQueryLog(); // 开启查询日志
 
+        $exceptedId = $request->get("exceptedId");
         $type = $request->get('type', 1);
         $keyword = $request->get('keyword');
         $isRecommend = $request->get('recommend');
@@ -50,9 +52,16 @@ class RoomController extends Controller
         $categoryId = $request->get('categoryId');
         $page = $request->get('page', 1);
 
+        //默认条件
         $where = ['type' => $type, 'isDel' => 0];
+
+        //搜索的关键字
         if (!empty($keyword)) {
             $where[] = ['name', 'like', '%' . trim($keyword) . '%'];
+        }
+        //排除的ID
+        if (!empty($exceptedId) && is_numeric($exceptedId)) {
+            $where[] = ['id', '<>', $exceptedId];
         }
         //是否推荐
         if (!empty($isRecommend)) {
@@ -94,7 +103,7 @@ class RoomController extends Controller
         //取得所有推荐的房源
         $roomSourceModel = new RoomSourceModel();
         $roomList = $roomSourceModel->select(['id', "type", "roomCategoryId", "name", "areaId", "avgPrice", "totalPrice", "imgJson"])
-            ->where($where)->orderBy("id", "DESC")->offset($offset)->limit($pageSize)->get();
+            ->where($where)->orderBy("updateTime", "DESC")->offset($offset)->limit($pageSize)->get();
 
 //        dd(DB::getQueryLog());
 
@@ -119,6 +128,10 @@ class RoomController extends Controller
         //查询是否已经收藏
         $model = new RoomSourceMarkModel();
         $markRow = $model->getOne(['status'], ['userId' => $this->user['id'], 'roomId' => $id]);
+
+        //查询当前推广员的手机号
+        $admin = (new AdminModel())->getOne(['tel'], ['id' => $this->user['admin_id']]);
+        $row->adminTel = $admin->tel ?: "";
 
         $this->pageData['isMark'] = !empty($markRow->status);
         $this->pageData['row'] = $row;

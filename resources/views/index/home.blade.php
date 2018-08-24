@@ -49,8 +49,8 @@
         getRoomList(paramsData);
 
         //重置高度
-        var houseListHeight = $(window).height() - $(".ads").height() - $(".recommend-house-box .tips-bar").height() - $(".bottom-menu-box").height();
-        $(".house-list").height(houseListHeight);
+//        var houseListHeight = $(window).height() - $(".ads").height() - $(".recommend-house-box .tips-bar").height() - $(".bottom-menu-box").height();
+//        $(".house-list").height(houseListHeight);
 
         //搜索功能
         $(".search-wrapper .search-icon").on("click", function(){
@@ -58,10 +58,12 @@
         });
 
         //滚动加载方法1
-        $('.house-list').scroll(function() {
-//            console.log(($(this)[0].scrollTop + $(this).height() + 60) >= $(this)[0].scrollHeight)
+        $(window).scroll(function() {
+            var scrollTop = $(this).scrollTop();
+            var scrollHeight = $(document).height();
+            var windowHeight = $(this).height();
             //当时滚动条离底部60px时开始加载下一页的内容
-            if (($(this)[0].scrollTop + $(this).height() + 60) >= $(this)[0].scrollHeight) {
+            if (scrollTop + windowHeight - scrollHeight <= 50) {
                 if (!ajaxing && !isEnd) {
                     ajaxing = true;
                     paramsData.page++;

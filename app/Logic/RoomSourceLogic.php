@@ -4,6 +4,7 @@ use App\Model\AreaModel;
 use App\Model\HouseTypeModel;
 use App\Model\RoomCategoryModel;
 use App\Model\RoomSourceModel;
+use App\Model\RoomTagModel;
 
 /**
  * Created by PhpStorm.
@@ -42,28 +43,46 @@ class RoomSourceLogic extends BaseLogic
     public function formatRoomList($roomList) {
         if (empty($roomList)) return [];
 
+        //分类
         $cateArr = [];
         $categoryList = (new RoomCategoryModel())->getList(['id', 'name'], ['isDel' => 0]);
         foreach ($categoryList as $cate) {
             $cateArr[$cate->id] = $cate->name;
         }
 
+        //户型
         $houseTypeArr = [];
         $houseTypeList = (new HouseTypeModel())->getList(['*'], ['isDel' => 0]);
         foreach ($houseTypeList as $houseType) {
             $houseTypeArr[$houseType->id] = $houseType->name;
         }
 
+        //所在区域
         $areaArr = [];
         $areaList = (new AreaModel())->getList(['id', 'name'], ['isDel' => 0]);
         foreach ($areaList as $area) {
             $areaArr[$area->id] = $area->name;
         }
 
+        //平台所有房源标签
+        $tags = (new RoomTagModel())->getList(['*'], ['isDel' => 0]);
+
         foreach ($roomList as $key => $row) {
             $row->houseType = empty($row->houseTypeId) ? "" : ($houseTypeArr[$row->houseTypeId] ?? "未知");
             $row->categoryName = empty($row->roomCategoryId) ? "" : ($cateArr[$row->roomCategoryId] ?? "未知");
             $row->area = empty($row->areaId) ? "" : ($areaArr[$row->areaId] ?? "未知");
+
+            //标签
+            $tagNameList = [];
+            if (!empty($row->roomTagIds)) {
+                $tagIds = explode(",", $row->roomTagIds);
+                foreach ($tags as $tag) {
+                    if (in_array($tag->id, $tagIds)) {
+                        $tagNameList[] = $tag->name;
+                    }
+                }
+            }
+            $row->tagNameList = $tagNameList;
 
             //图片有缩略图 用缩略图
             if (!empty($row->imgJson)) {
