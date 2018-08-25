@@ -60,6 +60,7 @@ Route::get('/cash-red-pack-info', "IndexController@cashRedPackInfo")->middleware
 Route::get('/assistance-page', "IndexController@assistancePage")->middleware("weixinOAuth");
 Route::post('/assistance', "IndexController@assistance")->middleware("weixinOAuth");
 Route::get('/red-pack/rule', "IndexController@rule")->middleware("weixinOAuth");
+Route::get('/broadcastList', "IndexController@broadcastList")->middleware("weixinOAuth");
 
 //赠送好友红包
 Route::get('/index/grantRedPack', "IndexController@grantRedPack")->middleware("weixinOAuth");

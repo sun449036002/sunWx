@@ -192,7 +192,7 @@
                 </span>
                 后失效，赶紧找人助力~
             </div>
-            <div class="go-on-share">再找人助力</div>
+            <div class="seize-seat"><div class="go-on-share">再找人助力</div></div>
             <div class="assistance-list">
                 @foreach($redPackRecordList as $item)
                 <div class="assistance-item" style="background-image: url('{{$item->headImgUrl}}');">
@@ -272,6 +272,7 @@
 @include('components/cash-red-pack-rule')
 @include('components/shareLayer')
 @include('components/canNotBack')
+@include('components/broadcast')
 
 </body>
 </html>

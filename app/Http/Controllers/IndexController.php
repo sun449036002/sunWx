@@ -12,6 +12,7 @@ use App\Consts\CacheConst;
 use App\Consts\CookieConst;
 use App\Consts\StateConst;
 use App\Consts\WxConst;
+use App\Logic\RedPackLogic;
 use App\Logic\RoomSourceLogic;
 use App\Model\AdsModel;
 use App\Model\RedPackConfigModel;
@@ -74,27 +75,10 @@ class IndexController extends Controller
      * 现金红包
      */
     public function cashRedPack() {
-//        exit('建设中');
         $this->pageData['title'] = "现金红包";
 
-        //获取已经集满的红包数据 (取最近10条记录即可，不重复的用户,不重复的红包ID)
-        $model = new RedPackRecordModel();
-        $rows = $model->join("red_pack as b", "redPackId", "=", "b.id")
-            ->select(['b.userId', 'red_pack_record.money', "red_pack_record.createTime"])
-            ->groupBy("red_pack_record.id", "redPackId", "userId", "money", "createTime")
-            ->orderBy("red_pack_record.id", "desc")
-            ->limit(10)->get();
-        if (!empty($rows)) {
-            $userModel = new UserModel();
-            foreach ($rows as $row) {
-                $_u = $userModel->getUserinfoByOpenid($row->userId);
-                $row->nickname = $_u['username'] ?? "";
-                $row->headImgUrl = $_u['avatar_url'] ?? "";
-                $row->time = beforeWhatTime($row->createTime ?? 0);
-            }
-        }
-
-        $this->pageData['rows'] = $rows;
+        //获取最新的助力记录 (取最近10条记录即可，不重复的用户,不重复的红包ID)
+        $this->pageData['rows'] = (new RedPackLogic())->getBroadcastList();
 
         return view("index/cash-red-pack", $this->pageData);
     }
@@ -465,6 +449,16 @@ class IndexController extends Controller
         ], ['id' => $redPackId]);
 
         return ResultClientJson(0, '领取成功');
+    }
+
+    /**
+     * 播报列表
+     */
+    public function broadcastList() {
+        //获取最新的助力记录 (取最近10条记录即可，不重复的用户,不重复的红包ID)
+        $list =  (new RedPackLogic())->getBroadcastList();
+
+        return ResultClientJson(0, 'ok', ['list' => $list]);
     }
 
 

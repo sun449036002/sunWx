@@ -90,3 +90,32 @@ if (typeof Object.assign != 'function') {
         configurable: true
     });
 }
+
+/**
+ * 动画效果，从大到小的缩放
+ * @param target
+ * @param bigW
+ * @param smallW
+ * @param bigH
+ * @param smallH
+ */
+function animateBigSmall(target, bigW, smallW, bigH, smallH) {
+    $(target).animate({
+        width:bigW,
+        height : bigH
+
+    }, {
+        easing: "easeOutBounce",
+        duration: 500,
+        complete:function(){
+            $(target).animate({
+                width:smallW,
+                height : smallH
+            }, {
+                easing: "easeOutBounce",
+                duration: 500,
+                complete:function(){}
+            });
+        }
+    });
+}

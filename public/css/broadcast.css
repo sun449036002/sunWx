@@ -1,0 +1,31 @@
+.broadcast-box {
+    position: absolute;
+    top: 0.3rem;
+    background-color: rgba(0,0,0,0.6);
+    color: #FFF;
+    border-radius: 0.4rem;
+    height: .7rem;
+    overflow: hidden;
+}
+
+.broadcast-box .list {
+}
+
+.broadcast-box .list .item {
+    display: flex;
+    line-height: 0.7rem;
+}
+
+.broadcast-box .list .item .head-img-url {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-size: cover;
+    border-radius: .3rem;
+    margin: .1rem 0;
+}
+.broadcast-box .list .item .nickname {
+    padding: 0 0.1rem;
+}
+.broadcast-box .list .item .money {
+    padding:0 .1rem;
+}
