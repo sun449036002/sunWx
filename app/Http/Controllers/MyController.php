@@ -20,6 +20,7 @@ use App\Model\SuggestionModel;
 use App\Model\SystemModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class MyController extends Controller
@@ -105,10 +106,18 @@ class MyController extends Controller
             return back()->withErrors($validate);
         }
 
-        //图片
-        $imgs = explode(",", $data['img']);
-
+        //微信上传的临时素材图片
+        $imgs = [];
+        $destinationPath = "/images/cash-back-wx/" . date("Ymd");
+        Storage::makeDirectory($destinationPath);
         $wxImgs = explode(",", $data['wxImgs']);
+        foreach ($wxImgs as $mediaId) {
+            $stream = $this->wxapp->media->get($mediaId);
+            // 自定义文件名，不需要带后缀
+            $stream->saveAs($destinationPath, $mediaId);
+
+            $imgs[] = $destinationPath . "/" . $mediaId;
+        }
 
         //返现金额打款账号
         $paymentMethodList = [
@@ -145,9 +154,9 @@ class MyController extends Controller
                 }
             }
 
-            return ResultClientJson(0, '提交成功', [$data, $wxImgs]);
+            return ResultClientJson(0, '提交成功');
         }
-        return ResultClientJson(100, '提交失败', [$data, $wxImgs]);
+        return ResultClientJson(100, '提交失败');
 
     }
 
