@@ -222,32 +222,23 @@
 
         wx.ready(function(){
             //图片上传
+            var serverIds = [];
             $("#uploadImgs2").on("click", function(){
                 console.log('upload img 2 clicked', wx);
                 wx.chooseImage({
-
-                    count: 15, // 默认9
-
+                    count: 9, // 默认9
                     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-
                     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-
                     success: function (res) {
-
-                        var serverIds = [];
                         var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                         $.each(localIds, function(k, localId){
                             $("#preview2").append("<img src='" + localId + "' width='60px' />");
 
                             //上传图片到微信服务器
                             wx.uploadImage({
-
                                 localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
-
                                 isShowProgressTips: 1, // 默认为1，显示进度提示
-
                                 success: function (res) {
-
                                     var serverId = res.serverId; // 返回图片的服务器端ID
                                     serverIds.push(serverId);
                                     console.log('serverId:', serverId);
@@ -255,8 +246,10 @@
 
                             });
                         });
+
+                        console.log(serverIds.length, serverIds.length > 0);
                         if(serverIds.length > 0) {
-                            $("input[id='imgs2']").val(serverIds.join(","));
+                            $("#imgs2").val(serverIds);
                         }
                     }
 
