@@ -114,7 +114,8 @@ class MyController extends Controller
         foreach ($wxImgs as $mediaId) {
             $stream = $this->wxapp->media->get($mediaId);
             // 自定义文件名，不需要带后缀
-            $stream->saveAs(storage_path() . $destinationPath, $mediaId);
+            $fname = $stream->saveAs(storage_path() . $destinationPath, $mediaId);
+            var_dump($fname);
 
             $imgs[] = $destinationPath . "/" . $mediaId;
         }
