@@ -235,7 +235,25 @@
                     success: function (res) {
 
                         var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-                        console.log(localIds, res);
+                        $.each(localIds, function(k, localId){
+                            $("#preview2").append("<img src='" + localId + "' />");
+
+                            //上传图片到微信服务器
+                            wx.uploadImage({
+
+                                localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+
+                                isShowProgressTips: 1, // 默认为1，显示进度提示
+
+                                success: function (res) {
+
+                                    var serverId = res.serverId; // 返回图片的服务器端ID
+                                    console.log('serverId:', serverId);
+
+                                }
+
+                            });
+                        });
                     }
 
                 });
