@@ -143,6 +143,13 @@
                     <input type="hidden" id="imgs" name="imgs" />
                 </div>
             </div>
+            <div class="mui-row">
+                <div id="preview2" class="preview-row2"></div>
+                <div id="uploadImgs2" class="btn-upload">
+                    <img class="upload-img" src="{{asset('imgs/uploadImg.png')}}" alt="" />
+                    <input type="hidden" id="imgs2" name="imgs2" />
+                </div>
+            </div>
         </div>
         <div class="mui-table-view-divider">以下三种支付账号至少填一项</div>
         <div class="mui-input-row">
@@ -206,10 +213,35 @@
 <script src="{{asset('js/jquery-2.1.1.js')}}"></script>
 <script src="{{asset('js/mui.min.js')}}"></script>
 <script src="{{asset('js/mui.picker.min.js')}}"></script>
+<script src="{{asset('js/jweixin-1.2.0.js')}}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     mui.init();
 
     $(document).ready(function() {
+        wx.config(<?php echo $wxapp->jssdk->buildConfig(['chooseImage', 'uploadImage', 'downloadImage'], false) ?>);
+
+        wx.ready(function(){
+            //图片上传
+            $("#uploadImgs2").on("click", function(){
+                console.log('upload img 2 clicked', wx);
+                wx.chooseImage({
+
+                    count: 15, // 默认9
+
+                    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+
+                    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+
+                    success: function (res) {
+
+                        var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                        console.log(localIds, res);
+                    }
+
+                });
+            });
+        });
+
         mui(".last-btn-div").on('tap', '#submitBtn', checkForm);
 
         /*选择看房时间*/
