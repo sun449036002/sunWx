@@ -57,6 +57,12 @@
             window.location.href = "/room/list?keyword=" + $(".search-wrapper input[name='keyword']").val();
         });
 
+        //预约看房
+        $(".house-list").on("click", ".btn-see-house", function(){
+            window.location.href = "/room/bespeak?roomId=" + $(this).data("id");
+            return false;
+        });
+
         //滚动加载方法1
         $(window).scroll(function() {
             var scrollTop = $(this).scrollTop();

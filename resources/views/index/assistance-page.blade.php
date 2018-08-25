@@ -102,7 +102,7 @@
 </head>
 <body>
 <div class="cash-red-pack-main">
-    <div class="tips">天天拆红包 领百元现金</div>
+    <div class="tips">天天拆红包 领500元现金</div>
     <div class="rule">活动规则</div>
     <div class="mid">
         <div class="box">

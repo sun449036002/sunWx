@@ -61,9 +61,14 @@
             });
         });
 
-        //预约看房
+        //详情的预约看房
         $(".btn-box .btn-see").on("click", function(){
             window.location.href = "/room/bespeak?roomId={{$row->id}}";
+        });
+
+        //相似房源列表中的预约看房
+        $(".house-list").on("click", ".btn-see-house", function(){
+            window.location.href = "/room/bespeak?roomId=" + $(this).data("id");
         });
 
         //致电案场经理
