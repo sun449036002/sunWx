@@ -108,7 +108,7 @@ class MyController extends Controller
         //图片
         $imgs = explode(",", $data['img']);
 
-        $wxImgs = explode(",", $data['imgs2']);
+        $wxImgs = explode(",", $data['wxImgs']);
 
         //返现金额打款账号
         $paymentMethodList = [
@@ -145,9 +145,9 @@ class MyController extends Controller
                 }
             }
 
-            return ResultClientJson(0, '提交成功', $data);
+            return ResultClientJson(0, '提交成功', [$data, $wxImgs]);
         }
-        return ResultClientJson(100, '提交失败', $data);
+        return ResultClientJson(100, '提交失败', [$data, $wxImgs]);
 
     }
 
