@@ -107,13 +107,13 @@ class MyController extends Controller
 
         //微信上传的临时素材图片
         $imgs = [];
-        $destinationPath = "/app/images/cash-back-wx/" . date("Ymd");
+        $destinationPath = "/images/cash-back-wx/" . date("Ymd");
         $wxImgs = explode(",", $data['wxImgs']);
         foreach ($wxImgs as $mediaId) {
             $stream = $this->wxapp->media->get($mediaId);
             // 自定义文件名，不需要带后缀
             $filename = $mediaId . ".png";
-            $stream->saveAs(storage_path() . $destinationPath, $filename);
+            $stream->saveAs(storage_path()  . "/app" . $destinationPath, $filename);
 
             $imgs[] = $destinationPath . "/" . $filename;
         }
