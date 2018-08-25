@@ -112,9 +112,10 @@ class MyController extends Controller
         foreach ($wxImgs as $mediaId) {
             $stream = $this->wxapp->media->get($mediaId);
             // 自定义文件名，不需要带后缀
-            $stream->saveAs(storage_path() . $destinationPath, $mediaId);
+            $filename = $mediaId . ".png";
+            $stream->saveAs(storage_path() . $destinationPath, $filename);
 
-            $imgs[] = $destinationPath . "/" . $mediaId;
+            $imgs[] = $destinationPath . "/" . $filename;
         }
 
         //返现金额打款账号
