@@ -147,7 +147,7 @@
                 <div id="preview2" class="preview-row2"></div>
                 <div id="uploadImgs2" class="btn-upload">
                     <img class="upload-img" src="{{asset('imgs/uploadImg.png')}}" alt="" />
-                    <input type="hidden" id="imgs2" name="imgs2" />
+                    <input type="hidden" id="imgs2" name="imgs2[]" />
                 </div>
             </div>
         </div>
@@ -234,9 +234,10 @@
 
                     success: function (res) {
 
+                        var serverIds = [];
                         var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                         $.each(localIds, function(k, localId){
-                            $("#preview2").append("<img src='" + localId + "' />");
+                            $("#preview2").append("<img src='" + localId + "' width='60px' />");
 
                             //上传图片到微信服务器
                             wx.uploadImage({
@@ -248,12 +249,15 @@
                                 success: function (res) {
 
                                     var serverId = res.serverId; // 返回图片的服务器端ID
+                                    serverIds.push(serverId);
                                     console.log('serverId:', serverId);
-
                                 }
 
                             });
                         });
+                        if(serverIds.length > 0) {
+                            $("input[id='imgs2']").val(serverIds.join(","));
+                        }
                     }
 
                 });
