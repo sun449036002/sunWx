@@ -102,20 +102,17 @@ class MyController extends Controller
         ];
         $validate = Validator::make($data, $rule, $message);
         if (!$validate->passes()) {
-            dd($validate->errors());
             return back()->withErrors($validate);
         }
 
         //微信上传的临时素材图片
         $imgs = [];
-        $destinationPath = "/images/cash-back-wx/" . date("Ymd");
-        Storage::makeDirectory($destinationPath);
+        $destinationPath = "/app/images/cash-back-wx/" . date("Ymd");
         $wxImgs = explode(",", $data['wxImgs']);
         foreach ($wxImgs as $mediaId) {
             $stream = $this->wxapp->media->get($mediaId);
             // 自定义文件名，不需要带后缀
-            $fname = $stream->saveAs(storage_path() . $destinationPath, $mediaId);
-            var_dump($fname);
+            $stream->saveAs(storage_path() . $destinationPath, $mediaId);
 
             $imgs[] = $destinationPath . "/" . $mediaId;
         }
