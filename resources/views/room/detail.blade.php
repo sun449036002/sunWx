@@ -69,6 +69,7 @@
         //相似房源列表中的预约看房
         $(".house-list").on("click", ".btn-see-house", function(){
             window.location.href = "/room/bespeak?roomId=" + $(this).data("id");
+            return false;
         });
 
         //致电案场经理
