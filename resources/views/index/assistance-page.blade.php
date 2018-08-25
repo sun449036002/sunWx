@@ -119,9 +119,10 @@
                     @else
                         <p>邀请您帮他拆红包</p>
                         <p>他还差 {{$redPack->total - $redPack->received}} 元</p>
+                        <p style="color:#fbca3a;">助力后您也可得500元现金红包</p>
                     @endif
                 </div>
-                <div class="{{$isHelped ? "is-helped" : ""}} btn-assistance">{{$isHelped ? (!empty($unCompleteRedPackId) ? "我的现金红包" : "我也要领红包") : "帮他助力"}}</div>
+                <div style="height: 1rem;display: flex;flex-direction: column;"><div class="{{$isHelped ? "is-helped" : ""}} btn-assistance">{{$isHelped ? (!empty($unCompleteRedPackId) ? "我的现金红包" : "我也要领红包") : "帮他助力"}}</div></div>
             </div>
         </div>
     </div>
