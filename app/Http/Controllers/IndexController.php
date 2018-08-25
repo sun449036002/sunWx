@@ -307,7 +307,9 @@ class IndexController extends Controller
             $nowReceived = $row->received + $curReceivedMoney;
             $updateData = ['received' => $nowReceived];
             if ($isLast) {
-                $updateData['useExpiredTime'] = time() + 30 * 86400;
+                //设置为下个月月底过期
+                $lastDayOfNextMonth = date("Y-m-d 23:59:59", strtotime("last day of next month"));
+                $updateData['useExpiredTime'] = strtotime($lastDayOfNextMonth);
                 $updateData['status'] = 1;
             }
             $redPackModel->updateData($updateData, ['id' => $data['redPackId']]);
