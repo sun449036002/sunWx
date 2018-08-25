@@ -106,7 +106,7 @@
                         @foreach($rows as $row)
                         <li class="item">
                             <div class="head-img-url" style="background-image: url('{{$row->headImgUrl}}')"></div>
-                            <div class="withdraw-info"><span class="nickname">{{mb_substr($row->nickname, 0, 6, "...")}}</span>提现{{$row->money}}元</div>
+                            <div class="withdraw-info"><span class="nickname">{{mb_substr($row->nickname, 0, 7)}}</span>提现{{$row->money}}元</div>
                         </li>
                         @endforeach
                         @endif
