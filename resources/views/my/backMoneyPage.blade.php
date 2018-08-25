@@ -241,16 +241,13 @@
                                 success: function (res) {
                                     var serverId = res.serverId; // 返回图片的服务器端ID
                                     serverIds.push(serverId);
+                                    console.log(serverIds.length, serverIds.length > 0);
+                                    $("#imgs2").val(serverIds);
                                     console.log('serverId:', serverId);
                                 }
 
                             });
                         });
-
-                        console.log(serverIds.length, serverIds.length > 0);
-                        if(serverIds.length > 0) {
-                            $("#imgs2").val(serverIds);
-                        }
                     }
 
                 });

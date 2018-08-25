@@ -87,7 +87,7 @@ class MyController extends Controller
             'amount' => 'required',
             'acreage' => 'required',
             'buyTime' => 'required',
-            'img' => 'required',
+//            'img' => 'required', TODO
         ];
         $message = [
             'houses.required' => '楼盘名称必填',
@@ -97,7 +97,7 @@ class MyController extends Controller
             'amount.required' => '购房金额必填',
             'acreage.required' => '面积必填',
             'buyTime.required' => '购房时间必填',
-            'img.required' => '购房凭证图片必填',
+//            'img.required' => '购房凭证图片必填', TODO
         ];
         $validate = Validator::make($data, $rule, $message);
         if (!$validate->passes()) {
