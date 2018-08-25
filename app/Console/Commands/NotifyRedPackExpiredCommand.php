@@ -27,6 +27,7 @@ class NotifyRedPackExpiredCommand extends Command
 
     //提前多少时间通知
     private $notifyBeforeTime = 3 * 3600;
+    private $useNotifyBeforeTime = 86400;
 
     public function handle() {
         $type = $this->option('type');
@@ -41,7 +42,7 @@ class NotifyRedPackExpiredCommand extends Command
                 'isDel' => 0,
                 'status' => StateConst::RED_PACK_FILL_UP,
                 'useExpireNotified' => 0,
-                ['useExpiredTime', "<=", time() + $this->notifyBeforeTime]
+                ['useExpiredTime', "<=", time() + $this->useNotifyBeforeTime]
             ];
         } else if($type == 'normal') {
             $where = [
