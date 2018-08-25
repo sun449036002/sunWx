@@ -122,7 +122,9 @@
                         <p style="color:#fbca3a;">助力后您也可得500元现金红包</p>
                     @endif
                 </div>
-                <div style="height: 1rem;display: flex;flex-direction: column;"><div class="{{$isHelped ? "is-helped" : ""}} btn-assistance">{{$isHelped ? (!empty($unCompleteRedPackId) ? "我的现金红包" : "我也要领红包") : "帮他助力"}}</div></div>
+                <div style="height: 1rem;display: flex;flex-direction: column;">
+                    <div class="{{$isHelped ? "is-helped" : ""}} btn-assistance">{{$isHelped ? (!empty($unCompleteRedPackId) ? "我的现金红包" : "我也要领500元现金红包") : "帮他助力"}}</div>
+                </div>
             </div>
         </div>
     </div>
@@ -132,7 +134,7 @@
     <div class="bg">
         <div class="text">助力好友成功，助力<span class="assistance-money">85.99</span>元</div>
         <div class="tips">ta已获得<span class="total-money">698.53</span>元</div>
-        <div class="btn-me-too">我也要领现金红包</div>
+        <div class="btn-me-too">我也要领500现金红包</div>
     </div>
 </div>
 
