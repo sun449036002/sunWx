@@ -232,7 +232,8 @@
                     success: function (res) {
                         var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                         $.each(localIds, function(k, localId){
-                            $("#preview2").append("<img src='" + localId + "' width='60px' />");
+                            var imgHtml = "<div class='img-item'><img src='" + localId + "' width='60px' /><div class='del-img'>X</div></div>";
+                            $("#preview2").append();
 
                             //上传图片到微信服务器
                             wx.uploadImage({
@@ -245,7 +246,6 @@
                                     $("#imgs2").val(serverIds);
                                     console.log('serverId:', serverId);
                                 }
-
                             });
                         });
                     }

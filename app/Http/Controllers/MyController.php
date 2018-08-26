@@ -88,7 +88,7 @@ class MyController extends Controller
             'amount' => 'required',
             'acreage' => 'required',
             'buyTime' => 'required',
-//            'img' => 'required', TODO
+            'wxImgs' => 'required',
         ];
         $message = [
             'houses.required' => '楼盘名称必填',
@@ -98,14 +98,14 @@ class MyController extends Controller
             'amount.required' => '购房金额必填',
             'acreage.required' => '面积必填',
             'buyTime.required' => '购房时间必填',
-//            'img.required' => '购房凭证图片必填', TODO
+            'wxImgs.required' => '购房凭证图片必填',
         ];
         $validate = Validator::make($data, $rule, $message);
         if (!$validate->passes()) {
             return back()->withErrors($validate);
         }
 
-        //微信上传的临时素材图片
+        //保存微信上传的临时素材图片
         $imgs = [];
         $destinationPath = "/images/cash-back-wx/" . date("Ymd");
         $wxImgs = explode(",", $data['wxImgs']);
