@@ -137,13 +137,6 @@
                 <label>购房凭证</label>
             </div>
             <div class="mui-row">
-                <div id="preview" class="preview-row"></div>
-                <div id="uploadImgs" class="btn-upload">
-                    <img class="upload-img" src="{{asset('imgs/uploadImg.png')}}" alt="" />
-                    <input type="hidden" id="imgs" name="imgs" />
-                </div>
-            </div>
-            <div class="mui-row">
                 <div id="preview2" class="preview-row2"></div>
                 <div id="uploadImgs2" class="btn-upload">
                     <img class="upload-img" src="{{asset('imgs/uploadImg.png')}}" alt="" />
@@ -183,33 +176,6 @@
     </div>
 </div>
 
-<script src="{{asset('js/zepto.min.js')}}"></script>
-<script src="{{asset('js/h5upload.js')}}"></script>
-<script type="text/javascript">
-    $.fileUpload({
-        filebutton: "#uploadImgs",
-        previewZoom: "#preview",
-        multiple: true,
-        uploadButton: "#fileImage",
-        uploadButtonName: 'fileImage',
-        fileInfoId: '#imgs',
-        csrf_token:"{{csrf_token()}}",
-        uploadComplete: uploadIndexComplete
-    });
-
-    var imgs = [];
-    function uploadIndexComplete(res) {
-        res = JSON.parse(res);
-        if (res.code === 0) {
-            if ((res.imgs || []).length > 0) {
-                imgs.push(res.imgs[0]);
-            }
-        }
-        console.log(imgs);
-        $("#imgs").val(imgs);
-    }
-</script>
-
 <script src="{{asset('js/jquery-2.1.1.js')}}"></script>
 <script src="{{asset('js/mui.min.js')}}"></script>
 <script src="{{asset('js/mui.picker.min.js')}}"></script>
@@ -233,7 +199,7 @@
                         var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                         $.each(localIds, function(k, localId){
                             var imgHtml = "<div class='img-item'><img src='" + localId + "' width='60px' /><div class='del-img'>X</div></div>";
-                            $("#preview2").append();
+                            $("#preview2").append(imgHtml);
 
                             //上传图片到微信服务器
                             wx.uploadImage({
