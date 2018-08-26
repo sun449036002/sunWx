@@ -15,6 +15,7 @@
         color:#888;
         width: 25vw;
         text-align: center;
+        font-size:.24rem;
         display: flex;
         flex-direction: column;
     }
