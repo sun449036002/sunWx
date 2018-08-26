@@ -78,6 +78,31 @@
             padding: 0 .3rem;
             border-radius: .1rem;
         }
+
+        .feedback-form .preview-row2 {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .feedback-form .preview-row2 .img-item {
+            position: relative;
+            width: 60px;
+            height:60px;
+            margin: 0 0 10px 10px;
+        }
+        .feedback-form .preview-row2 .img-item .img {
+            width:100%;
+            height: 100%;
+        }
+        .feedback-form .preview-row2 .img-item .del-img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width:10px;
+            height: 10px;
+            background-color: rgba(0,0,0,0.8);
+            color:#FFF;
+        }
+
     </style>
 
 </head>
@@ -198,7 +223,7 @@
                     success: function (res) {
                         var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                         $.each(localIds, function(k, localId){
-                            var imgHtml = "<div class='img-item'><img src='" + localId + "' width='60px' /><div class='del-img'>X</div></div>";
+                            var imgHtml = "<div class='img-item'><img src='" + localId + "' /><div class='del-img'>X</div></div>";
                             $("#preview2").append(imgHtml);
 
                             //上传图片到微信服务器
