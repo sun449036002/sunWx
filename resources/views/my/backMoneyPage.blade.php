@@ -85,22 +85,25 @@
         }
         .feedback-form .preview-row2 .img-item {
             position: relative;
-            width: 60px;
-            height:60px;
-            margin: 0 0 10px 10px;
+            width: 1.8rem;
+            height: 1.8rem;
+            margin: 0 0 0.5rem 0.5rem;
         }
-        .feedback-form .preview-row2 .img-item .img {
+        .feedback-form .preview-row2 .img-item img {
             width:100%;
             height: 100%;
         }
         .feedback-form .preview-row2 .img-item .del-img {
             position: absolute;
-            top: 0;
-            right: 0;
-            width:10px;
-            height: 10px;
+            top: -.3rem;
+            right: -.3rem;
+            width: 0.5rem;
+            height: 0.5rem;
             background-color: rgba(0,0,0,0.8);
-            color:#FFF;
+            color: #FFF;
+            text-align: center;
+            line-height: 0.5rem;
+            border-radius: .3rem;
         }
 
     </style>
@@ -162,11 +165,11 @@
                 <label>购房凭证</label>
             </div>
             <div class="mui-row">
-                <div id="preview2" class="preview-row2"></div>
                 <div id="uploadImgs2" class="btn-upload">
                     <img class="upload-img" src="{{asset('imgs/uploadImg.png')}}" alt="" />
                     <input type="hidden" id="imgs2" name="imgs2[]" />
                 </div>
+                <div id="preview2" class="preview-row2"></div>
             </div>
         </div>
         <div class="mui-table-view-divider">以下三种支付账号至少填一项</div>
@@ -212,8 +215,8 @@
         wx.config(<?php echo $wxapp->jssdk->buildConfig(['chooseImage', 'uploadImage', 'downloadImage'], false) ?>);
 
         wx.ready(function(){
-            //图片上传
             var serverIds = [];
+            //图片上传
             $("#uploadImgs2").on("click", function(){
                 console.log('upload img 2 clicked', wx);
                 wx.chooseImage({
@@ -223,9 +226,6 @@
                     success: function (res) {
                         var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                         $.each(localIds, function(k, localId){
-                            var imgHtml = "<div class='img-item'><img src='" + localId + "' /><div class='del-img'>X</div></div>";
-                            $("#preview2").append(imgHtml);
-
                             //上传图片到微信服务器
                             wx.uploadImage({
                                 localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
@@ -236,6 +236,9 @@
                                     console.log(serverIds.length, serverIds.length > 0);
                                     $("#imgs2").val(serverIds);
                                     console.log('serverId:', serverId);
+
+                                    var imgHtml = "<div class='img-item' data-server-id='" + serverId + "'><img src='" + localId + "' /><div class='del-img'>X</div></div>";
+                                    $("#preview2").append(imgHtml);
                                 }
                             });
                         });
@@ -243,6 +246,21 @@
 
                 });
             });
+        });
+
+        //删除已上传的图片
+        $(".feedback-form").on("click", ".preview-row2 .img-item .del-img", function(){
+            console.log('del img clicked');
+            $(this).parent().remove();
+
+            //重置input中的值
+            var _serverIds = [];
+            $(".feedback-form .preview-row2 .img-item").each(function(k, item){
+                var _serverId = $(item).data("serverId");
+                _serverIds.push(_serverId);
+                console.log("now server id is :" + _serverId);
+            });
+            $("#imgs2").val(_serverIds);
         });
 
         mui(".last-btn-div").on('tap', '#submitBtn', checkForm);
