@@ -110,6 +110,8 @@ body {
 }
 
 .assistance-list .assistance-item {
+    display: flex;
+    flex-direction: column;
     position: relative;
     width: 0.8rem;
     height: 0.8rem;
@@ -119,14 +121,15 @@ body {
 }
 .assistance-list .assistance-item .money {
     position: absolute;
-    background-color: #d22e20;
-    color: #fff;
     bottom: -0.4rem;
     border-radius: 0.2rem;
     padding: 0 .1rem;
-    font-size: .2rem;
     height: 0.4rem;
     line-height: .35rem;
+    align-self: center;
+    font-size: .2rem;
+    color: #fff;
+    background-color: #d22e20;
 }
 
 /**
