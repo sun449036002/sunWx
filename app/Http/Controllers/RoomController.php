@@ -227,7 +227,8 @@ class RoomController extends Controller
             //发送短信消息给对应的手机号
             $systemModel = new SystemModel();
             $system = $systemModel->getOne(['smsTel'], null);
-            if (!empty($system['smsTel']) && is_numeric($system['smsTel'])) {
+            $telNumber = $system->smsTel ?? "";
+            if (!empty($telNumber) && is_numeric($telNumber)) {
                 // 短信模板ID，需要在短信应用中申请
                 $templateId = 181523;  // NOTE: 这里的模板ID`7839`只是一个示例，真实的模板ID需要在短信控制台中申请
                 // 签名
@@ -236,7 +237,7 @@ class RoomController extends Controller
                 try {
                     $ssender = new SmsSingleSender(WxConst::TX_SMS_APP_ID, WxConst::TX_SMS_APP_KEY);
                     $params = [$data['name'], $data['time']];//对应模板里面的{1}和{2}的位置，对应替换成相应内容
-                    $result = $ssender->sendWithParam("86", $system['smsTel'], $templateId,
+                    $result = $ssender->sendWithParam("86", $telNumber, $templateId,
                         $params, $smsSign, "", "");  // 签名参数未提供或者为空时，会使用默认签名发送短信
                     Log::info('短信发送结果：', [$result]);
                 } catch(\Exception $e) {
