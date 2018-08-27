@@ -93,7 +93,7 @@ class BaseModel extends Model
      * @param $builder
      */
     private function bindWhere($where, &$builder) {
-        foreach ($where as $key => $item) {
+        if (!empty($where) && is_array($where)) foreach ($where as $key => $item) {
             if (is_array($item)) {
                 if (count($item) == 3) {
                     list($field, $option, $val) = $item;
