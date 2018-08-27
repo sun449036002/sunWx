@@ -235,8 +235,10 @@ class RoomController extends Controller
                 $smsSign = "雍今利杭州房地产公司"; // NOTE: 这里的签名只是示例，请使用真实的已申请的签名，签名参数使用的是`签名内容`，而不是`签名ID`
                 // 单发短信
                 try {
+                    $name = mb_substr($data['name'], 0 ,12);
+                    $dateTime = date("n月j日G时i分", strtotime($data['time']));
                     $ssender = new SmsSingleSender(WxConst::TX_SMS_APP_ID, WxConst::TX_SMS_APP_KEY);
-                    $params = [$data['name'], $data['time']];//对应模板里面的{1}和{2}的位置，对应替换成相应内容
+                    $params = [$name, $dateTime];//对应模板里面的{1}和{2}的位置，对应替换成相应内容
                     $result = $ssender->sendWithParam("86", $telNumber, $templateId,
                         $params, $smsSign, "", "");  // 签名参数未提供或者为空时，会使用默认签名发送短信
                     Log::info('短信发送结果：', [$result]);
