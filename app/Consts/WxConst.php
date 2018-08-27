@@ -19,4 +19,10 @@ class WxConst
 
     //用户ID 对接的推广二维码 %s ===> adminId (推广业务员的后台账号ID) %s => 红包ID
     const QR_CODE_FOR_ADMIN_USER = 'qr_code_for_admin_user_%s_%s';
+
+    //腾讯短信APP ID
+    const TX_SMS_APP_ID = "1400133557";
+
+    //腾讯短信APP KEY
+    const TX_SMS_APP_KEY = "f5d9df69f328d35406c7e8d7a296764d";
 }

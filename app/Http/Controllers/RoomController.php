@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Consts\WxConst;
 use App\Logic\RoomSourceLogic;
 use App\Model\AdminModel;
 use App\Model\AreaModel;
@@ -18,9 +19,12 @@ use App\Model\HouseTypeModel;
 use App\Model\RoomCategoryModel;
 use App\Model\RoomSourceMarkModel;
 use App\Model\RoomSourceModel;
+use App\Model\SystemModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Qcloud\Sms\SmsSingleSender;
 
 class RoomController extends Controller
 {
@@ -220,7 +224,25 @@ class RoomController extends Controller
         ]);
 
         if ($newId) {
-            //TODO 发送短信消息给对应的手机号
+            //发送短信消息给对应的手机号
+            $systemModel = new SystemModel();
+            $system = $systemModel->getOne(['smsTel'], null);
+            if (!empty($system['smsTel']) && is_numeric($system['smsTel'])) {
+                // 短信模板ID，需要在短信应用中申请
+                $templateId = 181523;  // NOTE: 这里的模板ID`7839`只是一个示例，真实的模板ID需要在短信控制台中申请
+                // 签名
+                $smsSign = "雍今利杭州房地产公司"; // NOTE: 这里的签名只是示例，请使用真实的已申请的签名，签名参数使用的是`签名内容`，而不是`签名ID`
+                // 单发短信
+                try {
+                    $ssender = new SmsSingleSender(WxConst::TX_SMS_APP_ID, WxConst::TX_SMS_APP_KEY);
+                    $params = [$data['name'], $data['time']];//对应模板里面的{1}和{2}的位置，对应替换成相应内容
+                    $result = $ssender->sendWithParam("86", $system['smsTel'], $templateId,
+                        $params, $smsSign, "", "");  // 签名参数未提供或者为空时，会使用默认签名发送短信
+                    Log::info('短信发送结果：', [$result]);
+                } catch(\Exception $e) {
+                    echo var_dump($e);
+                }
+            }
 
             return ResultClientJson(0, '预约成功');
         }
