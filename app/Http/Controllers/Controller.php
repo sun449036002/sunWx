@@ -64,7 +64,7 @@ class Controller extends BaseController
             //获取用户信息
             $this->user = $this->getUserinfo();
 
-            //wxapp对象
+            //easy wechat wxapp对象
             $this->wxapp = Factory::officialAccount(getWxConfig());
 
             $this->pageData['user'] = $this->user;
