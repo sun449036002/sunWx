@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /storage/*
+/storage/wechat.log
 /vendor
 /.idea
 /.vscode
