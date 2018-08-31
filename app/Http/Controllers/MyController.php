@@ -31,8 +31,8 @@ class MyController extends Controller
         $this->pageData['title'] = "我的";
 
         //我的余额显示可使用的，未过期的红包总额
-//        $this->pageData['balance'] = (new RedPackLogic())->getRedPackBalance();
-        $this->pageData['balance'] = $this->user['balance'] ?? 0;
+        $this->pageData['balance'] = (new RedPackLogic())->getRedPackBalance();
+//        $this->pageData['balance'] = $this->user['balance'] ?? 0;
 
         return view('my/index', $this->pageData);
     }
@@ -40,8 +40,8 @@ class MyController extends Controller
     //我的余额
     public function balance() {
         //我的余额显示可使用的，未过期的红包总额
-//        $this->pageData['balance'] = (new RedPackLogic())->getRedPackBalance();
-        $this->pageData['balance'] = $this->user['balance'] ?? 0;
+        $this->pageData['balance'] = (new RedPackLogic())->getRedPackBalance();
+//        $this->pageData['balance'] = $this->user['balance'] ?? 0;
 
         $this->pageData['balanceTypes'] = ['红包收入', '提现申请', '提现支出', '提现驳回'];
         //余额日志
@@ -49,6 +49,16 @@ class MyController extends Controller
         $this->pageData['balanceLogList'] = $balanceLogList;
 
         return view('/my/balanceList', $this->pageData);
+    }
+
+    //申请提现页面
+    public function withdraw() {
+        return view('/my/withdraw', $this->pageData);
+    }
+
+    //申请提现操作
+    public function doWithdraw() {
+
     }
 
     /**

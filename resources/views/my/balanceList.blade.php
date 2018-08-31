@@ -6,7 +6,7 @@
     <div class="top">
         <div class="info">
             <div class="balance">￥{{number_format($balance, 2)}} <span>元</span></div>
-            <div class="btn-withdraw">提现</div>
+            <a href=""><div class="btn-withdraw">提现</div></a>
         </div>
     </div>
     <div class="mid">
