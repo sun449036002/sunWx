@@ -150,16 +150,16 @@
             <label for="tel">联系电话</label>
             <input id="tel" name="tel" type="text" class="mui-input-clear" placeholder="联系电话">
         </div>
-        <div class="mui-input-row">
-            <label>我的可用红包</label>
-            <input id="redPackIdsClick" type="text" class="mui-input-clear" placeholder="点击选取我的红包" readonly>
-            <input id="redPackIds" type="hidden" name="redPackIds" value="">
-        </div>
-        <div class="mui-input-row">
-            <label>赠送的红包</label>
-            <input id="friendRedPackIdsClick" type="text" class="mui-input-clear" placeholder="点击选取朋友赠送的红包，朋友赠送的红包下拉选择框，好友分组，显示金额，从大到小排序" readonly>
-            <input id="friendRedPackIds" type="hidden" name="friendRedPackIds" value="">
-        </div>
+        {{--<div class="mui-input-row">--}}
+            {{--<label>我的可用红包</label>--}}
+            {{--<input id="redPackIdsClick" type="text" class="mui-input-clear" placeholder="点击选取我的红包" readonly>--}}
+            {{--<input id="redPackIds" type="hidden" name="redPackIds" value="">--}}
+        {{--</div>--}}
+        {{--<div class="mui-input-row">--}}
+            {{--<label>赠送的红包</label>--}}
+            {{--<input id="friendRedPackIdsClick" type="text" class="mui-input-clear" placeholder="点击选取朋友赠送的红包，朋友赠送的红包下拉选择框，好友分组，显示金额，从大到小排序" readonly>--}}
+            {{--<input id="friendRedPackIds" type="hidden" name="friendRedPackIds" value="">--}}
+        {{--</div>--}}
         <div class="mui-input-row upload-row">
             <div class="mui-row">
                 <label>购房凭证</label>

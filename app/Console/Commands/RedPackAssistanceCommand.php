@@ -10,7 +10,9 @@ namespace App\Console\Commands;
 
 
 use App\Consts\CacheConst;
+use App\Consts\StateConst;
 use App\Consts\WxConst;
+use App\Model\BalanceLogModel;
 use App\Model\RedPackModel;
 use App\Model\RedPackRecordModel;
 use App\Model\UserModel;
@@ -30,8 +32,9 @@ class RedPackAssistanceCommand extends Command
     private $maxAssistanceTimes = 5;
 
     public function handle() {
-        $redPackModel = new RedPackModel();
         $userModel = new UserModel();
+        $redPackModel = new RedPackModel();
+        $balanceLogModel = new BalanceLogModel();
 
         //所有未完成且未过期的红包
         $redPackList = $redPackModel->getList(['id', 'userId', 'total', 'received'], ['isDel' => 0, 'status' => 0, ['expiredTime', '>', time()]]);
@@ -98,13 +101,24 @@ class RedPackAssistanceCommand extends Command
                                 ],
                             ]);
                         } else {
+                            //增加余额
+                            $userModel->where("id", $redPack->userId)->increment("balance", $redPack->total);
+                            //增加余额日志
+                            $balanceLogModel->insert([
+                                'userId' => $redPack->userId,
+                                'type' => StateConst::BALANCE_RED_PACK_INCOME,
+                                'money' => $redPack->total,
+                                'createTime' => time()
+                            ]);
+
+                            //发送助力集满通知
                             $this->wxapp->template_message->send([
                                 'touser' => $who->openid,
                                 'template_id' => WxConst::TEMPLATE_ID_FOR_SEND_HELP_MSG,
                                 'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $redPack->id,
                                 'data' => [
                                     'first' => [
-                                        "value" => "您的红包已经助力满啦，快去看看吧~ 》》 \r\n",
+                                        "value" => "您的红包已经助力满啦，余额已经打入您的账户，快去看看吧~ 》》 \r\n",
                                         "color" => "#169ADA"
                                     ],
                                     'keyword1' => "现金红包",

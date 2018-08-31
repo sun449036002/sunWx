@@ -26,4 +26,17 @@ class StateConst {
     //红包的初始金额 单位元
     const RED_PACK_INIT_MONEY = 50;
 
+
+    //余额状态 - 红包收入
+    const BALANCE_RED_PACK_INCOME = 0;
+
+    //余额状态 - 提现申请
+    const BALANCE_WITHDRAW_APPLY = 1;
+
+    //余额状态 - 提现支出
+    const BALANCE_WITHDRAW_EXPENDITURE = 2;
+
+    //余额状态 - 红包收入
+    const BALANCE_WITHDRAW_REJECT = 3;
+
 }
