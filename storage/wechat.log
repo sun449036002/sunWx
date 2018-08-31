@@ -1625,3 +1625,55 @@ Content-Length: 192
 {"ticket":"gQEO8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyVEVzbVl4bThlZ2gxSzNISzFyYzkAAgQDsIhbAwSAOyYA","expire_seconds":2505600,"url":"http:\/\/weixin.qq.com\/q\/02TEsmYxm8egh1K3HK1rc9"}
 --------
 NULL  
+[2018-08-31 14:41:36] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=13_DR0THrI3C73FjOpejDHeTtz9ymTwuCk8Uk4T25FjRpXN6cWNKwTxFvAWgw6sRfYqTBeirx57Bx1CHqRzYQYWw6ntyDMvI1OrV8d9lVJgLUt5cRjk9ytwr1ye6u4xkOgZx_ME2bb-_oxsvR5SVTLaACAQOG&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Fri, 31 Aug 2018 06:37:13 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm66doftlW2unuvvNIInRbK8wotXgYtH_KQUzggNK5Zg2A","expires_in":7200}
+--------
+NULL  
+[2018-08-31 15:01:13] NULL.INFO: >>>>>>>>
+POST /cgi-bin/qrcode/create?access_token=13_DR0THrI3C73FjOpejDHeTtz9ymTwuCk8Uk4T25FjRpXN6cWNKwTxFvAWgw6sRfYqTBeirx57Bx1CHqRzYQYWw6ntyDMvI1OrV8d9lVJgLUt5cRjk9ytwr1ye6u4xkOgZx_ME2bb-_oxsvR5SVTLaACAQOG HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 96
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"action_name":"QR_STR_SCENE","action_info":{"scene":{"scene_str":""}},"expire_seconds":2505600}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Fri, 31 Aug 2018 06:56:49 GMT
+Content-Length: 192
+
+{"ticket":"gQHd8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyc0cxT1p0bThlZ2gxd055TDFyY08AAgSx5ohbAwSAOyYA","expire_seconds":2505600,"url":"http:\/\/weixin.qq.com\/q\/02sG1OZtm8egh1wNyL1rcO"}
+--------
+NULL  
+[2018-08-31 15:01:40] NULL.INFO: >>>>>>>>
+POST /cgi-bin/qrcode/create?access_token=13_DR0THrI3C73FjOpejDHeTtz9ymTwuCk8Uk4T25FjRpXN6cWNKwTxFvAWgw6sRfYqTBeirx57Bx1CHqRzYQYWw6ntyDMvI1OrV8d9lVJgLUt5cRjk9ytwr1ye6u4xkOgZx_ME2bb-_oxsvR5SVTLaACAQOG HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 96
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"action_name":"QR_STR_SCENE","action_info":{"scene":{"scene_str":""}},"expire_seconds":2505600}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Fri, 31 Aug 2018 06:57:16 GMT
+Content-Length: 192
+
+{"ticket":"gQGT8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyNC1obFpPbThlZ2gxeGN5TE5yY3UAAgTM5ohbAwSAOyYA","expire_seconds":2505600,"url":"http:\/\/weixin.qq.com\/q\/024-hlZOm8egh1xcyLNrcu"}
+--------
+NULL  

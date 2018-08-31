@@ -21,6 +21,7 @@ use App\Model\RedPackRecordModel;
 use App\Model\RoomSourceModel;
 use App\Model\SigninModel;
 use App\Model\UserModel;
+use Hamcrest\ResultMatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
@@ -92,7 +93,7 @@ class IndexController extends Controller
         $this->pageData['title'] = "天天拆红包 领百元现金";
 
         if (empty($this->user['id'])) {
-            exit("未关注用户不能领红包");
+            return ResultClientJson(900, '未关注用户不能领红包');
         }
 
         $recordModel = new RedPackRecordModel();
@@ -103,14 +104,14 @@ class IndexController extends Controller
             //当前是否有未集满的且未过期红包
             $row = $redPackModel->getUnComplete($this->user['id']);
             if (!empty($row->id)) {
-                return redirect('/cash-red-pack-info?redPackId=' . $row->id);
+                return ResultClientJson(0, '您有未完成的红包，快去分享吧', ['redPackId' => $row->id]);
             }
 
             //当天是否签到（领过红包）过，有则明天才能再领
             $signInModel = new SigninModel();
             $todaySignInCount = $signInModel->where("userId", $this->user['id'])->where("date", date("Ymd"))->count();
             if ($todaySignInCount > 0) {
-                exit("今天已经签到过，请明天再来吧~");
+                return ResultClientJson(100, '今天已经签到过，请明天再来吧~');
             }
 
             //红包配置
@@ -143,7 +144,7 @@ class IndexController extends Controller
                 Redis::expire($signInCountCacheKey, ($expiredTime - time()) + 86400);
 
                 //签到记录表
-                (new SigninModel())->insert([
+                $signInModel->insert([
                     'userId' => $this->user['id'],
                     'date' => date("Ymd"),
                     'createTime' => time()
@@ -157,20 +158,6 @@ class IndexController extends Controller
                     'money' => $insertData['received'],
                     'createTime' => time(),
                 ]);
-
-                $this->pageData['redPackId'] = $insertId;
-                $this->pageData['total'] = $totalMoney;
-                $this->pageData['received'] = $insertData['received'];
-                $this->pageData['remainingTime'] = $insertData['expiredTime'] - time();
-
-                //本次记录
-                $record = new \stdClass();
-                $record->userId = $this->user['id'];
-                $record->money = $insertData['received'];
-                $record->nickname = $this->user['username'] ?? "";
-                $record->headImgUrl = $this->user['avatar_url'] ?? "";
-                $record->time = beforeWhatTime(1);
-                $this->pageData['redPackRecordList'][] = $record;
 
                 //发送签到提醒
                 $this->wxapp->template_message->send([
@@ -191,8 +178,10 @@ class IndexController extends Controller
                         'keyword4' => date("Y-m-d H:i:s"),
                     ],
                 ]);
+
+                return ResultClientJson(0, '领取成功', ['redPackId' => $insertId]);
             } else {
-                exit("SQL执行失败");
+                return ResultClientJson(100, '领取失败');
             }
         } else {
             if (!empty($data['redPackId'])) {
@@ -204,6 +193,16 @@ class IndexController extends Controller
                     $this->pageData['received'] = $redPackData->received;
                     $this->pageData['remainingTime'] = $redPackData->expiredTime - time();
                     $this->pageData['redPackRecordList'] = $recordModel->getAssistanceRecords($redPackData->id);
+
+                    //取得所有房源
+                    $roomSourceModel = new RoomSourceModel();
+                    $roomList = $roomSourceModel->getList(
+                        ['id', "type", "roomCategoryId", "name", "areaId", "houseTypeId", "avgPrice", "imgJson"],
+                        ['isDel' => 0,'isRecommend' => 1],
+                        ['id', "DESC"]
+                    );
+                    $this->pageData['roomList'] = (new RoomSourceLogic())->formatRoomList($roomList);
+                    return view("index/cash-red-pack-info", $this->pageData);
                 } else {
                     return redirect('/');
                 }
@@ -211,19 +210,6 @@ class IndexController extends Controller
                 exit("非正常的访问，缺少红包ID");
             }
         }
-
-        //取得所有房源
-        $roomSourceModel = new RoomSourceModel();
-        $roomList = $roomSourceModel->getList(
-            ['id', "type", "roomCategoryId", "name", "areaId", "houseTypeId", "avgPrice", "imgJson"],
-            ['isDel' => 0,'isRecommend' => 1],
-            ['id', "DESC"]
-        );
-        $this->pageData['roomList'] = (new RoomSourceLogic())->formatRoomList($roomList);
-
-//        dd($this->pageData['roomList']);
-
-        return view("index/cash-red-pack-info", $this->pageData);
     }
 
     //红包助力页

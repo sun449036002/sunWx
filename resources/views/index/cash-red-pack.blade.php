@@ -78,14 +78,33 @@
                 return false;
             }
 
-            location.href = "/cash-red-pack-info?from=cash-receive"
+            //Ajax获取红包
+            $.ajax({
+                type : 'get',
+                url : "/cash-red-pack-info",
+                data : {
+                    from : "cash-receive"
+                },
+                dataType : "json",
+                headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},
+                success : function(res){
+                    if(res.code === 0) {
+                        res.cb = function() {
+                            window.location.href = "/cash-red-pack-info?redPackId=" + res.data.redPackId;
+                        }
+                    }
+                    alertPopup.show(res);
+                }
+            });
         });
+
         //自动滚动
         $("#withdraw-list").Scroll({
             line: 1,
             speed: 500,
             timer: 3000
         });
+
         //显示规则
         $(".cash-red-pack-main .rule").on("click", function(){
             $(".rule-container").show();
@@ -120,6 +139,7 @@
 
 @include('components/cash-red-pack-rule')
 @include("components/subscribe")
+@include('components/alertPopup')
 
 </body>
 </html>
