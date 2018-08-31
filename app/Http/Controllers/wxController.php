@@ -136,7 +136,7 @@ class wxController extends Controller
                             case 'receive':
                                 $news = new News([
                                     new NewsItem([
-                                        'title'       => '现金大礼包待您领取~',
+                                        'title'       => '助力成功，现金大礼包待您领取~',
                                         'description' => '',
                                         'url'         => env('APP_URL') . "/cash-red-pack",
                                         'image'       => asset("imgs/big-red-pack.png"),

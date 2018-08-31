@@ -10,8 +10,11 @@ namespace App\Console\Commands;
 
 
 use App\Consts\CacheConst;
+use App\Consts\WxConst;
 use App\Model\RedPackModel;
 use App\Model\RedPackRecordModel;
+use App\Model\UserModel;
+use EasyWeChat\Factory;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Redis;
 
@@ -21,13 +24,20 @@ class RedPackAssistanceCommand extends Command
 
     protected $description = "用户关注后，后续的助力数据插入到对应的红包";
 
+    private $wxapp = null;
+
     //最大助力次数
     private $maxAssistanceTimes = 5;
 
     public function handle() {
         $redPackModel = new RedPackModel();
-        $redPackList = $redPackModel->getList(['id', 'total', 'received'], ['isDel' => 0, 'status' => 0, ['expiredTime', '>', time()]]);
+        $userModel = new UserModel();
+
+        //所有未完成且未过期的红包
+        $redPackList = $redPackModel->getList(['id', 'userId', 'total', 'received'], ['isDel' => 0, 'status' => 0, ['expiredTime', '>', time()]]);
         if (!empty($redPackList)) {
+            $this->wxapp = Factory::officialAccount(getWxConfig());
+
             $redPackRecordModel = new RedPackRecordModel();
             foreach ($redPackList as $redPack) {
                 //剩余金额
@@ -35,6 +45,7 @@ class RedPackAssistanceCommand extends Command
 
                 //助力用户
                 $nowReceived = 0;
+                $total = 0;
                 $cacheKey = sprintf(CacheConst::RED_PACK_ASSISTANCE_LIST, $redPack->id);
                 while ($item = Redis::lpop($cacheKey)) {
                     $this->info($item);
@@ -62,6 +73,52 @@ class RedPackAssistanceCommand extends Command
                 if ($nowReceived > 0) {
                     //更新红包  原始助力的金额 + 当前助力金额
                     $redPackModel->updateData(['received' => $redPack->received + $nowReceived], ['id' => $redPack->id]);
+
+                    //发送助力通知消息给用户
+                    $who = $userModel->getOne(['openid'], ['id' => $redPack->userId]);
+                    if (!empty($who)) {
+                        if ($total >= $this->maxAssistanceTimes) {
+                            $this->wxapp->template_message->send([
+                                'touser' => $who->openid,
+                                'template_id' => WxConst::TEMPLATE_ID_FOR_SEND_HELP_MSG,
+                                'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $redPack->id,
+                                'data' => [
+                                    'first' => [
+                                        "value" => "有人给你的红包助力啦，\r当前共有{$total}人助力",
+                                        "color" => "#169ADA"
+                                    ],
+                                    'keyword1' => "现金红包",
+                                    'keyword2' => '',
+                                    'keyword3' => [
+                                        "value" => "还差" . ($this->maxAssistanceTimes - $total) . "人",
+                                        'color' => '#d22e20'
+                                    ],
+                                    'keyword4' => date("Y-m-d H:i:s"),
+                                ],
+                            ]);
+                        } else {
+                            $this->wxapp->template_message->send([
+                                'touser' => $who->openid,
+                                'template_id' => WxConst::TEMPLATE_ID_FOR_SEND_HELP_MSG,
+                                'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $redPack->id,
+                                'data' => [
+                                    'first' => [
+                                        "value" => "您的红包已经助力满啦，快去看看吧~ 》》 \r\n",
+                                        "color" => "#169ADA"
+                                    ],
+                                    'keyword1' => "现金红包",
+                                    'keyword2' => '',
+                                    'keyword3' => [
+                                        "value" => "",
+                                        'color' => '#d22e20'
+                                    ],
+                                    'keyword4' => date("Y-m-d H:i:s"),
+                                ],
+                            ]);
+                        }
+                    }
+
+
                     $this->info('红包ID：' . $redPack->id . "，当前助力金额为:" . ($redPack->received + $nowReceived));
                 } else {
                     $this->info('红包ID：' . $redPack->id . "，此次缓存中没有助力金额");

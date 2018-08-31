@@ -131,7 +131,7 @@ class IndexController extends Controller
             $insertId = $redPackModel->insert($insertData);
             if (!empty($insertId)) {
                 //签到累计 第二天最后时刻过期
-                Redis::incr($signInCountCacheKey);
+                $newestSignInCount = Redis::incr($signInCountCacheKey);
                 Redis::expire($signInCountCacheKey, ($expiredTime - time()) + 86400);
 
                 //签到记录表
@@ -163,6 +163,26 @@ class IndexController extends Controller
                 $record->headImgUrl = $this->user['avatar_url'] ?? "";
                 $record->time = beforeWhatTime(1);
                 $this->pageData['redPackRecordList'][] = $record;
+
+                //发送签到提醒
+                $this->wxapp->template_message->send([
+                    'touser' => $this->user['openid'],
+                    'template_id' => WxConst::TEMPLATE_ID_FOR_SEND_HELP_MSG,
+                    'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $insertId,
+                    'data' => [
+                        'first' => [
+                            "value" => "签到成功 ,连续签到可增加红包初始金额 》》~",
+                            "color" => "#169ADA"
+                        ],
+                        'keyword1' => "红包签到",
+                        'keyword2' => '',
+                        'keyword3' => [
+                            "value" => "当前第{$newestSignInCount}天签到",
+                            'color' => '#d22e20'
+                        ],
+                        'keyword4' => date("Y-m-d H:i:s"),
+                    ],
+                ]);
             } else {
                 exit("SQL执行失败");
             }
