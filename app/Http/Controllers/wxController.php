@@ -125,9 +125,9 @@ class wxController extends Controller
                         $redPackId = $qr_scene_data['redPackId'] ?? 0;
 
                         //插入助力数据
-                        Redis::rpush(sprintf(CacheConst::RED_PACK_ASSISTANCE_LIST, $redPackId), 2 * 86400,
-                            json_encode(['userId' => $newId], JSON_UNESCAPED_UNICODE)
-                        );
+                        $assistanceCacheKey = sprintf(CacheConst::RED_PACK_ASSISTANCE_LIST, $redPackId);
+                        Redis::rpush($assistanceCacheKey, json_encode(['userId' => $newId], JSON_UNESCAPED_UNICODE));
+                        Redis::expire($assistanceCacheKey, 2 * 86400);
 
                         //发送相应的图文消息
                         $subscribeType = $qr_scene_data['type'] ?? "";
