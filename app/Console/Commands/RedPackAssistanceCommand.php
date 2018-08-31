@@ -77,7 +77,7 @@ class RedPackAssistanceCommand extends Command
                     //发送助力通知消息给用户
                     $who = $userModel->getOne(['openid'], ['id' => $redPack->userId]);
                     if (!empty($who)) {
-                        if ($total >= $this->maxAssistanceTimes) {
+                        if ($total < $this->maxAssistanceTimes) {
                             $this->wxapp->template_message->send([
                                 'touser' => $who->openid,
                                 'template_id' => WxConst::TEMPLATE_ID_FOR_SEND_HELP_MSG,
