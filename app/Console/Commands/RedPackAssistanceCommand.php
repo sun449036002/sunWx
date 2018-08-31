@@ -37,7 +37,7 @@ class RedPackAssistanceCommand extends Command
                 $nowReceived = 0;
                 $cacheKey = sprintf(CacheConst::RED_PACK_ASSISTANCE_LIST, $redPack->id);
                 while ($item = Redis::lpop($cacheKey)) {
-                    $this->info($item);
+                    $this->info(json_encode($item, JSON_UNESCAPED_UNICODE));
                     $assistanceData = json_decode($item, true);
                     //查询此红包是否助力了5次了
                     $total = $redPackRecordModel->where("redPackId", $redPack->id)->where('type', 1)->count();
