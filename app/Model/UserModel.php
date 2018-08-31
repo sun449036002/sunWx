@@ -10,6 +10,8 @@ class UserModel extends BaseModel
 {
     protected $table = "user";
 
+    public $timestamps = false;
+
     /**
      * 根据 openid 获取用户信息
      * @param $openid || $id
