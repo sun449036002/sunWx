@@ -77,20 +77,21 @@ class RedPackAssistanceCommand extends Command
                     //发送助力通知消息给用户
                     $who = $userModel->getOne(['openid'], ['id' => $redPack->userId]);
                     if (!empty($who)) {
-                        if ($total < $this->maxAssistanceTimes) {
+                        $curAssistanceNum = $total + 1;
+                        if ($curAssistanceNum < $this->maxAssistanceTimes) {
                             $this->wxapp->template_message->send([
                                 'touser' => $who->openid,
                                 'template_id' => WxConst::TEMPLATE_ID_FOR_SEND_HELP_MSG,
                                 'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $redPack->id,
                                 'data' => [
                                     'first' => [
-                                        "value" => "有人给你的红包助力啦，\r当前共有{$total}人助力",
+                                        "value" => "有人给你的红包助力啦，\r当前共有{$curAssistanceNum}人助力",
                                         "color" => "#169ADA"
                                     ],
                                     'keyword1' => "现金红包",
                                     'keyword2' => '',
                                     'keyword3' => [
-                                        "value" => "还差" . ($this->maxAssistanceTimes - $total) . "人",
+                                        "value" => "还差" . ($this->maxAssistanceTimes - $curAssistanceNum) . "人",
                                         'color' => '#d22e20'
                                     ],
                                     'keyword4' => date("Y-m-d H:i:s"),
