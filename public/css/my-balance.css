@@ -24,6 +24,33 @@ a {
     color: #FFF;
     margin: auto;
 }
+.main .top .info .btn-withdraw {
+    width: 1rem;
+    background-color: #08BA06;
+    padding: .1rem .3rem;
+    font-size: .28rem;
+    margin: .1rem auto 0;
+    border-radius: 0.1rem;
+}
 .main .top .info .balance > span {
     font-size: 0.3rem;
+}
+
+.list .item {
+    display: flex;
+    justify-content: space-between;
+    padding: .1rem .3rem .1rem 0;
+    border-bottom: 1px solid #CCC;
+    height: .8rem;
+    line-height: 0.4rem;
+    margin-left: 0.3rem;
+}
+
+.list .item .right {
+    font-size:.3rem;
+    align-self:center;
+}
+
+.list .item .left .date {
+    color:#888;
 }
