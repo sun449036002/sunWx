@@ -17,6 +17,9 @@ class WxConst
     //红包过期提醒消息模板ID
     const TEMPLATE_ID_FOR_SEND_RED_PACK_EXPIRE_MSG = '82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg';
 
+    //用户签到消息模板ID
+    const TEMPLATE_ID_FOR_USER_SIGN_IN = "7tji009NhJCPUhBelDUzCWFJc420BA8WWrMn7YNYopg";
+
     //腾讯短信APP ID
     const TX_SMS_APP_ID = "1400133557";
 

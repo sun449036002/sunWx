@@ -162,20 +162,19 @@ class IndexController extends Controller
                 //发送签到提醒
                 $this->wxapp->template_message->send([
                     'touser' => $this->user['openid'],
-                    'template_id' => WxConst::TEMPLATE_ID_FOR_SEND_HELP_MSG,
+                    'template_id' => WxConst::TEMPLATE_ID_FOR_USER_SIGN_IN,
                     'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $insertId,
                     'data' => [
                         'first' => [
                             "value" => "签到成功 ,连续签到可增加红包初始金额 》》~",
                             "color" => "#169ADA"
                         ],
-                        'keyword1' => "红包签到",
-                        'keyword2' => '',
-                        'keyword3' => [
+                        'keyword1' => $this->user['username'],
+                        'keyword2' => date("Y年m月d日 H时i分s秒"),
+                        'remark' => [
                             "value" => "当前第{$newestSignInCount}天签到",
                             'color' => '#d22e20'
-                        ],
-                        'keyword4' => date("Y-m-d H:i:s"),
+                        ]
                     ],
                 ]);
 
