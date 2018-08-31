@@ -97,17 +97,13 @@ class wxController extends Controller
                         }
                     }
 
-                    $qr_scene_data=[];
-                    $qr_scene_str = $userinfo['qr_scene_str'];
-                    foreach (explode(";", $qr_scene_str) as $item) {
-                        $arr = explode("=", $item);
-                        if (count($arr) > 1) {
-                            $qr_scene_data[$arr[0]] = $arr[1];
-                        }
-                    }
-                    Log::info('qr_scene_str', [$qr_scene_str, $qr_scene_data]);
+                    //场景数据
+                    $sceneDataCacheKey = sprintf(CacheConst::QR_CODE_SCENE_DATA, $message['FromUserName']);
+                    $qr_scene_data = json_decode(Redis::get($sceneDataCacheKey), true);
+                    Log::info('qr_scene_str', [$qr_scene_data]);
 
-                    $adminId = $qr_scene_data['aid'] ?? 0;
+                    $fromUserId = $qr_scene_data['fromUserId'] ?? 0;
+                    $adminId = $qr_scene_data['adminId'] ?? 0;
                     $newId = $userModel->insert([
                         'type' => 1,
                         'uri' => generateUri(16),
@@ -115,6 +111,7 @@ class wxController extends Controller
                         'avatar_url' => $avatar_url ?: ($userinfo['headimgurl'] ?? ""),
                         'openid' => $message['FromUserName'],
                         'user_json' => json_encode($userinfo, JSON_UNESCAPED_UNICODE) ?? "",
+                        'from_user_id' => $fromUserId,//通过哪个用户ID关注的
                         'admin_id' => $adminId,//推广员后台账户ID
                         'is_subscribe' => 1,
                         'subscribe_time' => time(),
@@ -123,10 +120,19 @@ class wxController extends Controller
                         //累计今日关注用户数
                         $cacheKey = sprintf(CacheConst::TODAY_SUBSCRIBE_NUM, date("Ymd"));
                         Redis::incr($cacheKey);
+                        Redis::expire($cacheKey, 86400);
+
+                        $redPackId = $qr_scene_data['redPackId'] ?? 0;
+
+                        //插入助力数据
+                        Redis::rpush(sprintf(CacheConst::RED_PACK_ASSISTANCE_LIST, $redPackId), 2 * 86400,
+                            json_encode(['userId' => $newId], JSON_UNESCAPED_UNICODE)
+                        );
 
                         //发送相应的图文消息
-                        $subscribeType = $qr_scene_data['r'] ?? "";
+                        $subscribeType = $qr_scene_data['type'] ?? "";
                         switch ($subscribeType) {
+                            case 'help':
                             case 'receive':
                                 $news = new News([
                                     new NewsItem([
@@ -137,24 +143,24 @@ class wxController extends Controller
                                     ])
                                 ]);
                                 break;
-                            case 'help':
+                            /*case 'help':
                                 $news = new News([
                                     new NewsItem([
                                         'title'       => '点击此处为好友助力~',
                                         'description' => '',
-                                        'url'         => env('APP_URL') . "/assistance-page?redPackId=" . $qr_scene_data['rid'] ?? 0,
+                                        'url'         => env('APP_URL') . "/assistance-page?redPackId=" . $redPackId,
                                         'image'       => asset("imgs/big-red-pack.png"),
                                     ])
                                 ]);
-                                break;
+                                break;*/
                             case 'accept':
-                                $cacheKey = sprintf(CacheConst::MY_TEMP_TICKET, $message['FromUserName'], $qr_scene_data['rid'] ?? 0);
+                                $cacheKey = sprintf(CacheConst::MY_TEMP_TICKET, $message['FromUserName'], $redPackId);
                                 $ticket = Redis::get($cacheKey);
                                 $news = new News([
                                     new NewsItem([
                                         'title'       => '您朋友赠送给您一个大礼包~',
                                         'description' => '',
-                                        'url'         => env('APP_URL') . "/index/grantRedPack?redPackId=" . ($qr_scene_data['rid'] ?? 0) . "&ticket=" . $ticket,
+                                        'url'         => env('APP_URL') . "/index/grantRedPack?redPackId=" . ($redPackId) . "&ticket=" . $ticket,
                                         'image'       => asset("imgs/big-red-pack.png"),
                                     ])
                                 ]);
@@ -222,19 +228,11 @@ class wxController extends Controller
         }
 
         //获取缓存中的二维码图片
-        $expiredTime = 3 * 86400;
-        if (empty($redPackId)) {
-            $expiredTime = 29 * 86400;
-        }
-        $cacheKey = sprintf(WxConst::QR_CODE_FOR_ADMIN_USER, $adminId, $redPackId);
+        $expiredTime = 29 * 86400;
+        $cacheKey = sprintf(CacheConst::QR_CODE_FOR_ADMIN_USER, $adminId);
         $qrCodeUrl = Redis::get($cacheKey);
         if (empty($qrCodeUrl)) {
-            //场景值
-            $sceneStr = "aid=" . $adminId . ";r=" . $type;
-            if (!empty($redPackId)) {
-                $sceneStr .=";rid=" . $redPackId;
-            }
-            $result = $this->wxapp->qrcode->temporary($sceneStr, $expiredTime);
+            $result = $this->wxapp->qrcode->temporary('', $expiredTime);
             $ticket = $result['ticket'] ?? '';
             if (!empty($ticket)) {
                 $qrCodeUrl = $this->wxapp->qrcode->url($ticket);
@@ -242,6 +240,16 @@ class wxController extends Controller
                 Redis::setex($cacheKey, $ttl, $qrCodeUrl);
             }
         }
+
+        //将场景值转入缓存
+        $sceneData = [
+            'type' => $type,
+            'adminId' => $adminId,
+            'fromUserId' => $fromUserId,
+            'redPackId' => $redPackId
+        ];
+        $sceneDataCacheKey = sprintf(CacheConst::QR_CODE_SCENE_DATA, $this->user['openid']);
+        Redis::setex($sceneDataCacheKey, 86400, json_encode($sceneData, JSON_UNESCAPED_UNICODE));
 
         return ResultClientJson(0, 'ok', ['qrCodeUrl' => $qrCodeUrl]);
     }

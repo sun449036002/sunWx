@@ -23,4 +23,7 @@ class StateConst {
     //红包已使用
     const RED_PACK_USED = 3;
 
+    //红包的初始金额 单位元
+    const RED_PACK_INIT_MONEY = 50;
+
 }

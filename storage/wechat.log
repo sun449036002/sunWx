@@ -1493,3 +1493,135 @@ Content-Length: 143
 {"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm5WH5h_O0ndzkibJmVCwW5FfjHyFos47kd3sYpVzS_rqg","expires_in":7200}
 --------
 NULL  
+[2018-08-28 16:15:22] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=13_zkHwNjWepRksjHDRmLfAp8jRv-tH5vSRD5mfsnnxBavYdNyuhqrANustw-8ZvkIvPEUMaNw3picwuhp4HKWVme1_VFBwJ0D0KFkKfM_6TJo3qNBpw0A4ZY1QpcPAcr75TV7FmOVTZV7Fdk8PLIKhAEAQNP HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 461
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0dt1YSmepjNdvNaFsR20WDA","template_id":"82y_cNd0iWws8JUkRXgVolIkCVqYXYZkxL34RdBUIVg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=28","data":{"first":{"value":"明月清风[机智]给你的红包助力啦 >>\r\n","color":"#169ADA"},"keyword1":{"value":"现金红包"},"keyword2":{"value":"明月清风[机智]"},"keyword3":{"value":"83.27元","color":"#d22e20"},"keyword4":{"value":"2018-08-28 16:15:22"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Tue, 28 Aug 2018 08:11:03 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":433717758061281280}
+--------
+NULL  
+[2018-08-30 16:06:17] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=13_OMoYwIvAsy14foP_R7e-oZjjsagv-I1s37XIa_ZmlGThfJXSXf0PywXxMZt8s3-Q_nXyxzOpQckP18q46erFM5kOtUftlk0qPRfdtG80DHK6zkP49X_DGvjddV_yZRlSic_eGd3JcMXy8SbYZTRfAAAPJH&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Thu, 30 Aug 2018 08:01:54 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm4Amei9uUMSoTmNRqIW1NlgHGKBHCBUa-ArPFDeB0YLGQ","expires_in":7200}
+--------
+NULL  
+[2018-08-30 17:32:18] NULL.NOTICE: >>>>>>>>
+POST /cgi-bin/qrcode/create?access_token=13_OMoYwIvAsy14foP_R7e-oZjjsagv-I1s37XIa_ZmlGThfJXSXf0PywXxMZt8s3-Q_nXyxzOpQckP18q46erFM5kOtUftlk0qPRfdtG80DHK6zkP49X_DGvjddV_yZRlSic_eGd3JcMXy8SbYZTRfAAAPJH HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 111
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"action_name":"QR_STR_SCENE","action_info":{"scene":{"scene_str":"aid=0;r=receive"}},"expire_seconds":2505600}
+<<<<<<<<
+
+--------
+cURL error 28: Resolving timed out after 5507 milliseconds (see http://curl.haxx.se/libcurl/c/libcurl-errors.html)  
+[2018-08-30 17:32:30] NULL.INFO: >>>>>>>>
+POST /cgi-bin/qrcode/create?access_token=13_OMoYwIvAsy14foP_R7e-oZjjsagv-I1s37XIa_ZmlGThfJXSXf0PywXxMZt8s3-Q_nXyxzOpQckP18q46erFM5kOtUftlk0qPRfdtG80DHK6zkP49X_DGvjddV_yZRlSic_eGd3JcMXy8SbYZTRfAAAPJH HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 111
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"action_name":"QR_STR_SCENE","action_info":{"scene":{"scene_str":"aid=0;r=receive"}},"expire_seconds":2505600}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Thu, 30 Aug 2018 09:28:08 GMT
+Content-Length: 192
+
+{"ticket":"gQGU8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyRTdIdVoybThlZ2gxSUVRSnhyYy0AAgSouIdbAwSAOyYA","expire_seconds":2505600,"url":"http:\/\/weixin.qq.com\/q\/02E7HuZ2m8egh1IEQJxrc-"}
+--------
+NULL  
+[2018-08-31 08:45:54] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=13_ZxiDLtAG8itUQC_tiNyHM-9Qt-poWoosFqOriZVMIQkO6taV6aXTmZylqahUEcae3u6UcitIHHYykQBHn1h2fUUfUHZjErd4tLL_-iiKb1X32yGjLAG_272MdvML7TTQGGmL8HEYxuqrxV7YLLLbAGARRR&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Fri, 31 Aug 2018 00:41:30 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm7_GRdyD9uSJhvWXugkV38Y2dgeYp6NwSIlDjoDvvTvqg","expires_in":7200}
+--------
+NULL  
+[2018-08-31 09:11:23] NULL.INFO: >>>>>>>>
+POST /cgi-bin/qrcode/create?access_token=13_ZxiDLtAG8itUQC_tiNyHM-9Qt-poWoosFqOriZVMIQkO6taV6aXTmZylqahUEcae3u6UcitIHHYykQBHn1h2fUUfUHZjErd4tLL_-iiKb1X32yGjLAG_272MdvML7TTQGGmL8HEYxuqrxV7YLLLbAGARRR HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 114
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"action_name":"QR_STR_SCENE","action_info":{"scene":{"scene_str":"aid=1;r=help;rid=33"}},"expire_seconds":259200}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Fri, 31 Aug 2018 01:06:59 GMT
+Content-Length: 191
+
+{"ticket":"gQGu8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyY0ZOZlpJbThlZ2gxRVA5Y3hyY1IAAgSzlIhbAwSA9AMA","expire_seconds":259200,"url":"http:\/\/weixin.qq.com\/q\/02cFNfZIm8egh1EP9cxrcR"}
+--------
+NULL  
+[2018-08-31 11:07:37] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=13_BtmKkzJszQ9I7IZDmLfAp8jRv-tH5vSRD5mfshuBdOpAw6xV2nbMX9HMehdawaDoZMHO-Jl2ck1S83gUvFs0-ujGJZ823WDzQ0mOjAIf50VEEya6y7-cKJX6XcXsn5aDUOQkqhztErPhvKQfGRXdAGALWC&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Fri, 31 Aug 2018 03:03:13 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm4oOqq3HDfAeKXieM2WsWyA3YpOdfFaGNS6pJM_ThiyMQ","expires_in":7200}
+--------
+NULL  
+[2018-08-31 11:07:55] NULL.INFO: >>>>>>>>
+POST /cgi-bin/qrcode/create?access_token=13_BtmKkzJszQ9I7IZDmLfAp8jRv-tH5vSRD5mfshuBdOpAw6xV2nbMX9HMehdawaDoZMHO-Jl2ck1S83gUvFs0-ujGJZ823WDzQ0mOjAIf50VEEya6y7-cKJX6XcXsn5aDUOQkqhztErPhvKQfGRXdAGALWC HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 96
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"action_name":"QR_STR_SCENE","action_info":{"scene":{"scene_str":""}},"expire_seconds":2505600}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Fri, 31 Aug 2018 03:03:31 GMT
+Content-Length: 192
+
+{"ticket":"gQEO8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyVEVzbVl4bThlZ2gxSzNISzFyYzkAAgQDsIhbAwSAOyYA","expire_seconds":2505600,"url":"http:\/\/weixin.qq.com\/q\/02TEsmYxm8egh1K3HK1rc9"}
+--------
+NULL  

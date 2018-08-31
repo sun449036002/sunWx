@@ -28,9 +28,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        Storage::makeDirectory("logs/command");
-        $schedule->command("NotifyRedPackExpiredCommand --type=normal")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/app/logs/command/NotifyRedPackExpiredCommand-normal-" . date("Ymd") . ".log");
-        $schedule->command("NotifyRedPackExpiredCommand --type=use")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/app/logs/command/NotifyRedPackExpiredCommand-use-" . date("Ymd") . ".log");
+        Storage::makeDirectory("logs/command/" . date('Ymd'));
+        $schedule->command("NotifyRedPackExpiredCommand --type=normal")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/app/logs/command/NotifyRedPackExpiredCommand-normal.log");
+        $schedule->command("NotifyRedPackExpiredCommand --type=use")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/app/logs/command/NotifyRedPackExpiredCommand-use.log");
+
+        //红包助力数据更新
+        $schedule->command("RedPackAssistanceCommand")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/app/logs/command/RedPackAssistanceCommand.log");
     }
 
     /**

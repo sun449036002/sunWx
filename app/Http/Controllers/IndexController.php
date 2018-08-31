@@ -109,18 +109,31 @@ class IndexController extends Controller
             $redPackConfigModel = new RedPackConfigModel();
             $rdConfig = $redPackConfigModel->getOne(['*'], [['id', '>', 0]]);
 
-            $totalMoney = mt_rand($rdConfig->minMoney ?? 0, $rdConfig->maxMoney ?? 0);
+            /*$totalMoney = mt_rand($rdConfig->minMoney ?? 0, $rdConfig->maxMoney ?? 0);
             $min = $totalMoney * (intval($rdConfig->firstMinPercent) / 100) * 100;
             $max = $totalMoney * (intval($rdConfig->firstMaxPercent) / 100) * 100;
-            $curReceived = number_format(mt_rand($min, $max)/100, 2);
+            $curReceived = number_format(mt_rand($min, $max)/100, 2);*/
+
+            $signInCountCacheKey = sprintf(CacheConst::USER_UNINTERRUPTED_SIGN_IN_COUNT, $this->user['id']);
+            $signInCount = Redis::get($signInCountCacheKey);
+            //根据连续签到时间，累计金额，前10天50，第11~20天60，第21~30天70，封顶100元
+            $stepMoney = 50 + intval($signInCount / 10) * 10;
+            $totalMoney = StateConst::RED_PACK_INIT_MONEY + $stepMoney;
+            $curReceived = StateConst::RED_PACK_INIT_MONEY;
+
+            $expiredTime = strtotime(date("Y-m-d 00:00:00", strtotime("next day")));
             $insertData = [
                 'userId' => $this->user['id'],
                 'total' => $totalMoney,
                 'received' => $curReceived,
-                'expiredTime' => time() + 86400,
+                'expiredTime' => $expiredTime,//隔天过期
             ];
             $insertId = $redPackModel->insert($insertData);
             if (!empty($insertId)) {
+                //签到累计 第二天最后时刻过期
+                Redis::incr($signInCountCacheKey);
+                Redis::expire($signInCountCacheKey, ($expiredTime - time()) + 86400);
+
                 //记录
                 $recordModel->insert([
                     'redPackId' => $insertId,
@@ -233,9 +246,9 @@ class IndexController extends Controller
             exit(ResultClientJson(100, '红包不得为空'));
         }
 
-        //是否关注
-        if (empty($this->user['id']) || empty($this->user['is_subscribe'])) {
-            exit(ResultClientJson(101, '未登录或者未关注用户不能助力'));
+        //已经关注过的用户不能再次助力
+        if(!empty($this->user['id'])) {
+            exit(ResultClientJson(101, '已经关注过的用户不能再次助力'));
         }
 
         //查询当前用户是否有未完成的红包
