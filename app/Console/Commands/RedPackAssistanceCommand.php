@@ -25,7 +25,8 @@ class RedPackAssistanceCommand extends Command
     private $maxAssistanceTimes = 5;
 
     public function handle() {
-        $redPackList = (new RedPackModel())->getList(['id', 'total', 'received'], ['isDel' => 0, 'status' => 0, ['expiredTime', '>', time()]]);
+        $redPackModel = new RedPackModel();
+        $redPackList = $redPackModel->getList(['id', 'total', 'received'], ['isDel' => 0, 'status' => 0, ['expiredTime', '>', time()]]);
         if (!empty($redPackList)) {
             $redPackRecordModel = new RedPackRecordModel();
             foreach ($redPackList as $redPack) {
@@ -58,7 +59,7 @@ class RedPackAssistanceCommand extends Command
                 }
                 if ($nowReceived > 0) {
                     //更新红包  原始助力的金额 + 当前助力金额
-                    $redPack->updateData(['received' => $redPack->received + $nowReceived], ['id' => $redPack->id]);
+                    $redPackModel->updateData(['received' => $redPack->received + $nowReceived], ['id' => $redPack->id]);
                     $this->info('红包ID：' . $redPack->id . "，当前助力金额为:" . ($redPack->received + $nowReceived));
                 } else {
                     $this->info('红包ID：' . $redPack->id . "，此次缓存中没有助力金额");
