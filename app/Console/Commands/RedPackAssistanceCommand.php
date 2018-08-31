@@ -43,7 +43,7 @@ class RedPackAssistanceCommand extends Command
                         $this->info('红包ID：' . $redPack->id . "，已经助力了" . $total . "次, 不再累计金额");
                         break;
                     }
-                    $avgMoney = intval($remainderMoney / $total);
+                    $avgMoney = intval($remainderMoney / ($this->maxAssistanceTimes - $total));
                     $remainderMoney -= $avgMoney;
                     //助力记录
                     $redPackRecordModel->insert([
