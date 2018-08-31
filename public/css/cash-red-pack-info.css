@@ -79,7 +79,9 @@ body {
     height: 0.8rem;
     line-height: .8rem;
     box-shadow: 1px 1px 1px rgba(0,0,0,1);
+}
 
+#go-on-share {
     -webkit-animation-name:'ripple';/*动画属性名，也就是我们前面keyframes定义的动画名*/
     -webkit-animation-duration: 0.5s;/*动画持续时间*/
     -webkit-animation-timing-function: ease; /*动画频率，和transition-timing-function是一样的*/
