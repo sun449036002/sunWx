@@ -134,6 +134,13 @@ class IndexController extends Controller
                 Redis::incr($signInCountCacheKey);
                 Redis::expire($signInCountCacheKey, ($expiredTime - time()) + 86400);
 
+                //签到记录表
+                (new SigninModel())->insert([
+                    'userId' => $this->user['id'],
+                    'date' => date("Ymd"),
+                    'createTime' => time()
+                ]);
+
                 //记录
                 $recordModel->insert([
                     'redPackId' => $insertId,

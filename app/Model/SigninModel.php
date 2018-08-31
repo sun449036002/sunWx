@@ -11,6 +11,6 @@ namespace App\Model;
 
 class SigninModel extends BaseModel
 {
-    protected $table = "signin";
+    protected $table = "sign_in";
 
 }
