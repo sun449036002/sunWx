@@ -166,13 +166,13 @@ class IndexController extends Controller
                     'url' => env('APP_URL') . "/cash-red-pack-info?redPackId=" . $insertId,
                     'data' => [
                         'first' => [
-                            "value" => "签到成功 ,连续签到可增加红包初始金额 》》~",
+                            "value" => "签到成功 ,连续签到可增加红包初始金额 》》\r",
                             "color" => "#169ADA"
                         ],
                         'keyword1' => $this->user['username'],
                         'keyword2' => date("Y年m月d日 H时i分s秒"),
                         'remark' => [
-                            "value" => "当前第{$newestSignInCount}天签到",
+                            "value" => "\r签到进度：当前第 {$newestSignInCount} 天签到\r",
                             'color' => '#d22e20'
                         ]
                     ],
