@@ -105,6 +105,14 @@ class IndexController extends Controller
             if (!empty($row->id)) {
                 return redirect('/cash-red-pack-info?redPackId=' . $row->id);
             }
+
+            //当天是否签到（领过红包）过，有则明天才能再领
+            $signInModel = new SigninModel();
+            $todaySignInCount = $signInModel->where("userId", $this->user['id'])->where("date", date("Ymd"))->count();
+            if ($todaySignInCount > 0) {
+                exit("今天已经签到过，请明天再来吧~");
+            }
+
             //红包配置
             $redPackConfigModel = new RedPackConfigModel();
             $rdConfig = $redPackConfigModel->getOne(['*'], [['id', '>', 0]]);
