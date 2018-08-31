@@ -46,6 +46,7 @@ class RedPackAssistanceCommand extends Command
                     }
                     $avgMoney = intval($remainderMoney / ($this->maxAssistanceTimes - $total));
                     $remainderMoney -= $avgMoney;
+
                     //助力记录
                     $redPackRecordModel->insert([
                         'redPackId' => $redPack->id,
@@ -55,7 +56,7 @@ class RedPackAssistanceCommand extends Command
                         'createTime' => time()
                     ]);
                     //累计当前助力的金额
-                    $nowReceived += $remainderMoney;
+                    $nowReceived += $avgMoney;
                 }
                 if ($nowReceived > 0) {
                     //更新红包  原始助力的金额 + 当前助力金额
