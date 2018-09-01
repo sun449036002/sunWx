@@ -72,7 +72,7 @@ class MyController extends Controller
         ];
         $validate = Validator::make($data, $rule, $message);
         if (!$validate->passes()) {
-            return back()->withErrors($validate);
+            return ResultClientJson(100, json_encode($validate->getMessageBag()->getMessages(), JSON_UNESCAPED_UNICODE));
         }
 
         //返现金额打款账号
