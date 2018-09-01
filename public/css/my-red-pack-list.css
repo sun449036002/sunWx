@@ -26,6 +26,7 @@
     padding: .15rem;
 }
 .red-pack-main .red-pack-box .list {
+    margin-bottom: 1rem;
 }
 .red-pack-main .red-pack-box .list .item {
     display: flex;
