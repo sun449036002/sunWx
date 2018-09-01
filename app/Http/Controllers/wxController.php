@@ -166,6 +166,14 @@ class wxController extends Controller
                                 ]);
                                 break;
                             default:
+                                $news = new News([
+                                    new NewsItem([
+                                        'title'       => '欢迎加入我们，现金大礼包待您领取~',
+                                        'description' => '',
+                                        'url'         => env('APP_URL') . "/cash-red-pack",
+                                        'image'       => asset("imgs/big-red-pack.png"),
+                                    ])
+                                ]);
                                 break;
                         }
 
