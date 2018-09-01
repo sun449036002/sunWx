@@ -41,18 +41,18 @@
                         <span class="text">未使用</span>
                     </div>
                 </a>
-                {{--<a href="#">--}}
-                    {{--<div class="red-pack-item">--}}
-                        {{--<span class="icon used"></span>--}}
-                        {{--<span class="text">已使用</span>--}}
-                    {{--</div>--}}
-                {{--</a>--}}
-                <a href="{{route('/my/redPackList')}}?type=expired">
+                <a href="{{route('/my/redPackList')}}?type=used">
                     <div class="red-pack-item">
-                        <span class="icon expired"></span>
-                        <span class="text">已过期</span>
+                        <span class="icon used"></span>
+                        <span class="text">已使用</span>
                     </div>
                 </a>
+                {{--<a href="{{route('/my/redPackList')}}?type=expired">--}}
+                    {{--<div class="red-pack-item">--}}
+                        {{--<span class="icon expired"></span>--}}
+                        {{--<span class="text">已过期</span>--}}
+                    {{--</div>--}}
+                {{--</a>--}}
             </div>
         </div>
 
