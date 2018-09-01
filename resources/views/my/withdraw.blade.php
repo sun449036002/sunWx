@@ -333,6 +333,7 @@
             success : function(res){
                 if (res.code > 0) {
                     mui.alert(res.msg);
+                    $this.text('提交');
                 } else {
                     mui.alert("提交成功", function(){
                         window.location.href = "/my/balance";
