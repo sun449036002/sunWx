@@ -44,8 +44,10 @@
                 <div class="data">
                     <div class="money">{{$item->type == 'unFinish' ? $item->received . "/" . $item->total : $item->total}}元</div>
                     <div class="from">来源:{{$item->fromUserId == 0 ? "活动" : "好友赠送"}}</div>
-                    <div class="from">状态:{{$redPackStatusConfig[$item->status]['status']}}</div>
-                    {{--<div class="expiredTime">可提现时间: {{$item->type == 'unFinish' ? $item->expiredTimeStr : $item->useExpiredTimeStr }}</div>--}}
+                    <div class="from">状态:{{$redPackStatusConfig[$item->status]['status']}} {{in_array($item->type, ['expired']) ? "【已过期】" : ""}}</div>
+                    @if($item->status == \App\Consts\StateConst::RED_PACK_FILL_UP)
+                    <div class="expiredTime">可提现时间: {{$item->canUseTime }}</div>
+                    @endif
                 </div>
             </div>
             @endforeach

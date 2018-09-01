@@ -130,12 +130,15 @@ class IndexController extends Controller
             $totalMoney = StateConst::RED_PACK_INIT_MONEY + $stepMoney;
             $curReceived = StateConst::RED_PACK_INIT_MONEY;
 
+            $nowTime = time();
             $expiredTime = strtotime(date("Y-m-d 00:00:00", strtotime("next day")));
             $insertData = [
                 'userId' => $this->user['id'],
                 'total' => $totalMoney,
                 'received' => $curReceived,
                 'expiredTime' => $expiredTime,//隔天过期
+                'createTime' => $nowTime,
+                'canUseTime' => strtotime("+2 month")
             ];
             $insertId = $redPackModel->insert($insertData);
             if (!empty($insertId)) {

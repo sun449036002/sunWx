@@ -132,7 +132,7 @@ class MyController extends Controller
         $where = [
             'userId' => $this->user['id'],
             'status' => StateConst::RED_PACK_FILL_UP,
-            ['createTime', '<=', strtotime("-2 months")]
+            ['canUseTime', '<=', time()]
         ];
         $list = (new RedPackModel())->getList(['*'], $where);
         foreach ($list as $key => $item) {
@@ -296,6 +296,7 @@ class MyController extends Controller
                     $item->type = 'expired';
                 }
             } else if ($item->status == StateConst::RED_PACK_FILL_UP) {
+                $item->canUseTime = date("Y-m-d H:i:s", $item->canUseTime);
                 if ($item->useExpiredTime >= time()) {
                     $item->type = 'unUse';
                 } else {
