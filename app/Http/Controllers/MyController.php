@@ -114,7 +114,7 @@ class MyController extends Controller
                         'userId' => $this->user['id'],
                         'inOrOut' => StateConst::BALANCE_OUT,
                         'type' => StateConst::BALANCE_WITHDRAW_APPLY,
-                        'money' => -$totalMoney,
+                        'money' => $totalMoney,
                         'createTime' => time()
                     ]);
                 }
