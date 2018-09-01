@@ -74,13 +74,10 @@ class RedPackAssistanceCommand extends Command
                     $nowReceived += $avgMoney;
                 }
                 if ($nowReceived > 0) {
-                    //更新红包  原始助力的金额 + 当前助力金额
-                    $redPackModel->updateData(['received' => $redPack->received + $nowReceived], ['id' => $redPack->id]);
-
+                    $curAssistanceNum = $total + 1;
                     //发送助力通知消息给用户
                     $who = $userModel->getOne(['openid'], ['id' => $redPack->userId]);
                     if (!empty($who)) {
-                        $curAssistanceNum = $total + 1;
                         if ($curAssistanceNum < $this->maxAssistanceTimes) {
                             $this->wxapp->template_message->send([
                                 'touser' => $who->openid,
@@ -134,6 +131,12 @@ class RedPackAssistanceCommand extends Command
                         }
                     }
 
+                    //更新红包  原始助力的金额 + 当前助力金额 以及状态
+                    $updateData = ['received' => $redPack->received + $nowReceived];
+                    if ($curAssistanceNum >= $this->maxAssistanceTimes) {
+                        $updateData['status'] = StateConst::RED_PACK_FILL_UP;
+                    }
+                    $redPackModel->updateData($updateData, ['id' => $redPack->id]);
 
                     $this->info('红包ID：' . $redPack->id . "，当前助力金额为:" . ($redPack->received + $nowReceived));
                 } else {
