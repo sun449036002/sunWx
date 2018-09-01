@@ -294,7 +294,9 @@ class IndexController extends Controller
             exit(ResultClientJson(100, '此红包已不需要助力', $jsonData));
         }
 
-        //红包配置
+        exit();
+
+        /*//红包配置
         $redPackConfigModel = new RedPackConfigModel();
         $rdConfig = $redPackConfigModel->getOne(['*'], [['id', '>', 0]]);
 
@@ -376,7 +378,7 @@ class IndexController extends Controller
             exit(ResultClientJson(0, '助力成功', $jsonData));
         }
 
-        exit(ResultClientJson(100, '助力失败', $jsonData));
+        exit(ResultClientJson(100, '助力失败', $jsonData));*/
     }
 
     /**
@@ -394,6 +396,7 @@ class IndexController extends Controller
      * 设置赠送凭证缓存
      */
     public function initGrantRedPack(Request $request) {
+        exit("not used");
         //红包ID
         $id = $request->post("id");
         if (!empty($id)) {
@@ -416,6 +419,7 @@ class IndexController extends Controller
      * 赠送红包页面
      */
     public function grantRedPack(Request $request) {
+        exit("not used");
         $ticket = $request->get("ticket");
         $redPackId = $request->get("redPackId");
 
@@ -441,6 +445,7 @@ class IndexController extends Controller
      * 领取赠送的红包
      */
     public function receiveGrantRedPack(Request $request) {
+        exit('not used');
         $ticket = $request->post("ticket");
         $redPackId = $request->post("redPackId");
 

@@ -39,4 +39,10 @@ class StateConst {
     //余额状态 - 红包收入
     const BALANCE_WITHDRAW_REJECT = 3;
 
+    //余额收入支出状态 - 收入
+    const BALANCE_IN = 1;
+
+    //余额收入支出状态 - 支出
+    const BALANCE_OUT = 0;
+
 }

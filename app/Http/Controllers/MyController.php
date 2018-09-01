@@ -16,12 +16,11 @@ use App\Logic\RoomSourceLogic;
 use App\Model\BalanceLogModel;
 use App\Model\CashbackModel;
 use App\Model\RedPackModel;
-use App\Model\RoomSourceModel;
 use App\Model\SuggestionModel;
 use App\Model\SystemModel;
+use App\Model\WithdrawModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class MyController extends Controller
@@ -45,7 +44,8 @@ class MyController extends Controller
 
         $this->pageData['balanceTypes'] = ['红包收入', '提现申请', '提现支出', '提现驳回'];
         //余额日志
-        $balanceLogList = (new BalanceLogModel())->getList(['type', 'money', 'createTime'], ['userId' => $this->user['id']]);
+        $orderBy = ["id", "DESC"];
+        $balanceLogList = (new BalanceLogModel())->getList(['inOrOut', 'type', 'money', 'createTime'], ['userId' => $this->user['id']], $orderBy);
         $this->pageData['balanceLogList'] = $balanceLogList;
 
         return view('/my/balanceList', $this->pageData);
@@ -57,8 +57,81 @@ class MyController extends Controller
     }
 
     //申请提现操作
-    public function doWithdraw() {
+    public function doWithdraw(Request $request) {
+        $data = $request->all();
+        $rule = [
+            'buyers' => 'required',
+            'tel' => 'required',
+            'redPackIds' => 'required',
+        ];
+        $message = [
+            'buyers.required' => '申请人必填',
+            'tel.required' => '联系电话必填',
+            'redPackIds.required' => '申请提现的红包必填',
 
+        ];
+        $validate = Validator::make($data, $rule, $message);
+        if (!$validate->passes()) {
+            return back()->withErrors($validate);
+        }
+
+        $withdrawModel = new WithdrawModel();
+        $insertId = $withdrawModel->insert([
+            'userId' => $this->user['id'],
+            'name' => $data['buyers'],
+            'tel' => $data['tel'],
+            'redPackIds' => $data['redPackIds'],
+            'status' => 0,
+            'createTime' => time()
+        ]);
+
+        if ($insertId) {
+            //红包变更为使用中
+            $allRedPackIds = explode(",", $data['redPackIds']);
+            if (!empty($allRedPackIds)) {
+                $redPackModel = new RedPackModel();
+                $ok = $redPackModel->updateData(['status' => StateConst::RED_PACK_USING], [["id", "in", $allRedPackIds]]);
+                if (empty($ok)) {
+                    Log::warning("submitBackMoney", ['msg' => '红包状态更新失败', 'allRedPackIds' => $allRedPackIds]);
+                }
+
+                //记录一条余额日志
+                $redPackList = $redPackModel->getList(['total'], [['id', 'in', $allRedPackIds]]);
+                $totalMoney = 0;
+                foreach ($redPackList as $item) {
+                    $totalMoney += $item->total;
+                }
+                if ($totalMoney > 0) {
+                    (new BalanceLogModel())->insert([
+                        'userId' => $this->user['id'],
+                        'inOrOut' => StateConst::BALANCE_OUT,
+                        'type' => StateConst::BALANCE_WITHDRAW_APPLY,
+                        'money' => -$totalMoney,
+                        'createTime' => time()
+                    ]);
+                }
+            }
+        }
+
+        return ResultClientJson(0, '申请成功');
+    }
+
+    /**
+     * 申请提现时，获取前两个月可用的红包
+     * @return string
+     */
+    public function getTwoMonthAgoEnabledRedPackList(Request $request) {
+        $where = [
+            'userId' => $this->user['id'],
+            'status' => StateConst::RED_PACK_FILL_UP,
+            ['createTime', '<=', strtotime("-2 months")]
+        ];
+        $list = (new RedPackModel())->getList(['*'], $where);
+        foreach ($list as $key => $item) {
+            $list[$key]->createTime = date("Y-m-d H:i:s", $item->createTime);
+        }
+
+        return ResultClientJson(0, 'ok', $list);
     }
 
     /**
@@ -193,11 +266,11 @@ class MyController extends Controller
                 break;
             case 'unUse':
                 $where['status'] = StateConst::RED_PACK_FILL_UP;
-                $where[] = ["useExpiredTime", ">", time()];
+//                $where[] = ["useExpiredTime", ">", time()];
                 break;
             case 'expired':
                 $where['status'] = StateConst::RED_PACK_FILL_UP;
-                $where[] = ["useExpiredTime", "<=", time()];
+//                $where[] = ["useExpiredTime", "<=", time()];
                 break;
         }
 
@@ -255,6 +328,7 @@ class MyController extends Controller
      * @return string
      */
     public function getMyEnabledRedPackList(Request $request) {
+        exit('not used');
         $type = $request->get("type", "my");
 
         if ($type == 'friend') {

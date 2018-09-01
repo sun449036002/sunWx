@@ -36,6 +36,10 @@ Route::get('/category/list', "RoomController@getCategoryList")->middleware("weix
 //我的个人中心
 Route::get('/my', "MyController@index")->middleware("weixinOAuth");
 Route::get('/my/balance', "MyController@balance")->middleware("weixinOAuth")->name('/my/balance');
+Route::get('/my/withdraw', "MyController@withdraw")->middleware("weixinOAuth");
+Route::post('/my/withdraw', "MyController@doWithdraw")->middleware("weixinOAuth");
+Route::get('/my/getTwoMonthAgoEnabledRedPackList', "MyController@getTwoMonthAgoEnabledRedPackList")->middleware("weixinOAuth")->name("/my/getTwoMonthAgoEnabledRedPackList");
+
 //预约看房
 Route::get('/my/bespeakList', "MyController@bespeakList")->middleware("weixinOAuth")->name("/my/bespeakList");
 Route::get('/my/bespeakDetail', "MyController@bespeakDetail")->middleware("weixinOAuth");
@@ -46,6 +50,7 @@ Route::post('/my/submitBackMoney', "MyController@submitBackMoney")->middleware("
 Route::get('/my/redPackList', "MyController@redPackList")->middleware("weixinOAuth")->name("/my/redPackList");
 Route::get('/my/redPackDetail', "MyController@redPackDetail")->middleware("weixinOAuth")->name("/my/redPackDetail");
 Route::get('/my/getMyEnabledRedPackList', "MyController@getMyEnabledRedPackList")->middleware("weixinOAuth")->name("/my/getMyEnabledRedPackList");
+
 //我收藏的房源
 Route::get('/my/markRooms', "MyController@markRoomList")->middleware("weixinOAuth")->name("/my/markRooms");
 //意见反馈 关于我们

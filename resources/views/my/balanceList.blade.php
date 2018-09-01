@@ -6,7 +6,7 @@
     <div class="top">
         <div class="info">
             <div class="balance">￥{{number_format($balance, 2)}} <span>元</span></div>
-            <a href=""><div class="btn-withdraw">提现</div></a>
+            <a href="/my/withdraw"><div class="btn-withdraw">提现</div></a>
         </div>
     </div>
     <div class="mid">
@@ -17,7 +17,7 @@
                     <div class="type">{{$balanceTypes[$item->type] ?? "未知"}}</div>
                     <div class="date">{{date("Y-m-d H:i:s", $item->createTime)}}</div>
                 </div>
-                <div class="right">{{number_format($item->money, 2)}} 元</div>
+                <div class="balance-type {{$item->inOrOut ? "in" : "out"}}"><span>{{$item->inOrOut ? "+" : "-"}}</span> {{number_format($item->money, 2)}} 元</div>
             </div>
             @endforeach
         </div>

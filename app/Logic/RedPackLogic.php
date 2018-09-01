@@ -22,8 +22,8 @@ class RedPackLogic extends BaseLogic
         $where = [
             'status' => StateConst::RED_PACK_FILL_UP,
             'userId' => $this->user['id'],
-            'fromUserId' => 0,
-            ["useExpiredTime", ">", time()]
+//            'fromUserId' => 0,
+//            ["useExpiredTime", ">", time()]
         ];
         $list = (new RedPackModel())->getList(['*'], $where);
         return $list;

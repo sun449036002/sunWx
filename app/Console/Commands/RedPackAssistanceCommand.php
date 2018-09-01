@@ -106,6 +106,7 @@ class RedPackAssistanceCommand extends Command
                             //增加余额日志
                             $balanceLogModel->insert([
                                 'userId' => $redPack->userId,
+                                'inOrOut' => StateConst::BALANCE_IN,
                                 'type' => StateConst::BALANCE_RED_PACK_INCOME,
                                 'money' => $redPack->total,
                                 'createTime' => time()

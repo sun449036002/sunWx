@@ -106,6 +106,12 @@
             border-radius: .3rem;
         }
 
+        .tips {
+            padding:.3rem;
+            background-color:rgba(0,0,0,0.5);
+            color:#FFF;
+        }
+
     </style>
 
 </head>
@@ -118,8 +124,8 @@
 <div class="mui-content">
     <div class="mui-input-group feedback-form">
         <div class="mui-input-row">
-            <label for="buyers">购房人</label>
-            <input id="buyers" name="buyers" type="text" class="mui-input-clear" placeholder="购房人">
+            <label for="buyers">申请人</label>
+            <input id="buyers" name="buyers" type="text" class="mui-input-clear" placeholder="申请人">
         </div>
 
         <div class="mui-input-row">
@@ -129,7 +135,7 @@
 
         <div class="mui-input-row">
             <label>我的可用红包</label>
-            <input id="redPackIdsClick" type="text" class="mui-input-clear" placeholder="点击选取我的红包" readonly>
+            <input id="redPackIdsClick" type="text" class="mui-input-clear" placeholder="点击选择可提现的红包" readonly>
             <input id="redPackIds" type="hidden" name="redPackIds" value="">
         </div>
 
@@ -149,6 +155,8 @@
 
         <div class="last-btn-div"><button type="submit" class="mui-btn mui-btn-red" id="submitBtn">提交</button></div>
     </div>
+
+    <div class="tips">只有在两个月前领的取红包才能申请提现，未满两个月的红包，暂时无法提现，请过段时间后再申请</div>
 </div>
 
 {{-- 红包展示区域 --}}
@@ -186,7 +194,7 @@
                     '<div class="data">' +
                         '<div class="money"><span>' + item.total + '</span>元</div>' +
                         '<div class="from">活动</div>' +
-                        '<div class="expiredTime">过期时间:' + item.useExpiredTime + '</div>' +
+                        '<div class="expiredTime">领取时间:' + item.createTime + '</div>' +
                     '</div>' +
                     '</div>';
                 redPackListDom.append(html);
@@ -206,7 +214,7 @@
             //获取数据
             $.ajax({
                 type : 'get',
-                url : "{{route('/my/getMyEnabledRedPackList')}}",
+                url : "{{route('/my/getTwoMonthAgoEnabledRedPackList')}}",
                 data : {},
                 dataType : "json",
                 headers : {"X-CSRF-TOKEN" : "{{csrf_token()}}"},
@@ -268,6 +276,7 @@
         var $this = $(this);
         $this.text('正在提交...');
         var check = true;
+        var payTypeNum = 0;
 
         var buyers = $("#buyers").val();
         var tel = $("#tel").val();
@@ -277,11 +286,11 @@
 
         mui(".feedback-form input[type=text]").each(function() {
             //若当前input为空，则alert提醒
-            if($(this).hasClass("pay-type") && this.value.trim() != "") {
+            if($(this).hasClass("pay-type") && this.value.trim() !== "") {
                 payTypeNum++;
             }
 
-            if(!this.value || this.value.trim() == "") {
+            if(!this.value || this.value.trim() === "") {
                 if(!$(this).hasClass("pay-type")) {
                     var label = this.previousElementSibling;
                     mui.alert(label.innerText + "不允许为空");
@@ -290,7 +299,12 @@
                 }
             }
         }); //校验通过，继续执行业务逻辑
-        //				console.log(payTypeNum)
+
+        if (payTypeNum === 0) {
+            mui.alert('至少需要提供一种打款账号！');
+            check = false;
+        }
+
         if(!check) {
             $this.text('提交');
             return false;
@@ -321,7 +335,7 @@
                     mui.alert(res.msg);
                 } else {
                     mui.alert("提交成功", function(){
-                        window.location.href = "/my"
+                        window.location.href = "/my/balance";
                     });
                 }
             }

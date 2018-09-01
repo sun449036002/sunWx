@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
         $todayDir = date("Ymd");
         Storage::makeDirectory("logs/command/" . $todayDir);
         $schedule->command("NotifyRedPackExpiredCommand --type=normal")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/app/logs/command/{$todayDir}/NotifyRedPackExpiredCommand-normal.log");
-        $schedule->command("NotifyRedPackExpiredCommand --type=use")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/app/logs/command/{$todayDir}/NotifyRedPackExpiredCommand-use.log");
+//        $schedule->command("NotifyRedPackExpiredCommand --type=use")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/app/logs/command/{$todayDir}/NotifyRedPackExpiredCommand-use.log");
 
         //红包助力数据更新
         $schedule->command("RedPackAssistanceCommand")->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path() . "/app/logs/command/{$todayDir}/RedPackAssistanceCommand.log");

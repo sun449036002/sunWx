@@ -16,7 +16,7 @@
                     window.location.href = "/cash-red-pack-info?redPackId=" + $(this).data("redPackId");
                     break;
                 case 1://未使用
-                    window.location.href = "/my/redPackDetail?id=" + $(this).data("redPackId");
+//                    window.location.href = "/my/redPackDetail?id=" + $(this).data("redPackId");
                     break;
                 case 2://使用中
                 case 3://已使用
