@@ -83,7 +83,7 @@ class MyController extends Controller
         ];
 
         $withdrawModel = new WithdrawModel();
-        $insertId = $withdrawModel->insert([
+        $newWithdrawId = $withdrawModel->insert([
             'userId' => $this->user['id'],
             'name' => $data['buyers'],
             'tel' => $data['tel'],
@@ -93,7 +93,7 @@ class MyController extends Controller
             'createTime' => time()
         ]);
 
-        if ($insertId) {
+        if ($newWithdrawId) {
             //红包变更为使用中
             $allRedPackIds = explode(",", $data['redPackIds']);
             if (!empty($allRedPackIds)) {
@@ -112,6 +112,7 @@ class MyController extends Controller
                 if ($totalMoney > 0) {
                     (new BalanceLogModel())->insert([
                         'userId' => $this->user['id'],
+                        'targetId' => $newWithdrawId,
                         'inOrOut' => StateConst::BALANCE_OUT,
                         'type' => StateConst::BALANCE_WITHDRAW_APPLY,
                         'money' => $totalMoney,
