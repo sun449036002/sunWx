@@ -75,12 +75,20 @@ class MyController extends Controller
             return back()->withErrors($validate);
         }
 
+        //返现金额打款账号
+        $paymentMethodList = [
+            'alipay' => $data['alipay'],
+            'weixin' => $data['weixin'],
+            'bankcard' => $data['bankcard'],
+        ];
+
         $withdrawModel = new WithdrawModel();
         $insertId = $withdrawModel->insert([
             'userId' => $this->user['id'],
             'name' => $data['buyers'],
             'tel' => $data['tel'],
             'redPackIds' => $data['redPackIds'],
+            'paymentMethod' => json_encode($paymentMethodList, JSON_UNESCAPED_UNICODE),
             'status' => 0,
             'createTime' => time()
         ]);
