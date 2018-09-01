@@ -34,7 +34,7 @@
         <div class="bar-item all {{$type == 'all' ? "selected" : ""}}" data-type="all">全部</div>
         <div class="bar-item un-finish  {{$type == 'unFinish' ? "selected" : ""}}" data-type="unFinish">未完成</div>
         <div class="bar-item un-use  {{$type == 'unUse' ? "selected" : ""}}" data-type="unUse">未使用</div>
-        <div class="bar-item expired  {{$type == 'expired' ? "selected" : ""}}" data-type="expired">已过期</div>
+        <div class="bar-item used  {{$type == 'used' ? "selected" : ""}}" data-type="used">已使用</div>
     </div>
     <div class="red-pack-box">
         <div class="list">
@@ -44,8 +44,8 @@
                 <div class="data">
                     <div class="money">{{$item->type == 'unFinish' ? $item->received . "/" . $item->total : $item->total}}元</div>
                     <div class="from">来源:{{$item->fromUserId == 0 ? "活动" : "好友赠送"}}</div>
-                    <div class="from">状态:{{$redPackStatusConfig[$item->status]['status']}} {{in_array($item->type, ['expired', 'useExpired']) ? "【已过期】" : ""}}</div>
-                    <div class="expiredTime">过期时间: {{$item->type == 'unFinish' ? $item->expiredTimeStr : $item->useExpiredTimeStr }}</div>
+                    <div class="from">状态:{{$redPackStatusConfig[$item->status]['status']}}</div>
+                    {{--<div class="expiredTime">可提现时间: {{$item->type == 'unFinish' ? $item->expiredTimeStr : $item->useExpiredTimeStr }}</div>--}}
                 </div>
             </div>
             @endforeach

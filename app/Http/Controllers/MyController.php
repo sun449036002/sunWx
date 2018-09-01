@@ -276,6 +276,9 @@ class MyController extends Controller
                 $where['status'] = StateConst::RED_PACK_FILL_UP;
 //                $where[] = ["useExpiredTime", ">", time()];
                 break;
+            case 'used':
+                $where['status'] = StateConst::RED_PACK_USED;
+                break;
             case 'expired':
                 $where['status'] = StateConst::RED_PACK_FILL_UP;
 //                $where[] = ["useExpiredTime", "<=", time()];
