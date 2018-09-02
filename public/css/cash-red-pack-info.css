@@ -129,6 +129,7 @@ body {
     height: 0.25rem;
     line-height: 0.25rem;
     align-self: center;
+    -webkit-align-self: center;
     font-size: .2rem;
     color: #fff;
     background-color: #d22e20;
