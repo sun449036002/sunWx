@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 
 use App\Consts\CacheConst;
 use App\Consts\WxConst;
+use App\Logic\RoomSourceLogic;
+use App\Model\RoomSourceModel;
 use App\Model\UserModel;
 use EasyWeChat\Kernel\Messages\News;
 use EasyWeChat\Kernel\Messages\NewsItem;
@@ -75,13 +77,39 @@ class wxController extends Controller
                 //地址位置上报
                 break;
             case 'subscribe':
+                //查询需要推送的房源信息 限6条
+                $roomSourceList = (new RoomSourceModel())->select(['id', 'name', "desc", "imgJson"])->where("isDel", 0)->orderBy("udpateTime", "DESC")->limit(6)->get();
+                $roomSourceNewsItemList = [];
+                if (!empty($roomSourceList)) {
+                    foreach ($roomSourceList as $roomSource) {
+                        $img = json_decode($roomSource->imgJson);
+                        $cover = empty($img->cover) ? "" : env('MEMBER_IMG_DOMAIN') . $img->cover;
+                        $cover = str_replace("room-source", 'room-source-thumbnail', $cover);
+                        $roomSourceNewsItemList[] = new NewsItem([
+                            'title'       => "【" . $roomSource->name . "】",
+                            'description' => mb_substr(strip_tags($roomSource->desc), 0, 20) . "...",
+                            'url'         => env('APP_URL') . "/room/detail?id=" . $roomSource->id,
+                            'image'       => $cover,
+                        ]);
+                    }
+                }
+
                 //关注
                 $where['openid'] = $message['FromUserName'];
                 $userModel = new UserModel();
                 $user = $userModel->getOne("id", $where);
                 if (!empty($user)) {
                     $userModel->updateData(['is_subscribe' => 1], ['id' => $user->id]);
-                    return '欢迎回来';
+                    $news = new News(array_merge([
+                        new NewsItem([
+                            'title'       => '欢迎回来，500元现金大礼包待您领取~',
+                            'description' => '',
+                            'url'         => env('APP_URL') . "/cash-red-pack",
+                            'image'       => asset("imgs/big-red-pack.png"),
+                        ])
+                    ], $roomSourceNewsItemList));
+                    $this->wxapp->customer_service->message($news)->to($message['FromUserName'])->send();
+                    return '';
                 } else {
                     $userinfo = $this->wxapp->user->get($message['FromUserName']);
 
@@ -134,14 +162,14 @@ class wxController extends Controller
                         switch ($subscribeType) {
                             case 'help':
                             case 'receive':
-                                $news = new News([
+                                $news = new News(array_merge([
                                     new NewsItem([
-                                        'title'       => '助力成功，现金大礼包待您领取~',
+                                        'title'       => '助力成功，500元现金大礼包待您领取~',
                                         'description' => '',
                                         'url'         => env('APP_URL') . "/cash-red-pack",
                                         'image'       => asset("imgs/big-red-pack.png"),
                                     ])
-                                ]);
+                                ], $roomSourceNewsItemList));
                                 break;
                             /*case 'help':
                                 $news = new News([
@@ -156,24 +184,24 @@ class wxController extends Controller
                             case 'accept':
                                 $cacheKey = sprintf(CacheConst::MY_TEMP_TICKET, $message['FromUserName'], $redPackId);
                                 $ticket = Redis::get($cacheKey);
-                                $news = new News([
+                                $news = new News(array_merge([
                                     new NewsItem([
                                         'title'       => '您朋友赠送给您一个大礼包~',
                                         'description' => '',
                                         'url'         => env('APP_URL') . "/index/grantRedPack?redPackId=" . ($redPackId) . "&ticket=" . $ticket,
                                         'image'       => asset("imgs/big-red-pack.png"),
                                     ])
-                                ]);
+                                ], $roomSourceNewsItemList));
                                 break;
                             default:
-                                $news = new News([
+                                $news = new News(array_merge([
                                     new NewsItem([
-                                        'title'       => '欢迎加入我们，现金大礼包待您领取~',
+                                        'title'       => '欢迎加入我们，500元现金大礼包待您领取~',
                                         'description' => '',
                                         'url'         => env('APP_URL') . "/cash-red-pack",
                                         'image'       => asset("imgs/big-red-pack.png"),
                                     ])
-                                ]);
+                                ], $roomSourceNewsItemList));
                                 break;
                         }
 

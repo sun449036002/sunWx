@@ -140,12 +140,20 @@
         <div class="room-name">{{$room->name ?? ""}}</div>
     </div>
     <div class="item">
-        <div class="input-label">姓名</div>
-        <div class="input-box"><input type="text" name="name" value="" placeholder="填写姓名"/></div>
+        <div class="input-label">姓名1</div>
+        <div class="input-box"><input type="text" name="name" value="" placeholder="填写姓名1"/></div>
     </div>
     <div class="item">
-        <div class="input-label">电话</div>
-        <div class="input-box"><input type="text" name="tel" value=""  placeholder="填写电话"/></div>
+        <div class="input-label">电话1</div>
+        <div class="input-box"><input type="text" name="tel" value=""  placeholder="填写电话1"/></div>
+    </div>
+    <div class="item">
+        <div class="input-label">姓名2</div>
+        <div class="input-box"><input type="text" name="name2" value="" placeholder="填写姓名2"/></div>
+    </div>
+    <div class="item">
+        <div class="input-label">电话2</div>
+        <div class="input-box"><input type="text" name="tel2" value=""  placeholder="填写电话2"/></div>
     </div>
     <div class="item">
         <div class="input-label">预约人数</div>
@@ -163,5 +171,3 @@
         <div class="input-btn">提交</div>
     </div>
 </div>
-
-@include('components/bottomMenu')
