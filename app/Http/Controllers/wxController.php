@@ -78,7 +78,7 @@ class wxController extends Controller
                 break;
             case 'subscribe':
                 //查询需要推送的房源信息 限6条
-                $roomSourceList = (new RoomSourceModel())->select(['id', 'name', "desc", "imgJson"])->where("isDel", 0)->orderBy("updateTime", "DESC")->limit(6)->get();
+                $roomSourceList = (new RoomSourceModel())->select(['id', 'name', "desc", "imgJson"])->where("isDel", 0)->orderBy("updateTime", "DESC")->limit(5)->get();
                 $roomSourceNewsItemList = [];
                 if (!empty($roomSourceList)) {
                     foreach ($roomSourceList as $roomSource) {
@@ -86,8 +86,8 @@ class wxController extends Controller
                         $cover = empty($img->cover) ? "" : env('MEMBER_IMG_DOMAIN') . $img->cover;
                         $cover = str_replace("room-source", 'room-source-thumbnail', $cover);
                         $roomSourceNewsItemList[] = new NewsItem([
-                            'title'       => "【" . $roomSource->name . "】",
-                            'description' => mb_substr(strip_tags($roomSource->desc), 0, 20) . "...",
+                            'title'       => "【" . $roomSource->name . "】" . mb_substr(strip_tags($roomSource->desc), 0, 20) . "...",
+                            'description' => '',
                             'url'         => env('APP_URL') . "/room/detail?id=" . $roomSource->id,
                             'image'       => $cover,
                         ]);
