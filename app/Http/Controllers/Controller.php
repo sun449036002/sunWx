@@ -67,6 +67,9 @@ class Controller extends BaseController
             //easy wechat wxapp对象
             $this->wxapp = Factory::officialAccount(getWxConfig());
 
+            $os = get_device_type();
+            $this->pageData['os'] = $os;
+            $this->pageData['iosClassPrev'] = $os == "ios" ? "ios-" : "";
             $this->pageData['user'] = $this->user;
             $this->pageData['wxapp'] = $this->wxapp;
             $this->pageData['adminId'] = $request->get("adminId", 0);

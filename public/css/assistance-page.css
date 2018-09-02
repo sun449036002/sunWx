@@ -82,14 +82,16 @@ body {
     border-radius: .3rem;
 }
 
-.cash-red-pack-main .mid .box .btn-assistance {
+.cash-red-pack-main .mid .box .btn-assistance,.cash-red-pack-main .mid .box .ios-btn-assistance {
     width: 4rem;
     margin: 0.4rem auto 0;
     background-color: #fbda30;
     border-radius: 0.3rem;
     color: rgba(155,17,4,1);
     box-shadow: 1px 1px 1px #000;
+}
 
+.cash-red-pack-main .mid .box .btn-assistance {
     -webkit-animation-name:'ripple';/*动画属性名，也就是我们前面keyframes定义的动画名*/
     -webkit-animation-duration: 0.5s;/*动画持续时间*/
     -webkit-animation-timing-function: ease; /*动画频率，和transition-timing-function是一样的*/

@@ -1,5 +1,27 @@
 <?php
 /**
+ * 获取手机类型
+ * @return string
+ */
+function get_device_type()
+{
+    //全部变成小写字母
+    $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+    $type = 'other';
+    //分别进行判断
+    if(strpos($agent,'iphone') || strpos($agent,'ipad'))
+    {
+        $type = 'ios';
+    }
+
+    if(strpos($agent,'android'))
+    {
+        $type = 'android';
+    }
+    return $type;
+}
+
+/**
  * 生成 URI 标识
  * @param int $len
  * @return string

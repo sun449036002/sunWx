@@ -123,7 +123,7 @@
                     @endif
                 </div>
                 <div style="height: 1rem;display: flex;flex-direction: column;">
-                    <div class="{{$isHelped ? "is-helped" : ""}} btn-assistance">{{$isHelped ? (!empty($unCompleteRedPackId) ? "我的现金红包" : "我也要领500元现金红包") : "帮他助力"}}</div>
+                    <div class="{{$isHelped ? "is-helped" : ""}} {{$iosClassPrev}}btn-assistance">{{$isHelped ? (!empty($unCompleteRedPackId) ? "我的现金红包" : "我也要领500元现金红包") : "帮他助力"}}</div>
                 </div>
             </div>
         </div>

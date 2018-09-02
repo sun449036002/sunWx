@@ -190,9 +190,15 @@
                 <span class="remainingTime">
                     <span class="h">00</span>:<span class="m">00</span>:<span class="s">00</span>
                 </span>
-                后失效，赶紧找人助力~
+                后失效，点右上角分享找人助力~
             </div>
-            <div class="seize-seat"><div id="go-on-share" class="go-on-share">再找人助力</div></div>
+            <div class="seize-seat">
+                @if($os == "ios")
+                <div class="ios-go-on-share">找人助力</div>
+                @else
+                <div class="go-on-share">再找人助力</div>
+                @endif
+            </div>
             <div class="assistance-list">
                 @foreach($redPackRecordList as $item)
                 <div class="assistance-item" style="background-image: url('{{$item->headImgUrl}}');">
