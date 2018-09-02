@@ -78,7 +78,7 @@ class wxController extends Controller
                 break;
             case 'subscribe':
                 //查询需要推送的房源信息 限6条
-                $roomSourceList = (new RoomSourceModel())->select(['id', 'name', "desc", "imgJson"])->where("isDel", 0)->orderBy("udpateTime", "DESC")->limit(6)->get();
+                $roomSourceList = (new RoomSourceModel())->select(['id', 'name', "desc", "imgJson"])->where("isDel", 0)->orderBy("updateTime", "DESC")->limit(6)->get();
                 $roomSourceNewsItemList = [];
                 if (!empty($roomSourceList)) {
                     foreach ($roomSourceList as $roomSource) {
