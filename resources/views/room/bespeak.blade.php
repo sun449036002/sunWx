@@ -111,6 +111,8 @@
                     roomId: "{{$room->id ?? 0}}",
                     name:name,
                     tel:tel,
+                    name2 : $("input[name='name2']").val(),
+                    tel2 : $("input[name='tel2']").val(),
                     num: num,
                     address:address,
                     time: time
