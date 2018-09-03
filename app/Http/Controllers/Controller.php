@@ -77,11 +77,13 @@ class Controller extends BaseController
 
             //路由中的Admin Id 路由中未带此参数，则默认值为当前用户的admin_id
             $adminId = $request->get("adminId", $this->user['admin_id'] ?? 0);
-            $adminIdCacheKey = sprintf(CacheConst::USER_ADMIN_ID, $this->user['openid']);
-            if (!empty($adminId)) {
-                Redis::setex($adminIdCacheKey, 86400, $adminId);
-            } else {
-                $adminId = intval(Redis::get($adminIdCacheKey));
+            if (!empty($this->user['openid'])) {
+                $adminIdCacheKey = sprintf(CacheConst::USER_ADMIN_ID, $this->user['openid']);
+                if (!empty($adminId)) {
+                    Redis::setex($adminIdCacheKey, 86400, $adminId);
+                } else {
+                    $adminId = intval(Redis::get($adminIdCacheKey));
+                }
             }
             $this->pageData['adminId'] = $adminId;
 
