@@ -75,9 +75,9 @@ class Controller extends BaseController
             $this->pageData['user'] = $this->user;
             $this->pageData['wxapp'] = $this->wxapp;
 
-            //路由中的Admin Id
-            $adminId = $request->get("adminId", 0);
-            $adminIdCacheKey = sprintf(CacheConst::USER_ADMIN_ID, $this->user['opneid']);
+            //路由中的Admin Id 路由中未带此参数，则默认值为当前用户的admin_id
+            $adminId = $request->get("adminId", $this->user['admin_id']);
+            $adminIdCacheKey = sprintf(CacheConst::USER_ADMIN_ID, $this->user['openid']);
             if (!empty($adminId)) {
                 Redis::setex($adminIdCacheKey, 86400, $adminId);
             } else {
