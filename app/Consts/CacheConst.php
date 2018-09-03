@@ -33,4 +33,7 @@ class CacheConst {
 
     //关注二维码场景数据 %s 当前将要关注用户的openid
     const QR_CODE_SCENE_DATA = "qr_code_scene_data_%s";
+
+    //用户opneid 关联 Admin ID %s => openid
+    const USER_ADMIN_ID = 'user_admin_id_%s';
 }

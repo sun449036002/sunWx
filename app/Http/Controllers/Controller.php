@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Consts\CacheConst;
 use App\Consts\CookieConst;
 use App\Model\UserModel;
 use EasyWeChat\Factory;
@@ -11,6 +12,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Redis;
 
 class Controller extends BaseController
 {
@@ -72,7 +74,17 @@ class Controller extends BaseController
             $this->pageData['iosClassPrev'] = $os == "ios" ? "ios-" : "";
             $this->pageData['user'] = $this->user;
             $this->pageData['wxapp'] = $this->wxapp;
-            $this->pageData['adminId'] = $request->get("adminId", 0);
+
+            //路由中的Admin Id
+            $adminId = $request->get("adminId", 0);
+            $adminIdCacheKey = sprintf(CacheConst::USER_ADMIN_ID, $this->user['opneid']);
+            if (!empty($adminId)) {
+                Redis::setex($adminIdCacheKey, 86400, $adminId);
+            } else {
+                $adminId = intval(Redis::get($adminIdCacheKey));
+            }
+            $this->pageData['adminId'] = $adminId;
+
             $this->pageData['redPackStatusConfig'] = $this->redPackStatusConfig;
 
             return $next($request);
