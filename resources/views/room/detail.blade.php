@@ -16,7 +16,7 @@
             //分享到微信朋友圈
             wx.onMenuShareTimeline({
                 title: shareTitle, // 分享标题
-                link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                link: window.location.href + "&adminId={{$adminId}}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: shareImg, // 分享图标
                 success: function () {
                     // 用户点击了分享后执行的回调函数
@@ -27,7 +27,7 @@
             wx.onMenuShareAppMessage({
                 title: shareTitle, // 分享标题
                 desc: shareDesc, // 分享描述
-                link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                link: window.location.href + "&adminId={{$adminId}}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: shareImg, // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
