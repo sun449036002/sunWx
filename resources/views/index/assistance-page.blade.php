@@ -46,14 +46,14 @@
         });
 
         //帮他助力
-        $(".btn-assistance").on("click", function(){
+        $(".{{$iosClassPrev}}btn-assistance").on("click", function(){
             var isSubscribe = parseInt("{{$user['is_subscribe'] ?? 0}}");
             if (!isSubscribe) {
                 showSubscribeQrCode("{{$adminId}}", "{{$redPack->userId}}", "{{$redPack->id}}", "help");
                 return false;
             }
 
-            if ($(this).hasClass("is-helped")) {
+            if ($(this).hasClass("is-helped") || 1) {
                 @if(!empty($unCompleteRedPackId))
                 window.location.href = "/cash-red-pack-info?redPackId={{$unCompleteRedPackId}}";
                 @else
@@ -62,7 +62,7 @@
                 return false;
             }
 
-            $.ajax({
+            /*$.ajax({
                 type : 'post',
                 url : "/assistance",
                 data : {
@@ -95,7 +95,7 @@
                         alertPopup.show(res);
                     }
                 }
-            });
+            });*/
         });
     });
 </script>

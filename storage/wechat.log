@@ -1802,3 +1802,74 @@ Content-Length: 143
 {"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm7jXGhbxBR7RePfetMGAAtW-kZOVfoH7Edif6ZzKWmXDQ","expires_in":7200}
 --------
 NULL  
+[2018-09-05 10:33:19] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=13_FI1pLPT3wsVBEhPEiBrDSsOawEv9SSGWkN37WyjrZuUaJMQSdDxi0peT4nkfWBCI68f8mL-GXaAW4OTPJbTcmtq2OYDPTkGhQL8PT5nFc5CXpAKJY5mlLFrr0s33Mgb6pjbrqyWayNfBtf9aUSYiADAXVB&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Wed, 05 Sep 2018 02:33:15 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm4Yk2PiRcvLLqFd5WuL9Xu2RceZ2XftvJ7DXceaSwhufA","expires_in":7200}
+--------
+NULL  
+[2018-09-05 10:35:49] NULL.INFO: >>>>>>>>
+POST /cgi-bin/message/template/send?access_token=13_FI1pLPT3wsVBEhPEiBrDSsOawEv9SSGWkN37WyjrZuUaJMQSdDxi0peT4nkfWBCI68f8mL-GXaAW4OTPJbTcmtq2OYDPTkGhQL8PT5nFc5CXpAKJY5mlLFrr0s33Mgb6pjbrqyWayNfBtf9aUSYiADAXVB HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 480
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"touser":"o1siQ0TJfaFjIdoAJvzxGQHCVQJM","template_id":"7tji009NhJCPUhBelDUzCWFJc420BA8WWrMn7YNYopg","url":"http:\/\/wxlocal.whatareu.top\/cash-red-pack-info?redPackId=35","data":{"first":{"value":"签到成功 ,连续签到可增加红包初始金额 》》\r","color":"#169ADA"},"keyword1":{"value":"明月清风[机智]"},"keyword2":{"value":"2018年09月05日 10时35分47秒"},"remark":{"value":"\r签到进度：当前第 1 天签到\r","color":"#d22e20"}},"miniprogram":""}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Wed, 05 Sep 2018 02:35:45 GMT
+Content-Length: 54
+
+{"errcode":0,"errmsg":"ok","msgid":444976639386992640}
+--------
+NULL  
+[2018-09-05 10:49:15] NULL.INFO: >>>>>>>>
+POST /cgi-bin/qrcode/create?access_token=13_FI1pLPT3wsVBEhPEiBrDSsOawEv9SSGWkN37WyjrZuUaJMQSdDxi0peT4nkfWBCI68f8mL-GXaAW4OTPJbTcmtq2OYDPTkGhQL8PT5nFc5CXpAKJY5mlLFrr0s33Mgb6pjbrqyWayNfBtf9aUSYiADAXVB HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 96
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"action_name":"QR_STR_SCENE","action_info":{"scene":{"scene_str":""}},"expire_seconds":2505600}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Date: Wed, 05 Sep 2018 02:49:11 GMT
+Content-Type: application/json; encoding=utf-8
+Content-Length: 110
+
+{"errcode":40001,"errmsg":"invalid credential, access_token is invalid or not latest hint: [Q.T3BA0751vr30!]"}
+--------
+NULL  
+[2018-09-05 10:49:16] NULL.DEBUG: Retrying with refreshed access token.  
+[2018-09-05 10:49:16] NULL.INFO: >>>>>>>>
+POST /cgi-bin/qrcode/create?access_token=13_DtCJkA82GOa3qOftUFF_zz0lgNBcytF34efF8qc7-BbZlwtZ4wboSsnlVDGflTBpTWx9tMmHchYVrYC3WS6TjpbodW7CvgyuQFuPkIihCeDZprRQu2ijCtWz0XQCHAjAJAQVO HTTP/1.1
+Host: api.weixin.qq.com
+Content-Length: 96
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+Content-Type: application/json
+
+{"action_name":"QR_STR_SCENE","action_info":{"scene":{"scene_str":""}},"expire_seconds":2505600}
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Wed, 05 Sep 2018 02:49:12 GMT
+Content-Length: 192
+
+{"ticket":"gQEt8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyUXdmMFpxbThlZ2gxQ0VfUjFyY1MAAgQoRI9bAwSAOyYA","expire_seconds":2505600,"url":"http:\/\/weixin.qq.com\/q\/02Qwf0Zqm8egh1CE_R1rcS"}
+--------
+NULL  

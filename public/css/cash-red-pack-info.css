@@ -346,10 +346,10 @@ body {
 }
 .share-success-box .share-main {
     position: absolute;
-    width: 5rem;
+    width: 5.6rem;
     height: 3rem;
     top: 3rem;
-    left: 1.2rem;
+    left: 0.9rem;
     border-radius: .2rem;
     background-color: #FFF;
 }

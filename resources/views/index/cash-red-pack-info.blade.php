@@ -88,7 +88,7 @@
         });
 
         //分享
-        $(".btn-share-friend, .go-on-share").on("click", function(){
+        $(".btn-share-friend, .{{$iosClassPrev}}go-on-share").on("click", function(){
             if($(this).hasClass("disabled")) {
                 return false;
             }
@@ -269,7 +269,7 @@
             <div class="btn-close">x</div>
         </div>
         <div class="content">
-            <div>人多力量大，分享给更多的好友，加速收集红包~</div>
+            <div>继续分享到群或朋友圈，人多力量大，加快现金红包入帐，可提现哦！</div>
             <div class="btn-share-again">继续分享</div>
         </div>
     </div>
