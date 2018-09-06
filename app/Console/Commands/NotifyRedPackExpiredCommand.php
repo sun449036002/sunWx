@@ -67,11 +67,15 @@ class NotifyRedPackExpiredCommand extends Command
             }
 
             $openidList = [];
+            $userUriList  = [];
+            $userNameList = [];
             $uids = array_unique($uids);
-            $userList = (new UserModel())->getList(['id', 'openid'], [['id', "in", $uids]]);
+            $userList = (new UserModel())->getList(['id', 'uri', 'openid', 'username'], [['id', "in", $uids]]);
             if ($userList) {
                 foreach ($userList as $user) {
                     $openidList[$user->id] = $user->openid;
+                    $userNameList[$user->id] = $user->username;
+                    $userUriList[$user->id] = $user->uri;
                 }
             }
 
@@ -114,10 +118,10 @@ class NotifyRedPackExpiredCommand extends Command
                                 'value' => "您有一个{$item->total}元的红包快要过期啦，快去邀请好友助力吧 >> \r\n",
                                 'color' => "#d22e20"
                             ],
-                            'keyword1' => "还差" . ($item->total - $item->received) . "元",
-                            'keyword2' => "过期时间:" . date("Y-m-d H:i:s", $item->expiredTime),
-                            'keyword3' => '',
-                            'keyword4' => date("Y-m-d H:i:s"),
+                            'keyword1' => $userNameList[$item->userId] ?? "",
+                            'keyword2' => $userUriList[$item->userId] ?? "",
+                            'keyword3' => '现金红包',
+                            'keyword4' => date("Y-m-d H:i:s", $item->expiredTime),
                         ],
                     ]);
 

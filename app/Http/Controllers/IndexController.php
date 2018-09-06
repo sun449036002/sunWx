@@ -172,12 +172,11 @@ class IndexController extends Controller
                             "value" => "签到成功 ,连续签到可增加红包初始金额 》》\r",
                             "color" => "#169ADA"
                         ],
-                        'keyword1' => $this->user['username'],
-                        'keyword2' => date("Y年m月d日 H时i分s秒"),
-                        'remark' => [
-                            "value" => "\r签到进度：当前第 {$newestSignInCount} 天签到\r",
-                            'color' => '#d22e20'
-                        ]
+                        'keyword1' => '现金红包',
+                        'keyword2' => '',
+                        'keyword3' => "当前第 {$newestSignInCount} 天签到",
+                        'keyword4' => '现金红包签到',
+                        'keyword5' => date("Y年m月d日 H时i分s秒")
                     ],
                 ]);
 

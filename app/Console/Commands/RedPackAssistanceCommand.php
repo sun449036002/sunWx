@@ -89,12 +89,11 @@ class RedPackAssistanceCommand extends Command
                                         "color" => "#169ADA"
                                     ],
                                     'keyword1' => "现金红包",
-                                    'keyword2' => '',
-                                    'keyword3' => [
-                                        "value" => "还差" . ($this->maxAssistanceTimes - $curAssistanceNum) . "人",
+                                    'keyword2' => [
+                                        "value" => $nowReceived . "元，还差" . ($this->maxAssistanceTimes - $curAssistanceNum) . "人",
                                         'color' => '#d22e20'
                                     ],
-                                    'keyword4' => date("Y-m-d H:i:s"),
+                                    'keyword3' => date("Y-m-d H:i:s"),
                                 ],
                             ]);
                         } else {
@@ -120,12 +119,7 @@ class RedPackAssistanceCommand extends Command
                                         "color" => "#169ADA"
                                     ],
                                     'keyword1' => "现金红包",
-                                    'keyword2' => '',
-                                    'keyword3' => [
-                                        "value" => "",
-                                        'color' => '#d22e20'
-                                    ],
-                                    'keyword4' => date("Y-m-d H:i:s"),
+                                    'keyword3' => date("Y-m-d H:i:s"),
                                 ],
                             ]);
                         }
