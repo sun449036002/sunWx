@@ -64,7 +64,8 @@
 
         //放弃
         $(".mySweetAlert .cancel").on("click", function(){
-            WeixinJSBridge.call('closeWindow');
+            window.location.href = "/room/list";
+//            WeixinJSBridge.call('closeWindow');
         });
 
         //继续分享
