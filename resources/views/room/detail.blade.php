@@ -118,7 +118,7 @@
                 <div class="area"><span>区域:</span>{{$row->area}}</div>
                 <div class="area"><span>面积:</span>{{$row->acreage}} m²</div>
                 <div class="area"><span>总价:</span>{{$row->totalPrice}} 万元起</div>
-                <div class="area"><span>首付:</span>{{$row->firstPay}} 万元</div>
+                <div class="area"><span>首付:</span>{{$row->firstPay}}</div>
                 <div class="tag-list">
                     <span>标签:</span>
                     <div class="tag">
