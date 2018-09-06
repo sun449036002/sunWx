@@ -42,8 +42,8 @@ function generateUri($len = 16) {
  */
 function getWxConfig() {
     return [
-        'app_id' => 'wx11fe145bfca2b25e',
-        'secret' => 'b8fdd5d132a3cc9c550ba40d001c6907',
+        'app_id' => env('APP_ID', 'wx11fe145bfca2b25e'),
+        'secret' => env('SECRET', 'b8fdd5d132a3cc9c550ba40d001c6907'),
 
         //网页Oauth授权
         'oauth' => [
