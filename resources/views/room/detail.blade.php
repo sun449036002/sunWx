@@ -116,7 +116,7 @@
                 <div class="label">楼盘介绍</div>
                 <div class="name"><span>名称:</span>{{$row->name}} [{{$row->categoryName}}] [{{$row->decoration ? "精装" : "毛柸"}}]</div>
                 <div class="area"><span>区域:</span>{{$row->area}}</div>
-                <div class="area"><span>面积:</span>{{$row->acreage}} m²</div>
+                <div class="area"><span>面积:</span>{{$row->acreage}}</div>
                 <div class="area"><span>总价:</span>{{$row->totalPrice}} 万元起</div>
                 <div class="area"><span>首付:</span>{{$row->firstPay}}</div>
                 <div class="tag-list">

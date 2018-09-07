@@ -87,7 +87,7 @@ class RoomSourceLogic extends BaseLogic
             //图片有缩略图 用缩略图
             if (!empty($row->imgJson)) {
                 $img = json_decode($row->imgJson);
-                $row->cover = empty($img->cover) ? "" : env('MEMBER_IMG_DOMAIN') . $img->cover;
+                $row->cover = empty($img->cover) ? asset('imgs/no-img.jpg') : env('MEMBER_IMG_DOMAIN') . $img->cover;
                 $row->cover = str_replace("room-source", 'room-source-thumbnail', $row->cover);
 
                 //详情轮播图

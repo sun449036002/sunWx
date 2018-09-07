@@ -102,18 +102,22 @@ class RoomController extends Controller
             $where[] = ['acreage', '>=', $maxAcreage];
         }
 
+        $roomSourceModel = new RoomSourceModel();
+
+        //若相似房源为空，则取其他类型房源
+        if (!empty($exceptedId)) {
+            $count = $roomSourceModel->where($where)->count();
+            if (empty($count)) {
+                unset($where['roomCategoryId']);
+            }
+        }
+
         $pageSize =10;
         $offset = ($page - 1) * $pageSize;
-        //取得所有推荐的房源
-        $roomSourceModel = new RoomSourceModel();
+        //根据条件取得房源列表
         $roomList = $roomSourceModel->select(['id', "type", "roomCategoryId", "name", "areaId", "avgPrice", "totalPrice", "imgJson"])
             ->where($where)->orderBy("updateTime", "DESC")->offset($offset)->limit($pageSize)->get();
-
-//        dd(DB::getQueryLog());
-
         $roomList = (new RoomSourceLogic())->formatRoomList($roomList);
-
-//        dd($roomList);
 
         return ResultClientJson(0, '数据获取成功', ['list' => $roomList, 'isEnd' => empty($roomList)]);
     }
