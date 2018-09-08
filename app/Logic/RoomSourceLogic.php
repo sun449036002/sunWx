@@ -73,14 +73,16 @@ class RoomSourceLogic extends BaseLogic
             $row->area = empty($row->areaId) ? "" : ($areaArr[$row->areaId] ?? "未知");
 
             //处理内容中的字体px 转 rem
-            $row->desc = preg_replace_callback("/font-size:([ ]*\d+)px/", function($res) {
-                if (!empty($res) && count($res) > 1) {
-                    $originFontSize = $res[1];
-                    if (is_numeric($originFontSize)) {
-                        return str_replace($originFontSize . "px", $originFontSize * 2 / 100 . "rem", $res[0]);
+            if (!empty($row->desc)) {
+                $row->desc = preg_replace_callback("/font-size:([ ]*\d+)px/", function($res) {
+                    if (!empty($res) && count($res) > 1) {
+                        $originFontSize = $res[1];
+                        if (is_numeric($originFontSize)) {
+                            return str_replace($originFontSize . "px", $originFontSize * 2 / 100 . "rem", $res[0]);
+                        }
                     }
-                }
-            }, $row->desc);
+                }, $row->desc);
+            }
 
             //标签
             $tagNameList = [];
