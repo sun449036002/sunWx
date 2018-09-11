@@ -12,7 +12,7 @@
 
         //分享到微信朋友圈
         var shareTitle = "{{$user['username']}}邀请您帮他助力";
-        var shareDesc = "人多力量大，{{$total}}元待您领取";
+        var shareDesc = "人多力量大，{{$total}}元待您领取,可提现哦~";
         wx.onMenuShareTimeline({
             title: shareTitle, // 分享标题
             link: "{{env('APP_URL')}}/assistance-page?redPackId={{$redPackId}}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致

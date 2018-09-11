@@ -77,6 +77,11 @@ body {
     justify-content: space-around;
     height: 2.8rem;
 }
+.main .house-box .mid-box .desc-box .name .category-name {
+    padding:0;
+    color:red;
+    font-weight:600;
+}
 .main .house-box .mid-box .desc-box .tag-list {
     display: flex;
 }
@@ -84,7 +89,8 @@ body {
     padding-right:.2rem;
 }
 .main .house-box .mid-box .desc-box span.tag-name {
-
+    color:red;
+    font-weight:600;
 }
 .main .house-box .mid-box .label {
     height: 0.5rem;

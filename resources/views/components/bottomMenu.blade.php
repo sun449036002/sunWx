@@ -54,7 +54,7 @@
     <a href="/cash-red-pack">
         <div class="item">
             <img src="{{asset("imgs/red-pack-selected.png")}}"/>
-            <span>红包</span>
+            <span>天天领现金</span>
         </div>
     </a>
     <a href="/my">

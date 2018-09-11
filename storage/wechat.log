@@ -1906,3 +1906,19 @@ Content-Length: 143
 {"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm6cnJ7qNNLfzgLtb-Kx7TN3p7OEHMYSnoPMLqrRah0Ahw","expires_in":7200}
 --------
 NULL  
+[2018-09-11 10:32:54] NULL.INFO: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=13_2y3Nm8MKpn_6C3GAWieUJu7mHVTDgQHwvIr2WXkNs_JFXQhdgIFEbTMj4KwAM18Eigap4PVm8VgsDBFP3wQOB1XKpgNDWYNlfG35mhP6HEzSIpsC_wuUAixf42qqKcoC5oQmiVuj-8J16MhVLOJjAHAVYT&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.3.3 curl/7.59.0 PHP/7.2.7
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Tue, 11 Sep 2018 02:32:54 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"HoagFKDcsGMVCIY2vOjf9tQOQA5lesPGcRvyp88AVm7wVFz_ENWCIKjvfpisEmbrYeS_Y-Vzx6-78LnK4ocWlg","expires_in":7200}
+--------
+NULL  
