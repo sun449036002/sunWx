@@ -14,12 +14,14 @@ use App\Logic\RoomSourceLogic;
 use App\Model\AdminModel;
 use App\Model\AreaModel;
 use App\Model\BespeakModel;
+use App\Model\BrokerApplyModel;
 use App\Model\CustomServiceModel;
 use App\Model\HouseTypeModel;
 use App\Model\RoomCategoryModel;
 use App\Model\RoomSourceMarkModel;
 use App\Model\RoomSourceModel;
 use App\Model\SystemModel;
+use App\Services\SMSNoticeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -231,27 +233,9 @@ class RoomController extends Controller
 
         if ($newId) {
             //发送短信消息给对应的手机号
-            $systemModel = new SystemModel();
-            $system = $systemModel->getOne(['smsTel'], null);
-            $telNumber = $system->smsTel ?? "";
-            if (!empty($telNumber) && is_numeric($telNumber)) {
-                // 短信模板ID，需要在短信应用中申请
-                $templateId = 181523;  // NOTE: 这里的模板ID`7839`只是一个示例，真实的模板ID需要在短信控制台中申请
-                // 签名
-                $smsSign = "雍今利杭州房地产公司"; // NOTE: 这里的签名只是示例，请使用真实的已申请的签名，签名参数使用的是`签名内容`，而不是`签名ID`
-                // 单发短信
-                try {
-                    $name = mb_substr($data['name'], 0 ,12);
-                    $dateTime = date("n月j日G时i分", strtotime($data['time']));
-                    $ssender = new SmsSingleSender(WxConst::TX_SMS_APP_ID, WxConst::TX_SMS_APP_KEY);
-                    $params = [$name, $dateTime];//对应模板里面的{1}和{2}的位置，对应替换成相应内容
-                    $result = $ssender->sendWithParam("86", $telNumber, $templateId,
-                        $params, $smsSign, "", "");  // 签名参数未提供或者为空时，会使用默认签名发送短信
-                    Log::info('短信发送结果：', [$result]);
-                } catch(\Exception $e) {
-                    echo var_dump($e);
-                }
-            }
+            $name = mb_substr($data['name'], 0 ,12);
+            $time = date("n月j日G时i分", strtotime($data['time']));
+            (new SMSNoticeService())->sendNotice(WxConst::TX_SMS_TEMPLATE_ID_FOR_BESPEAKING, [$name, $time]);
 
             return ResultClientJson(0, '预约成功');
         }
@@ -292,6 +276,11 @@ class RoomController extends Controller
         return view('room/customServiceList', $this->pageData);
     }
 
+    /**
+     * 户型图
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function houseTypeImgs(Request $request) {
         $id = $request->get("id");
         $row = (new RoomSourceModel())->getOne(['imgJson'], ['id' => $id]);
@@ -299,5 +288,36 @@ class RoomController extends Controller
 
         $this->pageData['row'] = $row;
         return view('room/houseTypeImgs', $this->pageData);
+    }
+
+    /**
+     * 经纪人报名页
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function brokerApply() {
+        return view("/room/brokerApply", $this->pageData);
+    }
+
+    /**
+     * 经纪人报名提交
+     */
+    public function brokerApplying(Request $request) {
+        $data = $request->all();
+        if (empty($data['name']) || empty($data['tel'])) {
+            return ResultClientJson(100, '姓名和电话不得为空');
+        }
+
+        $insertId = (new BrokerApplyModel())->insert([
+            'name' => $data['name'],
+            'tel' => $data['tel'],
+            'createTime' => time(),
+        ]);
+        if ($insertId) {
+            //发送短信通知
+            (new SMSNoticeService())->sendNotice(WxConst::TX_SMS_TEMPLATE_ID_FOR_BROKER_APPLY, [mb_substr($data['name'], 0 ,12)]);
+            return ResultClientJson(0, '提交成功');
+        }
+
+        return ResultClientJson(100, '提交失败，请联系管理员');
     }
 }

@@ -12,7 +12,6 @@
 */
 //首页
 Route::get('/', "IndexController@home")->middleware("weixinOAuth");
-Route::get('/test', "Controller@test")->middleware("weixinOAuth");
 
 //图片上传
 Route::post("/img/upload", "ImgController@upload")->middleware("weixinOAuth");
@@ -26,6 +25,10 @@ Route::get('/room/customServiceList', "RoomController@customServiceList")->middl
 Route::get('/room/houseTypeImgs', "RoomController@houseTypeImgs")->middleware("weixinOAuth");
 Route::post('/room/bespeaking', "RoomController@bespeaking")->middleware("weixinOAuth");
 Route::post('/room/mark', "RoomController@mark")->middleware("weixinOAuth");
+
+//经纪人报名
+Route::get('/broker_apply', "RoomController@brokerApply")->middleware("weixinOAuth");
+Route::post('/broker_apply', "RoomController@brokerApplying")->middleware("weixinOAuth");
 
 //地域列表
 Route::get('/area/list', "RoomController@getAreaList")->middleware("weixinOAuth");

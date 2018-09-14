@@ -28,4 +28,10 @@ class WxConst
 
     //腾讯短信APP KEY
     const TX_SMS_APP_KEY = "f5d9df69f328d35406c7e8d7a296764d";
+
+    //预约提醒通知 模板ID
+    const TX_SMS_TEMPLATE_ID_FOR_BESPEAKING = 181523;
+
+    //经纪人报名通知 模板ID
+    const TX_SMS_TEMPLATE_ID_FOR_BROKER_APPLY = 193995;
 }
