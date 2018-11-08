@@ -217,7 +217,7 @@ class wxController extends Controller
             case 'unsubscribe':
                 //取消关注
                 $where['openid'] = $message['FromUserName'];
-                (new UserModel())->updateData(['is_subscribe' => 0], $where);
+                (new UserModel())->updateData(['is_subscribe' => 0, 'cancel_subscribe_time' => time()], $where);
                 break;
         }
         return '';
