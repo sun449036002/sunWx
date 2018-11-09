@@ -102,13 +102,21 @@ class RoomSourceLogic extends BaseLogic
                 $row->cover = empty($img->cover) ? asset('imgs/no-img.jpg') : env('MEMBER_IMG_DOMAIN') . $img->cover;
                 $row->cover = str_replace("room-source", 'room-source-thumbnail', $row->cover);
 
-                //详情轮播图
+                //详情轮播图 视频
                 $otherImgs = [];
+                $videos = [];//视频
+                $video_extensions = ["mp4", "aiv", "mov", "wmv", "3gp", "rmvb", "flv"];
                 foreach ($img->imgs as $k => $_img) {
-                    $_img = str_replace("room-source", 'room-source-thumbnail', $_img);
-                    $otherImgs[] = env('MEMBER_IMG_DOMAIN') . $_img;
+                    $extend = explode(".", $_img);
+                    if(in_array($extend[1], $video_extensions)) {
+                        $videos[] = env('MEMBER_IMG_DOMAIN') . $_img;
+                    } else {
+                        $_img = str_replace("room-source", 'room-source-thumbnail', $_img);
+                        $otherImgs[] = env('MEMBER_IMG_DOMAIN') . $_img;
+                    }
                 }
                 $row->imgs = $otherImgs;
+                $row->videos = $videos;
 
                 //户型图
                 $houseTypeImgs = [];

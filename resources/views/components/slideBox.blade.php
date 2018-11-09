@@ -71,6 +71,14 @@ $(document).ready(function () {
 
 <div class="swiper-container">
     <div class="swiper-wrapper">
+        {{-- 视频 --}}
+        @foreach($videos as $video)
+        <div class="swiper-slide video">
+            <video src="{{$video}}" width="100%" height="100%" controls autoplay></video>
+        </div>
+        @endforeach
+
+        {{-- 图片 --}}
         @foreach($list as $img)
         <div class="swiper-slide" data-url="{{$img->url ?? ""}}">
             <img width="100%" height="100%" src="{{$img->img ?? $img}}">
