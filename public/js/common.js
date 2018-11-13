@@ -37,7 +37,8 @@ function getRoomList(data, callback) {
                             '<div class="area">' + item.area + '</div>' +
                             '<div class="categoryName">' + item.categoryName + '</div>' +
                             '<div class="avg-price">均价：' + item.avgPrice + '元/m²</div>' +
-                            '<div class="avg-price">总价：' + (item.totalPrice === null ? 0 : item.totalPrice) + '万元</div>' +
+                            '<div class="avg-price">总价：' + (item.totalPrice === null ? 0 : item.totalPrice) + '万元 ' + item.firstPay + '</div>' +
+                            '<div class="avg-price">面积：' + item.acreage + '</div>' +
                             '<div class="btn-see-house" data-id="' + item.id + '">预约看房</div>' +
                         '</div>' +
                     '</div>' +

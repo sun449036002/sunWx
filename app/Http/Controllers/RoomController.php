@@ -117,9 +117,16 @@ class RoomController extends Controller
         $pageSize =10;
         $offset = ($page - 1) * $pageSize;
         //根据条件取得房源列表
-        $roomList = $roomSourceModel->select(['id', "type", "roomCategoryId", "name", "areaId", "avgPrice", "totalPrice", "imgJson"])
-            ->where($where)->orderBy("updateTime", "DESC")->offset($offset)->limit($pageSize)->get();
+        $fields = ['id', "type", "roomCategoryId", "name", "areaId", "avgPrice", "acreage", "firstPay", "totalPrice", "imgJson"];
+        $roomList = $roomSourceModel->select($fields)->where($where)->orderBy("updateTime", "DESC")->offset($offset)->limit($pageSize)->get();
         $roomList = (new RoomSourceLogic())->formatRoomList($roomList);
+        if (!empty($roomList)) {
+            foreach ($roomList as $key => $room) {
+                $roomList[$key]->firstPay = empty($room->firstPay) ? "" : "[首付" . str_replace("首付", "", $room->firstPay) . "]";
+                $roomList[$key]->acreage = empty($room->acreage) ? "" : mb_substr($room->acreage, 0, 8);
+//                dump(mb_substr($room->acreage, 0, 8));
+            }
+        }
 
         return ResultClientJson(0, '数据获取成功', ['list' => $roomList, 'isEnd' => empty($roomList)]);
     }
